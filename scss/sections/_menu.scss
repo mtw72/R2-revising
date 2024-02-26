@@ -1,0 +1,32 @@
+@use '../partials/mixins' as *;
+// menu on small screen: accordion + carousel
+// menu on medium screen: menu tab, content w/o photos + carousel
+// menu on large screen: menu tab, content w/ photos
+
+.small-menu__carousel {
+    display: block;
+    margin-bottom: 1.5rem;
+
+    @include custom-min-mq (699.5) {
+            display: none;
+        }
+}
+
+.large-menu {
+    display: none;
+}
+
+@include custom-min-mq (400) {
+    /* hide the small menu, show the large menu */
+    .large-menu__item:nth-of-type(3) {
+        border-bottom: 0;
+    }
+
+    .small-menu {
+        display: none;
+    }
+
+    .large-menu {
+        display: block;
+    }
+}

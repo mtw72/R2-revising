@@ -1,0 +1,12 @@
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-block: calc(1rem + 1vw);
+}
+
+.social-icons > * {
+    margin: 20px 10px;
+}

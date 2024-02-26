@@ -1,0 +1,18 @@
+// float & clearfix
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-none {
+    float: none;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}

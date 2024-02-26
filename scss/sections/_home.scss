@@ -1,0 +1,30 @@
+@use '../partials/variables' as *;
+@use '../partials/colors' as *;
+@use '../partials/functions' as f;
+@use '../partials/mixins' as *;
+
+#home {
+    padding-top: 70px;
+    position: relative;
+    border-bottom: 1px solid $orange-3;
+
+    @include min-mq(sm) {
+        padding-top: 0;
+    }
+}
+
+.hero-text {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    color: $white-4;
+    z-index: f.z('hero-text') ;
+
+    @include min-mq(sm) {
+        bottom: 5%;
+        left: 3%;
+    }
+}
+
+
+

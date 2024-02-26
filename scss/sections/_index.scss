@@ -1,0 +1,12 @@
+@use './home' as *;
+@use './menu' as *;
+@use './reservation-form' as *;
+@use './find-us' as *;
+
+
+
+
+@forward '../sections/home';
+@forward '../sections/menu';
+@forward '../sections/reservation-form';
+@forward '../sections/find-us';

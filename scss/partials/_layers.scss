@@ -1,0 +1,10 @@
+// z-index (layering of elements)
+$layers: (
+//   bottomless-pit: -9999,
+  default: 1,
+  hero-text: 10,
+  navbar: 100,
+//   dropdown: 3000,
+//   overlay: 4000,
+//   modal: 5000
+);

@@ -1,0 +1,33 @@
+@use '../partials/mixins' as *;
+@use '../partials/colors' as *;
+
+section:not(:first-of-type) {
+    max-width: 100%;
+    padding-inline: 1rem;
+    margin-inline: auto;
+    padding-block: calc(1rem + 1.5vw);
+
+    @include min-mq (sm) {
+        max-width: 800px;
+        padding-inline: 2rem;
+    }
+
+    @include min-mq (lg) {
+        max-width: 1150px;
+        padding-inline: 2.5rem;
+    }
+
+    @include min-mq (xl) {
+        max-width: 1500px;
+        padding-inline: 2rem;
+    }
+}
+
+section#menu {
+    max-width: 100%;
+
+    @include min-mq (xl) {
+        max-width: 1300px;
+        padding-inline: 2rem;
+    }
+}

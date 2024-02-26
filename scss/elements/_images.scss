@@ -1,0 +1,22 @@
+@use '../partials/variables' as *;
+@use '../partials/colors' as *;
+
+.reservation__photo img {
+    max-width: 700px;
+    max-height: 400px;
+    max-width: 400px;
+    width: 95%;
+    height: auto;
+    border: 1px solid $white-5;
+    border-radius: 0.375rem;
+    background-color: $white-1;
+    padding: 0.25rem;
+}
+
+@media all and (min-width:575.5px) {   
+    .reservation__photo img {
+        max-width: 700px;
+        max-height: 400px;
+        max-width: 600px;
+    }
+}

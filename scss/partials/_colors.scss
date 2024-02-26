@@ -1,0 +1,58 @@
+@use './variables' as *;
+
+body {
+    background-color: $yellow-1;
+}
+
+hr {
+    border: 1px solid $orange-3;
+}
+
+// navbar
+.navbar {
+    background-color: $yellow-2a;
+    color: $black-1;
+}
+
+.navbar__brand {
+    color: $black-1;
+}
+
+.navbar__toggler {
+    background-color: transparent;
+    outline: 1px solid $grey-2;
+    color: $grey-3;
+    border: transparent;
+
+    &:focus {
+        outline: 2px solid $grey-3;
+    }
+}
+
+.navbar__nav-link {
+    color: $grey-1;
+
+    &:visited {
+        color: $grey-1;
+    }
+
+    &:hover {
+        color: $black-1;
+    }
+}
+
+/* links for 
+contacts in findus and
+social icons in footer  */
+.g-link {
+    cursor: pointer;
+    color: $brown-1;
+}
+
+.g-link:hover {
+    color: $brown-2;
+}
+
+.g-link:active {
+    color: $brown-3;
+}

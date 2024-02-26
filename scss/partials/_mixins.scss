@@ -1,0 +1,69 @@
+@use 'sass:map';
+@use './functions' as f;
+@use './breakpoints' as *;
+
+
+//general media Query 
+@mixin min-mq($key) {
+    $size: map.get($breakpoints-min, $key);
+
+    @media all and (min-width: $size) {
+        @content;
+    }
+}
+
+@mixin max-mq($key) {
+    $size: map.get($breakpoints-max, $key);
+
+    @media all and (max-width: $size) {
+        @content;
+    }
+}
+
+// exclude xs(can use max-mq) and xl (can use min-mq)
+@mixin within-mq($key) {
+    $min-size: map.get($breakpoints-min, $key);
+    $max-size: map.get($breakpoints-max, $key);
+
+    @media all and (min-width: $min-size) and (max-width: $max-size) {
+        @content;
+    }
+}
+
+@mixin between-mq($smallerbreakpoint, $largerbreakpoint) {
+    $min-size: map.get($breakpoints-min, $smallerbreakpoint);
+    $max-size: map.get($breakpoints-max, $largerbreakpoint);
+
+    @media all and (min-width: $min-size) and (max-width: $max-size) {
+        @content;
+    }
+}
+
+
+// custom media query
+@mixin custom-min-mq($breakpoint) {
+    $size: f.em($breakpoint);
+
+    @media all and (min-width: $size) {
+        @content;
+    }
+}
+
+@mixin custom-max-mq($breakpoint) {
+    $size: f.em(calc($breakpoint - .02));
+
+    @media all and (max-width: $size) {
+        @content;
+    }
+}
+
+@mixin custom-between-mq($breakpoint1, $breakpoint2) {
+    $min-size: f.em($breakpoint1);
+    $max-size: f.em(calc($breakpoint2 - .02));
+
+    @media all and (min-width: $min-size) and (max-width: $max-size) {
+        @content;
+    }
+}
+
+
