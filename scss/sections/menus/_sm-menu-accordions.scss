@@ -1,11 +1,9 @@
-@use '../partials/variables' as *;
-@use '../partials/colors' as *;
-@use '../partials/fonts' as *;
+@use '../../partials/fonts' as *;
+@use '../../partials/functions' as f;
 
-/* Style the buttons that are used to open and close the accordion panel */
+
+//buttons when the accordion panel is close
 .small-menu__accordion {
-    background-color: $orange-2a;
-    color: $black-1;
     cursor: pointer;
     padding: 0.8rem;
     width: 100%;
@@ -16,31 +14,25 @@
     transition: 0.4s;
     font-family: $bodyfont;
     margin-block-start: 0.5rem;
+
+    //"plus" sign (+) 
+    &:after {
+        content: '\002B';
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+    }
 }
 
-.small-menu__accordion:hover,
-.small-menu__accordion--active {
-    background-color: $orange-2;
-    color: $yellow-2;
-}
-
-.small-menu__accordion:after {
-    content: '\002B'; /* Unicode character for "plus" sign (+) */
-    color: $grey-3;
-    font-weight: bold;
-    float: right;
-    margin-left: 5px;
-}
-
+//buttons when the accordion panel is open
+// "minus" sign (-)
 .small-menu__accordion--active:after {
-    content: "\2212"; /* Unicode character for "minus" sign (-) */
-    color: $yellow-2;
+    content: "\2212";
 }
 
 /* Style the accordion panel. Note: hidden by default */
 .small-menu__panel {
     padding: 0 0.5rem;
-    background-color: $white-1;
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.25s ease-out;
@@ -51,7 +43,6 @@
     grid-column-gap: 2px;
     grid-row-gap: 0px;
 
-    border: 1px solid $orange-1;
     border-top: 0;
 }
 

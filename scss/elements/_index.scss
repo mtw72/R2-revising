@@ -1,9 +1,0 @@
-@use './images' as *;
-@use './inputs' as *;
-@use './textarea' as *;
-
-
-
-@forward '../elements/images';
-@forward '../elements/inputs';
-@forward '../elements/textarea';

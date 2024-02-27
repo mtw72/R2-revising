@@ -1,20 +1,7 @@
 @use './loader' as *;
 @use './navbar' as *;
-@use './hero-image' as *;
-@use './lg-menu-tabs' as *;
-@use './lg-menu-contents' as *;
-@use './sm-menu-accordions' as *;
-@use './sm-menu-carousel' as *;
-@use './form' as *;
-
 
 
 
 @forward '../components/loader';
 @forward '../components/navbar';
-@forward '../components/hero-image';
-@forward '../components/lg-menu-tabs';
-@forward '../components/lg-menu-contents';
-@forward '../components/sm-menu-accordions';
-@forward '../components/sm-menu-carousel';
-@forward '../components/form';

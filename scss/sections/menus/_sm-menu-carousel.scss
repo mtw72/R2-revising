@@ -1,7 +1,6 @@
-@use '../partials/variables' as *;
-@use '../partials/colors' as *;
-@use '../partials/fonts' as *;
-@use '../partials/mixins' as *;
+@use '../../partials/fonts' as *;
+@use '../../partials/functions' as f;
+@use '../../partials/mixins' as *;
 
 /* Slideshow container */
 .small-menu__slideshow-container {
@@ -32,8 +31,6 @@
     position: absolute;
     left: 5%;
     bottom: -2rem;
-    background-color: $orange-3;
-    color: $white-3;
     margin: auto;
     padding: 8px 12px;
     width: 90%;
@@ -50,7 +47,6 @@
     position: absolute;
     top: 50%;
     width: auto;
-    color: $orange-3;
     font-weight: bold;
     font-size: 16px;
     transition: 0.6s ease;
@@ -76,7 +72,6 @@
         position: absolute;
         top: 45%;
         width: auto;
-        color: $orange-3;
         font-weight: bold;
         font-size: 20px;
         transition: 0.6s ease;
@@ -103,15 +98,9 @@
     height: 0.625rem;
     width: 10px;
     margin: 0 2px;
-    background-color: $orange-1;
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
-}
-
-.small-menu__slideshow-dot:hover,
-.slideshow-dot--active {
-    background-color: $orange-2;
 }
 
 /* Fading animation */
@@ -129,5 +118,3 @@
         opacity: 1;
     }
 }
-
-// refer to ../elements/buttons for next & prev buttons

@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 // z-index (layering of elements)
 $layers: (
 //   bottomless-pit: -9999,
@@ -8,3 +10,15 @@ $layers: (
 //   overlay: 4000,
 //   modal: 5000
 );
+
+.navbar {
+  z-index: map-get($layers,'navbar');
+}
+
+.hero-text {
+  z-index: map-get($layers,'hero-text');
+}
+
+.large-menu__tab-link::after {
+  z-index: map-get($layers,'default');
+}

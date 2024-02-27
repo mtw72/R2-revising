@@ -1,0 +1,35 @@
+@use '../../partials/mixins' as *;
+
+.large-menu {
+    display: none;
+}
+
+/* menu tab */
+.large-menu__tabs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.large-menu__tab {
+    flex: 1 0 33.33%;
+    text-align: center;
+    padding: 1rem;
+    font-size: clamp(1.35rem, 1.2rem + 1vw, 2rem);
+    transition: 0.5s;
+    position: relative;
+}
+
+.large-menu__tab--active {
+    transition: 0.5s;
+}
+
+.large-menu__tab-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: "";
+}
+

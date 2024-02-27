@@ -1,0 +1,14 @@
+@use './photo' as *;
+@use './button' as *;
+@use './inputs' as *;
+@use './textarea' as *;
+@use './structure' as *;
+
+
+
+
+@forward '../reservation-form/photo';
+@forward '../reservation-form/button';
+@forward '../reservation-form/inputs';
+@forward '../reservation-form/textarea';
+@forward '../reservation-form/structure';

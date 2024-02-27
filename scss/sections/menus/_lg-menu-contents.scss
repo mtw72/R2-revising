@@ -1,26 +1,13 @@
-@use '../partials/variables' as *;
-@use '../partials/colors' as *;
-@use '../partials/fonts' as *;
-@use '../partials/functions' as f;
-@use '../partials/mixins' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/colors' as *;
+@use '../../partials/functions' as f;
+@use '../../partials/mixins' as *;
 
 /* menu content */
 .large-food-menu {
-    display: none;
-    border: 1px solid $orange-1;
     border-top: 0px;
     text-align: left;
     line-height: 1.5;
-    background-color: $white-1;
-}
-
-.large-food-menu {
-    display: flex;
-    flex-direction: column;
-}
-
-.large-food-menu {
-    border-right: 1px solid $orange-1;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 1fr);
@@ -29,7 +16,6 @@
 }
 
 /* menu description */
-
 .large-food-menu h3 {
     margin: 0;
     padding: 2%;
@@ -42,7 +28,6 @@
 .large-menu__item {
     display: grid;
     align-content: center;
-    border-bottom: 1px solid $orange-1;
 }
 
 .large-menu__item p {
@@ -54,8 +39,6 @@
 
 .large-menu__item-price {
     display: inline-block;
-    background-color: $orange-2;
-    color: $white-1;
     text-align: center;
     font-weight: 700;
     font-size: clamp(1.2rem, 1rem + 1vw, 1.4rem);
@@ -72,17 +55,6 @@
     display: none;
 }
 
-@include custom-min-mq (400) {
-    /* rounded border menu on wider screen */
-    .large-menu__tab {
-        border-radius: 25px 25px 0 0;
-    }
-
-    .large-food-menu {
-        border-radius: 0 0 15px 15px;
-    }
-}
-
 @media all and (min-width:699.5px) {
 
     /* menu */
@@ -97,7 +69,6 @@
     .large-menu__item {
         display: grid;
         align-items: center;
-        border-right: 1px solid $orange-1;
     }
 
     .large-menu__item--1 {
@@ -130,7 +101,6 @@
     .large-menu__image>* {
         display: block;
     }
-
 }
 
 

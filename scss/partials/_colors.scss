@@ -1,4 +1,5 @@
 @use './variables' as *;
+@use './mixins' as *;
 
 body {
     background-color: $yellow-1;
@@ -41,6 +42,118 @@ hr {
     }
 }
 
+// home
+#home {
+    border-bottom: 1px solid $orange-3;
+}
+
+.hero-text {
+    color: $white-4;
+}
+
+// small menu
+//buttons when the accordion panel is close
+.small-menu__accordion {
+    background-color: $orange-2a;
+    color: $black-1;
+
+    &:hover {
+        background-color: $orange-2;
+        color: $yellow-2;
+    }
+
+    //"plus" sign (+) 
+    &:after {
+        color: $grey-3;
+    }
+}
+
+//buttons when the accordion panel is open
+.small-menu__accordion--active {
+    background-color: $orange-2;
+    color: $yellow-2;
+
+    // "minus" sign (-)
+    &:after {
+        color: $yellow-2;
+    }
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.small-menu__panel {
+    background-color: $white-1;
+    border: 1px solid $orange-1;
+}
+
+// carousel
+/* Caption text */
+.small-menu__image-description {
+    background-color: $orange-3;
+    color: $white-3;
+}
+
+//Next & previous buttons
+.small-menu__slideshow-button--prev,
+.small-menu__slideshow-button--next {
+    color: $orange-3;
+}
+
+.small-menu__slideshow-dot {
+    background-color: $orange-1;
+}
+
+.small-menu__slideshow-dot:hover,
+.slideshow-dot--active {
+    background-color: $orange-2;
+}
+
+// large menu
+.large-menu__tab {
+    border: 1px solid $orange-1;
+    background-color: $yellow-2b;
+
+    &:hover {
+        background-color: $orange-2;
+    }
+
+    &--active {
+        border: 1px solid $orange-1;
+        background-color: $orange-2;
+    }
+}
+
+.large-menu__tab-link {
+    color: $black-1;
+}
+
+.large-menu__tab:hover .large-menu__tab-link {
+    color: $white-2;
+}
+
+
+.large-menu__tab--active .large-menu__tab-link {
+    color: $yellow-2;
+}
+
+// menu content
+.large-food-menu {
+    border: 1px solid $orange-1;
+    background-color: $white-1;
+}
+
+.large-menu__item {
+    border-bottom: 1px solid $orange-1;
+
+    @include custom-min-mq (699.5) {
+        border-right: 1px solid $orange-1;
+    }
+}
+
+.large-menu__item-price {
+    background-color: $orange-2;
+    color: $white-1;
+}
+
 // reservation-form
 .reservation__photo img {
     border: 1px solid $white-5;
@@ -55,7 +168,8 @@ hr {
     color: $black-2a;
 }
 
-.input-control, .textarea-control {
+.input-control,
+.textarea-control {
     background-color: $white-1;
     border: 1px solid $grey-2;
 }
@@ -65,7 +179,8 @@ hr {
     color: $black-1;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
     border: 1px solid $pink-2;
     outline: 1px solid $pink-2;
 }
@@ -80,11 +195,15 @@ input:focus, textarea:focus {
     background-color: $black-1a;
 }
 
+// findus
+.contact__icon {
+    color: $grey-3;
+}
+
 /* links for 
 contacts in findus and
 social icons in footer  */
 .g-link {
-    cursor: pointer;
     color: $brown-1;
 }
 

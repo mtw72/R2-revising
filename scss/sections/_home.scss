@@ -1,24 +1,30 @@
-@use '../partials/variables' as *;
-@use '../partials/colors' as *;
 @use '../partials/functions' as f;
 @use '../partials/mixins' as *;
 
 #home {
     padding-top: 70px;
     position: relative;
-    border-bottom: 1px solid $orange-3;
 
-    @include min-mq(sm) {
+    @include custom-min-mq(375.5) {
         padding-top: 0;
     }
+}
+
+#home img,
+#home source {
+    max-width: 100%;
+}
+
+#home img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    vertical-align: middle;
 }
 
 .hero-text {
     position: absolute;
     bottom: 1rem;
     left: 1rem;
-    color: $white-4;
-    z-index: f.z('hero-text') ;
 
     @include min-mq(sm) {
         bottom: 5%;

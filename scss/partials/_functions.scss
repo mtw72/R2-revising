@@ -1,16 +1,4 @@
 @use 'sass:math';
-@use 'sass:map';
-@use './layers' as *;
-
-// z-index
-@function z($key) {
-    @if map-has-key($layers, $key) {
-      @return map-get($layers, $key);
-    }
-  
-    @warn "Unknown `#{$key}` in $layers.";
-    @return null;
-  }
 
 //px to em units
 //Throw an error if the parameter has a unit
