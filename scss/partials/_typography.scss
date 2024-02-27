@@ -1,18 +1,33 @@
+@use './functions' as f;
 @use './variables' as *;
 @use './colors' as *;
 @use './fonts' as *;
 @use './mixins' as *;
 
-/* Dancing script for home text */
-.hero-text {
-    font-family: $logofont;
+body {
+    font-family: $bodyfont;
+    font-size: clamp(1.25rem, 0.9rem + 1vw, 1.5rem);
 }
 
-/* logo front-size in navbar and findus */
+// logo font in navbar and findus
 .g-logofont {
     font-family: $logofont;
     font-size: clamp(2rem, 1.5rem + 1vw, 2.5rem);
-    margin: 0;
+}
+
+// navbar
+.navbar {
+    font-size: clamp(1.5rem, 1rem + 1vw, 2rem);
+}
+
+.navbar__toggler {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+//hero text in home
+.hero-text {
+    font-family: $logofont;
 }
 
 .hero-text h1 {

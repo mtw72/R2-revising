@@ -1,10 +1,8 @@
-@use './header' as *;
 @use './sections' as *;
 @use './footer' as *;
 
 
 
 
-@forward '../layouts/header';
 @forward '../layouts/sections';
 @forward '../layouts/footer';

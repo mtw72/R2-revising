@@ -6,12 +6,12 @@
  * 2. Backgrounds do not repeat by default (opinionated).
  */
 
- *,
- ::before,
- ::after {
-   box-sizing: border-box; /* 1 */
-   background-repeat: no-repeat; /* 2 */
- }
+//  *,
+//  ::before,
+//  ::after {
+//    box-sizing: border-box; /* 1 */
+//    background-repeat: no-repeat; /* 2 */
+//  }
  
  /**
   * 1. Add text decoration inheritance in all browsers (opinionated).

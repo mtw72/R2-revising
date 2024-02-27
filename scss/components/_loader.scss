@@ -1,6 +1,7 @@
 @use '../partials/variables' as *;
 @use '../partials/colors' as *;
 @use '../partials/fonts' as *;
+@use '../partials/mixins' as *;
 
 .website-content--hidden {
     display: none;
@@ -21,6 +22,13 @@
     width: 80px;
     height: 80px;
     animation: spin 2s linear infinite;
+
+    @include min-mq(sm) {
+        border: 16px solid $white-3;
+        border-top: 16px solid $orange-2;
+        width: 120px;
+        height: 120px;
+    }
 }
 
 @keyframes spin {
@@ -36,15 +44,4 @@
 .loader__container p {
     margin: 20px auto 0 auto;
     font-family: $logofont;
-}
-
-@media all and (min-width:575.5px) {
-
-    .loader__object {
-        border: 16px solid $white-3;
-        border-top: 16px solid $orange-2;
-        width: 120px;
-        height: 120px;
-    }
-
 }
