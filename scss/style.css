@@ -366,6 +366,44 @@ hr {
   color: rgb(0, 0, 0);
 }
 
+.reservation__photo img {
+  border: 1px solid rgb(222, 226, 230);
+  background-color: rgb(255, 255, 255);
+}
+
+.input-control {
+  color: rgb(33, 37, 41);
+}
+
+.textarea-control {
+  color: rgba(33, 37, 41, 0.7);
+}
+
+.input-control, .textarea-control {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(206, 212, 218);
+}
+
+/* change textarea color when the user is typing */
+.textarea-control.input {
+  color: rgb(0, 0, 0);
+}
+
+input:focus, textarea:focus {
+  border: 1px solid rgb(255, 182, 193);
+  outline: 1px solid rgb(255, 182, 193);
+}
+
+.reservation__form--button {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 1px rgb(102, 102, 102);
+}
+
+.reservation__form--button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
 /* links for 
 contacts in findus and
 social icons in footer  */
@@ -487,20 +525,16 @@ hr {
 }
 
 .reservation__photo img {
-  max-width: 700px;
   max-height: 400px;
   max-width: 400px;
   width: 95%;
   height: auto;
-  border: 1px solid rgb(222, 226, 230);
   border-radius: 0.375rem;
-  background-color: rgb(255, 255, 255);
   padding: 0.25rem;
 }
 
 @media all and (min-width: 575.5px) {
   .reservation__photo img {
-    max-width: 700px;
     max-height: 400px;
     max-width: 600px;
   }
@@ -514,16 +548,8 @@ hr {
   font-weight: 400;
   line-height: 1.5;
   font-family: inherit;
-  color: rgb(33, 37, 41);
-  background-color: rgb(255, 255, 255);
   background-clip: padding-box;
-  border: 1px solid rgb(206, 212, 218);
   border-radius: 0.375rem;
-}
-
-input:focus {
-  border: 1px solid rgb(255, 182, 193);
-  outline: 1px solid rgb(255, 182, 193);
 }
 
 .textarea-control {
@@ -535,21 +561,8 @@ input:focus {
   font-weight: 400;
   line-height: 1.5;
   font-family: inherit;
-  color: rgba(33, 37, 41, 0.7);
-  background-color: rgb(255, 255, 255);
   background-clip: padding-box;
-  border: 1px solid rgb(206, 212, 218);
   border-radius: 0.375rem;
-}
-
-/* change textarea color when the user is typing */
-.textarea-control.input {
-  color: rgb(0, 0, 0);
-}
-
-textarea:focus {
-  border: 1px solid rgb(255, 182, 193);
-  outline: 1px solid rgb(255, 182, 193);
 }
 
 .website-content--hidden {
@@ -1243,20 +1256,13 @@ textarea:focus {
   }
 }
 .reservation__form--button {
-  background: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
   font-family: inherit;
   font-size: 1.25rem;
   padding: 10px 15px;
   border: none;
   border-radius: 10px;
-  box-shadow: 1px 1px 1px rgb(102, 102, 102);
   float: right;
   cursor: pointer;
-}
-
-.reservation__form--button:hover {
-  background: rgba(0, 0, 0, 0.7);
 }
 
 section:not(:first-of-type) {

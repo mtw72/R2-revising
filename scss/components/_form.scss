@@ -4,18 +4,11 @@
 @use '../partials/colors' as *;
 
 .reservation__form--button {
-    background: $black-1;
-    color: $white-1;
     font-family: inherit;
     font-size: 1.25rem;
     padding: 10px 15px;
     border: none;
     border-radius: 10px;
-    box-shadow: 1px 1px 1px $grey-4;
     float: right;
     cursor: pointer;
-}
-
-.reservation__form--button:hover {
-    background: $black-1a;
 }

@@ -41,6 +41,45 @@ hr {
     }
 }
 
+// reservation-form
+.reservation__photo img {
+    border: 1px solid $white-5;
+    background-color: $white-1;
+}
+
+.input-control {
+    color: $black-2;
+}
+
+.textarea-control {
+    color: $black-2a;
+}
+
+.input-control, .textarea-control {
+    background-color: $white-1;
+    border: 1px solid $grey-2;
+}
+
+/* change textarea color when the user is typing */
+.textarea-control.input {
+    color: $black-1;
+}
+
+input:focus, textarea:focus {
+    border: 1px solid $pink-2;
+    outline: 1px solid $pink-2;
+}
+
+.reservation__form--button {
+    background-color: $black-1;
+    color: $white-1;
+    box-shadow: 1px 1px 1px $grey-4;
+}
+
+.reservation__form--button:hover {
+    background-color: $black-1a;
+}
+
 /* links for 
 contacts in findus and
 social icons in footer  */
