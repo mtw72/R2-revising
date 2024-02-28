@@ -32,5 +32,12 @@
     }
 }
 
+.hero-text h5 {
+    display: none;
+
+    @include custom-min-mq (375.5) {
+        display: block;
+    }
+}
 
 

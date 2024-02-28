@@ -36,20 +36,97 @@ body {
 
 .hero-text h5 {
     font-size: clamp(1rem, 1rem + 1vw, 2rem);
-    display: none;
+}
 
-    @include custom-min-mq (375.5) {
-        display: block;
+// menu
+#menu h1,
+#reservation h1 {
+    font-size: clamp(2.2rem, 2rem + 1vw, 3rem);
+    text-align: center;
+    text-shadow: 2px 3px $pink-1;
+    margin-block: calc(1.25rem + 1.5vw);
+}
+
+// small menu
+//buttons when the accordion panel is close
+.small-menu__accordion {
+    font-size: 1.4rem;
+    text-align: left;
+
+    //"plus" sign (+) 
+    &:after {
+        content: '\002B';
+        font-weight: bold;
     }
 }
 
-#menu h1,
-#reservation h1 {
-    text-shadow: 2px 3px $pink-1;
+// carousel text
+.small-menu__image-description {
+    font-size: 1.3rem;
     text-align: center;
-    font-size: clamp(2.2rem, 2rem + 1vw, 3rem);
-    margin-block: calc(1.25rem + 1.5vw);
 }
+
+// large menu
+// menu tab
+.large-menu__tab {
+    font-size: clamp(1.35rem, 1.2rem + 1vw, 2rem);
+    text-align: center;
+}
+
+// menu content
+.large-food-menu {
+    line-height: 1.5;
+}
+
+// menu description
+.large-food-menu h3 {
+    font-size: clamp(1.35rem, 1.2rem + 1vw, 1.75rem);
+    font-weight: bold;
+}
+
+.large-menu__item p {
+    font-size: clamp(1.3rem, 0.9rem + 1vw, 1.5rem);
+}
+
+.large-menu__item-price {
+    font-size: clamp(1.2rem, 1rem + 1vw, 1.4rem);
+    font-weight: 700;
+    line-height: 0.75rem;
+    text-align: center;
+}
+
+.large-menu__image-description {
+    font-size: clamp(1.3rem, 0.9rem + 1vw, 1.5rem);
+    text-shadow: 1px 1px $yellow-3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .findus h3 {
     font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
@@ -66,77 +143,3 @@ body {
 }
 
 
-
-// font-family
-// $heading2: 'Boogaloo', cursive;
-
-// h1, h2, h3 {
-//     font-family: $heading2;
-//     margin-left: 0;
-//     margin-bottom: 2rem;
-//     font-weight: 700;
-//     line-height: 1.2;
-//     text-align: left;
-// }
-
-// h1 {
-//     color: $hero_text-text;
-//     font-size: clamp(1.5rem, calc(6vw + 0.5rem), 4rem);
-//     text-shadow: 2px 2px white, 3px 3px black;
-// }
-
-// h2 {
-//     color: $darkgreen;
-//     font-size: clamp(1.5rem, calc(5vw + 0.5rem), 3rem);
-//     font-variant: small-caps;
-//     text-shadow: 2px 2px lightgray;
-// }
-
-// h3 {
-//     color: $darkgreen;
-//     font-size: clamp(1rem, calc(4vw + 0.5rem), 2.2rem);
-//     text-shadow: 2px 2px whitesmoke;
-// }
-
-// h4 {
-//     font-family: $heading2;
-//     margin-left: 0;
-//     margin-bottom: 0;
-//     font-weight: 700;
-//     line-height: 1.2;
-//     text-align: center;
-//     font-size: clamp(1rem, calc(3vw + 0.5rem), 1.9rem);
-//     color: $green;
-// }
-
-// p {
-//     margin-top: 1rem;
-//     margin-bottom: 0.5rem;
-//     text-align: justify;
-//     line-height: 1.6;
-//     font-family: 'Inter', sans-serif;
-
-//     @include max-mq(md){
-//         text-align: left;
-//     }
-// }
-
-// button {
-//     font-family: $heading2;
-// }
-
-// .recyclables-btn.active {
-//     font-weight: bolder;
-//   }
-  
-// li {
-//     font-family: 'Inter', sans-serif;
-// }
-
-// .bold-link {
-//     font-weight: bold;
-// }
-
-// .section-heading {
-//     flex: 1 0 100%;
-// }

@@ -5,23 +5,18 @@
 
 /* menu content */
 .large-food-menu {
-    border-top: 0px;
-    text-align: left;
-    line-height: 1.5;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    border-top: 0px;
 }
 
 /* menu description */
 .large-food-menu h3 {
-    margin: 0;
     padding: 2%;
     padding-left: calc(0.5rem + 1vw);
-    font-weight: bold;
-    font-size: clamp(1.35rem, 1.2rem + 1vw, 1.75rem);
     display: inline-block;
 }
 
@@ -34,19 +29,14 @@
     margin: 0;
     padding: 2%;
     padding-left: calc(0.5rem + 1vw);
-    font-size: clamp(1.3rem, 0.9rem + 1vw, 1.5rem);
 }
 
 .large-menu__item-price {
     display: inline-block;
-    text-align: center;
-    font-weight: 700;
-    font-size: clamp(1.2rem, 1rem + 1vw, 1.4rem);
     border-radius: 10px;
     width: 75px;
     height: 40px;
     padding-block: 1rem;
-    line-height: .75rem;
     margin-left: 0.5rem;
 }
 
@@ -55,8 +45,12 @@
     display: none;
 }
 
-@media all and (min-width:699.5px) {
+.large-menu__image-description {
+    margin-top: 0.5rem;
+    margin-bottom: calc(0.65rem + 1vw);
+}
 
+@include custom-min-mq(699.5){
     /* menu */
     .large-food-menu {
         display: grid;
@@ -97,21 +91,12 @@
         max-width: 90%;
     }
 
-
     .large-menu__image>* {
         display: block;
     }
 }
 
-
-.large-menu__image-description {
-    text-shadow: 1px 1px $yellow-3;
-    font-size: clamp(1.3rem, 0.9rem + 1vw, 1.5rem);
-    margin-top: 0.5rem;
-    margin-bottom: calc(0.65rem + 1vw);
-}
-
-@media screen and (min-width:991.5px) {
+@include custom-min-mq(991.5){
     .large-food-menu {
         grid-template-columns: 2fr 1fr;
     }

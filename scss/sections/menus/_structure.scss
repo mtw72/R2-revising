@@ -29,9 +29,7 @@
     .large-menu {
         display: block;
     }
-}
 
-@include custom-min-mq (400) {
     /* rounded border menu on wider screen */
     .large-menu__tab {
         border-radius: 25px 25px 0 0;
