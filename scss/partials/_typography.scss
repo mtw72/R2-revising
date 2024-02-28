@@ -20,11 +20,6 @@ body {
     font-size: clamp(1.5rem, 1rem + 1vw, 2rem);
 }
 
-.navbar__toggler {
-    font-size: 1.5rem;
-    line-height: 1;
-}
-
 //hero text in home
 .hero-text {
     font-family: $logofont;
@@ -100,8 +95,13 @@ body {
     text-shadow: 1px 1px $yellow-3;
 }
 
-
-
+// reservation form
+.textarea-control {
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.5;
+    font-family: inherit;
+}
 
 
 

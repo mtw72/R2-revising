@@ -33,12 +33,15 @@
     max-height: 0;
     border-top: 0;
     transition: max-height 0.25s ease-out;
+}
 
+.small-menu__content {
     display: grid;
-    grid-template-columns: 1fr 50px;
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 2px;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(3, auto);
+    grid-column-gap: 5px;
     grid-row-gap: 0px;
+    padding-block: 0.5rem;
 }
 
 .small-menu__item--1 {
@@ -47,11 +50,6 @@
 
 .small-menu__item-price--1 {
     grid-area: 1 / 2 / 2 / 3;
-}
-
-.small-menu__item--1,
-.small-menu__item-price--1 {
-    padding-top: 0.5rem;
 }
 
 .small-menu__item--2 {
@@ -68,7 +66,6 @@
 
 .small-menu__item-price--3 {
     grid-area: 3 / 2 / 4 / 3;
-    padding-bottom: 0.5rem;
 }
 
 .small-menu__item-price--1,

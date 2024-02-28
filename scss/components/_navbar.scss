@@ -1,9 +1,6 @@
 @use '../partials/functions' as f;
-@use '../partials/breakpoints' as *;
 @use '../partials/mixins' as *;
-@use '../partials/typography' as *;
 
-// navbar still here when scrolling down!!
 .navbar {
     display: flex;
     flex-wrap: wrap;
@@ -17,14 +14,17 @@
     left: 0;
 
     @include min-mq(sm) {
-        padding: 0;
+        padding-block: 0.25rem;
+    }
+
+    @include min-mq (lg) {
+        padding-block: 0.5rem;
     }
 }
 
 .navbar__container {
     width: 100%;
-    margin-right: auto;
-    margin-left: auto;
+    margin-inline: auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -35,13 +35,8 @@
         padding-inline: 1.5rem;
     }
 
-    @include min-mq(lg) {
-        padding-block: 0.25rem;
-    }
-
     @include min-mq (xl) {
         padding-inline: 2rem;
-        padding-block: 0.5rem;
     }
 }
 
@@ -58,7 +53,6 @@
 
 .navbar__toggler {
     padding: 0.5rem;
-    font-size: 1.5rem;
     line-height: 1;
     border-radius: 0.25rem;
     display: inline-block;

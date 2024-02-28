@@ -1,5 +1,3 @@
-@use '../../partials/variables' as *;
-@use '../../partials/colors' as *;
 @use '../../partials/functions' as f;
 @use '../../partials/mixins' as *;
 
@@ -34,8 +32,8 @@
 .large-menu__item-price {
     display: inline-block;
     border-radius: 10px;
-    width: 75px;
-    height: 40px;
+    width: f.rem(75);
+    height: f.rem(40);
     padding-block: 1rem;
     margin-left: 0.5rem;
 }
@@ -46,23 +44,16 @@
 }
 
 .large-menu__image-description {
-    margin-top: 0.5rem;
-    margin-bottom: calc(0.65rem + 1vw);
+    margin-top: 0.65rem;
 }
 
 @include custom-min-mq(699.5){
-    /* menu */
     .large-food-menu {
         display: grid;
         grid-template-columns: 7fr 5fr;
         grid-template-rows: repeat(3, 1fr);
         grid-column-gap: 0px;
         grid-row-gap: 0px;
-    }
-
-    .large-menu__item {
-        display: grid;
-        align-items: center;
     }
 
     .large-menu__item--1 {
@@ -83,12 +74,11 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding-top: 2%;
-        margin-inline: auto;
+        margin: 1.25rem;
     }
 
     .large-menu__image img {
-        max-width: 90%;
+        max-width: 100%;
     }
 
     .large-menu__image>* {
@@ -99,9 +89,5 @@
 @include custom-min-mq(991.5){
     .large-food-menu {
         grid-template-columns: 2fr 1fr;
-    }
-
-    .large-menu__image {
-        max-width: 90%;
     }
 }

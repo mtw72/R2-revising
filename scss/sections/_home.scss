@@ -2,7 +2,7 @@
 @use '../partials/mixins' as *;
 
 #home {
-    padding-top: 70px;
+    padding-top: f.rem(70);
     position: relative;
 
     @include custom-min-mq(375.5) {
