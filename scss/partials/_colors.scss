@@ -197,6 +197,10 @@ textarea:focus {
 }
 
 // findus
+.findus h3 {
+    border-bottom: 4px dotted $grey-2;
+}
+
 .contact__icon {
     color: $grey-3;
 }

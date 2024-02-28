@@ -1,16 +1,15 @@
-@use '../../partials/fonts' as *;
 @use '../../partials/functions' as f;
 
 
 //buttons when the accordion panel is close
 .small-menu__accordion {
-    cursor: pointer;
     padding: 0.8rem;
     width: 100%;
+    text-align: left;
     border: none;
     outline: none;
     transition: 0.4s;
-    margin-block-start: 0.5rem;
+    cursor: pointer;
 
     //"plus" sign (+) 
     &:after {
@@ -18,6 +17,10 @@
         float: right;
         margin-left: 5px;
     }
+}
+
+.small-menu__accordion:not(:first-of-type) {
+    margin-top: 0.5rem;
 }
 
 //buttons when the accordion panel is open

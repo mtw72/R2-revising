@@ -38,8 +38,8 @@
     @include min-mq (xl) {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr) repeat(2, auto);
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
+        grid-column-gap: 15px;
+        grid-row-gap: 15px;
     }
 }
 
@@ -55,7 +55,8 @@
     margin-bottom: 1rem;
 }
 
-// grid of input and textarea
+
+// grid of inputs and textarea
 @include min-mq (sm) {
     .reservation__form--name {
         grid-area: 1 / 1 / 2 / 2;

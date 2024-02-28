@@ -66,16 +66,25 @@
     }
 }
 
-
 .findus__contact-content,
 .findus__openhour-content {
     max-width: f.rem(270);
-
     width: 100%;
 
     @include min-mq (sm) {
         max-width: f.rem(320);
         width: 95%;
+    }
+}
+
+.findus h3 {
+    margin-inline: auto;
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.7rem;
+    text-align: left;
+    
+    @include custom-min-mq (299.5) {
+        text-align: center;
     }
 }
 

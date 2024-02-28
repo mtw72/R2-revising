@@ -1,15 +1,16 @@
+@use '../../partials/functions' as f;
 @use '../../partials/mixins' as *;
+
 // menu on small screen: accordion + carousel
 // menu on medium screen: menu tab, content w/o photos + carousel
 // menu on large screen: menu tab, content w/ photos
 
 .small-menu__carousel {
     display: block;
-    margin-bottom: 1.5rem;
 
     @include custom-min-mq (699.5) {
-            display: none;
-        }
+        display: none;
+    }
 }
 
 .large-menu {
@@ -17,6 +18,7 @@
 }
 
 @include custom-min-mq (400) {
+
     /* hide the small menu, show the large menu */
     .large-menu__item:nth-of-type(3) {
         border-bottom: 0;
@@ -37,5 +39,23 @@
 
     .large-food-menu {
         border-radius: 0 0 15px 15px;
+    }
+}
+
+.large-menu {
+    max-width: f.rem(450);
+    margin-inline: auto;
+
+    @include min-mq (sm) {
+        max-width: f.rem(800);
+    }
+
+    @include min-mq (lg) {
+        max-width: f.rem(1000);
+    }
+
+    @include min-mq (xl) {
+        max-width: f.rem(1300);
+        padding-inline: 2rem;
     }
 }
