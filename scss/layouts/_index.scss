@@ -1,8 +1,14 @@
-@use './sections' as *;
+@use './home' as *;
+@use './menus' as *;
+@use './reservation-form' as *;
+@use './find-us' as *;
 @use './footer' as *;
 
 
 
 
-@forward '../layouts/sections';
+@forward '../layouts/home';
+@forward '../layouts/menus';
+@forward '../layouts/reservation-form';
+@forward '../layouts/find-us';
 @forward '../layouts/footer';

@@ -2,6 +2,7 @@
 @use './menus/index' as *;
 @use './reservation-form/index' as *;
 @use './find-us' as *;
+@use './footer' as *;
 
 
 
@@ -10,3 +11,4 @@
 @forward '../sections/menus/index';
 @forward '../sections/reservation-form/index';
 @forward '../sections/find-us';
+@forward '../sections/footer';
