@@ -1,16 +1,18 @@
+@use './form-heading' as *;
+@use './form-structure' as *;
 @use './form-photo' as *;
 @use './form-inputs' as *;
 @use './form-textarea' as *;
 @use './form-paragraph' as *;
 @use './form-button' as *;
-@use './form-structure' as *;
 
 
 
 
+@forward '../reservation-form/form-structure';
+@forward '../reservation-form/form-heading';
 @forward '../reservation-form/form-photo';
 @forward '../reservation-form/form-inputs';
 @forward '../reservation-form/form-textarea';
 @forward '../reservation-form/form-paragraph';
 @forward '../reservation-form/form-button';
-@forward '../reservation-form/form-structure';

@@ -3,6 +3,7 @@
 @use './sm-menu-accordions' as *;
 @use './sm-menu-carousel' as *;
 @use './menu-structure' as *;
+@use './menu-heading' as *;
 
 
 
@@ -12,3 +13,4 @@
 @forward '../menus/sm-menu-accordions';
 @forward '../menus/sm-menu-carousel';
 @forward '../menus/menu-structure';
+@forward '../menus/menu-heading';

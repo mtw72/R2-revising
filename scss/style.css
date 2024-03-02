@@ -598,21 +598,16 @@ body {
 #reservation h1 {
   font-size: clamp(2.2rem, 2rem + 1vw, 3rem);
   text-shadow: 2px 3px rgb(255, 192, 203);
-  margin-bottom: 1.25rem;
-  text-align: center;
-}
-@media all and (min-width: 78.125em) {
-  #menu h1,
-  #reservation h1 {
-    margin-bottom: 3rem;
-  }
 }
 
 .small-menu__accordion {
   font-size: 1.4rem;
 }
 .small-menu__accordion:after {
-  content: "+";
+  font-weight: bold;
+}
+
+.small-menu__accordion--active:after {
   font-weight: bold;
 }
 
@@ -1335,72 +1330,24 @@ footer {
   }
 }
 
-.reservation__photo {
-  display: none;
+#menu h1 {
+  margin-bottom: 1.25rem;
+  text-align: center;
 }
-@media all and (min-width: 25em) {
-  .reservation__photo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 2rem;
-  }
-}
-@media all and (min-width: 78.09375em) {
-  .reservation__photo {
-    padding-bottom: 5.5rem;
-    justify-content: flex-start;
+@media all and (min-width: 78.125em) {
+  #menu h1 {
+    margin-bottom: 3rem;
   }
 }
 
-.reservation__photo img {
-  max-width: 25rem;
-  max-height: 25rem;
-  width: 100%;
-  height: auto;
-  border-radius: 0.375rem;
-  padding: 0.25rem;
+#reservation h1 {
+  margin-bottom: 1.25rem;
+  text-align: center;
 }
-@media all and (min-width: 36em) {
-  .reservation__photo img {
-    max-width: 37.5rem;
-    max-height: 25rem;
+@media all and (min-width: 78.125em) {
+  #reservation h1 {
+    margin-bottom: 3rem;
   }
-}
-
-.input-control {
-  display: block;
-  width: 100%;
-  height: 3rem;
-  padding: 0.375rem 0.75rem;
-  background-clip: padding-box;
-  border-radius: 0.375rem;
-}
-
-.textarea-control {
-  display: block;
-  width: 100%;
-  height: 6rem;
-  padding: 0.375rem 0.75rem;
-  background-clip: padding-box;
-  border-radius: 0.375rem;
-}
-@media all and (min-width: 62em) {
-  .textarea-control {
-    height: 7.5rem;
-  }
-}
-
-.reservation__form--bottom-part p {
-  margin-bottom: 1rem;
-}
-
-.reservation__form--button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 10px;
-  float: right;
-  cursor: pointer;
 }
 
 .reservation {
@@ -1493,6 +1440,74 @@ footer {
     grid-area: 5/1/6/4;
   }
 }
+.reservation__photo {
+  display: none;
+}
+@media all and (min-width: 25em) {
+  .reservation__photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
+}
+@media all and (min-width: 78.09375em) {
+  .reservation__photo {
+    padding-bottom: 5.5rem;
+    justify-content: flex-start;
+  }
+}
+
+.reservation__photo img {
+  max-width: 25rem;
+  max-height: 25rem;
+  width: 100%;
+  height: auto;
+  border-radius: 0.375rem;
+  padding: 0.25rem;
+}
+@media all and (min-width: 36em) {
+  .reservation__photo img {
+    max-width: 37.5rem;
+    max-height: 25rem;
+  }
+}
+
+.input-control {
+  display: block;
+  width: 100%;
+  height: 3rem;
+  padding: 0.375rem 0.75rem;
+  background-clip: padding-box;
+  border-radius: 0.375rem;
+}
+
+.textarea-control {
+  display: block;
+  width: 100%;
+  height: 6rem;
+  padding: 0.375rem 0.75rem;
+  background-clip: padding-box;
+  border-radius: 0.375rem;
+}
+@media all and (min-width: 62em) {
+  .textarea-control {
+    height: 7.5rem;
+  }
+}
+
+.reservation__form--bottom-part p {
+  margin-bottom: 1rem;
+}
+
+.reservation__form--button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  float: right;
+  cursor: pointer;
+}
+
 .findus {
   display: flex;
   flex-direction: column;
@@ -1586,6 +1601,7 @@ footer {
   margin-bottom: 0.7rem;
   padding-bottom: 0.7rem;
   text-align: left;
+  text-align: center;
 }
 @media all and (min-width: 18.71875em) {
   .findus h3 {
@@ -1593,27 +1609,37 @@ footer {
   }
 }
 
+.findus__grid {
+  text-align: center;
+}
 @media all and (min-width: 18.71875em) {
   .findus__grid {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(2, auto);
-    grid-column-gap: 10px;
-    grid-row-gap: 0;
+    -moz-column-gap: 10px;
+         column-gap: 10px;
+    row-gap: 0;
     justify-content: center;
     align-items: start;
+    text-align: left;
   }
 }
 
+.openhour-grid {
+  text-align: center;
+}
 @media all and (min-width: 18.71875em) {
   .openhour-grid {
     display: grid;
     grid-template-rows: repeat(7, 1fr);
     grid-template-columns: repeat(2, auto);
-    grid-column-gap: 10px;
-    grid-row-gap: 0;
+    -moz-column-gap: 10px;
+         column-gap: 10px;
+    row-gap: 0;
     justify-content: center;
     align-items: start;
+    text-align: left;
   }
 }
 
