@@ -8,7 +8,7 @@
 .small-menu__carousel {
     display: block;
 
-    @include custom-min-mq (699.5) {
+        @include min-mq(md){
         display: none;
     }
 }
@@ -17,8 +17,7 @@
     display: none;
 }
 
-@include custom-min-mq (400) {
-
+    @include min-mq (xs) {
     /* hide the small menu, show the large menu */
     .large-menu__item:nth-of-type(3) {
         border-bottom: 0;

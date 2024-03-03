@@ -38,7 +38,7 @@
 .reservation__form>div {
     max-width: f.rem(400);
 
-    @include custom-min-mq (576) {
+    @include min-mq (sm) {
         max-width: 100%;
     }
 }

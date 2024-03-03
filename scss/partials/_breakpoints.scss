@@ -1,14 +1,18 @@
 @use 'sass:map';
 @use './functions' as f;
 
-// xs: 0px - 575.98px
+// xxxs: 0px - 299.98px
+// xxs: 300px - 449.98px
+// xs: 450px - 575.98px
 // sm: 576px - 767.98px
 // md: 768px - 991.98px
 // lg: 992px - 1199.98px
 // xl: 1200px or above
 
 $screen-breakpoints: (
-    xs: 0,
+    xxxs: 0,
+    xxs:300,
+    xs: 450,
     sm: 576,
     md: 768,
     lg: 992,
@@ -20,7 +24,9 @@ $breakpoints-max: f.generate-breakpoints($screen-breakpoints, calculate-em-max);
 
 // something like this will be generated
 // $breakpoints-min: (
-//     'xs': f.em(0),
+//     'xxxs': f.em(0),
+//     'xxs': f.em(300),
+//     'xs': f.em(450),
 //     'sm': f.em(576),
 //     'md': f.em(768),
 //     'lg': f.em(992),
@@ -28,6 +34,8 @@ $breakpoints-max: f.generate-breakpoints($screen-breakpoints, calculate-em-max);
 // );
 
 // $breakpoints-max: (
+//     'xxs': f.em(calc(300 - .02)),
+//     'xxs': f.em(calc(450 - .02)),
 //     'xs': f.em(calc(576 - .02)),
 //     'sm': f.em(calc(768 - .02)),
 //     'md': f.em(calc(992 - .02)),

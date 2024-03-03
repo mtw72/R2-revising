@@ -145,7 +145,7 @@ hr {
 .large-menu__item {
     border-bottom: 1px solid $orange-1;
 
-    @include custom-min-mq (699.5) {
+    @include min-mq(md) {
         border-right: 1px solid $orange-1;
     }
 }

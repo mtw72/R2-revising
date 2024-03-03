@@ -482,7 +482,7 @@ hr {
 .large-menu__item {
   border-bottom: 1px solid rgb(255, 231, 204);
 }
-@media all and (min-width: 43.71875em) {
+@media all and (min-width: 48em) {
   .large-menu__item {
     border-right: 1px solid rgb(255, 231, 204);
   }
@@ -832,16 +832,6 @@ body {
   }
 }
 
-#home {
-  padding-top: 4.375rem;
-  position: relative;
-}
-@media all and (min-width: 23.46875em) {
-  #home {
-    padding-top: 0;
-  }
-}
-
 section:not(:first-of-type) {
   max-width: 100%;
   padding-inline: 1rem;
@@ -923,20 +913,11 @@ section#findus {
   }
 }
 
-footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding-block: calc(1rem + 1.5vw);
-}
-
 #home {
   padding-top: 4.375rem;
   position: relative;
 }
-@media all and (min-width: 23.46875em) {
+@media all and (min-width: 28.125em) {
   #home {
     padding-top: 0;
   }
@@ -968,7 +949,7 @@ footer {
 .hero-text h5 {
   display: none;
 }
-@media all and (min-width: 23.46875em) {
+@media all and (min-width: 28.125em) {
   .hero-text h5 {
     display: block;
   }
@@ -977,7 +958,7 @@ footer {
 .small-menu__carousel {
   display: block;
 }
-@media all and (min-width: 43.71875em) {
+@media all and (min-width: 48em) {
   .small-menu__carousel {
     display: none;
   }
@@ -987,7 +968,7 @@ footer {
   display: none;
 }
 
-@media all and (min-width: 25em) {
+@media all and (min-width: 28.125em) {
   /* hide the small menu, show the large menu */
   .large-menu__item:nth-of-type(3) {
     border-bottom: 0;
@@ -1163,7 +1144,7 @@ footer {
   padding-left: 0px;
 }
 
-@media all and (min-width: 25em) {
+@media all and (min-width: 28.125em) {
   .small-menu__slideshow-button--prev,
   .small-menu__slideshow-button--next {
     top: 45%;
@@ -1283,7 +1264,7 @@ footer {
   margin-top: 0.65rem;
 }
 
-@media all and (min-width: 43.71875em) {
+@media all and (min-width: 48em) {
   .large-food-menu {
     display: grid;
     grid-template-columns: 7fr 5fr;
@@ -1316,7 +1297,7 @@ footer {
     display: block;
   }
 }
-@media all and (min-width: 61.96875em) {
+@media all and (min-width: 62em) {
   .large-food-menu {
     grid-template-columns: 2fr 1fr;
   }
@@ -1424,7 +1405,7 @@ footer {
 .reservation__photo {
   display: none;
 }
-@media all and (min-width: 25em) {
+@media all and (min-width: 28.125em) {
   .reservation__photo {
     display: flex;
     justify-content: center;
@@ -1432,7 +1413,7 @@ footer {
     padding-bottom: 2rem;
   }
 }
-@media all and (min-width: 78.09375em) {
+@media all and (min-width: 78.125em) {
   .reservation__photo {
     padding-bottom: 5.5rem;
     justify-content: flex-start;
@@ -1522,7 +1503,7 @@ footer {
   display: flex;
   justify-content: center;
 }
-@media all and (min-width: 18.71875em) {
+@media all and (min-width: 18.75em) {
   .findus__contact-container,
   .findus__openhour-container {
     margin: 0 auto;
@@ -1547,13 +1528,13 @@ footer {
   }
 }
 
-@media all and (min-width: 35.96875em) and (max-width: 61.9675em) {
+@media all and (min-width: 36em) and (max-width: 61.99875em) {
   .findus__contact-container {
     justify-content: flex-start;
   }
 }
 
-@media all and (min-width: 18.71875em) and (max-width: 35.9675em) {
+@media all and (min-width: 18.75em) and (max-width: 35.99875em) {
   .findus__openhour-container {
     padding-top: 2rem;
   }
@@ -1587,7 +1568,7 @@ footer {
 .findus__grid {
   text-align: center;
 }
-@media all and (min-width: 18.71875em) {
+@media all and (min-width: 18.75em) {
   .findus__grid {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
@@ -1604,7 +1585,7 @@ footer {
 .openhour-grid--small {
   text-align: center;
 }
-@media all and (min-width: 18.71875em) {
+@media all and (min-width: 18.75em) {
   .openhour-grid--small {
     display: none;
   }
@@ -1617,7 +1598,7 @@ footer {
 .openhour-grid--large {
   display: none;
 }
-@media all and (min-width: 18.71875em) {
+@media all and (min-width: 18.75em) {
   .openhour-grid--large {
     display: grid;
     grid-template-rows: repeat(7, 1fr);
@@ -1629,6 +1610,15 @@ footer {
     align-items: start;
     text-align: left;
   }
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-block: calc(1rem + 1.5vw);
 }
 
 .social-icons i {

@@ -48,7 +48,7 @@
     margin-top: 0.65rem;
 }
 
-@include custom-min-mq(699.5){
+@include min-mq(md){
     .large-food-menu {
         display: grid;
         grid-template-columns: 7fr 5fr;
@@ -87,7 +87,7 @@
     }
 }
 
-@include custom-min-mq(991.5){
+@include min-mq(lg) {
     .large-food-menu {
         grid-template-columns: 2fr 1fr;
     }

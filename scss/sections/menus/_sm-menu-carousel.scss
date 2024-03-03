@@ -56,7 +56,7 @@
     padding-left: 0px;
 }
 
-@include custom-min-mq (400) {
+@include min-mq (xs) {
     .small-menu__slideshow-button--prev,
     .small-menu__slideshow-button--next {
         top: 45%;
