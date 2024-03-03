@@ -9,21 +9,21 @@
     @include min-mq (xl) {
         display: grid;
         grid-template-columns: 1fr 1.1fr;
-        gap: 40px;
+        gap: f.rem(40);
     }
 }
 
 .reservation__form {
     display: grid;
     grid-template-rows: repeat(6, 1fr) repeat(2, auto);
-    grid-row-gap: 0.625rem;
+    row-gap: f.rem(10);
     max-width: f.rem(400);
     margin-inline: auto;
 
     @include min-mq (sm) {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr) repeat(2, auto);
-        gap: 20px;
+        gap: f.rem(20);
         max-width: f.rem(800);
     }
 

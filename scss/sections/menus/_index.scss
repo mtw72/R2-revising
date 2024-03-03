@@ -1,16 +1,16 @@
-@use './lg-menu-tabs' as *;
-@use './lg-menu-contents' as *;
-@use './sm-menu-accordions' as *;
-@use './sm-menu-carousel' as *;
 @use './menu-structure' as *;
 @use './menu-heading' as *;
+@use './sm-menu-accordions' as *;
+@use './sm-menu-carousel' as *;
+@use './lg-menu-tabs' as *;
+@use './lg-menu-contents' as *;
 
 
 
 
-@forward '../menus/lg-menu-tabs';
-@forward '../menus/lg-menu-contents';
-@forward '../menus/sm-menu-accordions';
-@forward '../menus/sm-menu-carousel';
 @forward '../menus/menu-structure';
 @forward '../menus/menu-heading';
+@forward '../menus/sm-menu-accordions';
+@forward '../menus/sm-menu-carousel';
+@forward '../menus/lg-menu-tabs';
+@forward '../menus/lg-menu-contents';

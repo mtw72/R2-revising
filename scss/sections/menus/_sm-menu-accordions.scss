@@ -1,6 +1,5 @@
 @use '../../partials/functions' as f;
 
-
 //buttons when the accordion panel is close
 .small-menu__accordion {
     padding: 0.8rem;
@@ -15,7 +14,6 @@
     &:after {
         content: '\002B';
         float: right;
-        margin-left: 5px;
     }
 }
 
@@ -42,8 +40,8 @@
     display: grid;
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(3, auto);
-    grid-column-gap: 5px;
-    grid-row-gap: 0px;
+    column-gap: f.rem(5);
+    row-gap: 0px;
     padding-block: 0.5rem;
 }
 

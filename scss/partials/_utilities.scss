@@ -1,16 +1,4 @@
-// float & clearfix
-.float-left {
-    float: left;
-}
-
-.float-right {
-    float: right;
-}
-
-.float-none {
-    float: none;
-}
-
+// clearfix
 .clearfix::after {
     content: "";
     clear: both;

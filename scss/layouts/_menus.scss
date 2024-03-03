@@ -9,20 +9,17 @@ section:not(:first-of-type) {
     padding-block: 2.5rem;
 
     @include min-mq (sm) {
-        max-width: 800px;
         max-width: f.rem(800);
         padding-inline: 2rem;
     }
 
     @include min-mq (lg) {
-        max-width: 1150px;
         max-width: f.rem(1150);
         padding-inline: 2.5rem;
         padding-block: 5rem;
     }
 
     @include min-mq (xl) {
-        max-width: 1500px;
         max-width: f.rem(1500);
         padding-inline: 2rem;
         padding-block: 6rem 8.5rem;
