@@ -1,10 +1,9 @@
-@use '../../partials/variables' as *;
 @use '../../partials/functions' as f;
 @use '../../partials/mixins' as *;
 
-// menu on small screen: accordion + carousel
-// menu on medium screen: menu tab, content w/o photos + carousel
-// menu on large screen: menu tab, content w/ photos
+// menu on small screen (xxxs to xs) : accordion + carousel
+// menu on medium screen (xs to md): menu tab & content, w/o photos, + carousel
+// menu on large screen (md to xl): menu tab & content, w/ photos
 
 .small-menu__carousel {
     display: block;
@@ -18,7 +17,7 @@
     display: none;
 }
 
-    @include min-mq (xs) {
+@include min-mq (xs) {
     /* hide the small menu, show the large menu */
     .large-menu__item:nth-of-type(3) {
         border-bottom: 0;
@@ -39,36 +38,5 @@
 
     .large-food-menu {
         border-radius: 0 0 15px 15px;
-    }
-}
-
-.small-menu {
-    max-width: 100%;
-    margin-inline: auto;
-
-    @include min-mq (xxs) {
-        max-width: f.rem($mw-xxs);
-    }
-}
-
-.large-menu {
-    max-width: f.rem($mw-xs);
-    margin-inline: auto;
-
-    @include min-mq (sm) {
-        max-width: f.rem($mw-sm);
-    }
-
-    @include min-mq (md) {
-        max-width: f.rem($mw-md);
-    }
-
-    @include min-mq (lg) {
-        max-width: f.rem($mw-lg);
-    }
-
-    @include min-mq (xl) {
-        max-width: f.rem($mw-xl-menu);
-        padding-inline: 2rem;
     }
 }

@@ -18,41 +18,17 @@
     display: grid;
     grid-template-rows: repeat(6, 1fr) repeat(2, auto);
     row-gap: f.rem(10);
-    max-width: f.rem($mw-xxs);
-    margin-inline: auto;
-
-    @include min-mq (xs) {
-        max-width: f.rem($mw-xs);
-    }
 
     @include min-mq (sm) {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr) repeat(2, auto);
         gap: f.rem(20);
-        max-width: f.rem($mw-sm);
     }
     
-    @include min-mq (md) {
-        max-width: f.rem($mw-md);
-    }
-
     // between lg and xl, showing 3 columns
     @include between-mq (lg,xl) {
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2, 1fr) repeat(2, auto);
-        max-width: f.rem($mw-lg);
-    }
-}
-
-.reservation__form>div {
-    max-width: f.rem($mw-xxs);
-
-    @include min-mq (xs) {
-        max-width: f.rem($mw-xs);
-    }
-
-    @include min-mq (sm) {
-        max-width: 100%;
     }
 }
 

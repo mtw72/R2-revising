@@ -1,3 +1,4 @@
+@use './general' as *;
 @use './menus' as *;
 @use './reservation-form' as *;
 @use './find-us' as *;
@@ -5,6 +6,7 @@
 
 
 
+@forward '../layouts/general';
 @forward '../layouts/menus';
 @forward '../layouts/reservation-form';
 @forward '../layouts/find-us';

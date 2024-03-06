@@ -41,7 +41,7 @@
 
 .findus__contact-container {
 
-    @include between-mq (sm, lg) {
+    @include min-mq (lg) {
         justify-content: flex-start;
     }
 }
@@ -52,7 +52,7 @@
         padding-top: 2rem;
     }
 
-    @include min-mq (sm) {
+    @include min-mq (lg) {
         justify-content: flex-end;
     }
 }

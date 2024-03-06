@@ -865,6 +865,80 @@ section:not(:first-of-type) {
   }
 }
 
+.small-menu {
+  max-width: 100%;
+  margin-inline: auto;
+}
+@media all and (min-width: 18.75em) {
+  .small-menu {
+    max-width: 18.75rem;
+  }
+}
+
+.large-menu {
+  max-width: 26.5625rem;
+  margin-inline: auto;
+}
+@media all and (min-width: 36em) {
+  .large-menu {
+    max-width: 37.5rem;
+  }
+}
+@media all and (min-width: 48em) {
+  .large-menu {
+    max-width: 50rem;
+  }
+}
+@media all and (min-width: 62em) {
+  .large-menu {
+    max-width: 62.5rem;
+  }
+}
+@media all and (min-width: 78.125em) {
+  .large-menu {
+    max-width: 78.125rem;
+  }
+}
+
+.reservation__form {
+  max-width: 18.75rem;
+  margin-inline: auto;
+}
+@media all and (min-width: 28.125em) {
+  .reservation__form {
+    max-width: 26.5625rem;
+  }
+}
+@media all and (min-width: 36em) {
+  .reservation__form {
+    max-width: 37.5rem;
+  }
+}
+@media all and (min-width: 48em) {
+  .reservation__form {
+    max-width: 50rem;
+  }
+}
+@media all and (min-width: 62em) and (max-width: 78.12375em) {
+  .reservation__form {
+    max-width: 62.5rem;
+  }
+}
+
+.reservation__form > div {
+  max-width: 18.75rem;
+}
+@media all and (min-width: 28.125em) {
+  .reservation__form > div {
+    max-width: 26.5625rem;
+  }
+}
+@media all and (min-width: 36em) {
+  .reservation__form > div {
+    max-width: 100%;
+  }
+}
+
 section.findus {
   padding-block: 2rem;
 }
@@ -985,42 +1059,6 @@ section.findus {
     border-radius: 0 0 15px 15px;
   }
 }
-.small-menu {
-  max-width: 100%;
-  margin-inline: auto;
-}
-@media all and (min-width: 18.75em) {
-  .small-menu {
-    max-width: 18.75rem;
-  }
-}
-
-.large-menu {
-  max-width: 26.5625rem;
-  margin-inline: auto;
-}
-@media all and (min-width: 36em) {
-  .large-menu {
-    max-width: 37.5rem;
-  }
-}
-@media all and (min-width: 48em) {
-  .large-menu {
-    max-width: 50rem;
-  }
-}
-@media all and (min-width: 62em) {
-  .large-menu {
-    max-width: 62.5rem;
-  }
-}
-@media all and (min-width: 78.125em) {
-  .large-menu {
-    max-width: 81.25rem;
-    padding-inline: 2rem;
-  }
-}
-
 #menu h1 {
   margin-bottom: 1.25rem;
   text-align: center;
@@ -1332,46 +1370,18 @@ section.findus {
   display: grid;
   grid-template-rows: repeat(6, 1fr) repeat(2, auto);
   row-gap: 0.625rem;
-  max-width: 18.75rem;
-  margin-inline: auto;
-}
-@media all and (min-width: 28.125em) {
-  .reservation__form {
-    max-width: 26.5625rem;
-  }
 }
 @media all and (min-width: 36em) {
   .reservation__form {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr) repeat(2, auto);
     gap: 1.25rem;
-    max-width: 37.5rem;
-  }
-}
-@media all and (min-width: 48em) {
-  .reservation__form {
-    max-width: 50rem;
   }
 }
 @media all and (min-width: 62em) and (max-width: 78.12375em) {
   .reservation__form {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr) repeat(2, auto);
-    max-width: 62.5rem;
-  }
-}
-
-.reservation__form > div {
-  max-width: 18.75rem;
-}
-@media all and (min-width: 28.125em) {
-  .reservation__form > div {
-    max-width: 26.5625rem;
-  }
-}
-@media all and (min-width: 36em) {
-  .reservation__form > div {
-    max-width: 100%;
   }
 }
 
@@ -1547,7 +1557,7 @@ section.findus {
   }
 }
 
-@media all and (min-width: 36em) and (max-width: 61.99875em) {
+@media all and (min-width: 62em) {
   .findus__contact-container {
     justify-content: flex-start;
   }
@@ -1558,7 +1568,7 @@ section.findus {
     padding-top: 2rem;
   }
 }
-@media all and (min-width: 36em) {
+@media all and (min-width: 62em) {
   .findus__openhour-container {
     justify-content: flex-end;
   }
