@@ -21,6 +21,7 @@
 .large-menu__item {
     display: grid;
     align-content: center;
+    min-height: f.rem(125);
 }
 
 .large-menu__item p {

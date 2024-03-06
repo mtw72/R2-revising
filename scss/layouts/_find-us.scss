@@ -1,26 +1,38 @@
+@use '../partials/variables' as *;
 @use '../partials/functions' as f;
 @use '../partials/mixins' as *;
 
-section#findus {
-    max-width: 100%;
-    padding-inline: 1rem;
+section.findus {
+    padding-block: 2rem;
+
+    @include min-mq (xl) {
+    padding-block: 3.5rem;
+    }
+}
+
+.findus-container {
+    display: flex;
+    flex-direction: column;
     margin-inline: auto;
-    padding-block: 1rem;
+
+    @include min-mq (xs) {
+        max-width: f.rem($mw-xs);
+    }
 
     @include min-mq (sm) {
-        max-width: f.rem(800);
-        padding-inline: 2rem;
+        flex-direction: row;
+        max-width: f.rem($mw-sm);
+    }
+
+    @include min-mq (md) {
+        max-width: f.rem($mw-md);
     }
 
     @include min-mq (lg) {
-        max-width: f.rem(1150);
-        padding-inline: 2.5rem;
-        padding-block: 5rem;
+        max-width: f.rem($mw-lg);
     }
 
     @include min-mq (xl) {
-        max-width: f.rem(1500);
-        padding-inline: 2rem;
-        padding-block: 2.5rem 3rem;
+        max-width: f.rem($mw-xl);
     }
 }

@@ -1,3 +1,4 @@
+@use '../../partials/variables' as *;
 @use '../../partials/functions' as f;
 @use '../../partials/mixins' as *;
 
@@ -18,7 +19,7 @@
 }
 
 .reservation__photo img {
-    max-width: f.rem(400);
+    max-width: f.rem($mw-xs);
     max-height: f.rem(400);
     width: 100%;
     height: auto;
@@ -26,7 +27,7 @@
     padding: 0.25rem;
 
     @include min-mq(sm) {
-        max-width: f.rem(600);
+        max-width: f.rem($mw-sm);
         max-height: f.rem(400);
     }
 }

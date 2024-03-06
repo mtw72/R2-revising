@@ -1,15 +1,6 @@
 @use '../partials/functions' as f;
 @use '../partials/mixins' as *;
 
-.findus {
-    display: flex;
-    flex-direction: column;
-
-    @include min-mq (sm) {
-        flex-direction: row;
-    }
-}
-
 .findus__logofont-container {
     display: none;
 

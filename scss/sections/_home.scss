@@ -5,7 +5,11 @@
     padding-top: f.rem(70);
     position: relative;
 
-    @include min-mq (xs) {
+    @include custom-between-mq (350, 449.5) {
+        padding-top: 0;
+    }
+
+    @include min-mq (sm) {
         padding-top: 0;
     }
 }
@@ -35,7 +39,7 @@
 .hero-text h5 {
     display: none;
 
-    @include min-mq (xs) {
+    @include min-mq (sm) {
         display: block;
     }
 }

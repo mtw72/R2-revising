@@ -1,3 +1,4 @@
+@use '../../partials/variables' as *;
 @use '../../partials/functions' as f;
 @use '../../partials/mixins' as *;
 
@@ -41,20 +42,33 @@
     }
 }
 
+.small-menu {
+    max-width: 100%;
+    margin-inline: auto;
+
+    @include min-mq (xxs) {
+        max-width: f.rem($mw-xxs);
+    }
+}
+
 .large-menu {
-    max-width: f.rem(450);
+    max-width: f.rem($mw-xs);
     margin-inline: auto;
 
     @include min-mq (sm) {
-        max-width: f.rem(800);
+        max-width: f.rem($mw-sm);
+    }
+
+    @include min-mq (md) {
+        max-width: f.rem($mw-md);
     }
 
     @include min-mq (lg) {
-        max-width: f.rem(1000);
+        max-width: f.rem($mw-lg);
     }
 
     @include min-mq (xl) {
-        max-width: f.rem(1300);
+        max-width: f.rem($mw-xl-menu);
         padding-inline: 2rem;
     }
 }

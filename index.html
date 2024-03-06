@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="rgb(172, 113, 42)" /> 
+  <meta name="theme-color" content="rgb(172, 113, 42)" />
   <meta name='robots' content='max-image-preview:large' />
   <meta name="keywords" content="R2 Place, restaurant, food, fusion, asian, lunch, dinner, relax, recharge">
   <meta name="description" content="A place to Relax and Recharge.">
@@ -41,7 +41,9 @@
   <!-- internal source -->
   <!-- CSS for R2 Place -->
   <link rel="stylesheet" href="./scss/style.css">
-  <noscript><link rel="stylesheet" href="./noscript.css"></noscript>
+  <noscript>
+    <link rel="stylesheet" href="./noscript.css">
+  </noscript>
 
   <!-- Javascript for R2 Place -->
   <!-- script for loader -->
@@ -77,330 +79,332 @@
   <!-- website content -->
   <div class="website-content website-content--hidden">
 
-  <header>
-    <!-- A horizontal navbar that becomes vertical on small screens -->
-    <nav class="navbar" id="navbar">
-      <div class="navbar__container">
-        <a class="navbar__brand g-logofont" href="#home">R2 Place</a>
+    <header>
+      <!-- A horizontal navbar that becomes vertical on small screens -->
+      <nav class="navbar" id="navbar">
+        <div class="navbar__container">
+          <a class="navbar__brand g-logofont" href="#home">R2 Place</a>
 
-        <button class="navbar__toggler" type="button">&#9776;</button>
+          <button class="navbar__toggler" type="button">&#9776;</button>
 
-        <div class="navbar__collapse" id="collapsibleNavbar">
-          <ul class="navbar__nav">
-            <li class="navbar__nav-item">
-              <a class="navbar__nav-link" href="#menu">Menu</a>
-            </li>
-            <li class="navbar__nav-item">
-              <a class="navbar__nav-link" href="#reservation">Reservation</a>
-            </li>
-            <li class="navbar__nav-item">
-              <a class="navbar__nav-link" href="#findus">Find Us</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <!-- Home -->
-    <section id="home">
-      <picture>
-        <source media="(min-width: 930.5px)" srcset="./images/home-bg-largescreen.jpeg">
-        <source media="(min-width: 575.5px)" srcset="./images/home-bg-mediumscreen.jpeg">
-        <img src="./images/home-bg-smallscreen.jpeg" alt="R2 Place">
-      </picture>
-      <div class="hero-text">
-        <h1>R2 Place</h1>
-        <h5>A place to Relax and Recharge</h5>
-      </div>
-    </section>
-
-    <!-- Menu Container -->
-    <section id="menu">
-      <h1>MENU</h1>
-
-      <div class="small-menu">
-        <button class="small-menu__accordion small-menu__accordion--active">PASTA</button>
-        <div class="small-menu__panel">
-          <div class="small-menu__content">
-            <div class="small-menu__item--1">Salmon Spaghetti</div>
-            <div class="small-menu__item-price--1">£12.50</div>
-            <div class="small-menu__item--2">Baked Seafood Fettuccine</div>
-            <div class="small-menu__item-price--2">£14.50</div>
-            <div class="small-menu__item--3">Mac and Cheese with Ham</div>
-            <div class="small-menu__item-price--3">£10.50</div>
+          <div class="navbar__collapse" id="collapsibleNavbar">
+            <ul class="navbar__nav">
+              <li class="navbar__nav-item">
+                <a class="navbar__nav-link" href="#menu">Menu</a>
+              </li>
+              <li class="navbar__nav-item">
+                <a class="navbar__nav-link" href="#reservation">Reservation</a>
+              </li>
+              <li class="navbar__nav-item">
+                <a class="navbar__nav-link" href="#findus">Find Us</a>
+              </li>
+            </ul>
           </div>
         </div>
+      </nav>
+    </header>
 
-        <button class="small-menu__accordion small-menu__accordion--active">RICE</button>
-        <div class="small-menu__panel">
-          <div class="small-menu__content">
-            <div class="small-menu__item--1">Thai Pineapple Fried Rice</div>
-            <div class="small-menu__item-price--1">£16.50</div>
-            <div class="small-menu__item--2">Salmon and Prawn Risotto</div>
-            <div class="small-menu__item-price--2">£14.50</div>
-            <div class="small-menu__item--3">Mackerel with Black Rice</div>
-            <div class="small-menu__item-price--3">£12.50</div>
-          </div>
+    <main>
+      <!-- Home -->
+      <section id="home">
+        <picture>
+          <source media="(min-width: 930.5px)" srcset="./images/home-bg-largescreen.jpeg">
+          <source media="(min-width: 449.5px)" srcset="./images/home-bg-mediumscreen.jpeg">
+          <img src="./images/home-bg-smallscreen.jpeg" alt="R2 Place">
+        </picture>
+        <div class="hero-text">
+          <h1>R2 Place</h1>
+          <h5>A place to Relax and Recharge</h5>
         </div>
+      </section>
 
-        <button class="small-menu__accordion small-menu__accordion--active">SIDES</button>
-        <div class="small-menu__panel">
-          <div class="small-menu__content">
-            <div class="small-menu__item--1">Satay Chicken Skewers</div>
-            <div class="small-menu__item-price--1">£8.00</div>
-            <div class="small-menu__item--2">Salmon Avocado Rolls</div>
-            <div class="small-menu__item-price--2">£9.50</div>
-            <div class="small-menu__item--3">Petits Pains Curry Prawn</div>
-            <div class="small-menu__item-price--3">£8.50</div>
-          </div>
-        </div>
-      </div>
+      <!-- Menu Container -->
+      <section id="menu">
+        <h1>MENU</h1>
 
-      <div class="large-menu">
-        <div class="large-menu__tabs">
-          <div class="large-menu__tab large-menu__tab--active">
-            <a href="javascript:void(0)" onclick="openMenu(event, 'Pasta');" id="myLink"
-              class="large-menu__tab-link">PASTA</a>
+        <div class="small-menu">
+          <button class="small-menu__accordion small-menu__accordion--active">PASTA</button>
+          <div class="small-menu__panel">
+            <div class="small-menu__content">
+              <div class="small-menu__item--1">Salmon Spaghetti</div>
+              <div class="small-menu__item-price--1">£12.50</div>
+              <div class="small-menu__item--2">Baked Seafood Fettuccine</div>
+              <div class="small-menu__item-price--2">£14.50</div>
+              <div class="small-menu__item--3">Mac and Cheese with Ham</div>
+              <div class="small-menu__item-price--3">£10.50</div>
+            </div>
           </div>
-          <div class="large-menu__tab">
-            <a href="javascript:void(0)" onclick="openMenu(event, 'Rice');" class="large-menu__tab-link">RICE</a>
+
+          <button class="small-menu__accordion small-menu__accordion--active">RICE</button>
+          <div class="small-menu__panel">
+            <div class="small-menu__content">
+              <div class="small-menu__item--1">Thai Pineapple Fried Rice</div>
+              <div class="small-menu__item-price--1">£16.50</div>
+              <div class="small-menu__item--2">Salmon and Prawn Risotto</div>
+              <div class="small-menu__item-price--2">£14.50</div>
+              <div class="small-menu__item--3">Mackerel with Black Rice</div>
+              <div class="small-menu__item-price--3">£12.50</div>
+            </div>
           </div>
-          <div class="large-menu__tab">
-            <a href="javascript:void(0)" onclick="openMenu(event, 'Sides');" class="large-menu__tab-link">SIDES</a>
+
+          <button class="small-menu__accordion small-menu__accordion--active">SIDES</button>
+          <div class="small-menu__panel">
+            <div class="small-menu__content">
+              <div class="small-menu__item--1">Satay Chicken Skewers</div>
+              <div class="small-menu__item-price--1">£8.00</div>
+              <div class="small-menu__item--2">Salmon Avocado Rolls</div>
+              <div class="small-menu__item-price--2">£9.50</div>
+              <div class="small-menu__item--3">Petits Pains Curry Prawn</div>
+              <div class="small-menu__item-price--3">£8.50</div>
+            </div>
           </div>
         </div>
 
-        <div id="Pasta" class="large-food-menu">
-          <div class="large-menu__item large-menu__item--1">
-            <h3>Salmon Spaghetti<span class="large-menu__item-price">£12.50</span></h3>
-            <p>Salmon Spaghetti with Mushroom Sauce</p>
+        <div class="large-menu">
+          <div class="large-menu__tabs">
+            <div class="large-menu__tab large-menu__tab--active">
+              <a href="javascript:void(0)" onclick="openMenu(event, 'Pasta');" id="myLink"
+                class="large-menu__tab-link">PASTA</a>
+            </div>
+            <div class="large-menu__tab">
+              <a href="javascript:void(0)" onclick="openMenu(event, 'Rice');" class="large-menu__tab-link">RICE</a>
+            </div>
+            <div class="large-menu__tab">
+              <a href="javascript:void(0)" onclick="openMenu(event, 'Sides');" class="large-menu__tab-link">SIDES</a>
+            </div>
           </div>
-          <div class="large-menu__item large-menu__item--2">
-            <h3>Baked Seafood Fettuccine<span class="large-menu__item-price">£14.50</span></h3>
-            <p>Prawn and Squid with Fettuccine with White Sauce</p>
+
+          <div id="Pasta" class="large-food-menu">
+            <div class="large-menu__item large-menu__item--1">
+              <h3>Salmon Spaghetti<span class="large-menu__item-price">£12.50</span></h3>
+              <p>Salmon Spaghetti with Mushroom Sauce</p>
+            </div>
+            <div class="large-menu__item large-menu__item--2">
+              <h3>Baked Seafood Fettuccine<span class="large-menu__item-price">£14.50</span></h3>
+              <p>Prawn and Squid with Fettuccine with White Sauce</p>
+            </div>
+            <div class="large-menu__item large-menu__item--3">
+              <h3>Mac and Cheese with Ham<span class="large-menu__item-price">£10.50</span></h3>
+              <p>Macaroni and Cheese with Parma Ham</p>
+            </div>
+            <div class="large-menu__image">
+              <img src="./images/salmon-spaghetti.jpeg" alt="Salmon Spaghetti" title="Salmon Spaghetti" loading="lazy">
+              <p class="large-menu__image-description">Salmon Spaghetti</p>
+            </div>
           </div>
-          <div class="large-menu__item large-menu__item--3">
-            <h3>Mac and Cheese with Ham<span class="large-menu__item-price">£10.50</span></h3>
-            <p>Macaroni and Cheese with Parma Ham</p>
+
+          <div id="Rice" class="large-food-menu">
+            <div class="large-menu__item large-menu__item--1">
+              <h3>Thai Pineapple Fried Rice<span class="large-menu__item-price">£16.50</span></h3>
+              <p>Thai-style Fried Rice with Seafood and Pineapple</p>
+            </div>
+            <div class="large-menu__item large-menu__item--2">
+              <h3>Salmon and Prawn Risotto<span class="large-menu__item-price">£14.50</span></h3>
+              <p>Salmon and Prawn Risotto in Mushroom Sauce</p>
+            </div>
+            <div class="large-menu__item large-menu__item--3">
+              <h3>Mackerel with Black Rice<span class="large-menu__item-price">£12.50</span></h3>
+              <p>Grilled Mackerel with Tofu and Black Rice</p>
+            </div>
+            <div class="large-menu__image">
+              <img src="./images/thai-pineapple-fried-rice.jpeg" alt="Thai Pineapple Fried Rice"
+                title="Thai Pineapple Fried Rice" loading="lazy">
+              <p class="large-menu__image-description">Thai Pineapple Fried Rice</p>
+            </div>
           </div>
-          <div class="large-menu__image">
-            <img src="./images/salmon-spaghetti.jpeg" alt="Salmon Spaghetti" title="Salmon Spaghetti" loading="lazy">
-            <p class="large-menu__image-description">Salmon Spaghetti</p>
+
+          <div id="Sides" class="large-food-menu">
+            <div class="large-menu__item large-menu__item--1">
+              <h3>Satay Chicken Skewers<span class="large-menu__item-price">£8.00</span></h3>
+              <p>Grilled Chicken Skewers with Satay Sauce</p>
+            </div>
+            <div class="large-menu__item large-menu__item--2">
+              <h3>Salmon Avocado Rolls<span class="large-menu__item-price">£9.50</span></h3>
+              <p>Salmon, Egg and Avocado in Rice Paper Rolls</p>
+            </div>
+            <div class="large-menu__item large-menu__item--3">
+              <h3>Petits Pains Curry Prawn<span class="large-menu__item-price">£8.50</span></h3>
+              <p>Curry Prawn in Petits Pains</p>
+            </div>
+            <div class="large-menu__image">
+              <img src="./images/satay-chicken-skewers.jpeg" alt="Satay Chicken Skewers" title="Satay Chicken Skewers"
+                loading="lazy">
+              <p class="large-menu__image-description">Satay Chicken Skewers</p>
+            </div>
           </div>
         </div>
 
-        <div id="Rice" class="large-food-menu">
-          <div class="large-menu__item large-menu__item--1">
-            <h3>Thai Pineapple Fried Rice<span class="large-menu__item-price">£16.50</span></h3>
-            <p>Thai-style Fried Rice with Seafood and Pineapple</p>
-          </div>
-          <div class="large-menu__item large-menu__item--2">
-            <h3>Salmon and Prawn Risotto<span class="large-menu__item-price">£14.50</span></h3>
-            <p>Salmon and Prawn Risotto in Mushroom Sauce</p>
-          </div>
-          <div class="large-menu__item large-menu__item--3">
-            <h3>Mackerel with Black Rice<span class="large-menu__item-price">£12.50</span></h3>
-            <p>Grilled Mackerel with Tofu and Black Rice</p>
-          </div>
-          <div class="large-menu__image">
-            <img src="./images/thai-pineapple-fried-rice.jpeg" alt="Thai Pineapple Fried Rice"
-              title="Thai Pineapple Fried Rice" loading="lazy">
-            <p class="large-menu__image-description">Thai Pineapple Fried Rice</p>
-          </div>
-        </div>
+        <div class="small-menu__carousel">
+          <!-- carousel content for small to medium menu -->
+          <div class="small-menu__slideshow-container">
 
-        <div id="Sides" class="large-food-menu">
-          <div class="large-menu__item large-menu__item--1">
-            <h3>Satay Chicken Skewers<span class="large-menu__item-price">£8.00</span></h3>
-            <p>Grilled Chicken Skewers with Satay Sauce</p>
-          </div>
-          <div class="large-menu__item large-menu__item--2">
-            <h3>Salmon Avocado Rolls<span class="large-menu__item-price">£9.50</span></h3>
-            <p>Salmon, Egg and Avocado in Rice Paper Rolls</p>
-          </div>
-          <div class="large-menu__item large-menu__item--3">
-            <h3>Petits Pains Curry Prawn<span class="large-menu__item-price">£8.50</span></h3>
-            <p>Curry Prawn in Petits Pains</p>
-          </div>
-          <div class="large-menu__image">
-            <img src="./images/satay-chicken-skewers.jpeg" alt="Satay Chicken Skewers" title="Satay Chicken Skewers"
-              loading="lazy">
-            <p class="large-menu__image-description">Satay Chicken Skewers</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="small-menu__carousel">
-        <!-- carousel content for small to medium menu -->
-        <div class="small-menu__slideshow-container">
-
-          <!-- images with number and caption text -->
-          <div class="small-menu__slide small-menu__slide--fade">
-            <img src="./images/salmon-spaghetti.jpeg" alt="Salmon Spaghetti" title="Salmon Spaghetti" loading="lazy">
-            <div class="small-menu__image-description">Salmon Spaghetti</div>
-          </div>
-
-          <div class="small-menu__slide small-menu__slide--fade">
-            <img src="./images/thai-pineapple-fried-rice.jpeg" alt="Thai Pineapple Fried Rice"
-              title="Thai Pineapple Fried Rice" loading="lazy">
-            <div class="small-menu__image-description">Thai Pineapple Fried Rice</div>
-          </div>
-
-          <div class="small-menu__slide small-menu__slide--fade">
-            <img src="./images/satay-chicken-skewers.jpeg" alt="Satay Chicken Skewers" title="Satay Chicken Skewers"
-              loading="lazy">
-            <div class="small-menu__image-description">Satay Chicken Skewers</div>
-          </div>
-
-          <!-- Next and previous buttons -->
-          <a class="small-menu__slideshow-button--prev" onclick="plusSlides(-1)">&#10094;</a>
-          <a class="small-menu__slideshow-button--next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-
-        <!-- The dots/circles -->
-        <div class="small-menu__slideshow-dots">
-          <span class="small-menu__slideshow-dot" onclick="currentSlide(1)"></span>
-          <span class="small-menu__slideshow-dot" onclick="currentSlide(2)"></span>
-          <span class="small-menu__slideshow-dot" onclick="currentSlide(3)"></span>
-        </div>
-
-      </div>
-    </section>
-
-    <hr>
-
-    <!-- Reservation -->
-    <section id="reservation">
-      <h1>RESERVATION</h1>
-      <div class="reservation">
-        <!-- reservation photo -->
-        <div class="reservation__photo">
-          <img src="./images/r2place-entrance.jpeg" alt="R2 Place Entrance" title="R2 Place Entrance" loading="lazy">
-        </div>
-
-        <!-- reservation form -->
-        <form action="" onsubmit="formSubmitted()" method="post" enctype="text/plain">
-          <div class="reservation__form">
-            <div class="reservation__form--name">
-              <label for="name">Name</label>
-              <input type="text" class="input-control" id="name" placeholder="Enter Name" name="name" required>
+            <!-- images with number and caption text -->
+            <div class="small-menu__slide small-menu__slide--fade">
+              <img src="./images/salmon-spaghetti.jpeg" alt="Salmon Spaghetti" title="Salmon Spaghetti" loading="lazy">
+              <div class="small-menu__image-description">Salmon Spaghetti</div>
             </div>
 
-            <div class="reservation__form--phone">
-              <label for="email">Phone</label>
-              <input type="tel" class="input-control" id="tel" placeholder="Enter Phone" name="tel" required>
+            <div class="small-menu__slide small-menu__slide--fade">
+              <img src="./images/thai-pineapple-fried-rice.jpeg" alt="Thai Pineapple Fried Rice"
+                title="Thai Pineapple Fried Rice" loading="lazy">
+              <div class="small-menu__image-description">Thai Pineapple Fried Rice</div>
             </div>
 
-            <div class="reservation__form--email">
-              <label for="email">Email</label>
-              <input type="email" class="input-control" id="email" placeholder="Enter Email" name="email" required>
+            <div class="small-menu__slide small-menu__slide--fade">
+              <img src="./images/satay-chicken-skewers.jpeg" alt="Satay Chicken Skewers" title="Satay Chicken Skewers"
+                loading="lazy">
+              <div class="small-menu__image-description">Satay Chicken Skewers</div>
             </div>
 
-            <div class="reservation__form--guest-number">
-              <label for="ppl">Number of Guest(s)</label>
-              <input type="number" class="input-control" id="ppl" placeholder="Enter Number" name="ppl" min="1" max="12"
-                required>
-            </div>
+            <!-- Next and previous buttons -->
+            <a class="small-menu__slideshow-button--prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="small-menu__slideshow-button--next" onclick="plusSlides(1)">&#10095;</a>
+          </div>
 
-            <div class="reservation__form--date">
-              <label for="date">Date</label>
-              <input type="date" class="input-control" id="date" placeholder="Date" name="date" required>
-            </div>
+          <!-- The dots/circles -->
+          <div class="small-menu__slideshow-dots">
+            <span class="small-menu__slideshow-dot" onclick="currentSlide(1)"></span>
+            <span class="small-menu__slideshow-dot" onclick="currentSlide(2)"></span>
+            <span class="small-menu__slideshow-dot" onclick="currentSlide(3)"></span>
+          </div>
 
-            <div class="reservation__form--time">
-              <label for="time">Time*</label>
-              <input type="time" class="input-control" id="time" placeholder="Time*" name="time" onfocus="this.value=''"
-                required>
-            </div>
+        </div>
+      </section>
 
-            <div class="reservation__form--message">
-              <label for="message">Message / Special Request</label>
-              <textarea class="textarea-control" id="message" name="message"
-                onfocus="clearPlaceholder()">Message / Special Request</textarea>
-            </div>
+      <hr>
 
-            <div class="reservation__form--bottom-part">
-              <p>*Reservations must be made at least an hour before the scheduled booking time.</p>
-              <div class="clearfix">
-                <button type="submit" class="reservation__form--button">Submit</button>
+      <!-- Reservation -->
+      <section id="reservation">
+        <h1>RESERVATION</h1>
+        <div class="reservation">
+          <!-- reservation photo -->
+          <div class="reservation__photo">
+            <img src="./images/r2place-entrance.jpeg" alt="R2 Place Entrance" title="R2 Place Entrance" loading="lazy">
+          </div>
+
+          <!-- reservation form -->
+          <form action="" onsubmit="formSubmitted()" method="post" enctype="text/plain">
+            <div class="reservation__form">
+              <div class="reservation__form--name">
+                <label for="name">Name</label>
+                <input type="text" class="input-control" id="name" placeholder="Enter Name" name="name" required>
+              </div>
+
+              <div class="reservation__form--phone">
+                <label for="email">Phone</label>
+                <input type="tel" class="input-control" id="tel" placeholder="Enter Phone" name="tel" required>
+              </div>
+
+              <div class="reservation__form--email">
+                <label for="email">Email</label>
+                <input type="email" class="input-control" id="email" placeholder="Enter Email" name="email" required>
+              </div>
+
+              <div class="reservation__form--guest-number">
+                <label for="ppl">Number of Guest(s)</label>
+                <input type="number" class="input-control" id="ppl" placeholder="Enter Number" name="ppl" min="1"
+                  max="12" required>
+              </div>
+
+              <div class="reservation__form--date">
+                <label for="date">Date</label>
+                <input type="date" class="input-control" id="date" placeholder="Date" name="date" required>
+              </div>
+
+              <div class="reservation__form--time">
+                <label for="time">Time*</label>
+                <input type="time" class="input-control" id="time" placeholder="Time*" name="time"
+                  onfocus="this.value=''" required>
+              </div>
+
+              <div class="reservation__form--message">
+                <label for="message">Message / Special Request</label>
+                <textarea class="textarea-control" id="message" name="message"
+                  onfocus="clearPlaceholder()">Message / Special Request</textarea>
+              </div>
+
+              <div class="reservation__form--bottom-part">
+                <p>*Reservations must be made at least an hour before the scheduled booking time.</p>
+                <div class="clearfix">
+                  <button type="submit" class="reservation__form--button">Submit</button>
+                </div>
               </div>
             </div>
+          </form>
+        </div>
+      </section>
+
+      <hr>
+
+      <!-- Find us -->
+      <section class="findus" id="findus">
+        <div class="findus-container">
+          <div class="findus__logofont-container">
+            <h1 class="g-logofont">R2 Place</h1>
           </div>
-        </form>
-      </div>
-    </section>
+
+          <!-- contact information-->
+          <div class="findus__contact-container">
+            <div class="findus__contact-content">
+              <h3>Find Us</h3>
+              <ul class="findus__grid">
+                <li><i class="contact__icon contact__icon--location fa-solid fa-location-dot"></i></li>
+                <li>R2&nbsp;Place,<wbr> 2&nbsp;Relax&nbsp;Street,<wbr> R2&nbsp;1ST</li>
+                <li><i class="contact__icon fa-solid fa-phone"></i></li>
+                <li><a href="tel:+441234567890" class="g-link">0123 456 7890</a></li>
+                <li><i class="contact__icon fas fa-envelope"></i></li>
+                <li><a href="mailto:info@r2p.com" class="g-link">info@r2p.com</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- opening hours -->
+          <div class="findus__openhour-container">
+            <div class="findus__openhour-content">
+              <h3>Opening Hours</h3>
+              <ul class="openhour-grid--small">
+                <li>Sunday</li>
+                <li>12:00 - 17:00</li>
+                <li>Monday to Thursday</li>
+                <li>12:00 - 20:00</li>
+                <li>Friday & Saturday</li>
+                <li>12:00 - 21:00</li>
+              </ul>
+              <ul class="openhour-grid--large">
+                <li>Sunday:</li>
+                <li>12:00 - 17:00</li>
+                <li>Monday:</li>
+                <li>12:00 - 20:00</li>
+                <li>Tuesday:</li>
+                <li>12:00 - 20:00</li>
+                <li>Wednesday:</li>
+                <li>12:00 - 20:00</li>
+                <li>Thursday:</li>
+                <li>12:00 - 20:00</li>
+                <li>Friday:</li>
+                <li>12:00 - 21:00</li>
+                <li>Saturday:</li>
+                <li>12:00 - 21:00</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <hr>
 
-    <!-- Find us -->
-    <section class="findus" id="findus">
-      <div class="findus__logofont-container">
-        <h1 class="g-logofont">R2 Place</h1>
+    <!-- Footer -->
+    <footer>
+      <div class="social-icons">
+        <a href="#home"><i class="g-link fa-brands fa-meta"></i></a>
+        <a href="#home"><i class="g-link fa-brands fa-x-twitter"></i></a>
+        <a href="#home"><i class="g-link fab fa-instagram"></i></a>
       </div>
+      <p>© <span id="year"></span> R2&nbsp;Place. All&nbsp;rights&nbsp;reserved</p>
+    </footer>
 
-      <!-- contact information-->
-      <div class="findus__contact-container">
-        <div class="findus__contact-content">
-          <h3>Find Us</h3>
-          <ul class="findus__grid">
-            <li><i class="contact__icon contact__icon--location fa-solid fa-location-dot"></i></li>
-            <li>R2&nbsp;Place,<wbr> 2&nbsp;Relax&nbsp;Street,<wbr> R2&nbsp;1ST</li>
-            <li><i class="contact__icon fa-solid fa-phone"></i></li>
-            <li><a href="tel:+441234567890" class="g-link">0123 456 7890</a></li>
-            <li><i class="contact__icon fas fa-envelope"></i></li>
-            <li><a href="mailto:info@r2p.com" class="g-link">info@r2p.com</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- opening hours -->
-      <div class="findus__openhour-container">
-        <div class="findus__openhour-content">
-          <h3>Opening Hours</h3>
-          <ul class="openhour-grid--small">
-            <li>Sunday</li>
-            <li>12:00 - 17:00</li>
-            <li>Monday to Thursday</li>
-            <li>12:00 - 20:00</li>
-            <li>Friday & Saturday</li>
-            <li>12:00 - 21:00</li>
-          </ul>
-          <ul class="openhour-grid--large">
-            <li>Sunday:</li>
-            <li>12:00 - 17:00</li>
-            <li>Monday:</li>
-            <li>12:00 - 20:00</li>
-            <li>Tuesday:</li>
-            <li>12:00 - 20:00</li>
-            <li>Wednesday:</li>
-            <li>12:00 - 20:00</li>
-            <li>Thursday:</li>
-            <li>12:00 - 20:00</li>
-            <li>Friday:</li>
-            <li>12:00 - 21:00</li>
-            <li>Saturday:</li>
-            <li>12:00 - 21:00</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <hr>
-
-  <!-- Footer -->
-  <footer>
-    <div class="social-icons">
-      <a href="#home"><i class="g-link fa-brands fa-meta"></i></a>
-      <a href="#home"><i class="g-link fa-brands fa-x-twitter"></i></a>
-      <a href="#home"><i class="g-link fab fa-instagram"></i></a>
-    </div>
-    <p>© <span id="year"></span> R2&nbsp;Place. All&nbsp;rights&nbsp;reserved</p>
-  </footer>
-
-  <!-- end of hidden content -->
+    <!-- end of hidden content -->
   </div>
 
 </body>
