@@ -94,3 +94,7 @@
         max-width: f.rem($layout-max-width);
     }
 }
+// for example, @include layout-mw(sm);, is equal to:
+// @include min-mq (sm) {
+//     max-width: f.rem(mw-sm);
+// }
