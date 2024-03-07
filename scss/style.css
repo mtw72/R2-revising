@@ -955,6 +955,11 @@ section.findus {
   flex-direction: column;
   margin-inline: auto;
 }
+@media all and (min-width: 36em) {
+  .findus-container {
+    flex-direction: row;
+  }
+}
 @media all and (min-width: 28.125em) {
   .findus-container {
     max-width: 26.5625rem;
@@ -962,7 +967,6 @@ section.findus {
 }
 @media all and (min-width: 36em) {
   .findus-container {
-    flex-direction: row;
     max-width: 37.5rem;
   }
 }

@@ -1,6 +1,7 @@
+@use './variables' as *;
+@use './maps' as *;
 @use './functions' as *;
 @use './utilities' as *;
-@use './variables' as *;
 @use './colors' as *;
 @use './fonts' as *;
 @use './typography' as *;
@@ -11,9 +12,10 @@
 
 
 
+@forward '../partials/variables';
+@forward '../partials/maps';
 @forward '../partials/functions';
 @forward '../partials/utilities';
-@forward '../partials/variables';
 @forward '../partials/colors';
 @forward '../partials/fonts';
 @forward '../partials/typography';

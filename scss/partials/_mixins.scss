@@ -1,6 +1,8 @@
 @use 'sass:map';
-@use './functions' as f;
+@use './variables' as *;
+@use './maps' as *;
 @use './breakpoints' as *;
+@use './functions' as f;
 
 
 //general media Query 
@@ -58,6 +60,7 @@
     }
 }
 
+
 // h1 styles for menu and reservation
 @mixin h1-styles($margin-bottom) {
     margin-bottom: $margin-bottom;
@@ -77,5 +80,17 @@
 
     @include min-mq(xl) {
         margin-bottom: 3.5rem;
+    }
+}
+
+
+// max width of layout which follows screen size
+@mixin layout-mw($screen-size) {
+    $ss-value: 'mw-' + $screen-size;
+
+    $layout-max-width: map-get($max-width, $ss-value);
+
+    @include min-mq ($screen-size) {
+        max-width: f.rem($layout-max-width);
     }
 }

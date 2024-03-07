@@ -28,7 +28,7 @@ section:not(:first-of-type) {
     }
 
     @include min-mq (xl) {
-        max-width: f.rem($mw-xl); // for reservation and findus
+        max-width: f.rem($mw-xl); //mainly for reservation and findus
         padding-inline: 3rem;
         padding-block: 6rem 8.5rem;
     }

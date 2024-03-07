@@ -1,0 +1,13 @@
+@use 'sass:map';
+@use '../partials/variables' as *;
+
+// max-width variables within container for veritcal alignment purpose in different screen size
+$max-width: (
+    mw-xxs: $mw-xxs,
+    mw-xs: $mw-xs,
+    mw-sm: $mw-sm,
+    mw-md: $mw-md,
+    mw-lg: $mw-lg,
+    mw-xl-menu: $mw-xl-menu,
+    mw-xl: $mw-xl,
+);
