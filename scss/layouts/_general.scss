@@ -5,18 +5,20 @@
 // styling the section container for menu, reservation and findus
 section:not(:first-of-type) {
     max-width: 100%;
-    padding-inline: 1rem;
     margin-inline: auto;
+    padding-inline: 1rem;
     padding-block: 2.5rem;
 
-    @include min-mq (sm) {
+    @include min-mq (xs) {
         max-width: f.rem(800);
         padding-inline: 2rem;
+        padding-block: 3rem;
     }
 
     @include min-mq (md) {
         max-width: f.rem(950);
         padding-inline: 2rem;
+        padding-block: 4rem;
     }
 
     @include min-mq (lg) {
@@ -27,7 +29,7 @@ section:not(:first-of-type) {
 
     @include min-mq (xl) {
         max-width: f.rem($mw-xl); // for reservation and findus
-        padding-inline: 2rem;
+        padding-inline: 3rem;
         padding-block: 6rem 8.5rem;
     }
 }

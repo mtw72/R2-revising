@@ -29,6 +29,7 @@
         max-width: f.rem($mw-lg);
     }
 
+    // optimum width for large menu
     @include min-mq (xl) {
         max-width: f.rem($mw-xl-menu);
     }

@@ -834,20 +834,22 @@ body {
 
 section:not(:first-of-type) {
   max-width: 100%;
-  padding-inline: 1rem;
   margin-inline: auto;
+  padding-inline: 1rem;
   padding-block: 2.5rem;
 }
-@media all and (min-width: 36em) {
+@media all and (min-width: 28.125em) {
   section:not(:first-of-type) {
     max-width: 50rem;
     padding-inline: 2rem;
+    padding-block: 3rem;
   }
 }
 @media all and (min-width: 48em) {
   section:not(:first-of-type) {
     max-width: 59.375rem;
     padding-inline: 2rem;
+    padding-block: 4rem;
   }
 }
 @media all and (min-width: 62em) {
@@ -860,7 +862,7 @@ section:not(:first-of-type) {
 @media all and (min-width: 78.125em) {
   section:not(:first-of-type) {
     max-width: 93.75rem;
-    padding-inline: 2rem;
+    padding-inline: 3rem;
     padding-block: 6rem 8.5rem;
   }
 }
@@ -1060,12 +1062,27 @@ section.findus {
   }
 }
 #menu h1 {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   text-align: center;
+}
+@media all and (min-width: 28.125em) {
+  #menu h1 {
+    margin-bottom: 2rem;
+  }
+}
+@media all and (min-width: 48em) {
+  #menu h1 {
+    margin-bottom: 2.5rem;
+  }
+}
+@media all and (min-width: 62em) {
+  #menu h1 {
+    margin-bottom: 3rem;
+  }
 }
 @media all and (min-width: 78.125em) {
   #menu h1 {
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
   }
 }
 
@@ -1432,12 +1449,27 @@ section.findus {
   }
 }
 #reservation h1 {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
   text-align: center;
+}
+@media all and (min-width: 28.125em) {
+  #reservation h1 {
+    margin-bottom: 2rem;
+  }
+}
+@media all and (min-width: 48em) {
+  #reservation h1 {
+    margin-bottom: 2.5rem;
+  }
+}
+@media all and (min-width: 62em) {
+  #reservation h1 {
+    margin-bottom: 3rem;
+  }
 }
 @media all and (min-width: 78.125em) {
   #reservation h1 {
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
   }
 }
 
@@ -1449,7 +1481,7 @@ section.findus {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
   }
 }
 @media all and (min-width: 78.125em) {
