@@ -1,5 +1,5 @@
 // default values in reservation form
-// for today
+// get date for today
 const date = new Date();
 let tdyday = date.getDate();
 let tdymth = date.getMonth() + 1;
@@ -13,7 +13,7 @@ if (tdymth < 10) {
 }
 const today = tdyyear + "-" + tdymth + "-" + tdyday;
 
-// for tomorrow
+// get date for tomorrow
 let tmrdate = new Date();
 tmrdate.setDate(tmrdate.getDate() + 1);
 let tmrday = tmrdate.getDate();
