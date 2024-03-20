@@ -115,9 +115,9 @@
       <!-- Home -->
       <section id="home">
         <picture>
-          <source media="(min-width: 930.5px)" srcset="./images/home-bg-largescreen.webp" type="image/webp">
+          <!-- <source media="(min-width: 930.5px)" srcset="./images/home-bg-largescreen.webp" type="image/webp"> -->
           <source media="(min-width: 930.5px)" srcset="./images/home-bg-largescreen.jpeg">
-          <source media="(min-width: 449.5px)" srcset="./images/home-bg-mediumscreen.webp" type="image/webp">
+          <!-- <source media="(min-width: 449.5px)" srcset="./images/home-bg-mediumscreen.webp" type="image/webp"> -->
           <source media="(min-width: 449.5px)" srcset="./images/home-bg-mediumscreen.jpeg">
           <img src="./images/home-bg-smallscreen.jpeg" alt="R2 Place">
         </picture>
@@ -134,7 +134,7 @@
           <button class="small-menu__accordion small-menu__accordion--active" aria-expanded="true">
             <h2>PASTA</h2>
           </button>
-          <div class="small-menu__panel">
+          <div class="small-menu__panel" aria-hidden="false">
             <div class="small-menu__content">
               <div class="small-menu__item--1">Salmon Spaghetti</div>
               <div class="small-menu__item-price--1">£12.50</div>
@@ -148,7 +148,7 @@
           <button class="small-menu__accordion small-menu__accordion--active" aria-expanded="true">
             <h2>RICE</h2>
           </button>
-          <div class="small-menu__panel">
+          <div class="small-menu__panel" aria-hidden="false">
             <div class="small-menu__content">
               <div class="small-menu__item--1">Thai Pineapple Fried Rice</div>
               <div class="small-menu__item-price--1">£16.50</div>
@@ -162,7 +162,7 @@
           <button class="small-menu__accordion small-menu__accordion--active" aria-expanded="true">
             <h2>SIDES</h2>
           </button>
-          <div class="small-menu__panel">
+          <div class="small-menu__panel" aria-hidden="false">
             <div class="small-menu__content">
               <div class="small-menu__item--1">Satay Chicken Skewers</div>
               <div class="small-menu__item-price--1">£8.00</div>
@@ -389,11 +389,11 @@
             <div class="findus__contact-content">
               <h3>Find Us</h3>
               <ul class="findus__grid">
-                <li><i class="contact__icon contact__icon--location fa-solid fa-location-dot"></i></li>
+                <li><i class="contact__icon contact__icon--location fa-solid fa-location-dot" title="Address"></i></li>
                 <li>R2&nbsp;Place,<wbr> 2&nbsp;Relax&nbsp;Street,<wbr> R2&nbsp;1ST</li>
-                <li><i class="contact__icon fa-solid fa-phone"></i></li>
+                <li><i class="contact__icon fa-solid fa-phone" title="Telephone"></i></li>
                 <li><a href="tel:+441234567890" class="g-link">0123 456 7890</a></li>
-                <li><i class="contact__icon fas fa-envelope"></i></li>
+                <li><i class="contact__icon fas fa-envelope" title="Email"></i></li>
                 <li><a href="mailto:info@r2p.com" class="g-link">info@r2p.com</a></li>
               </ul>
             </div>
@@ -438,9 +438,11 @@
     <!-- Footer -->
     <footer>
       <div class="social-icons">
-        <a href="#home"><i class="g-link fa-brands fa-meta" role="img" aria-label="Meta Icon"></i></a>
-        <a href="#home"><i class="g-link fa-brands fa-x-twitter" role="img" aria-label="X Twitter Icon"></i></a>
-        <a href="#home"><i class="g-link fab fa-instagram" role="img" aria-label="Instagram Icon"></i></a>
+        <a href="#home"><i class="g-link fa-brands fa-meta" role="img" aria-label="Meta Icon" title="Meta"></i></a>
+        <a href="#home"><i class="g-link fa-brands fa-x-twitter" role="img" aria-label="X Twitter Icon"
+            title="X (Twitter)"></i></a>
+        <a href="#home"><i class="g-link fab fa-instagram" role="img" aria-label="Instagram Icon"
+            title="Instagram"></i></a>
       </div>
       <p>© <span id="year"></span> R2&nbsp;Place. All&nbsp;rights&nbsp;reserved</p>
     </footer>

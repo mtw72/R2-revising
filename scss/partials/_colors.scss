@@ -40,11 +40,11 @@ hr {
     color: $grey-1;
 
     &:visited {
-        color: $grey-1;
+        color: $brown-3;
     }
 
-    &:hover {
-        color: $black-1;
+    &:active {
+        color: $grey-3;
     }
 }
 
@@ -121,6 +121,7 @@ hr {
 
     &:hover {
         background-color: $orange-2;
+        font-weight: bold;
     }
 
     &--active {
@@ -192,18 +193,22 @@ hr {
 
 input:focus,
 textarea:focus {
-    border: 1px solid $pink-2;
-    outline: 1px solid $pink-2;
+    border: 1px solid $black-1;
+    outline: 1px solid $black-1;
 }
 
 .reservation__form--button {
     background-color: $black-1;
     color: $white-1;
     box-shadow: 1px 1px 1px $grey-4;
-}
 
-.reservation__form--button:hover {
-    background-color: $black-1a;
+    &:hover {
+        outline: 3px solid $orange-4;
+    }
+
+    &:focus {
+        outline: 3px solid $orange-4;
+    }
 }
 
 // findus
@@ -223,9 +228,9 @@ social icons in footer  */
 }
 
 .g-link:hover {
-    color: $brown-2;
+    color: $brown-3;
 }
 
 .g-link:active {
-    color: $brown-3;
+    color: $brown-2;
 }

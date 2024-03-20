@@ -18,6 +18,10 @@ body {
     font-size: clamp(1.5rem, 1rem + 1vw, 2rem);
 }
 
+.navbar__nav-link:hover {
+    font-weight: bold;
+}
+
 //hero text in home
 .hero-text {
     font-family: $logofont;
@@ -32,7 +36,7 @@ body {
 }
 
 // menu
-#menu h1,  
+#menu h1,
 #reservation h1 {
     font-size: clamp(2.2rem, 2rem + 1vw, 3rem);
     text-shadow: 2px 3px $pink-1;
@@ -87,7 +91,8 @@ body {
 }
 
 // reservation form
-.input-control, .textarea-control {
+.input-control,
+.textarea-control {
     font-size: 1.3rem;
     font-weight: 400;
     line-height: 1.5;
@@ -104,5 +109,3 @@ body {
     font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
     font-weight: 400;
 }
-
-

@@ -415,13 +415,13 @@ hr {
 }
 
 .navbar__nav-link {
-  color: rgb(128, 128, 128);
+  color: rgb(92, 92, 92);
 }
 .navbar__nav-link:visited {
-  color: rgb(128, 128, 128);
+  color: rgb(172, 113, 42);
 }
-.navbar__nav-link:hover {
-  color: rgb(0, 0, 0);
+.navbar__nav-link:active {
+  color: rgb(119, 119, 119);
 }
 
 #home {
@@ -485,6 +485,7 @@ hr {
 }
 .large-menu__tab:hover {
   background-color: rgb(248, 203, 166);
+  font-weight: bold;
 }
 .large-menu__tab--active {
   border: 1px solid rgb(255, 231, 204);
@@ -552,8 +553,8 @@ hr {
 
 input:focus,
 textarea:focus {
-  border: 1px solid rgb(255, 182, 193);
-  outline: 1px solid rgb(255, 182, 193);
+  border: 1px solid rgb(0, 0, 0);
+  outline: 1px solid rgb(0, 0, 0);
 }
 
 .reservation__form--button {
@@ -561,9 +562,11 @@ textarea:focus {
   color: rgb(255, 255, 255);
   box-shadow: 1px 1px 1px rgb(102, 102, 102);
 }
-
 .reservation__form--button:hover {
-  background-color: rgba(0, 0, 0, 0.7);
+  outline: 3px solid orange;
+}
+.reservation__form--button:focus {
+  outline: 3px solid orange;
 }
 
 .findus h3 {
@@ -582,11 +585,11 @@ social icons in footer  */
 }
 
 .g-link:hover {
-  color: rgb(233, 205, 171);
+  color: rgb(172, 113, 42);
 }
 
 .g-link:active {
-  color: rgb(172, 113, 42);
+  color: rgb(233, 205, 171);
 }
 
 body {
@@ -601,6 +604,10 @@ body {
 
 .navbar {
   font-size: clamp(1.5rem, 1rem + 1vw, 2rem);
+}
+
+.navbar__nav-link:hover {
+  font-weight: bold;
 }
 
 .hero-text {
@@ -660,7 +667,8 @@ body {
   text-shadow: 1px 1px rgb(255, 239, 213);
 }
 
-.input-control, .textarea-control {
+.input-control,
+.textarea-control {
   font-size: 1.3rem;
   font-weight: 400;
   line-height: 1.5;
@@ -843,6 +851,7 @@ body {
     flex-direction: row;
     margin: 0;
     padding: 0;
+    margin-right: 2px;
   }
 }
 
