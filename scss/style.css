@@ -358,12 +358,41 @@ hr {
   display: table;
 }
 
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 2px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  transform: translateX(-50%);
+}
+.skip-link:focus {
+  position: fixed;
+  width: auto;
+  height: auto;
+  padding-inline: 2rem;
+  padding-block: 0.5rem;
+}
+
+.webp,
+.temp-img {
+  max-width: 100px;
+  width: 90%;
+  height: auto;
+}
+
 body {
   background-color: rgba(255, 251, 245, 0.5);
 }
 
 hr {
   border: 1px solid rgb(229, 186, 115);
+}
+
+.skip-link {
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 0, 0);
 }
 
 .navbar {
@@ -496,6 +525,10 @@ hr {
 .reservation__photo img {
   border: 1px solid rgb(222, 226, 230);
   background-color: rgb(255, 255, 255);
+}
+
+.mandatory-field {
+  color: rgb(255, 0, 0);
 }
 
 .input-control {
@@ -654,6 +687,10 @@ body {
 
 .large-menu__tab-link::after {
   z-index: 1;
+}
+
+.skip-link:focus {
+  z-index: 1000;
 }
 
 .website-content--hidden {
@@ -1101,6 +1138,10 @@ section.findus {
 
 .small-menu__accordion--active:after {
   content: "−";
+}
+
+.small-menu__accordion h2 {
+  display: inline;
 }
 
 /* Style the accordion panel. Note: hidden by default */

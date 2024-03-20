@@ -9,6 +9,12 @@ hr {
     border: 1px solid $orange-3;
 }
 
+// skip-link for keyboard users
+.skip-link {
+    color: $white-1;
+    background-color: $red-1;
+}
+
 // navbar
 .navbar {
     background-color: $yellow-2a;
@@ -159,6 +165,10 @@ hr {
 .reservation__photo img {
     border: 1px solid $white-5;
     background-color: $white-1;
+}
+
+.mandatory-field {
+    color: $red-1;
 }
 
 .input-control {

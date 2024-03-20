@@ -2,23 +2,28 @@
 
 // z-index (layering of elements)
 $layers: (
-//   bottomless-pit: -9999,
+  //   bottomless-pit: -9999,
   default: 1,
   hero-text: 10,
   navbar: 100,
-//   dropdown: 3000,
-//   overlay: 4000,
-//   modal: 5000
+  //   dropdown: 200,
+  //   overlay: 300,
+  //   modal: 400,
+  skip-link:1000,
 );
 
 .navbar {
-  z-index: map-get($layers,'navbar');
+  z-index: map-get($layers, 'navbar');
 }
 
 .hero-text {
-  z-index: map-get($layers,'hero-text');
+  z-index: map-get($layers, 'hero-text');
 }
 
 .large-menu__tab-link::after {
-  z-index: map-get($layers,'default');
+  z-index: map-get($layers, 'default');
+}
+
+.skip-link:focus {
+  z-index: map-get($layers, 'skip-link');
 }
