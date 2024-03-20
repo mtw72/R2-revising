@@ -950,11 +950,6 @@ section.findus {
   flex-direction: column;
   margin-inline: auto;
 }
-@media all and (min-width: 36em) {
-  .findus-container {
-    flex-direction: row;
-  }
-}
 @media all and (min-width: 28.125em) {
   .findus-container {
     max-width: 26.5625rem;
@@ -963,6 +958,7 @@ section.findus {
 @media all and (min-width: 36em) {
   .findus-container {
     max-width: 37.5rem;
+    flex-direction: row;
   }
 }
 @media all and (min-width: 48em) {
@@ -1384,20 +1380,20 @@ section.findus {
 
 .reservation__form {
   display: grid;
-  grid-template-rows: repeat(6, 1fr) repeat(2, auto);
+  grid-template-rows: repeat(6, auto) repeat(2, auto);
   row-gap: 0.625rem;
 }
 @media all and (min-width: 36em) {
   .reservation__form {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr) repeat(2, auto);
+    grid-template-rows: repeat(3, auto) repeat(2, auto);
     gap: 1.25rem;
   }
 }
 @media all and (min-width: 62em) and (max-width: 78.12375em) {
   .reservation__form {
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr) repeat(2, auto);
+    grid-template-rows: repeat(2, auto) repeat(2, auto);
   }
 }
 

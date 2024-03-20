@@ -16,17 +16,24 @@ section.findus {
     flex-direction: column;
     margin-inline: auto;
 
+    @include min-mq (xs) {
+        max-width: f.rem($mw-xs);
+    }
+
     @include min-mq (sm) {
+        max-width: f.rem($mw-sm);
         flex-direction: row;
     }
 
-    @include layout-mw(xs);
+    @include min-mq (md) {
+        max-width: f.rem($mw-md);
+    }
 
-    @include layout-mw(sm);
+    @include min-mq (lg) {
+        max-width: f.rem($mw-lg);
+    }
 
-    @include layout-mw(md);
-
-    @include layout-mw(lg);
-
-    @include layout-mw(xl);
+    @include min-mq (xl) {
+        max-width: f.rem($mw-xl);
+    }
 }
