@@ -197,6 +197,10 @@ textarea:focus {
     outline: 1px solid $black-1;
 }
 
+.error-message {
+    color: $red-1;
+}
+
 .reservation__form--button {
     background-color: $black-1;
     color: $white-1;

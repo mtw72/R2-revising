@@ -318,44 +318,50 @@
               <div class="reservation__form--name">
                 <label for="name">Name<span class="mandatory-field">&nbsp;*</span></label>
                 <input type="text" class="input-control" id="name" placeholder="Enter Name" name="name" required
-                  aria-required="true" autocomplete="name">
+                  aria-required="true" autocomplete="name" pattern="[A-Za-z]{2,}">
                 <!-- aria-describedby="name-length-error" aria-invalid="true" -->
-                <!-- title="Please enter at least 2 letters" -->
-                <p id="name-length-error" role="alert">Your name must have at least two letters and no unusual
-                  characters</p>
+                <p class="error-message" id="name-length-error" role="alert">Please enter at least two letters</p>
               </div>
 
               <div class="reservation__form--phone">
                 <label for="tel">Phone Number<span class="mandatory-field">&nbsp;*</span></label>
+                <p>+44</p>
                 <input type="tel" class="input-control" id="tel" placeholder="Enter Phone Number" name="tel" required
-                  aria-required="true" autocomplete="tel" pattern="[0-9]{11}"
-                  title="Please enter your UK phone number without +44">
+                  aria-required="true" autocomplete="tel" pattern="[0-9]{10}">
+                <!-- aria-describedby="phone-length-error" aria-invalid="true" -->
+                <p class="error-message" id="phone-length-error" role="alert">Please enter 10 digits</p>
               </div>
 
               <div class="reservation__form--email">
                 <label for="email">Email<span class="mandatory-field">&nbsp;*</span></label>
                 <input type="email" class="input-control" id="email" placeholder="Enter Email" name="email" required
                   aria-required="true" autocomplete="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-                <!-- title="Please enter a valid email address" -->
-
+                <!-- aria-describedby="email-error" aria-invalid="true" -->
+                <p class="error-message" id="email-error" role="alert">Please enter a valid email address</p>
               </div>
 
               <div class="reservation__form--guest-number">
                 <label for="ppl">Number of Guest(s)<span class="mandatory-field">&nbsp;*</span></label>
                 <input type="number" class="input-control" id="ppl" placeholder="Enter Number" name="ppl" min="1"
                   max="12" required aria-required="true">
+                <!-- aria-describedby="guest-number-error" aria-invalid="true" -->
+                <p class="error-message" id="guest-number-error" role="alert">Please enter a valid number</p>
               </div>
 
               <div class="reservation__form--date">
                 <label for="date">Date<span class="mandatory-field">&nbsp;*</span></label>
                 <input type="date" class="input-control" id="date" placeholder="Date" name="date" required
                   aria-required="true">
+                <!-- aria-describedby="date-error" aria-invalid="true" -->
+                <p class="error-message" id="date-error" role="alert">Please select a valid date</p>
               </div>
 
               <div class="reservation__form--time">
                 <label for="time">Time<span class="mandatory-field">&nbsp;*</span></label>
                 <input type="time" class="input-control" id="time" placeholder="Time*" name="time"
                   onfocus="this.value=''" required aria-required="true">
+                <!-- aria-describedby="time-error" aria-invalid="true" -->
+                <p class="error-message" id="time-error" role="alert">Please select a valid time</p>
               </div>
 
               <div class="reservation__form--message">
