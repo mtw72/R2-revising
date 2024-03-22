@@ -541,7 +541,8 @@ hr {
 }
 
 .input-control,
-.textarea-control {
+.textarea-control,
+select {
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(206, 212, 218);
 }
@@ -677,7 +678,8 @@ body {
 }
 
 .input-control,
-.textarea-control {
+.textarea-control,
+select {
   font-size: 1.3rem;
   font-weight: 400;
   line-height: 1.5;
@@ -1567,6 +1569,16 @@ section.findus {
   padding: 0.375rem 0.75rem;
   background-clip: padding-box;
   border-radius: 0.375rem;
+}
+
+.phone-number-container {
+  display: flex;
+  flex-direction: row;
+}
+
+select {
+  border-radius: 0.375rem;
+  margin-right: 0.25rem;
 }
 
 .textarea-control {

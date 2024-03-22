@@ -328,15 +328,21 @@
                 <input type="text" class="input-control" id="name" placeholder="Enter Name" name="name" required
                   aria-required="true" autocomplete="name" pattern="[A-Za-z]{2,}"
                   title="Please enter at least two letters">
-                <!-- aria-describedby="name-length-error" aria-invalid="true" -->
                 <p class="error-message" id="name-length-error" role="alert">Please enter at least two letters</p>
               </div>
 
               <div class="reservation__form--phone">
                 <label for="tel">Phone Number<span class="mandatory-field">&nbsp;*</span></label>
-                <input type="tel" class="input-control" id="tel" placeholder="Enter Phone Number" name="tel" required
-                  aria-required="true" autocomplete="tel" pattern="[0-9]{5,}" title="Please enter a valid phone number">
-                <!-- aria-describedby="phone-length-error" aria-invalid="true" -->
+                <div class="phone-number-container">
+                  <select id="country_code">
+                    <option value="+44">+44 (UK)</option>
+                    <option value="">Other</option>
+                  </select>
+                  <input type="tel" class="input-control" id="tel" placeholder="Enter Phone Number" name="tel" required
+                    aria-required="true" autocomplete="tel" pattern="[0-9]{5,}"
+                    title="Please enter a valid phone number">
+                  <!-- aria-describedby="phone-length-error" aria-invalid="true" -->
+                </div>
                 <p class="error-message" id="phone-length-error" role="alert">Please enter a valid phone number</p>
               </div>
 
@@ -353,7 +359,6 @@
                 <label for="ppl">Number of Guest(s)<span class="mandatory-field">&nbsp;*</span></label>
                 <input type="number" class="input-control" id="ppl" placeholder="Enter Number" name="ppl" min="1"
                   max="12" required aria-required="true" title="Please enter a valid number">
-                <!-- aria-describedby="guest-number-error" aria-invalid="true" -->
                 <p class="error-message" id="guest-number-error" role="alert">Please enter a valid number</p>
               </div>
 
@@ -382,7 +387,7 @@
               <div class="reservation__form--bottom-part">
                 <p>Please make reservations at least an hour before the scheduled booking time.</p>
                 <div class="clearfix">
-                  <button type="submit" class="reservation__form--button">Submit</button>
+                  <button id="formSumbitButton" type="submit" class="reservation__form--button">Submit</button>
                 </div>
               </div>
             </div>
