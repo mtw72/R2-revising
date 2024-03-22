@@ -197,6 +197,11 @@ textarea:focus {
     outline: 1px solid $black-1;
 }
 
+.error-input {
+    border: 1px solid $red-1;
+    outline: 1px solid $red-1;
+}
+
 .error-message {
     color: $red-1;
 }

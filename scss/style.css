@@ -557,6 +557,11 @@ textarea:focus {
   outline: 1px solid rgb(0, 0, 0);
 }
 
+.error-input {
+  border: 1px solid rgb(255, 0, 0);
+  outline: 1px solid rgb(255, 0, 0);
+}
+
 .error-message {
   color: rgb(255, 0, 0);
 }
@@ -1690,6 +1695,10 @@ section.findus {
     align-items: start;
     text-align: left;
   }
+}
+
+.contact__icon--location {
+  padding-left: 3px;
 }
 
 .openhour-grid--small {

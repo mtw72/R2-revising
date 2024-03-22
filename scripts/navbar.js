@@ -6,9 +6,13 @@ navbarToggler.addEventListener('click', (event) => {
   navList.classList.toggle('is-opened');
   if (navList.style.maxHeight) {
     navList.style.maxHeight = null;
+    navbarToggler.setAttribute('aria-expanded', 'false');
+    navList.setAttribute('aria-hidden', 'true');
   } else {
     navList.style.maxHeight = navList.scrollHeight + "px";
-  } 
+    navbarToggler.setAttribute('aria-expanded', 'true');
+    navList.setAttribute('aria-hidden', 'false');
+  }
   event.stopPropagation();
 });
 
@@ -23,11 +27,13 @@ document.addEventListener('click', () => {
   }
 });
 
-// Function to close the navbar
+// Function to close the collapsible navbar
 function closeNavbar() {
   if (navList.classList.contains('is-opened')) {
     navList.style.maxHeight = null;
     navList.classList.remove('is-opened');
+    navbarToggler.setAttribute('aria-expanded', 'false');
+    navList.setAttribute('aria-hidden', 'true');
   }
 }
 

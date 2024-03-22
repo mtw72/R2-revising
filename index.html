@@ -92,9 +92,10 @@
         <div class="navbar__container">
           <a class="navbar__brand g-logofont" href="#home">R2 Place</a>
 
-          <button class="navbar__toggler" type="button" aria-label="Open Menu">&#9776;</button>
+          <button class="navbar__toggler" type="button" aria-controls="navigation" aria-expanded="false"
+            aria-label="Toggle Navigation">&#9776;</button>
 
-          <div class="navbar__collapse" id="collapsibleNavbar">
+          <div class="navbar__collapse" id="collapsibleNavbar" aria-hidden="true">
             <ul class="navbar__nav">
               <li class="navbar__nav-item">
                 <a class="navbar__nav-link" href="#menu">Menu</a>
@@ -371,7 +372,7 @@
               </div>
 
               <div class="reservation__form--bottom-part">
-                <p>*Reservations must be made at least an hour before the scheduled booking time.</p>
+                <p>Reservations must be made at least an hour before the scheduled booking time.</p>
                 <div class="clearfix">
                   <button type="submit" class="reservation__form--button">Submit</button>
                 </div>
@@ -395,11 +396,13 @@
             <div class="findus__contact-content">
               <h3>Find Us</h3>
               <ul class="findus__grid">
-                <li><i class="contact__icon contact__icon--location fa-solid fa-location-dot" title="Address"></i></li>
+                <li><i class="contact__icon contact__icon--location fa-solid fa-location-dot" role="img"
+                    aria-label="Address" title="Address"></i></li>
                 <li>R2&nbsp;Place,<wbr> 2&nbsp;Relax&nbsp;Street,<wbr> R2&nbsp;1ST</li>
-                <li><i class="contact__icon fa-solid fa-phone" title="Telephone"></i></li>
+                <li><i class="contact__icon fa-solid fa-phone" role="img" aria-label="Telephone" title="Telephone"></i>
+                </li>
                 <li><a href="tel:+441234567890" class="g-link">0123 456 7890</a></li>
-                <li><i class="contact__icon fas fa-envelope" title="Email"></i></li>
+                <li><i class="contact__icon fas fa-envelope" role="img" aria-label="Email" title="Email"></i></li>
                 <li><a href="mailto:info@r2p.com" class="g-link">info@r2p.com</a></li>
               </ul>
             </div>
