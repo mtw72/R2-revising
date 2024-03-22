@@ -1587,6 +1587,10 @@ section.findus {
   margin-bottom: 1rem;
 }
 
+.error-message {
+  display: none;
+}
+
 .reservation__form--button {
   padding: 0.625rem 1rem;
   border: none;
