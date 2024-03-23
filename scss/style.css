@@ -1319,6 +1319,7 @@ section.findus {
   transition: 0.5s;
   position: relative;
   text-align: center;
+  cursor: pointer;
 }
 .large-menu__tab--active {
   transition: 0.5s;

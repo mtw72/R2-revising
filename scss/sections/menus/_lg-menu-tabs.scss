@@ -12,17 +12,9 @@
     transition: 0.5s;
     position: relative;
     text-align: center;
+    cursor: pointer;
 
     &--active {
         transition: 0.5s;
     }
 }
-
-// .large-menu__tab-link::after {
-//     position: absolute;
-//     top: 0;
-//     right: 0;
-//     bottom: 0;
-//     left: 0;
-//     content: "";
-// }

@@ -1,3 +1,5 @@
+'use strict'
+
 function openMenu(event, menuName) {
   let i, menutabs, menus;
 

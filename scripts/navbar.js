@@ -1,3 +1,5 @@
+'use strict'
+
 const navbarToggler = document.querySelector('.navbar__toggler');
 const navList = document.querySelector('.navbar__collapse');
 const navLinks = document.querySelectorAll('.navbar__nav-link');
@@ -64,13 +66,13 @@ function removeDefaultAriaAttributes() {
 
 // tabindex of navlinks
 function zeroTabIndex() {
-  for (i = 0; i < navLinks.length; i++) {
+  for (let i = 0; i < navLinks.length; i++) {
     navLinks[i].setAttribute('tabindex', '0');
   }
 }
 
 function negativeTabIndex() {
-  for (i = 0; i < navLinks.length; i++) {
+  for (let i = 0; i < navLinks.length; i++) {
     navLinks[i].setAttribute('tabindex', '-1');
   }
 }

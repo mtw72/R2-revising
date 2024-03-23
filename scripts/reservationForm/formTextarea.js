@@ -1,3 +1,5 @@
+'use strict'
+
 // textarea in reservation form
 const textarea = document.getElementById('message');
 

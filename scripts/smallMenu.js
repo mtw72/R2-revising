@@ -1,3 +1,5 @@
+'use strict'
+
 const menuAccordion = document.getElementsByClassName("small-menu__accordion");
 
 // open the accordion when the website is loaded

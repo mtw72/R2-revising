@@ -1,3 +1,5 @@
+'use strict'
+
 //carousel for small & medium menu
 let slideIndex = 1;
 showSlides(slideIndex);
