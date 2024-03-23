@@ -17,4 +17,4 @@ function openMenu(event, menuName) {
   event.currentTarget.parentElement.setAttribute('aria-selected', 'true');
 }
 
-document.getElementById("myLink").click();
+document.getElementById("myButton").click();
