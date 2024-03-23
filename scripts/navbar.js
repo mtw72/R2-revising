@@ -7,9 +7,11 @@ navbarToggler.addEventListener('click', (event) => {
   if (navList.style.maxHeight) {
     navList.style.maxHeight = null;
     navbarToggler.setAttribute('aria-expanded', 'false');
+    negativeTabIndex();
   } else {
     navList.style.maxHeight = navList.scrollHeight + "px";
     navbarToggler.setAttribute('aria-expanded', 'true');
+    zeroTabIndex();
   }
   event.stopPropagation();
 });
@@ -19,9 +21,24 @@ navbarToggler.addEventListener('click', (event) => {
 // or when the user clicks anywhere outside of the navbar
 const navLinks = document.querySelectorAll('.navbar__nav-link');
 
+function zeroTabIndex() {
+  for (i = 0; i < navLinks.length; i++) {
+    navLinks[i].setAttribute('tabindex', '0');
+  }
+}
+
+function negativeTabIndex() {
+  for (i = 0; i < navLinks.length; i++) {
+    navLinks[i].setAttribute('tabindex', '-1');
+  }
+}
+
+window.addEventListener('load', negativeTabIndex())
+
 document.addEventListener('click', () => {
   if (navList.classList.contains('is-opened')) {
     closeNavbar();
+    negativeTabIndex();
   }
 });
 
@@ -36,9 +53,9 @@ function closeNavbar() {
 
 
 // When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar 
-var prevScrollpos = window.scrollY;
+let prevScrollpos = window.scrollY;
 window.onscroll = function () {
-  var currentScrollPos = window.scrollY;
+  let currentScrollPos = window.scrollY;
   if (prevScrollpos > currentScrollPos) {
     document.getElementById("navbar").style.top = "0";
   } else {
