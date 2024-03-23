@@ -181,21 +181,30 @@
 
         <div class="large-menu">
           <div class="large-menu__tabs">
-            <div class="large-menu__tab large-menu__tab--active">
-              <a href="javascript:void(0)" onclick="openMenu(event, 'Pasta');" id="myLink" class="large-menu__tab-link">
+            <!-- <div class="large-menu__tab large-menu__tab--active">
+              <a onclick="openMenu(event, 'Pasta');" id="myLink" class="large-menu__tab-link">
                 <h2>PASTA</h2>
               </a>
             </div>
             <div class="large-menu__tab">
-              <a href="javascript:void(0)" onclick="openMenu(event, 'Rice');" class="large-menu__tab-link">
+              <a onclick="openMenu(event, 'Rice');" class="large-menu__tab-link">
                 <h2>RICE</h2>
               </a>
             </div>
             <div class="large-menu__tab">
-              <a href="javascript:void(0)" onclick="openMenu(event, 'Sides');" class="large-menu__tab-link">
+              <a onclick="openMenu(event, 'Sides');" class="large-menu__tab-link">
                 <h2>SIDES</h2>
               </a>
-            </div>
+            </div> -->
+            <button onclick="openMenu(event, 'Pasta');" class="large-menu__tab large-menu__tab--active">
+              <h2>PASTA</h2>
+            </button>
+            <button onclick="openMenu(event, 'Rice');" class="large-menu__tab">
+              <h2>RICE</h2>
+            </button>
+            <button onclick="openMenu(event, 'Sides');" class="large-menu__tab">
+              <h2>SIDES</h2>
+            </button>
           </div>
 
           <div id="Pasta" class="large-food-menu">

@@ -11,10 +11,10 @@ function openMenu(event, menuName) {
   menutabs = document.getElementsByClassName("large-menu__tab");
   for (i = 0; i < menus.length; i++) {
     menutabs[i].classList.remove("large-menu__tab--active");
-    menutabs[i].setAttribute('aria-expanded', 'false');
+    menutabs[i].setAttribute('aria-selected', 'false');
   }
   event.currentTarget.parentElement.classList.add("large-menu__tab--active");
-  event.currentTarget.parentElement.setAttribute('aria-expanded', 'true');
+  event.currentTarget.parentElement.setAttribute('aria-selected', 'true');
 }
 
 document.getElementById("myLink").click();
