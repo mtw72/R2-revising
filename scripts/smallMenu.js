@@ -1,22 +1,27 @@
 const menuAccordion = document.getElementsByClassName("small-menu__accordion");
 
 // open the accordion when the website is loaded
-window.onload = function () {
+window.addEventListener('load', openMenuPanel)
+
+function openMenuPanel() {
   for (let i = 0; i < menuAccordion.length; i++) {
     if (menuAccordion[i].classList.contains("small-menu__accordion--active")) {
+      menuAccordion[i].setAttribute('aria-expanded', 'true');
       let menuPanel = menuAccordion[i].nextElementSibling;
       menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
       menuPanel.classList.add("small-menu__panel--open");
+      menuPanel.setAttribute('aria-hidden', 'false');
     }
   }
 };
+
 
 // open or close the accordion through clicks
 for (let i = 0; i < menuAccordion.length; i++) {
   menuAccordion[i].addEventListener("click", function () {
     this.classList.toggle("small-menu__accordion--active");
 
-    // toggle aria-expanded
+    // toggle aria-expanded value
     let expanded = this.getAttribute('aria-expanded');
     if (expanded === 'true') {
       this.setAttribute('aria-expanded', 'false');
@@ -24,30 +29,23 @@ for (let i = 0; i < menuAccordion.length; i++) {
       this.setAttribute('aria-expanded', 'true');
     };
 
-    // toggle open or close panel, and aria-hidden
+    // toggle open or close panel, and aria-hidden value
     let menuPanel = this.nextElementSibling;
     if (menuPanel.classList.contains("small-menu__panel--open")) {
       menuPanel.style.maxHeight = null;
       menuPanel.classList.remove("small-menu__panel--open");
-      menuPanel.setAttribute('aria-hidden', true);
+      menuPanel.setAttribute('aria-hidden', 'true');
     } else {
       menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
       menuPanel.classList.add("small-menu__panel--open");
-      menuPanel.setAttribute('aria-hidden', false);
+      menuPanel.setAttribute('aria-hidden', 'false');
     }
   });
 }
 
+
 // when the screen re-sizes, open the accordion
-function openMenuPanel() {
-  for (let i = 0; i < menuAccordion.length; i++) {
-    if (menuAccordion[i].classList.contains("small-menu__accordion--active")) {
-      let menuPanel = menuAccordion[i].nextElementSibling;
-      menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
-      menuPanel.classList.add("small-menu__panel--open");
-    }
-  }
-};
+window.addEventListener('resize', handleResize);
 
 function handleResize() {
   let screenWidth = window.innerWidth;
@@ -55,7 +53,3 @@ function handleResize() {
     openMenuPanel();
   }
 }
-
-window.addEventListener('resize', handleResize);
-
-//see how to re-factor the code
