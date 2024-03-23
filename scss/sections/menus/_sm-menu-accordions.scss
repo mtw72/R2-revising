@@ -15,6 +15,10 @@
         content: '\002B';
         float: right;
     }
+
+    &:focus {
+        transition: 0s;
+    }
 }
 
 .small-menu__accordion:not(:first-of-type) {

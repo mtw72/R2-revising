@@ -72,6 +72,10 @@ hr {
     &:after {
         color: $grey-3;
     }
+
+    &:focus {
+        outline: 2px solid $orange-3;
+    }
 }
 
 //buttons when the accordion panel is open

@@ -443,6 +443,9 @@ hr {
 .small-menu__accordion:after {
   color: rgb(119, 119, 119);
 }
+.small-menu__accordion:focus {
+  outline: 2px solid rgb(229, 186, 115);
+}
 
 .small-menu__accordion--active {
   background-color: rgb(248, 203, 166);
@@ -1150,6 +1153,9 @@ section.findus {
 .small-menu__accordion:after {
   content: "+";
   float: right;
+}
+.small-menu__accordion:focus {
+  transition: 0s;
 }
 
 .small-menu__accordion:not(:first-of-type) {
