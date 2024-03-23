@@ -3,8 +3,8 @@ const textarea = document.getElementById('message');
 
 function clearPlaceholder() {
   // Check if the current value is equal to the placeholder text
-  if (textarea.value.trim() === 'Message / Special Request') {
-      textarea.value = ''; // Clear the text
+  if (textarea.value.trim() === '(e.g. Dietary Restriction, Special Occasions)') {
+    textarea.value = ''; // Clear the text
   }
 
   // Remove the onfocus event to prevent further clearing
@@ -12,10 +12,10 @@ function clearPlaceholder() {
 }
 
 // Add an event listener to reset the placeholder if the textarea is empty when it loses focus
-textarea.addEventListener('blur', function() {
+textarea.addEventListener('blur', function () {
   if (textarea.value.trim() === '') {
-      textarea.value = 'Message / Special Request';
-      textarea.addEventListener('focus', clearPlaceholder);
+    textarea.value = '(e.g. Dietary Restriction, Special Occasions)';
+    textarea.addEventListener('focus', clearPlaceholder);
   }
 });
 

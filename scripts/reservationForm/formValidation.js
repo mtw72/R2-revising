@@ -1,13 +1,20 @@
 const submitButton = document.getElementById('formSumbitButton');
+
 const nameInput = document.getElementById("name");
 const nameError = document.getElementById("name-length-error");
-const guestNumberInput = document.getElementById("ppl");
-const guestNumberError = document.getElementById("guest-number-error");
+const phoneNumberInput = document.getElementById("tel");
+const phoneNumberError = document.getElementById("phone-number-error");
+const emailInput = document.getElementById("email");
+const emailError = document.getElementById("email-error");
 const dateError = document.getElementById("date-error");
 const timeError = document.getElementById("time-error");
 
+// first validation of form submission
 submitButton.addEventListener('click', (event) => {
-    if (nameInput.validity.patternMismatch || guestNumberInput.value === '') {
+    const trimmedValue = nameInput.value.trim(); // Trim the input value
+
+    //validate name input
+    if (nameInput.validity.patternMismatch || trimmedValue.length < 2 || nameInput.value === '') {
         event.preventDefault(); // Prevent form submission if there are validation errors
         nameInput.classList.add('error-input');
         nameInput.setAttribute('aria-describedby', 'name-length-error');
@@ -18,17 +25,31 @@ submitButton.addEventListener('click', (event) => {
         nameError.style.display = "none";
     }
 
-    if (guestNumberInput.validity.patternMismatch || guestNumberInput.value === '') {
+    //validate phone number input
+    if (phoneNumberInput.validity.patternMismatch || phoneNumberInput.value === '') {
         event.preventDefault(); // Prevent form submission if there are validation errors
-        guestNumberInput.classList.add('error-input');
-        guestNumberInput.setAttribute('aria-describedby', 'guest-number-error');
-        guestNumberInput.setAttribute('aria-invalid', 'true');
-        guestNumberError.style.display = "block";
+        phoneNumberInput.classList.add('error-input');
+        phoneNumberInput.setAttribute('aria-describedby', 'phone-number-error');
+        phoneNumberInput.setAttribute('aria-invalid', 'true');
+        phoneNumberError.style.display = "block";
     } else {
-        guestNumberInput.classList.remove('error-input');
-        guestNumberError.style.display = "none";
+        phoneNumberInput.classList.remove('error-input');
+        phoneNumberError.style.display = "none";
     }
 
+    //validate email input
+    if (emailInput.validity.patternMismatch || emailInput.value === '') {
+        event.preventDefault(); // Prevent form submission if there are validation errors
+        emailInput.classList.add('error-input');
+        emailInput.setAttribute('aria-describedby', 'email-error');
+        emailInput.setAttribute('aria-invalid', 'true');
+        emailError.style.display = "block";
+    } else {
+        emailInput.classList.remove('error-input');
+        emailError.style.display = "none";
+    }
+
+    //validate date input
     // Get the selected date from the date input field
     const selectedDate = new Date(dateInput.value);
     // Get the minimum allowed date from the min attribute of the date input field
@@ -46,6 +67,7 @@ submitButton.addEventListener('click', (event) => {
         dateError.style.display = "none";
     }
 
+    //validate time input
     // Get the selected time from the time input field
     const selectedTime = timeInput.value;
     // Get the minimum allowed time from the min attribute of the time input field
@@ -68,16 +90,18 @@ submitButton.addEventListener('click', (event) => {
     // Add the input event listener back after a short delay, to show/hidden error message(s)
     setTimeout(() => {
         nameInput.addEventListener('input', nameInputEvent);
-        guestNumberInput.addEventListener('input', guestNumberInputEvent);
+        phoneNumberInput.addEventListener('input', phoneNumberInputEvent);
+        emailInput.addEventListener('input', emailInputEvent);
         dateInput.addEventListener('input', dateInputEvent);
         timeInput.addEventListener('input', timeInputEvent);
     }, 100);
 });
 
 function nameInputEvent() {
-    const letters = /^[A-Za-z]+$/;
+    const letterPattern = /^[A-Za-z ]+$/;
+    const trimmedValue = nameInput.value.trim(); // Trim the input value
 
-    if (nameInput.value.length >= 2 && letters.test(nameInput.value)) {
+    if (trimmedValue.length > 1 && letterPattern.test(trimmedValue)) {
         nameInput.classList.remove('error-input');
         nameInput.removeAttribute('aria-describedby', 'name-length-error');
         nameInput.removeAttribute('aria-invalid', 'true');
@@ -90,19 +114,35 @@ function nameInputEvent() {
     }
 }
 
-function guestNumberInputEvent() {
-    const numbers = /[0-9]/g;
+function phoneNumberInputEvent() {
+    const numberPattern = /[0-9+]/g;
 
-    if (guestNumberInput.value.length >= 0 && numbers.test(guestNumberInput.value)) {
-        guestNumberInput.classList.remove('error-input');
-        guestNumberInput.removeAttribute('aria-describedby', 'guest-number-error');
-        guestNumberInput.removeAttribute('aria-invalid', 'true');
-        guestNumberError.style.display = "none";
+    if (phoneNumberInput.value.length > 6 && numberPattern.test(phoneNumberInput.value)) {
+        phoneNumberInput.classList.remove('error-input');
+        phoneNumberInput.removeAttribute('aria-describedby', 'phone-number-error');
+        phoneNumberInput.removeAttribute('aria-invalid', 'true');
+        phoneNumberError.style.display = "none";
     } else {
-        guestNumberInput.classList.add('error-input');
-        guestNumberInput.setAttribute('aria-describedby', 'guest-number-error');
-        guestNumberInput.setAttribute('aria-invalid', 'true');
-        guestNumberError.style.display = "block";
+        phoneNumberInput.classList.add('error-input');
+        phoneNumberInput.setAttribute('aria-describedby', 'phone-number-error');
+        phoneNumberInput.setAttribute('aria-invalid', 'true');
+        phoneNumberError.style.display = "block";
+    }
+}
+
+function emailInputEvent() {
+    const emailPattern = /^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/;
+
+    if (emailPattern.test(emailInput.value)) {
+        emailInput.classList.remove('error-input');
+        emailInput.removeAttribute('aria-describedby', 'email-error');
+        emailInput.removeAttribute('aria-invalid', 'true');
+        emailError.style.display = "none";
+    } else {
+        emailInput.classList.add('error-input');
+        emailInput.setAttribute('aria-describedby', 'email-error');
+        emailInput.setAttribute('aria-invalid', 'true');
+        emailError.style.display = "block";
     }
 }
 
@@ -144,16 +184,4 @@ function timeInputEvent() {
         timeInput.setAttribute('aria-invalid', 'true');
         timeError.style.display = "block";
     }
-}
-
-
-
-
-
-
-
-
-// check the form onsubmit
-function formSubmitted() {
-    alert("Thanks for choosing our restaurant!\nWe will contact you shortly to confirm your reservation.");
 }
