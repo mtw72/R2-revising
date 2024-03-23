@@ -12,7 +12,7 @@
 }
 
 /* menu description */
-.large-food-menu h3 {
+.large-food-menu h2 {
     padding: 2%;
     padding-left: calc(0.5rem + 1vw);
     display: inline-block;
@@ -49,7 +49,7 @@
     margin-top: 0.65rem;
 }
 
-@include min-mq(md){
+@include min-mq(md) {
     .large-food-menu {
         display: grid;
         grid-template-columns: 7fr 5fr;
