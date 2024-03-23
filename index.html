@@ -357,8 +357,22 @@
 
               <div class="reservation__form--guest-number">
                 <label for="ppl">Number of Guest(s)<span class="mandatory-field">&nbsp;*</span></label>
-                <input type="number" class="input-control" id="ppl" placeholder="Enter Number" name="ppl" min="1"
-                  max="12" required aria-required="true" title="Please enter a valid number">
+                <!-- <input type="number" class="input-control" id="ppl" placeholder="Enter Number" name="ppl" min="1"
+                  max="12" required aria-required="true" title="Please enter a valid number"> -->
+                <select id="ppl">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
                 <p class="error-message" id="guest-number-error" role="alert">Please enter a valid number</p>
               </div>
 
@@ -366,7 +380,6 @@
                 <label for="date">Date<span class="mandatory-field">&nbsp;*</span></label>
                 <input type="date" class="input-control" id="date" placeholder="Date" name="date" required
                   aria-required="true" title="Please select a valid date">
-                <!-- aria-describedby="date-error" aria-invalid="true" -->
                 <p class="error-message" id="date-error" role="alert">Please select a valid date</p>
               </div>
 
@@ -374,7 +387,6 @@
                 <label for="time">Time<span class="mandatory-field">&nbsp;*</span></label>
                 <input type="time" class="input-control" id="time" placeholder="Time*" name="time"
                   onfocus="this.value=''" required aria-required="true" title="Please select a valid time">
-                <!-- aria-describedby="time-error" aria-invalid="true" -->
                 <p class="error-message" id="time-error" role="alert">Please select a valid time</p>
               </div>
 

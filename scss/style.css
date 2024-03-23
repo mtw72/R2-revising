@@ -1581,6 +1581,10 @@ select {
   margin-right: 0.25rem;
 }
 
+select#ppl {
+  width: 100%;
+}
+
 .textarea-control {
   display: block;
   width: 100%;
