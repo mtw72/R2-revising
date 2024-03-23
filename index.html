@@ -94,21 +94,21 @@
       <!-- A horizontal navbar that becomes vertical on small screens -->
       <nav class="navbar" id="navbar">
         <div class="navbar__container">
-          <a class="navbar__brand g-logofont" href="#home">R2 Place</a>
+          <a class="navbar__brand g-logofont" href="#home" aria-label="Homepage">R2 Place</a>
 
-          <button class="navbar__toggler" type="button" aria-controls="navigation"
-            aria-label="Toggle Navigation">&#9776;</button>
+          <button class="navbar__toggler" type="button" aria-controls="collapsibleNavbar" aria-haspopup="true"
+            aria-label="Open Menu" id="menu-toggler">&#9776;</button>
 
-          <div class="navbar__collapse" id="collapsibleNavbar">
-            <ul class="navbar__nav">
-              <li class="navbar__nav-item">
-                <a class="navbar__nav-link" href="#menu">Menu</a>
+          <div class="navbar__collapse" id="collapsibleNavbar" role="menu" aria-labelledby="menu-toggler">
+            <ul class="navbar__nav" role="none">
+              <li class="navbar__nav-item" role="none">
+                <a class="navbar__nav-link" href="#menu" role="menuitem">Menu</a>
               </li>
-              <li class="navbar__nav-item">
-                <a class="navbar__nav-link" href="#reservation">Reservation</a>
+              <li class="navbar__nav-item" role="none">
+                <a class="navbar__nav-link" href="#reservation" role="menuitem">Reservation</a>
               </li>
-              <li class="navbar__nav-item">
-                <a class="navbar__nav-link" href="#findus">Find Us</a>
+              <li class="navbar__nav-item" role="none">
+                <a class="navbar__nav-link" href="#findus" role="menuitem">Find Us</a>
               </li>
             </ul>
           </div>
@@ -136,10 +136,11 @@
       <section id="menu">
         <h1>MENU</h1>
         <div class="small-menu">
-          <button class="small-menu__accordion small-menu__accordion--active">
+          <button type="button" class="small-menu__accordion small-menu__accordion--active" aria-controls="pasta-panel"
+            id="pasta-button">
             <h2>PASTA</h2>
           </button>
-          <div class="small-menu__panel">
+          <div class="small-menu__panel" id="pasta-panel" aria-labelledby="pasta-button">
             <div class="small-menu__content">
               <div class="small-menu__item--1">Salmon Spaghetti</div>
               <div class="small-menu__item-price--1">£12.50</div>
@@ -150,10 +151,11 @@
             </div>
           </div>
 
-          <button class="small-menu__accordion small-menu__accordion--active">
+          <button type="button" class="small-menu__accordion small-menu__accordion--active" aria-controls="rice-panel"
+            id="rice-button">
             <h2>RICE</h2>
           </button>
-          <div class="small-menu__panel">
+          <div class="small-menu__panel" id="rice-panel" aria-labelledby="rice-button">
             <div class="small-menu__content">
               <div class="small-menu__item--1">Thai Pineapple Fried Rice</div>
               <div class="small-menu__item-price--1">£16.50</div>
@@ -164,10 +166,11 @@
             </div>
           </div>
 
-          <button class="small-menu__accordion small-menu__accordion--active">
+          <button type="button" class="small-menu__accordion small-menu__accordion--active" aria-controls="sides-panel"
+            id="sides-button">
             <h2>SIDES</h2>
           </button>
-          <div class="small-menu__panel">
+          <div class="small-menu__panel" id="sides-panel" aria-labelledby="sides-button">
             <div class="small-menu__content">
               <div class="small-menu__item--1">Satay Chicken Skewers</div>
               <div class="small-menu__item-price--1">£8.00</div>
@@ -181,29 +184,31 @@
 
         <div class="large-menu">
           <div class="large-menu__tabs" role="tablist" aria-label="Menu-tabs">
-            <button onclick="openMenu(event, 'pasta');" class="large-menu__tab large-menu__tab--active" role="tab"
-              aria-controls="pasta-tab" id="pasta-button">
-              PASTA
+            <button onclick="openMenu(event, 'pasta-menu');" class="large-menu__tab large-menu__tab--active" role="tab"
+              aria-controls="pasta-menu" id="pasta-tab">
+              <h2>PASTA</h2>
             </button>
-            <button onclick="openMenu(event, 'rice');" class="large-menu__tab" role="tab" aria-controls="rice-tab">
-              RICE
+            <button onclick="openMenu(event, 'rice-menu');" class="large-menu__tab" role="tab" aria-controls="rice-menu"
+              id="rice-tab">
+              <h2>RICE</h2>
             </button>
-            <button onclick="openMenu(event, 'sides');" class="large-menu__tab" role="tab" aria-controls="sides-tab">
-              SIDES
+            <button onclick="openMenu(event, 'sides-menu');" class="large-menu__tab" role="tab"
+              aria-controls="sides-menu" id="sides-tab">
+              <h2>SIDES</h2>
             </button>
           </div>
 
-          <div id="pasta" class="large-food-menu" role="tabpanel" aria-labelledby="pasta-tab">
+          <div class="large-food-menu" role="tabpanel" id="pasta-menu" aria-labelledby="pasta-tab">
             <div class="large-menu__item large-menu__item--1">
-              <h2>Salmon Spaghetti<span class="large-menu__item-price">£12.50</span></h2>
+              <h3>Salmon Spaghetti<span class="large-menu__item-price">£12.50</span></h3>
               <p>Salmon Spaghetti with Mushroom Sauce</p>
             </div>
             <div class="large-menu__item large-menu__item--2">
-              <h2>Baked Seafood Fettuccine<span class="large-menu__item-price">£14.50</span></h2>
+              <h3>Baked Seafood Fettuccine<span class="large-menu__item-price">£14.50</span></h3>
               <p>Prawn and Squid with Fettuccine with White Sauce</p>
             </div>
             <div class="large-menu__item large-menu__item--3">
-              <h2>Mac and Cheese with Ham<span class="large-menu__item-price">£10.50</span></h2>
+              <h3>Mac and Cheese with Ham<span class="large-menu__item-price">£10.50</span></h3>
               <p>Macaroni and Cheese with Parma Ham</p>
             </div>
             <div class="large-menu__image">
@@ -214,17 +219,17 @@
             </div>
           </div>
 
-          <div id="rice" class="large-food-menu" role="tabpanel" aria-labelledby="rice-tab">
+          <div class="large-food-menu" role="tabpanel" id="rice-menu" aria-labelledby="rice-tab">
             <div class="large-menu__item large-menu__item--1">
-              <h2>Thai Pineapple Fried Rice<span class="large-menu__item-price">£16.50</span></h2>
+              <h3>Thai Pineapple Fried Rice<span class="large-menu__item-price">£16.50</span></h3>
               <p>Thai-style Fried Rice with Seafood and Pineapple</p>
             </div>
             <div class="large-menu__item large-menu__item--2">
-              <h2>Salmon and Prawn Risotto<span class="large-menu__item-price">£14.50</span></h2>
+              <h3>Salmon and Prawn Risotto<span class="large-menu__item-price">£14.50</span></h3>
               <p>Salmon and Prawn Risotto in Mushroom Sauce</p>
             </div>
             <div class="large-menu__item large-menu__item--3">
-              <h2>Mackerel with Black Rice<span class="large-menu__item-price">£12.50</span></h2>
+              <h3>Mackerel with Black Rice<span class="large-menu__item-price">£12.50</span></h3>
               <p>Grilled Mackerel with Tofu and Black Rice</p>
             </div>
             <div class="large-menu__image">
@@ -235,17 +240,17 @@
             </div>
           </div>
 
-          <div id="sides" class="large-food-menu" role="tabpanel" aria-labelledby="sides-tab">
+          <div class="large-food-menu" role="tabpanel" id="sides-menu" aria-labelledby="sides-tab">
             <div class="large-menu__item large-menu__item--1">
-              <h2>Satay Chicken Skewers<span class="large-menu__item-price">£8.00</span></h2>
+              <h3>Satay Chicken Skewers<span class="large-menu__item-price">£8.00</span></h3>
               <p>Grilled Chicken Skewers with Satay Sauce</p>
             </div>
             <div class="large-menu__item large-menu__item--2">
-              <h2>Salmon Avocado Rolls<span class="large-menu__item-price">£9.50</span></h2>
+              <h3>Salmon Avocado Rolls<span class="large-menu__item-price">£9.50</span></h3>
               <p>Salmon, Egg and Avocado in Rice Paper Rolls</p>
             </div>
             <div class="large-menu__item large-menu__item--3">
-              <h2>Petits Pains Curry Prawn<span class="large-menu__item-price">£8.50</span></h2>
+              <h3>Petits Pains Curry Prawn<span class="large-menu__item-price">£8.50</span></h3>
               <p>Curry Prawn in Petits Pains</p>
             </div>
             <div class="large-menu__image">
@@ -320,7 +325,7 @@
           <form action="" onsubmit="formSubmitted()" method="post" enctype="text/plain">
             <div class="reservation__form">
               <div class="reservation__form--name">
-                <label for="name">Name<span class="mandatory-field">&nbsp;*</span></label>
+                <label for="name">Name<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>
                 <input type="text" class="input-control" id="name" placeholder="Enter Name" name="name" required
                   aria-required="true" autocomplete="name" pattern="[A-Za-z ]{2,}"
                   title="Please enter at least two letters">
@@ -328,7 +333,7 @@
               </div>
 
               <div class="reservation__form--phone">
-                <label for="tel">Phone Number<span class="mandatory-field">&nbsp;*</span></label>
+                <label for="tel">Phone Number<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>
                 <input type="tel" class="input-control" id="tel" placeholder="Enter Phone Number" name="tel" required
                   aria-required="true" autocomplete="tel" pattern="[0-9+]{7,}"
                   title="Please enter a valid phone number">
@@ -336,7 +341,7 @@
               </div>
 
               <div class="reservation__form--email">
-                <label for="email">Email<span class="mandatory-field">&nbsp;*</span></label>
+                <label for="email">Email<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>
                 <input type="email" class="input-control" id="email" placeholder="Enter Email" name="email" required
                   aria-required="true" autocomplete="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
                   title="Please enter a valid email address">
@@ -344,7 +349,8 @@
               </div>
 
               <div class="reservation__form--guest-number">
-                <label for="ppl">Number of Guest(s)<span class="mandatory-field">&nbsp;*</span></label>
+                <label for="ppl">Number of Guest(s)<span class="mandatory-field"
+                    aria-hidden="true">&nbsp;*</span></label>
                 <select class="select-control" id="ppl" name="ppl" required aria-required="true"
                   title="Please select the number of guest(s)">
                   <option value="1">1</option>
@@ -363,14 +369,14 @@
               </div>
 
               <div class="reservation__form--date">
-                <label for="date">Date<span class="mandatory-field">&nbsp;*</span></label>
+                <label for="date">Date<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>
                 <input type="date" class="input-control" id="date" placeholder="Date" name="date" required
                   aria-required="true" title="Please select a valid date">
                 <p class="error-message" id="date-error" role="alert">Please select a valid date</p>
               </div>
 
               <div class="reservation__form--time">
-                <label for="time">Time<span class="mandatory-field">&nbsp;*</span></label>
+                <label for="time">Time<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>
                 <input type="time" class="input-control" id="time" placeholder="Time*" name="time"
                   onfocus="this.value=''" required aria-required="true" title="Please select a valid time">
                 <p class="error-message" id="time-error" role="alert">Please select a valid time</p>

@@ -10,7 +10,7 @@ function openMenuPanel() {
       let menuPanel = menuAccordion[i].nextElementSibling;
       menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
       menuPanel.classList.add("small-menu__panel--open");
-      menuPanel.setAttribute('aria-hidden', 'false');
+      menuPanel.setAttribute('role', 'region');
     }
   }
 };
@@ -34,11 +34,11 @@ for (let i = 0; i < menuAccordion.length; i++) {
     if (menuPanel.classList.contains("small-menu__panel--open")) {
       menuPanel.style.maxHeight = null;
       menuPanel.classList.remove("small-menu__panel--open");
-      menuPanel.setAttribute('aria-hidden', 'true');
+      menuPanel.removeAttribute('role', 'region');
     } else {
       menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
       menuPanel.classList.add("small-menu__panel--open");
-      menuPanel.setAttribute('aria-hidden', 'false');
+      menuPanel.setAttribute('role', 'region');
     }
   });
 }

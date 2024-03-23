@@ -9,16 +9,14 @@ function openMenu(event, menuName) {
   }
   event.currentTarget.classList.add("large-menu__tab--active");
   event.currentTarget.setAttribute('aria-selected', 'true');
-  event.currentTarget.removeAttribute('tabindex', '-1');
-
+  event.currentTarget.setAttribute('tabindex', '0');
+  // event.currentTarget.removeAttribute('tabindex', '-1');
 
   menus = document.getElementsByClassName("large-food-menu");
   for (i = 0; i < menus.length; i++) {
     menus[i].style.display = "none";
-    // menus[i].setAttribute('aria-hidden', 'true');
   }
   document.getElementById(menuName).style.display = "grid";
-  // document.getElementById(menuName).setAttribute('aria-hidden', 'false');
 }
 
-document.getElementById("pasta-button").click();
+document.getElementById("pasta-tab").click();
