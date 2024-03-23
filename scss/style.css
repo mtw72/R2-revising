@@ -495,18 +495,6 @@ hr {
   background-color: rgb(248, 203, 166);
 }
 
-.large-menu__tab-link {
-  color: rgb(0, 0, 0);
-}
-
-.large-menu__tab:hover .large-menu__tab-link {
-  color: rgb(245, 245, 245);
-}
-
-.large-menu__tab--active .large-menu__tab-link {
-  color: rgb(255, 251, 235);
-}
-
 .large-food-menu {
   border: 1px solid rgb(255, 231, 204);
   background-color: rgb(255, 255, 255);
@@ -705,10 +693,6 @@ select {
 
 .hero-text {
   z-index: 10;
-}
-
-.large-menu__tab-link::after {
-  z-index: 1;
 }
 
 .skip-link:focus {
@@ -1262,6 +1246,8 @@ section.findus {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  border: 0;
+  background-color: transparent;
 }
 
 .small-menu__slideshow-button--prev {
@@ -1304,6 +1290,7 @@ section.findus {
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
+  border: 0;
 }
 
 /* Fading animation */
@@ -1335,15 +1322,6 @@ section.findus {
 }
 .large-menu__tab--active {
   transition: 0.5s;
-}
-
-.large-menu__tab-link::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  content: "";
 }
 
 /* menu content */

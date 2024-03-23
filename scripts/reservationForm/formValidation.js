@@ -1,15 +1,15 @@
 const submitButton = document.getElementById('formSumbitButton');
 
 const nameInput = document.getElementById("name");
-const nameError = document.getElementById("name-length-error");
+const nameError = document.getElementById("name-error");
 const phoneNumberInput = document.getElementById("tel");
-const phoneNumberError = document.getElementById("phone-number-error");
+const phoneNumberError = document.getElementById("phone-error");
 const emailInput = document.getElementById("email");
 const emailError = document.getElementById("email-error");
 const dateError = document.getElementById("date-error");
 const timeError = document.getElementById("time-error");
 
-// first validation of form submission
+// first validation on submit
 submitButton.addEventListener('click', (event) => {
     const trimmedValue = nameInput.value.trim(); // Trim the input value
 
@@ -17,7 +17,7 @@ submitButton.addEventListener('click', (event) => {
     if (nameInput.validity.patternMismatch || trimmedValue.length < 2 || nameInput.value === '') {
         event.preventDefault(); // Prevent form submission if there are validation errors
         nameInput.classList.add('error-input');
-        nameInput.setAttribute('aria-describedby', 'name-length-error');
+        nameInput.setAttribute('aria-describedby', 'name-error');
         nameInput.setAttribute('aria-invalid', 'true');
         nameError.style.display = "block";
     } else {
@@ -29,7 +29,7 @@ submitButton.addEventListener('click', (event) => {
     if (phoneNumberInput.validity.patternMismatch || phoneNumberInput.value === '') {
         event.preventDefault(); // Prevent form submission if there are validation errors
         phoneNumberInput.classList.add('error-input');
-        phoneNumberInput.setAttribute('aria-describedby', 'phone-number-error');
+        phoneNumberInput.setAttribute('aria-describedby', 'phone-error');
         phoneNumberInput.setAttribute('aria-invalid', 'true');
         phoneNumberError.style.display = "block";
     } else {
@@ -87,14 +87,12 @@ submitButton.addEventListener('click', (event) => {
         timeError.style.display = "none";
     }
 
-    // Add the input event listener back after a short delay, to show/hidden error message(s)
-    setTimeout(() => {
-        nameInput.addEventListener('input', nameInputEvent);
-        phoneNumberInput.addEventListener('input', phoneNumberInputEvent);
-        emailInput.addEventListener('input', emailInputEvent);
-        dateInput.addEventListener('input', dateInputEvent);
-        timeInput.addEventListener('input', timeInputEvent);
-    }, 100);
+    // Add the input event listener after first submission
+    nameInput.addEventListener('input', nameInputEvent);
+    phoneNumberInput.addEventListener('input', phoneNumberInputEvent);
+    emailInput.addEventListener('input', emailInputEvent);
+    dateInput.addEventListener('input', dateInputEvent);
+    timeInput.addEventListener('input', timeInputEvent);
 });
 
 function nameInputEvent() {
@@ -103,12 +101,12 @@ function nameInputEvent() {
 
     if (trimmedValue.length > 1 && letterPattern.test(trimmedValue)) {
         nameInput.classList.remove('error-input');
-        nameInput.removeAttribute('aria-describedby', 'name-length-error');
+        nameInput.removeAttribute('aria-describedby', 'name-error');
         nameInput.removeAttribute('aria-invalid', 'true');
         nameError.style.display = "none";
     } else {
         nameInput.classList.add('error-input');
-        nameInput.setAttribute('aria-describedby', 'name-length-error');
+        nameInput.setAttribute('aria-describedby', 'name-error');
         nameInput.setAttribute('aria-invalid', 'true');
         nameError.style.display = "block";
     }
@@ -119,12 +117,12 @@ function phoneNumberInputEvent() {
 
     if (phoneNumberInput.value.length > 6 && numberPattern.test(phoneNumberInput.value)) {
         phoneNumberInput.classList.remove('error-input');
-        phoneNumberInput.removeAttribute('aria-describedby', 'phone-number-error');
+        phoneNumberInput.removeAttribute('aria-describedby', 'phone-error');
         phoneNumberInput.removeAttribute('aria-invalid', 'true');
         phoneNumberError.style.display = "none";
     } else {
         phoneNumberInput.classList.add('error-input');
-        phoneNumberInput.setAttribute('aria-describedby', 'phone-number-error');
+        phoneNumberInput.setAttribute('aria-describedby', 'phone-error');
         phoneNumberInput.setAttribute('aria-invalid', 'true');
         phoneNumberError.style.display = "block";
     }

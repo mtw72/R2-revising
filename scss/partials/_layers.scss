@@ -20,9 +20,9 @@ $layers: (
   z-index: map-get($layers, 'hero-text');
 }
 
-.large-menu__tab-link::after {
-  z-index: map-get($layers, 'default');
-}
+// .large-menu__tab-link::after {
+//   z-index: map-get($layers, 'default');
+// }
 
 .skip-link:focus {
   z-index: map-get($layers, 'skip-link');

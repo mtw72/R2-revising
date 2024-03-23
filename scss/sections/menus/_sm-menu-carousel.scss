@@ -44,6 +44,8 @@
     transition: 0.6s ease;
     border-radius: 50%;
     user-select: none;
+    border: 0;
+    background-color: transparent;
 }
 
 .small-menu__slideshow-button--prev {
@@ -57,6 +59,7 @@
 }
 
 @include min-mq (xs) {
+
     .small-menu__slideshow-button--prev,
     .small-menu__slideshow-button--next {
         top: 45%;
@@ -89,6 +92,7 @@
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
+    border: 0;
 }
 
 /* Fading animation */

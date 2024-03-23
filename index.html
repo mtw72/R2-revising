@@ -108,7 +108,7 @@
                 <a class="navbar__nav-link" href="#reservation" role="menuitem">Reservation</a>
               </li>
               <li class="navbar__nav-item" role="none">
-                <a class="navbar__nav-link" href="#findus" role="menuitem">Find Us</a>
+                <a class="navbar__nav-link" href="#findus" role="menuitem" id="findus-link">Find Us</a>
               </li>
             </ul>
           </div>
@@ -262,47 +262,49 @@
           </div>
         </div>
 
-        <div class="small-menu__carousel" role="carousel" aria-label="carousel of food photos">
+        <div class="small-menu__carousel" aria-roledescription="carousel" aria-label="Food Highlight">
           <!-- carousel content for small to medium menu -->
-          <div class="small-menu__slideshow-container">
-
-            <!-- images with number and caption text -->
-            <div class="small-menu__slide small-menu__slide--fade">
+          <div class="small-menu__slideshow-container" id="slideshow-container">
+            <!-- images with caption text -->
+            <div class="small-menu__slide small-menu__slide--fade" id="slide1" role="tabpanel"
+              aria-roledescription="slide" aria-label="Slide 1 of 3">
               <img src="./images/salmon-spaghetti.webp"
                 onerror="this.onerror=null; this.src='./images/salmon-spaghetti.jpeg';" alt="Salmon Spaghetti"
                 title="Salmon Spaghetti" loading="lazy">
               <div class="small-menu__image-description">Salmon Spaghetti</div>
             </div>
 
-            <div class="small-menu__slide small-menu__slide--fade">
+            <div class="small-menu__slide small-menu__slide--fade" id="slide2" role="tabpanel"
+              aria-roledescription="slide" aria-label="Slide 2 of 3">
               <img src="./images/thai-pineapple-fried-rice.webp"
                 onerror="this.onerror=null; this.src='./images/thai-pineapple-fried-rice.jpeg';"
                 alt="Thai Pineapple Fried Rice" title="Thai Pineapple Fried Rice" loading="lazy">
               <div class="small-menu__image-description">Thai Pineapple Fried Rice</div>
             </div>
 
-            <div class="small-menu__slide small-menu__slide--fade">
+            <div class="small-menu__slide small-menu__slide--fade" id="slide3" role="tabpanel"
+              aria-roledescription="slide" aria-label="Slide 3 of 3">
               <img src="./images/satay-chicken-skewers.webp"
                 onerror="this.onerror=null; this.src='./images/satay-chicken-skewers.jpeg';" alt="Satay Chicken Skewers"
                 title="Satay Chicken Skewers" loading="lazy">
               <div class="small-menu__image-description">Satay Chicken Skewers</div>
             </div>
-
-            <!-- Next and previous buttons -->
-            <a class="small-menu__slideshow-button--prev" onclick="plusSlides(-1)" role="button"
-              aria-label="previous button">&#10094;</a>
-            <a class="small-menu__slideshow-button--next" onclick="plusSlides(1)" role="button"
-              aria-label="next button">&#10095;</a>
           </div>
 
+          <!-- Next and previous buttons -->
+          <button class="small-menu__slideshow-button--prev" onclick="plusSlides(-1)" type="button"
+            aria-label="previous slide" aria-controls="slideshow-container">&#10094;</button>
+          <button class="small-menu__slideshow-button--next" onclick="plusSlides(1)" type="button"
+            aria-label="next slide" aria-controls="slideshow-container">&#10095;</button>
+
           <!-- The dots/circles -->
-          <div class="small-menu__slideshow-dots">
-            <span class="small-menu__slideshow-dot" onclick="currentSlide(1)" role="button"
-              aria-label="dot to first photo"></span>
-            <span class="small-menu__slideshow-dot" onclick="currentSlide(2)" role="button"
-              aria-label="dot to second photo"></span>
-            <span class="small-menu__slideshow-dot" onclick="currentSlide(3)" role="button"
-              aria-label="dot to third photo"></span>
+          <div class="small-menu__slideshow-dots" role="tablist" aria-label="Slides">
+            <button class="small-menu__slideshow-dot" onclick="currentSlide(1)" type="button" role="tab"
+              aria-label="Slide 1" aria-controls="slide1"></button>
+            <button class="small-menu__slideshow-dot" onclick="currentSlide(2)" type="button" role="tab"
+              aria-label="Slide 2" aria-controls="slide2"></button>
+            <button class="small-menu__slideshow-dot" onclick="currentSlide(3)" type="button" role="tab"
+              aria-label="Slide 3" aria-controls="slide3"></button>
           </div>
 
         </div>
@@ -329,7 +331,7 @@
                 <input type="text" class="input-control" id="name" placeholder="Enter Name" name="name" required
                   aria-required="true" autocomplete="name" pattern="[A-Za-z ]{2,}"
                   title="Please enter at least two letters">
-                <p class="error-message" id="name-length-error" role="alert">Please enter at least two letters</p>
+                <p class="error-message" id="name-error" role="alert">Please enter at least two letters</p>
               </div>
 
               <div class="reservation__form--phone">
@@ -337,7 +339,7 @@
                 <input type="tel" class="input-control" id="tel" placeholder="Enter Phone Number" name="tel" required
                   aria-required="true" autocomplete="tel" pattern="[0-9+]{7,}"
                   title="Please enter a valid phone number">
-                <p class="error-message" id="phone-number-error" role="alert">Please enter a valid phone number</p>
+                <p class="error-message" id="phone-error" role="alert">Please enter a valid phone number</p>
               </div>
 
               <div class="reservation__form--email">

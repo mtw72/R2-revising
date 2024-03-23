@@ -13,9 +13,11 @@ function showSlides(n) {
   }
   for (i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" slideshow-dot--active", "");
+    dots[i].setAttribute('aria-selected', 'false');
   }
   slides[slideIndex - 1].style.display = "block";
   dots[slideIndex - 1].className += " slideshow-dot--active";
+  dots[slideIndex - 1].setAttribute('aria-selected', 'true');
 }
 
 function autoplay() {

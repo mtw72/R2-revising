@@ -71,13 +71,13 @@ switch (tdyDay) {
 
 // time picker - set default time (.defaultValue) and prevent choosing invalid hours (.min: before opening time / during operating time)
 const timeInput = document.getElementById('time');
-const defaultTime = (tdyHour + 2) + ":" + ("00"); //default time
+// const defaultTime = (tdyHour + 2) + ":" + ("00"); //default time
 const validHour = (tdyHour + 1) + ":" + ("00");   //valid booking time
 
-// for the same day (today), set the default time to 12nn before noon, or 2 hours later after noon
+// for the same day (today), set the default time to 12nn before noon, or an hour later after noon
 if (dateInput.value === today) {
   if (tdyHour > 11) {
-    timeInput.defaultValue = defaultTime;
+    timeInput.defaultValue = validHour;
     timeInput.min = validHour;
   } else {
     timeInput.defaultValue = "12:00";
