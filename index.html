@@ -180,34 +180,20 @@
         </div>
 
         <div class="large-menu">
-          <div class="large-menu__tabs">
-            <!-- <div class="large-menu__tab large-menu__tab--active">
-              <a onclick="openMenu(event, 'Pasta');" id="myLink" class="large-menu__tab-link">
-                <h2>PASTA</h2>
-              </a>
-            </div>
-            <div class="large-menu__tab">
-              <a onclick="openMenu(event, 'Rice');" class="large-menu__tab-link">
-                <h2>RICE</h2>
-              </a>
-            </div>
-            <div class="large-menu__tab">
-              <a onclick="openMenu(event, 'Sides');" class="large-menu__tab-link">
-                <h2>SIDES</h2>
-              </a>
-            </div> -->
-            <button onclick="openMenu(event, 'pasta');" class="large-menu__tab large-menu__tab--active" id="myButton">
+          <div class="large-menu__tabs" role="tablist" aria-label="Menu-tabs">
+            <button onclick="openMenu(event, 'pasta');" class="large-menu__tab large-menu__tab--active" role="tab"
+              aria-controls="pasta-tab" id="pasta-button">
               PASTA
             </button>
-            <button onclick="openMenu(event, 'rice');" class="large-menu__tab">
+            <button onclick="openMenu(event, 'rice');" class="large-menu__tab" role="tab" aria-controls="rice-tab">
               RICE
             </button>
-            <button onclick="openMenu(event, 'sides');" class="large-menu__tab">
+            <button onclick="openMenu(event, 'sides');" class="large-menu__tab" role="tab" aria-controls="sides-tab">
               SIDES
             </button>
           </div>
 
-          <div id="pasta" class="large-food-menu">
+          <div id="pasta" class="large-food-menu" role="tabpanel" aria-labelledby="pasta-tab">
             <div class="large-menu__item large-menu__item--1">
               <h2>Salmon Spaghetti<span class="large-menu__item-price">£12.50</span></h2>
               <p>Salmon Spaghetti with Mushroom Sauce</p>
@@ -228,7 +214,7 @@
             </div>
           </div>
 
-          <div id="rice" class="large-food-menu">
+          <div id="rice" class="large-food-menu" role="tabpanel" aria-labelledby="rice-tab">
             <div class="large-menu__item large-menu__item--1">
               <h2>Thai Pineapple Fried Rice<span class="large-menu__item-price">£16.50</span></h2>
               <p>Thai-style Fried Rice with Seafood and Pineapple</p>
@@ -249,7 +235,7 @@
             </div>
           </div>
 
-          <div id="sides" class="large-food-menu">
+          <div id="sides" class="large-food-menu" role="tabpanel" aria-labelledby="sides-tab">
             <div class="large-menu__item large-menu__item--1">
               <h2>Satay Chicken Skewers<span class="large-menu__item-price">£8.00</span></h2>
               <p>Grilled Chicken Skewers with Satay Sauce</p>
