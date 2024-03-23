@@ -582,7 +582,7 @@ textarea:focus {
   outline: 3px solid orange;
 }
 
-.findus h3 {
+.findus h2 {
   border-bottom: 4px dotted rgb(206, 212, 218);
 }
 
@@ -631,7 +631,7 @@ body {
   font-size: clamp(1.5rem, 1.5rem + 1.5vw, 2.7rem);
 }
 
-.hero-text h5 {
+.hero-text h2 {
   font-size: clamp(1rem, 1rem + 1vw, 2rem);
 }
 
@@ -694,7 +694,7 @@ select {
   font-family: inherit;
 }
 
-.findus h3 {
+.findus h2 {
   font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
   font-weight: 400;
 }
@@ -1686,7 +1686,7 @@ section.findus {
   }
 }
 
-.findus h3 {
+.findus h2 {
   margin-inline: auto;
   margin-bottom: 0.7rem;
   padding-bottom: 0.7rem;

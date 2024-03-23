@@ -60,10 +60,8 @@ function addDefaultAriaAttributes() {
 }
 
 function removeDefaultAriaAttributes() {
-  navbarToggler.removeAttribute('aria-expanded', 'true');
   navbarToggler.removeAttribute('aria-expanded', 'false');
   navList.removeAttribute('aria-hidden', 'true');
-  navList.removeAttribute('aria-hidden', 'false');
 }
 
 // when the screen re-sizes, close navbar, and add or remove aria-attributes
