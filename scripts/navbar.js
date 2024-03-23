@@ -7,11 +7,9 @@ navbarToggler.addEventListener('click', (event) => {
   if (navList.style.maxHeight) {
     navList.style.maxHeight = null;
     navbarToggler.setAttribute('aria-expanded', 'false');
-    navList.setAttribute('aria-hidden', 'true');
   } else {
     navList.style.maxHeight = navList.scrollHeight + "px";
     navbarToggler.setAttribute('aria-expanded', 'true');
-    navList.setAttribute('aria-hidden', 'false');
   }
   event.stopPropagation();
 });
@@ -33,7 +31,6 @@ function closeNavbar() {
     navList.style.maxHeight = null;
     navList.classList.remove('is-opened');
     navbarToggler.setAttribute('aria-expanded', 'false');
-    navList.setAttribute('aria-hidden', 'true');
   }
 }
 
@@ -56,12 +53,10 @@ window.addEventListener('load', checkScreenSize);
 
 function addDefaultAriaAttributes() {
   navbarToggler.setAttribute('aria-expanded', 'false');
-  navList.setAttribute('aria-hidden', 'true');
 }
 
 function removeDefaultAriaAttributes() {
   navbarToggler.removeAttribute('aria-expanded', 'false');
-  navList.removeAttribute('aria-hidden', 'true');
 }
 
 // when the screen re-sizes, close navbar, and add or remove aria-attributes
