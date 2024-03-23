@@ -49,7 +49,7 @@ window.addEventListener('resize', handleResize);
 
 function handleResize() {
   let screenWidth = window.innerWidth;
-  if (screenWidth <= 600) {
+  if (screenWidth <= 450) {
     openMenuPanel();
   }
 }

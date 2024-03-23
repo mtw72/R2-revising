@@ -1,7 +1,14 @@
-// Show or hide the collapsible navbar when toggler is clicked
 const navbarToggler = document.querySelector('.navbar__toggler');
 const navList = document.querySelector('.navbar__collapse');
 
+// add the aria-attributes values to toggler and navlist onload
+window.addEventListener('load', () => {
+  navbarToggler.setAttribute('aria-expanded', 'false');
+  navList.setAttribute('aria-hidden', 'true');
+});
+
+
+// Show or hide the collapsible navbar when toggler is clicked
 navbarToggler.addEventListener('click', (event) => {
   navList.classList.toggle('is-opened');
   if (navList.style.maxHeight) {
