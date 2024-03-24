@@ -264,32 +264,33 @@
 
         <div class="small-menu__carousel" aria-roledescription="carousel" aria-label="Food Highlight">
           <!-- carousel content for small to medium menu -->
-          <div class="small-menu__slideshow-container" id="slideshow-container">
-            <!-- images with caption text -->
-            <div class="small-menu__slide small-menu__slide--fade" id="slide1" role="tabpanel"
-              aria-roledescription="slide" aria-label="Slide 1 of 3">
-              <img src="./images/salmon-spaghetti.webp"
-                onerror="this.onerror=null; this.src='./images/salmon-spaghetti.jpeg';" alt="Salmon Spaghetti"
-                title="Salmon Spaghetti" loading="lazy">
-              <div class="small-menu__image-description">Salmon Spaghetti</div>
-            </div>
+          <div class="small-menu__slideshow-container">
+            <div id="slideshow-container">
+              <!-- images with caption text -->
+              <div class="small-menu__slide small-menu__slide--fade" id="slide1" role="tabpanel"
+                aria-roledescription="slide" aria-label="Slide 1 of 3">
+                <img src="./images/salmon-spaghetti.webp"
+                  onerror="this.onerror=null; this.src='./images/salmon-spaghetti.jpeg';" alt="Salmon Spaghetti"
+                  title="Salmon Spaghetti" loading="lazy">
+                <div class="small-menu__image-description">Salmon Spaghetti</div>
+              </div>
 
-            <div class="small-menu__slide small-menu__slide--fade" id="slide2" role="tabpanel"
-              aria-roledescription="slide" aria-label="Slide 2 of 3">
-              <img src="./images/thai-pineapple-fried-rice.webp"
-                onerror="this.onerror=null; this.src='./images/thai-pineapple-fried-rice.jpeg';"
-                alt="Thai Pineapple Fried Rice" title="Thai Pineapple Fried Rice" loading="lazy">
-              <div class="small-menu__image-description">Thai Pineapple Fried Rice</div>
-            </div>
+              <div class="small-menu__slide small-menu__slide--fade" id="slide2" role="tabpanel"
+                aria-roledescription="slide" aria-label="Slide 2 of 3">
+                <img src="./images/thai-pineapple-fried-rice.webp"
+                  onerror="this.onerror=null; this.src='./images/thai-pineapple-fried-rice.jpeg';"
+                  alt="Thai Pineapple Fried Rice" title="Thai Pineapple Fried Rice" loading="lazy">
+                <div class="small-menu__image-description">Thai Pineapple Fried Rice</div>
+              </div>
 
-            <div class="small-menu__slide small-menu__slide--fade" id="slide3" role="tabpanel"
-              aria-roledescription="slide" aria-label="Slide 3 of 3">
-              <img src="./images/satay-chicken-skewers.webp"
-                onerror="this.onerror=null; this.src='./images/satay-chicken-skewers.jpeg';" alt="Satay Chicken Skewers"
-                title="Satay Chicken Skewers" loading="lazy">
-              <div class="small-menu__image-description">Satay Chicken Skewers</div>
+              <div class="small-menu__slide small-menu__slide--fade" id="slide3" role="tabpanel"
+                aria-roledescription="slide" aria-label="Slide 3 of 3">
+                <img src="./images/satay-chicken-skewers.webp"
+                  onerror="this.onerror=null; this.src='./images/satay-chicken-skewers.jpeg';"
+                  alt="Satay Chicken Skewers" title="Satay Chicken Skewers" loading="lazy">
+                <div class="small-menu__image-description">Satay Chicken Skewers</div>
+              </div>
             </div>
-
             <!-- Next and previous buttons -->
             <button class="small-menu__slideshow-button--prev" onclick="plusSlides(-1)" type="button"
               aria-label="previous slide" aria-controls="slideshow-container">&#10094;</button>
