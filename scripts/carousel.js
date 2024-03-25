@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 //carousel for small & medium menu
 let slideIndex = 1;

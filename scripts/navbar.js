@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const navbarToggler = document.querySelector('.navbar__toggler');
 const navList = document.querySelector('.navbar__collapse');

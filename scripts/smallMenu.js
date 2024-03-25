@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const menuAccordion = document.getElementsByClassName("small-menu__accordion");
 

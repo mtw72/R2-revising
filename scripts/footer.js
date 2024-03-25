@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 // year for the footer (copyright)
 const copyrightDate = new Date();

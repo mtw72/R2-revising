@@ -1280,12 +1280,13 @@ section.findus {
 
 .small-menu__slideshow-dot {
   cursor: pointer;
-  height: 0.625rem;
-  width: 0.625rem;
+  height: 0.825rem;
+  width: 0.225rem;
   margin: 0 3px;
   border-radius: 100%;
   display: inline-block;
   transition: background-color 0.6s ease;
+  border: none;
 }
 
 /* Fading animation */
