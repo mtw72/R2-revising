@@ -8,9 +8,9 @@
 // npm install 
 // npm install --save-dev gulp sass gulp-sass gulp-postcss gulp-autoprefixer postcss-combine-media-query gulp-clean-css
 // npm install --save-dev gulp-babel @babel/core @babel/preset-env gulp-concat gulp-terser  
-// npm install --save-dev gulp-changed gulp-imagemin gulp-webp
+// npm install --save-dev gulp-imagemin gulp-webp
 // npm install --save-dev gulp-rename gulp-replace gulp-line-ending-corrector gulp-sourcemaps browser-sync
-// npm install --save-dev gulp-filter gulp-remember
+// npm install --save-dev gulp-remember 
 // npm install --save-dev gulp-notify gulp-plumber beepbeep
 
 
@@ -37,10 +37,10 @@ const gulp = require('gulp'); // Gulp of-course.
 
 // CSS related plugins.
 const sass = require('gulp-sass')(require('sass')); // Gulp plugin for Sass compilation.
-const cleanCSS = require('gulp-clean-css'); // Minifies CSS files.
 const postcss = require('gulp-postcss');
 const autoprefixer = require('gulp-autoprefixer'); // Autoprefixing magic.
 const combinemq = require('postcss-combine-media-query'); // Combine matching media queries into one.
+const cleanCSS = require('gulp-clean-css'); // Minifies CSS files.
 
 // JS related plugins.
 const concat = require('gulp-concat'); // Concatenates JS files.
@@ -48,7 +48,6 @@ const terser = require('gulp-terser'); // Minifies JS files.
 const babel = require('gulp-babel'); // Compiles ESNext to browser compatible JS.
 
 // Image related plugins.
-const changed = require('gulp-changed'); // Only pass through changed files
 const imagemin = require('gulp-imagemin'); // Minify PNG, JPEG, GIF and SVG images with imagemin.
 const imagewebp = require('gulp-webp'); // Convert PNG, JPEG, TIFF to WebP
 
@@ -58,11 +57,9 @@ const replace = require('gulp-replace'); // Replace strings inside file.
 const lineec = require('gulp-line-ending-corrector'); // Consistent Line Endings for non UNIX systems. Gulp Plugin for Line Ending Corrector (A utility that makes sure your files have consistent line endings).
 const sourcemaps = require('gulp-sourcemaps'); // Maps code in a compressed file (E.g. style.css) back to it’s original position in a source file (E.g. structure.scss, which was later combined with other css files to generate style.css).
 const browsersync = require('browser-sync').create(); // Reloads browser and injects CSS. Time-saving synchronized browser testing.
-
-const filter = require('gulp-filter'); // Enables you to work on a subset of the original files by filtering them using glob patterns.
 const remember = require('gulp-remember'); //  Adds all the files it has ever seen back into the stream.
-const notify = require('gulp-notify'); // Sends message notification to you.
 const plumber = require('gulp-plumber'); // Prevent pipe breaking caused by errors from gulp plugins.
+const notify = require('gulp-notify'); // Sends message notification to you.
 const beep = require('beepbeep'); // Make a console beep sound.
 // const cache = require('gulp-cache'); // Cache files in stream for later use. (not used for clearing cache of photos)
 
@@ -80,18 +77,51 @@ const errorHandler = r => {
 };
 
 /**
- * Task: `htmlProdTask`.
+ * Task: `htmlCopyTask`.
  *
- * Change the file name from style.css to style.min.css in html
+ * Copy the html files from src folder to production folder
  *
  * This task does the following:
  *    1. 
  */
 
-gulp.task('htmlProdTask', () => {
+gulp.task('htmlCopyTask', () => {
+    return gulp.src(['index.html', 'html/**/*.html'], { since: gulp.lastRun('htmlCopyTask') })
+        .pipe(rename((path) => {
+            if (path.dirname !== '.') {
+                path.dirname = 'html/' + path.dirname; // Adding 'html/' prefix to subdirectories
+            }
+        }))
+        .pipe(gulp.dest('dist'))
+        .pipe(
+            notify({
+                message: '\n\n✅ ===> COPY HTML TO PRODUCTION FOLDER — completed!\n',
+                onLast: true
+            })
+        );
+});
+
+/**
+ * Task: `htmlRenameTask`.
+ *
+ * Change the file names inside html regarding the path of style, script and images
+ *
+ * This task does the following:
+ *    1. 
+ */
+
+gulp.task('htmlRenameTask', () => {
     return gulp.src('path/to/your/index.html') // Replace 'path/to/your/index.html' with the path to your HTML file(s)
         .pipe(replace('style.css', 'style.min.css'))
-        .pipe(gulp.dest('dist')); // Replace 'dist' with the output directory for your production build
+        .pipe(replace('script.js', 'script.min.js'))
+        .pipe(replace('/images/optimized/', '/images/'))
+        .pipe(gulp.dest('dist')) // Replace 'dist' with the output directory for your production build
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> FINAL HTML — completed!\n',
+                onLast: true
+            })
+        );
 });
 
 /**
@@ -120,12 +150,12 @@ gulp.task('scssDevTask', () => {
         )
         .on('error', sass.logError)
         .pipe(postcss([autoprefixer(config.BROWSERS_LIST)]))
-        .pipe(sourcemaps.write('./')) // Output sourcemap for style-rtl.css.
+        .pipe(sourcemaps.write('./')) // Output sourcemap for style.css.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
         .pipe(gulp.dest(config.styleDestination))
         .pipe(
             notify({
-                message: '\n\n✅  ===> styles with auto-prefixers — completed!\n',
+                message: '\n\n✅  ===> STYLES WITH PREFIXES — completed!\n',
                 onLast: true
             })
         );
@@ -134,62 +164,46 @@ gulp.task('scssDevTask', () => {
 /**
  * Task: `scssProdTask`.
  *
- * Compiles Sass, Autoprefixes it and Minifies CSS.
+ * Minifies auto-prefixed CSS.
  *
  * This task does the following:
- *    1. Gets the source scss file
- *    2. Compiles Sass to CSS
- *    3. Writes Sourcemaps for it
- *    4. Autoprefixes it and generates style.css
- *    5. Renames the CSS file with suffix .min.css
- *    6. Minifies the CSS file and generates style.min.css
+ *    1. Gets the source css file with prefixes
+ *    2. Writes Sourcemaps for it
+ *    3. Renames the CSS file with file extension .min.css
+ *    4. Merge the media queries
+ *    5. Minifies the CSS file and generates style.min.css
  */
 gulp.task('scssProdTask', () => {
     return gulp
-        .src(config.styleSRC, { allowEmpty: true })
+        .src(config.styleSRC)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
-        .pipe(
-            sass({
-                errLogToConsole: config.errLogToConsole,
-                outputStyle: config.outputStyle,
-                precision: config.precision
-            })
-        )
-        .on('error', sass.logError)
-        .pipe(postcss([autoprefixer(config.BROWSERS_LIST)]))
-        .pipe(sourcemaps.write('./')) // Output sourcemap for style.css.
-        .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
-        .pipe(gulp.dest(config.styleDestination))
-        .pipe(filter('**/*.css')) // Filtering stream to only css files.
+        .pipe(rename({ extname: '.min.css' }))
         .pipe(postcss(combinemq())) // Merge Media Queries only for .min.css version.
-        .pipe(rename({ suffix: '.min' }))
         .pipe(cleanCSS())
         .pipe(sourcemaps.write('./')) // Output sourcemap for style.min.css.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
         .pipe(gulp.dest(config.styleDestination))
         .pipe(
             notify({
-                message: '\n\n✅  ===> minified styles with auto-prefixers — completed!\n',
+                message: '\n\n✅  ===> MINIFIED STYLES WITH PREFIXES — completed!\n',
                 onLast: true
             })
         );
 });
 
 /**
- * Task: `jsProdTask`.
+ * Task: `jsDevTask`.
  *
- * Concatenate and uglify custom JS scripts.
+ * Babelify and concatenate JS.
  *
  * This task does the following:
  *     1. Gets the source folder for JS custom files
  *     2. Concatenates all the files and generates custom.js
- *     3. Renames the JS file with suffix .min.js
- *     4. Uglifes/Minifies the JS file and generates custom.min.js
  */
-gulp.task('jsProdTask', () => {
+gulp.task('jsDevTask', () => {
     return gulp
-        .src(config.jsCustomSRC, { since: gulp.lastRun('jsProdTask') }) // Only run on changed files.
+        .src(config.jsCustomSRC, { since: gulp.lastRun('jsDevTask') }) // Only run on changed files.
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(
@@ -210,9 +224,33 @@ gulp.task('jsProdTask', () => {
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
         .pipe(gulp.dest(config.jsCustomDestination))
         .pipe(
+            notify({
+                message: '\n\n✅  ===> JS — completed!\n',
+                onLast: true
+            })
+        );
+});
+
+/**
+ * Task: `jsProdTask`.
+ *
+ * Uglify babelified and concatenated JS.
+ *
+ * This task does the following:
+ *     1. Gets the source folder for JS custom files
+ *     2. Concatenates all the files and generates custom.js
+ *     3. Renames the JS file with suffix .min.js
+ *     4. Uglifes/Minifies the JS file and generates custom.min.js
+ */
+gulp.task('jsProdTask', () => {
+    return gulp
+        .src(config.jsCustomSRC) // Only run on changed files.
+        .pipe(plumber(errorHandler))
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(
             rename({
                 basename: config.jsCustomFile,
-                suffix: '.min'
+                extname: '.min.js'
             })
         )
         .pipe(terser())
@@ -221,14 +259,14 @@ gulp.task('jsProdTask', () => {
         .pipe(gulp.dest(config.jsCustomDestination))
         .pipe(
             notify({
-                message: '\n\n✅  ===> CUSTOM JS — completed!\n',
+                message: '\n\n✅  ===> MINIFIED JS — completed!\n',
                 onLast: true
             })
         );
 });
 
 /**
- * Task: `images`.
+ * Task: `imageOptiTask`.
  *
  * Minifies PNG, JPEG, GIF and SVG images.
  *
@@ -238,14 +276,14 @@ gulp.task('jsProdTask', () => {
  *     3. Generates and saves the optimized images
  *
  * This task will run only once, if you want to change the parameter, 
- * you have to run it again, do it with the command `gulp images`.
+ * you have to run it again, do it with the command `gulp imageOptiTask`.
  *
  * Read the following to change these options.
  * @link https://github.com/sindresorhus/gulp-imagemin
  */
 gulp.task('imageOptiTask', () => {
     return gulp
-        .src(config.imgSRC)
+        .src(`${config.imgSRC}/*.{jpg,png,gif,svg}`, { since: lastRun(imageOptiTask) }) // Only run on changed files.
         .pipe(
             imagemin([
                 imagemin.gifsicle({ interlaced: true }),
@@ -259,18 +297,35 @@ gulp.task('imageOptiTask', () => {
         .pipe(gulp.dest(config.imgDST))
         .pipe(
             notify({
-                message: '\n\n✅  ===> IMAGES — completed!\n',
+                message: '\n\n✅  ===> IMAGES OPTIMIZATION — completed!\n',
                 onLast: true
             })
         );
 });
 
-// Convert images to WebP
-// Supports PNG, JPEG, TIFF, WebP.
-export default () => (
-    gulp.src('src/image.jpg')
+/**
+ * Task: `webpImage`.
+ *
+ * Convert PNG, JPEG and TIFF images to WebP images.
+ * 
+ *  * This task does the following:
+ *     1. Gets the source of images raw folder
+ *     2. Convert PNG, JPEG and TIFF images
+ *     3. Generates and saves the WebP images
+ * 
+ */
+gulp.task('webpImage', () => {
+    return gulp
+        .src(`${config.imgDST}/*.{jpg,png,tiff}`, { since: lastRun(webpImage) }) // Only run on changed files.
         .pipe(imagewebp())
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest(config.imgDST))
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> WEBP IMAGES  — completed!\n',
+                onLast: true
+            })
+        );
+}
 );
 
 /**
@@ -282,10 +337,11 @@ export default () => (
  * @param {Mixed} done Done.
  */
 const browserSync = done => {
-    browsersync.init({
-        server: {
-            baseDir: '.'
-        }
+    browserSync.init({
+        proxy: config.projectURL, //preset: './'
+        open: config.browserAutoOpen, //preset: false
+        injectChanges: config.injectChanges, //preset: true
+        watchEvents: ['change', 'add', 'unlink', 'addDir', 'unlinkDir']
     });
     done();
 };
@@ -301,29 +357,25 @@ const reload = done => {
  *
  * Watches for file changes and runs specific tasks.
  */
-gulp.task(
-    'default',
-    gulp.parallel('styles', 'customJS', 'images', browserSync, () => {
-        gulp.watch(config.watchPhp, reload); // Reload on PHP file changes.
-        gulp.watch(config.watchStyles, gulp.parallel('styles')); // Reload on SCSS file changes.
-        gulp.watch(config.watchJsCustom, gulp.series('customJS', reload)); // Reload on customJS file changes.
-        gulp.watch(config.imgSRC, gulp.series('images', reload)); // Reload on customJS file changes.
-    })
-);
-
-
-
 
 gulp.task(
     'default', gulp.series(
-        gulp.parallel('htmlProdTask', 'scssProdTask', 'jsProdTask', 'imageOptiTask', browserSync),
+        gulp.parallel('scssDevTask', 'jsDevTask', 'imageOptiTask', 'webpImage', browserSync),
         () => {
             gulp.watch(config.watchHtml, reload); // Reload on HTML file changes.
             gulp.watch(config.watchStyles, gulp.series('scssDevTask', reload)); // Reload on SCSS file changes.
             gulp.watch(config.watchJsCustom, gulp.series('jsDevTask', reload)); // Reload on JS file changes.
             gulp.watch(config.imgSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
+            gulp.watch(config.imgDST, gulp.series('webpImage', reload)); // Reload on webp file generation.
         })
 );
 
-// gulp.task('build', gulp.parallel('htmlProdTask', 'scssProdTask', 'jsProdTask', 'imageOptiTask'));
-
+gulp.task(
+    'buildHtml', gulp.parallel(
+        gulp.series('htmlCopyTask', 'htmlRenameTask'),
+        gulp.series('scssDevTask', 'scssProdTask'),
+        gulp.series('jsDevTask', 'jsProdTask'),
+        'imageOptiTask',
+        'webpImage'
+    )
+);
