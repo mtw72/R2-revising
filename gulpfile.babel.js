@@ -77,7 +77,7 @@ const errorHandler = r => {
 };
 
 /**
- * Task: `htmlCopyTask`.
+ * Task: `htmlCopyTask`. (a single index.html file)
  *
  * Copy the html files from src folder to production folder
  *
@@ -86,12 +86,7 @@ const errorHandler = r => {
  */
 
 gulp.task('htmlCopyTask', () => {
-    return gulp.src(['index.html', 'html/**/*.html'], { since: gulp.lastRun('htmlCopyTask') })
-        .pipe(rename((path) => {
-            if (path.dirname !== '.') {
-                path.dirname = 'html/' + path.dirname; // Adding 'html/' prefix to subdirectories
-            }
-        }))
+    return gulp.src('index.html', { since: gulp.lastRun('htmlCopyTask') })
         .pipe(gulp.dest('dist'))
         .pipe(
             notify({
@@ -100,6 +95,31 @@ gulp.task('htmlCopyTask', () => {
             })
         );
 });
+
+/**
+ * Task: `htmlCopyTask`. (more HTML files in a HTML folder)
+ *
+ * Copy the html files from src folder to production folder
+ *
+ * This task does the following:
+ *    1. 
+ */
+
+// gulp.task('htmlCopyTask', () => {
+//     return gulp.src(['index.html', 'html/**/*.html'], { since: gulp.lastRun('htmlCopyTask') })
+//         .pipe(rename((path) => {
+//             if (path.dirname !== '.') {
+//                 path.dirname = 'html/' + path.dirname; // Adding 'html/' prefix to subdirectories
+//             }
+//         }))
+//         .pipe(gulp.dest('dist'))
+//         .pipe(
+//             notify({
+//                 message: '\n\n✅ ===> COPY HTML TO PRODUCTION FOLDER — completed!\n',
+//                 onLast: true
+//             })
+//         );
+// });
 
 /**
  * Task: `htmlRenameTask`.
@@ -237,10 +257,10 @@ gulp.task('jsDevTask', () => {
  * Uglify babelified and concatenated JS.
  *
  * This task does the following:
- *     1. Gets the source folder for JS custom files
- *     2. Concatenates all the files and generates custom.js
+ *     1. Gets the source folder for JS files
+ *     2. Concatenates all the files and generates script.js
  *     3. Renames the JS file with suffix .min.js
- *     4. Uglifes/Minifies the JS file and generates custom.min.js
+ *     4. Uglifes/Minifies the JS file and generates script.min.js
  */
 gulp.task('jsProdTask', () => {
     return gulp
@@ -254,7 +274,7 @@ gulp.task('jsProdTask', () => {
             })
         )
         .pipe(terser())
-        .pipe(sourcemaps.write('./')) // Output sourcemap for custom.min.js.
+        .pipe(sourcemaps.write('./')) // Output sourcemap for script.min.js.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
         .pipe(gulp.dest(config.jsCustomDestination))
         .pipe(
@@ -329,6 +349,29 @@ gulp.task('webpImage', () => {
 );
 
 /**
+ * Task: `copyImage`.
+ *
+ * Copy the optimized images, TIFF images and WebP images to production folder.
+ * 
+ *  * This task does the following:
+ *     1. Gets the source of optimized images 
+ *     2. Copy them to images folder under production
+ * 
+ */
+gulp.task('copyImage', () => {
+    return gulp
+        .src(config.imgDST, { since: lastRun(copyImage) }) // Only run on changed files.
+        .pipe(gulp.dest(config.imgDST))
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> COPY IMAGES  — completed!\n',
+                onLast: true
+            })
+        );
+}
+);
+
+/**
  * Task: `browser-sync`.
  *
  * Live Reloads, CSS injections, Localhost tunneling.
@@ -375,7 +418,6 @@ gulp.task(
         gulp.series('htmlCopyTask', 'htmlRenameTask'),
         gulp.series('scssDevTask', 'scssProdTask'),
         gulp.series('jsDevTask', 'jsProdTask'),
-        'imageOptiTask',
-        'webpImage'
+        'copyImage'
     )
 );
