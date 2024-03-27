@@ -237,7 +237,7 @@ gulp.task('scssDevTask', () => {
         .pipe(postcss([autoprefixer(config.BROWSERS_LIST)]))
         .pipe(sourcemaps.write('./')) // Output sourcemap for style.css.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
-        .pipe(gulp.dest(config.styleDevDestination))
+        .pipe(gulp.dest(config.styleProdDestination))
         .pipe(
             notify({
                 message: '\n\n✅  ===> STYLES WITH PREFIXES — completed!\n',
@@ -262,7 +262,7 @@ gulp.task('scssDevTask', () => {
  */
 gulp.task('scssProdTask', () => {
     return gulp
-        .src(config.styleDevDestinationFilePath)
+        .src(config.styleProdDestinationFilePath)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(postcss([
@@ -316,7 +316,7 @@ gulp.task('jsDevTask', () => {
         .pipe(concat(config.jsFile + '.js'))
         .pipe(sourcemaps.write('./')) // Output sourcemap for custom.js.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
-        .pipe(gulp.dest(config.jsDevDestination))
+        .pipe(gulp.dest(config.jsProdDestination))
         .pipe(
             notify({
                 message: '\n\n✅  ===> JS — completed!\n',
@@ -339,7 +339,7 @@ gulp.task('jsDevTask', () => {
  */
 gulp.task('jsProdTask', () => {
     return gulp
-        .src(config.jsDevDestinationFilePath)
+        .src(config.jsProdDestinationFilePath)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(terser())
