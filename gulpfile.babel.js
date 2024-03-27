@@ -138,7 +138,6 @@ gulp.task('htmlTask', () => {
     return gulp.src(config.htmlSRC)
         .pipe(replace(config.srcCSSFilePath, config.distCSSFilePath))
         .pipe(replace(config.srcJSFilePath, config.distJSFilePath))
-        .pipe(replace(config.srcImageFilePath, config.distImageFilePath))
         .pipe(gulp.dest(config.htmlDestination))
         .pipe(
             notify({
@@ -454,7 +453,7 @@ gulp.task('default', gulp.series(
         gulp.watch(config.watchHtml, reload); // Reload on HTML file changes.
         gulp.watch(config.watchStyles, gulp.series('scssDevTask', reload)); // Reload on SCSS file changes.
         gulp.watch(config.watchJs, gulp.series('jsDevTask', reload)); // Reload on JS file changes.
-        // gulp.watch(config.imgSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
+        gulp.watch(config.imgSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
         // gulp.watch(config.imgDevDestination, gulp.series('webpImage', reload)); // Reload on webp file generation.
     }
 ));
@@ -479,35 +478,36 @@ gulp.task('build', gulp.parallel(
     'htmlTask',
     gulp.series('scssDevTask', 'scssProdTask'),
     gulp.series('jsDevTask', 'jsProdTask'),
+    'imageOptiTask'
     // 'copyImage'
 ));
 
-gulp.task('htmlTask', function (done) {
-    // Your HTML task logic here
-    done(); // Signal completion
-});
+// gulp.task('htmlTask', function (done) {
+//     // Your HTML task logic here
+//     done(); // Signal completion
+// });
 
-gulp.task('scssDevTask', function (done) {
-    // Your SCSS dev task logic here
-    done(); // Signal completion
-});
+// gulp.task('scssDevTask', function (done) {
+//     // Your SCSS dev task logic here
+//     done(); // Signal completion
+// });
 
-gulp.task('scssProdTask', function (done) {
-    // Your SCSS production task logic here
-    done(); // Signal completion
-});
+// gulp.task('scssProdTask', function (done) {
+//     // Your SCSS production task logic here
+//     done(); // Signal completion
+// });
 
-gulp.task('jsDevTask', function (done) {
-    // Your JS dev task logic here
-    done(); // Signal completion
-});
+// gulp.task('jsDevTask', function (done) {
+//     // Your JS dev task logic here
+//     done(); // Signal completion
+// });
 
-gulp.task('jsProdTask', function (done) {
-    // Your JS production task logic here
-    done(); // Signal completion
-});
+// gulp.task('jsProdTask', function (done) {
+//     // Your JS production task logic here
+//     done(); // Signal completion
+// });
 
-gulp.task('copyImage', function (done) {
-    // Your JS production task logic here
-    done(); // Signal completion
-});
+// gulp.task('copyImage', function (done) {
+//     // Your JS production task logic here
+//     done(); // Signal completion
+// });

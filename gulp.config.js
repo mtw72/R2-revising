@@ -21,9 +21,6 @@ const srcCSSFilePath = './dist/css/style.css';
 const distCSSFilePath = './css/style.min.css';
 const srcJSFilePath = './dist/scripts/script.js';
 const distJSFilePath = './scripts/script.min.js';
-const srcImageFilePath = '/images/optimized/';
-const distImageFilePath = '/images/';
-
 
 // Path to place the revised HTML file.
 const htmlDestination = './dist/';  //(same for more HTML files in a HTML folder)
@@ -57,7 +54,7 @@ const jsFile = 'script';
 
 // Source folder of images which should be optimized and watched.
 // > You can also specify types e.g. raw/**.{png,jpg,gif} in the glob.
-const imgSRC = './src/images/raw/*';
+const imgSRC = './src/images/*';
 
 // Destination folder of optimized images.
 // > Must be different from the imagesSRC folder.
@@ -90,8 +87,6 @@ module.exports = {
     distCSSFilePath,
     srcJSFilePath,
     distJSFilePath,
-    srcImageFilePath,
-    distImageFilePath,
     htmlDestination,
     styleSRC,
     styleDevDestination,
