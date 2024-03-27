@@ -29,7 +29,7 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
     "gulp-filter": "^9.0.1",
-    "gulp-imagemin": "^9.0.0",
+    "gulp-imagemin": "^7.1.0",
     "gulp-line-ending-corrector": "^1.0.3",
     "gulp-load-plugins": "^2.0.8",
     "gulp-notify": "^4.0.0",
@@ -46,5 +46,8 @@
     "postcss-combine-media-query": "^1.0.1",
     "postcss-sort-media-queries": "^5.2.0",
     "sass": "^1.72.0"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.1"
   }
 }

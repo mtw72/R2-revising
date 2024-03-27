@@ -8,7 +8,8 @@
 // npm install 
 // npm install --save-dev gulp sass gulp-sass postcss gulp-postcss gulp-autoprefixer postcss-sort-media-queries gulp-clean-css
 // npm install --save-dev gulp-babel @babel/core @babel/register @babel/preset-env gulp-concat gulp-terser  
-// npm install --save-dev gulp-imagemin gulp-webp
+// npm install --save-dev gulp-webp
+// npm i --save-dev gulp-imagemin@7.1.0 
 // npm install --save-dev gulp-rename gulp-replace gulp-line-ending-corrector gulp-sourcemaps browser-sync
 // npm install --save-dev gulp-remember gulp-load-plugins
 // npm install --save-dev gulp-notify gulp-plumber beepbeep
@@ -37,13 +38,11 @@ const config = require('./gulp.config.js');
 import gulp from 'gulp';  // Gulp of-course.
 const { lastRun } = require('gulp');
 
-import loadPlugins from 'gulp-load-plugins';
-const plugins = loadPlugins({
-    // pattern: ['gulp-*', 'gulp.*', '@*/gulp{-,.}*'],
-    // replaceString: /^(gulp)(-|\.)(.*)$/,
-    // camelize: true,
-    // lazy: true
-});
+
+import plugins from 'gulp-load-plugins';
+// const pluginsLoaded = plugins(); // Load all gulp plugins into pluginsLoaded
+// import loadPlugins from 'gulp-load-plugins';
+// const plugins = loadPlugins();
 
 // CSS related plugins.
 const sass = require('gulp-sass')(require('sass')); // Gulp plugin for Sass compilation.
@@ -58,19 +57,9 @@ const concat = require('gulp-concat'); // Concatenates JS files.
 const terser = require('gulp-terser'); // Minifies JS files.
 
 // Image related plugins.
+const imagemin = require('gulp-imagemin');
 
-
-// const imagemin = require('gulp-imagemin'); // Minify PNG, JPEG, GIF and SVG images with imagemin.
-// import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
-// gulp.task('imagemin', () => {
-//     return gulp.src('src/images/*')
-//         .pipe(plugins.imagemin())
-//         .pipe(gulp.dest('dist/images'));
-// });
-
-// import imagemin from 'gulp-imagemin';
-
-
+// import webp from 'gulp-webp';
 
 
 // import imagewebp from 'gulp-webp';
@@ -118,7 +107,9 @@ const errorHandler = r => {
  */
 const browserSync = done => {
     browsersync.init({
-        proxy: config.productURL, //preset: './'
+        server: {
+            baseDir: config.productURL //preset: '.'
+        },
         open: config.browserAutoOpen, //preset: false
         injectChanges: config.injectChanges, //preset: true
         watchEvents: ['change', 'add', 'unlink', 'addDir', 'unlinkDir']
@@ -378,28 +369,23 @@ gulp.task('jsProdTask', () => {
  */
 gulp.task('imageOptiTask', () => {
     return gulp
-        .src(`${config.imgSRC}/*.{jpg,png,gif,svg}`, { since: lastRun('imageOptiTask') }) // Only run on changed files.
+        .src(config.imgSRC) // Only run on changed files.
+        .pipe(imagemin([
+            imagemin.gifsicle({ interlaced: true }),
+            imagemin.mozjpeg({ quality: 75, progressive: true }),
+            imagemin.optipng({ optimizationLevel: 5 }),
+            imagemin.svgo({
+                plugins: [
+                    { removeViewBox: true },
+                    { cleanupIDs: false }
+                ]
+            })
+        ],
+            { verbose: true }
+        ))
+        .pipe(gulp.dest(config.imgProdDestination))
         .pipe(
-            imagemin([
-                gifsicle({ interlaced: true }),
-                mozjpeg({ quality: 75, progressive: true }),
-                optipng({ optimizationLevel: 5 }),
-                svgo({
-                    plugins: [
-                        {
-                            name: 'removeViewBox',
-                            active: true
-                        },
-                        {
-                            name: 'cleanupIDs',
-                            active: false
-                        }]
-                })
-            ])
-        )
-        .pipe(gulp.dest(config.imgDevDestination))
-        .pipe(
-            plugins.notify({
+            notify({
                 message: '\n\n✅  ===> IMAGES OPTIMIZATION — completed!\n',
                 onLast: true
             })
@@ -420,7 +406,7 @@ gulp.task('imageOptiTask', () => {
 gulp.task('webpImage', () => {
     return gulp
         .src(`${config.imgDevDestination}/*.{jpg,png,tiff}`, { since: lastRun('webpImage') }) // Only run on changed files.
-        .pipe(imagewebp())
+        .pipe(webp())
         .pipe(gulp.dest(config.imgDevDestination))
         .pipe(
             notify({
@@ -440,17 +426,17 @@ gulp.task('webpImage', () => {
  *     2. Copy them to images folder in dist folder
  * 
  */
-gulp.task('copyImage', () => {
-    return gulp
-        .src(config.imgDevDestination, { since: lastRun('copyImage') }) // Only run on changed files.
-        .pipe(gulp.dest(config.imgProdDestination))
-        .pipe(
-            notify({
-                message: '\n\n✅  ===> COPY IMAGES  — completed!\n',
-                onLast: true
-            })
-        );
-});
+// gulp.task('copyImage', () => {
+//     return gulp
+//         .src(config.imgDevDestinationPath, { since: lastRun('copyImage') }) // Only run on changed files.
+//         .pipe(gulp.dest(config.imgProdDestination))
+//         .pipe(
+//             notify({
+//                 message: '\n\n✅  ===> COPY IMAGES  — completed!\n',
+//                 onLast: true
+//             })
+//         );
+// });
 
 /**
  * Default Task with Watch Tasks
@@ -461,7 +447,8 @@ gulp.task('copyImage', () => {
 
 gulp.task('default', gulp.series(
     gulp.parallel('scssDevTask', 'jsDevTask',
-        // 'imageOptiTask', 'webpImage',
+        'imageOptiTask',
+        // 'webpImage',
         browserSync),
     function watchFiles() {
         gulp.watch(config.watchHtml, reload); // Reload on HTML file changes.
@@ -491,7 +478,8 @@ gulp.task('default', gulp.series(
 gulp.task('build', gulp.parallel(
     'htmlTask',
     gulp.series('scssDevTask', 'scssProdTask'),
-    gulp.series('jsDevTask', 'jsProdTask')
+    gulp.series('jsDevTask', 'jsProdTask'),
+    // 'copyImage'
 ));
 
 gulp.task('htmlTask', function (done) {
@@ -515,6 +503,11 @@ gulp.task('jsDevTask', function (done) {
 });
 
 gulp.task('jsProdTask', function (done) {
+    // Your JS production task logic here
+    done(); // Signal completion
+});
+
+gulp.task('copyImage', function (done) {
     // Your JS production task logic here
     done(); // Signal completion
 });

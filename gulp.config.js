@@ -7,7 +7,7 @@
  */
 
 // Theme/Plugin URL. Leave it like it is; since our gulpfile.js lives in the root folder.
-const productURL = './';
+const productURL = '.';
 const browserAutoOpen = false;
 const injectChanges = true;
 
@@ -57,11 +57,12 @@ const jsFile = 'script';
 
 // Source folder of images which should be optimized and watched.
 // > You can also specify types e.g. raw/**.{png,jpg,gif} in the glob.
-const imgSRC = './src/images/raw/**/*';
+const imgSRC = './src/images/raw/*';
 
 // Destination folder of optimized images.
 // > Must be different from the imagesSRC folder.
 const imgDevDestination = './src/images/optimized/';
+const imgDevDestinationPath = './src/images/optimized/*';
 const imgProdDestination = './dist/images/';
 
 // >>>>> Watch files paths.
@@ -104,6 +105,7 @@ module.exports = {
     jsFile,
     imgSRC,
     imgDevDestination,
+    imgDevDestinationPath,
     imgProdDestination,
     watchHtml,
     watchStyles,
