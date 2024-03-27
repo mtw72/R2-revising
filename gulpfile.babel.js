@@ -77,7 +77,31 @@ const errorHandler = r => {
 };
 
 /**
- * Task: `htmlCopyTask`. (a single index.html file)
+ * Task: `browser-sync`.
+ *
+ * Live Reloads, CSS injections, Localhost tunneling.
+ * @link http://www.browsersync.io/docs/options/
+ *
+ * @param {Mixed} done Done.
+ */
+const browserSync = done => {
+    browserSync.init({
+        proxy: config.productURL, //preset: './'
+        open: config.browserAutoOpen, //preset: false
+        injectChanges: config.injectChanges, //preset: true
+        watchEvents: ['change', 'add', 'unlink', 'addDir', 'unlinkDir']
+    });
+    done();
+};
+
+// Helper function to allow browser reload with Gulp 4.
+const reload = done => {
+    browsersync.reload();
+    done();
+};
+
+/**
+ * Task: `htmlTask`. (for a single index.html file)
  *
  * Copy the html files from src folder to production folder
  *
@@ -85,19 +109,22 @@ const errorHandler = r => {
  *    1. 
  */
 
-gulp.task('htmlCopyTask', () => {
-    return gulp.src('index.html', { since: gulp.lastRun('htmlCopyTask') })
-        .pipe(gulp.dest('dist'))
+gulp.task('htmlTask', () => {
+    return gulp.src(htmlSRC, { since: gulp.lastRun('htmlCopyTask') })
+        .pipe(replace('style.css', 'style.min.css'))
+        .pipe(replace('script.js', 'script.min.js'))
+        .pipe(replace('/images/optimized/', '/images/'))
+        .pipe(gulp.dest('htmlDestination')) // Replace 'dist' with the output directory for your production build
         .pipe(
             notify({
-                message: '\n\n✅ ===> COPY HTML TO PRODUCTION FOLDER — completed!\n',
+                message: '\n\n✅  ===> HTML — completed!\n',
                 onLast: true
             })
         );
 });
 
 /**
- * Task: `htmlCopyTask`. (more HTML files in a HTML folder)
+ * Task: `htmlCopyTask`. (for more HTML files in a HTML folder)
  *
  * Copy the html files from src folder to production folder
  *
@@ -106,13 +133,13 @@ gulp.task('htmlCopyTask', () => {
  */
 
 // gulp.task('htmlCopyTask', () => {
-//     return gulp.src(['index.html', 'html/**/*.html'], { since: gulp.lastRun('htmlCopyTask') })
+//     return gulp.src(htmlSRC, { since: gulp.lastRun('htmlCopyTask') })
 //         .pipe(rename((path) => {
 //             if (path.dirname !== '.') {
 //                 path.dirname = 'html/' + path.dirname; // Adding 'html/' prefix to subdirectories
 //             }
 //         }))
-//         .pipe(gulp.dest('dist'))
+//         .pipe(gulp.dest('htmlDestination'))
 //         .pipe(
 //             notify({
 //                 message: '\n\n✅ ===> COPY HTML TO PRODUCTION FOLDER — completed!\n',
@@ -122,7 +149,7 @@ gulp.task('htmlCopyTask', () => {
 // });
 
 /**
- * Task: `htmlRenameTask`.
+ * Task: `htmlReplacePathTask`. (for more HTML files in a HTML folder)
  *
  * Change the file names inside html regarding the path of style, script and images
  *
@@ -130,19 +157,19 @@ gulp.task('htmlCopyTask', () => {
  *    1. 
  */
 
-gulp.task('htmlRenameTask', () => {
-    return gulp.src('path/to/your/index.html') // Replace 'path/to/your/index.html' with the path to your HTML file(s)
-        .pipe(replace('style.css', 'style.min.css'))
-        .pipe(replace('script.js', 'script.min.js'))
-        .pipe(replace('/images/optimized/', '/images/'))
-        .pipe(gulp.dest('dist')) // Replace 'dist' with the output directory for your production build
-        .pipe(
-            notify({
-                message: '\n\n✅  ===> FINAL HTML — completed!\n',
-                onLast: true
-            })
-        );
-});
+// gulp.task('htmlReplacePathTask', () => {
+//     return gulp.src('./dist/index.html') // Replace 'path/to/your/index.html' with the path to your HTML file(s)
+//         .pipe(replace('style.css', 'style.min.css'))
+//         .pipe(replace('script.js', 'script.min.js'))
+//         .pipe(replace('/images/optimized/', '/images/'))
+//         .pipe(gulp.dest('./')) // Replace 'dist' with the output directory for your production build
+//         .pipe(
+//             notify({
+//                 message: '\n\n✅  ===> FINAL HTML.INDEX — completed!\n',
+//                 onLast: true
+//             })
+//         );
+// });
 
 /**
  * Task: `scssDevTask`.
@@ -172,7 +199,7 @@ gulp.task('scssDevTask', () => {
         .pipe(postcss([autoprefixer(config.BROWSERS_LIST)]))
         .pipe(sourcemaps.write('./')) // Output sourcemap for style.css.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
-        .pipe(gulp.dest(config.styleDestination))
+        .pipe(gulp.dest(config.styleDevDestination))
         .pipe(
             notify({
                 message: '\n\n✅  ===> STYLES WITH PREFIXES — completed!\n',
@@ -195,7 +222,7 @@ gulp.task('scssDevTask', () => {
  */
 gulp.task('scssProdTask', () => {
     return gulp
-        .src(config.styleSRC)
+        .src(config.styleDevDestination)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(rename({ extname: '.min.css' }))
@@ -203,7 +230,7 @@ gulp.task('scssProdTask', () => {
         .pipe(cleanCSS())
         .pipe(sourcemaps.write('./')) // Output sourcemap for style.min.css.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
-        .pipe(gulp.dest(config.styleDestination))
+        .pipe(gulp.dest(config.styleProdDestination))
         .pipe(
             notify({
                 message: '\n\n✅  ===> MINIFIED STYLES WITH PREFIXES — completed!\n',
@@ -223,7 +250,7 @@ gulp.task('scssProdTask', () => {
  */
 gulp.task('jsDevTask', () => {
     return gulp
-        .src(config.jsCustomSRC, { since: gulp.lastRun('jsDevTask') }) // Only run on changed files.
+        .src(config.jsSRC, { since: gulp.lastRun('jsDevTask') }) // Only run on changed files.
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(
@@ -238,11 +265,11 @@ gulp.task('jsDevTask', () => {
                 ]
             })
         )
-        .pipe(remember(config.jsCustomSRC)) // Bring all files back to stream.
-        .pipe(concat(config.jsCustomFile + '.js'))
+        .pipe(remember(config.jsSRC)) // Bring all files back to stream.
+        .pipe(concat(config.jsFile + '.js'))
         .pipe(sourcemaps.write('./')) // Output sourcemap for custom.js.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
-        .pipe(gulp.dest(config.jsCustomDestination))
+        .pipe(gulp.dest(config.jsDevDestination))
         .pipe(
             notify({
                 message: '\n\n✅  ===> JS — completed!\n',
@@ -264,19 +291,19 @@ gulp.task('jsDevTask', () => {
  */
 gulp.task('jsProdTask', () => {
     return gulp
-        .src(config.jsCustomSRC) // Only run on changed files.
+        .src(config.jsDevDestination)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(
             rename({
-                basename: config.jsCustomFile,
+                basename: config.jsFile,
                 extname: '.min.js'
             })
         )
         .pipe(terser())
         .pipe(sourcemaps.write('./')) // Output sourcemap for script.min.js.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
-        .pipe(gulp.dest(config.jsCustomDestination))
+        .pipe(gulp.dest(config.jsProdDestination))
         .pipe(
             notify({
                 message: '\n\n✅  ===> MINIFIED JS — completed!\n',
@@ -314,7 +341,7 @@ gulp.task('imageOptiTask', () => {
                 })
             ])
         )
-        .pipe(gulp.dest(config.imgDST))
+        .pipe(gulp.dest(config.imgDevDestination))
         .pipe(
             notify({
                 message: '\n\n✅  ===> IMAGES OPTIMIZATION — completed!\n',
@@ -336,9 +363,9 @@ gulp.task('imageOptiTask', () => {
  */
 gulp.task('webpImage', () => {
     return gulp
-        .src(`${config.imgDST}/*.{jpg,png,tiff}`, { since: lastRun(webpImage) }) // Only run on changed files.
+        .src(`${config.imgDevDestination}/*.{jpg,png,tiff}`, { since: lastRun(webpImage) }) // Only run on changed files.
         .pipe(imagewebp())
-        .pipe(gulp.dest(config.imgDST))
+        .pipe(gulp.dest(config.imgDevDestination))
         .pipe(
             notify({
                 message: '\n\n✅  ===> WEBP IMAGES  — completed!\n',
@@ -360,8 +387,8 @@ gulp.task('webpImage', () => {
  */
 gulp.task('copyImage', () => {
     return gulp
-        .src(config.imgDST, { since: lastRun(copyImage) }) // Only run on changed files.
-        .pipe(gulp.dest(config.imgDST))
+        .src(config.imgDevDestination, { since: lastRun(copyImage) }) // Only run on changed files.
+        .pipe(gulp.dest(config.imgProdDestination))
         .pipe(
             notify({
                 message: '\n\n✅  ===> COPY IMAGES  — completed!\n',
@@ -370,30 +397,6 @@ gulp.task('copyImage', () => {
         );
 }
 );
-
-/**
- * Task: `browser-sync`.
- *
- * Live Reloads, CSS injections, Localhost tunneling.
- * @link http://www.browsersync.io/docs/options/
- *
- * @param {Mixed} done Done.
- */
-const browserSync = done => {
-    browserSync.init({
-        proxy: config.projectURL, //preset: './'
-        open: config.browserAutoOpen, //preset: false
-        injectChanges: config.injectChanges, //preset: true
-        watchEvents: ['change', 'add', 'unlink', 'addDir', 'unlinkDir']
-    });
-    done();
-};
-
-// Helper function to allow browser reload with Gulp 4.
-const reload = done => {
-    browsersync.reload();
-    done();
-};
 
 /**
  * Watch Tasks.
@@ -407,15 +410,16 @@ gulp.task(
         () => {
             gulp.watch(config.watchHtml, reload); // Reload on HTML file changes.
             gulp.watch(config.watchStyles, gulp.series('scssDevTask', reload)); // Reload on SCSS file changes.
-            gulp.watch(config.watchJsCustom, gulp.series('jsDevTask', reload)); // Reload on JS file changes.
+            gulp.watch(config.watchJs, gulp.series('jsDevTask', reload)); // Reload on JS file changes.
             gulp.watch(config.imgSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
-            gulp.watch(config.imgDST, gulp.series('webpImage', reload)); // Reload on webp file generation.
+            gulp.watch(config.imgDevDestination, gulp.series('webpImage', reload)); // Reload on webp file generation.
         })
 );
 
 gulp.task(
     'buildHtml', gulp.parallel(
-        gulp.series('htmlCopyTask', 'htmlRenameTask'),
+        'htmlTask',
+        // gulp.series('htmlCopyTask', 'htmlReplacePathTask'), //(for more HTML files in a HTML folder)
         gulp.series('scssDevTask', 'scssProdTask'),
         gulp.series('jsDevTask', 'jsProdTask'),
         'copyImage'
