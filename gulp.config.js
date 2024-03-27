@@ -12,11 +12,20 @@ const browserAutoOpen = false;
 const injectChanges = true;
 
 // >>>>> Style options.
-// Path to main .scss file.
+// Path to .html file.
 const htmlSRC = './index.html';
 // const htmlSRC = ['index.html', 'html/**/*.html']; //(for more HTML files in a HTML folder)
 
-// Path to place the compiled CSS file.
+// Change of file paths in index.html file.
+const srcCSSFilePath = './scss/style.css';
+const distCSSFilePath = './css/style.min.css';
+const srcJSFilePath = './scripts/script.js';
+const distJSFilePath = './scripts/script.min.js';
+const srcImageFilePath = '/images/optimized/';
+const distImageFilePath = '/images/';
+
+
+// Path to place the revised HTML file.
 const htmlDestination = './dist/';  //(same for more HTML files in a HTML folder)
 
 // >>>>> Style options.
@@ -74,6 +83,12 @@ module.exports = {
     browserAutoOpen,
     injectChanges,
     htmlSRC,
+    srcCSSFilePath,
+    distCSSFilePath,
+    srcJSFilePath,
+    distJSFilePath,
+    srcImageFilePath,
+    distImageFilePath,
     htmlDestination,
     styleSRC,
     styleDevDestination,
