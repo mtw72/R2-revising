@@ -8,8 +8,8 @@
 // npm install 
 // npm install --save-dev gulp sass gulp-sass postcss gulp-postcss gulp-autoprefixer postcss-sort-media-queries gulp-clean-css
 // npm install --save-dev gulp-babel @babel/core @babel/register @babel/preset-env gulp-concat gulp-terser  
-// npm install --save-dev gulp-webp
 // npm i --save-dev gulp-imagemin@7.1.0 
+// npm i --save-dev gulp-webp@4.0.1
 // npm install --save-dev gulp-rename gulp-replace gulp-line-ending-corrector gulp-sourcemaps browser-sync
 // npm install --save-dev gulp-remember gulp-load-plugins
 // npm install --save-dev gulp-notify gulp-plumber beepbeep
@@ -58,19 +58,7 @@ const terser = require('gulp-terser'); // Minifies JS files.
 
 // Image related plugins.
 const imagemin = require('gulp-imagemin');
-
-// import webp from 'gulp-webp';
-
-
-// import imagewebp from 'gulp-webp';
-
-// const imagewebp = require('gulp-webp'); // Convert PNG, JPEG, TIFF to WebP
-
-// gulp.task('imagewebp', () => {
-//     return gulp.src('src/images/*.{jpg,png}')
-//         .pipe(plugins.webp())
-//         .pipe(gulp.dest('dist/images'));
-// });
+const webp = require('gulp-webp');
 
 // Utility related plugins.
 const rename = require('gulp-rename'); // Renames files E.g. style.css -> style.min.css.
@@ -404,9 +392,9 @@ gulp.task('imageOptiTask', () => {
  */
 gulp.task('webpImage', () => {
     return gulp
-        .src(`${config.imgDevDestination}/*.{jpg,png,tiff}`, { since: lastRun('webpImage') }) // Only run on changed files.
+        .src(`${config.imgProdDestination}/*.{jpeg,jpg,png,tiff}`) // Only run on changed files.
         .pipe(webp())
-        .pipe(gulp.dest(config.imgDevDestination))
+        .pipe(gulp.dest(config.imgProdDestination))
         .pipe(
             notify({
                 message: '\n\n✅  ===> WEBP IMAGES  — completed!\n',
@@ -446,15 +434,14 @@ gulp.task('webpImage', () => {
 
 gulp.task('default', gulp.series(
     gulp.parallel('scssDevTask', 'jsDevTask',
-        'imageOptiTask',
-        // 'webpImage',
+        gulp.series('imageOptiTask', 'webpImage'),
         browserSync),
     function watchFiles() {
         gulp.watch(config.watchHtml, reload); // Reload on HTML file changes.
         gulp.watch(config.watchStyles, gulp.series('scssDevTask', reload)); // Reload on SCSS file changes.
         gulp.watch(config.watchJs, gulp.series('jsDevTask', reload)); // Reload on JS file changes.
         gulp.watch(config.imgSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
-        // gulp.watch(config.imgDevDestination, gulp.series('webpImage', reload)); // Reload on webp file generation.
+        gulp.watch(config.imgDevDestination, gulp.series('webpImage', reload)); // Reload on webp file generation.
     }
 ));
 
@@ -478,8 +465,8 @@ gulp.task('build', gulp.parallel(
     'htmlTask',
     gulp.series('scssDevTask', 'scssProdTask'),
     gulp.series('jsDevTask', 'jsProdTask'),
-    'imageOptiTask'
-    // 'copyImage'
+    'imageOptiTask',
+    'webpImage'
 ));
 
 // gulp.task('htmlTask', function (done) {
