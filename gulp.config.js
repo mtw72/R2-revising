@@ -17,9 +17,9 @@ const htmlSRC = './index.html';
 // const htmlSRC = ['index.html', 'html/**/*.html']; //(for more HTML files in a HTML folder)
 
 // Change of file paths in index.html file.
-const srcCSSFilePath = './scss/style.css';
+const srcCSSFilePath = './src/scss/style.css';
 const distCSSFilePath = './css/style.min.css';
-const srcJSFilePath = './scripts/script.js';
+const srcJSFilePath = './src/scripts/script.js';
 const distJSFilePath = './scripts/script.min.js';
 const srcImageFilePath = '/images/optimized/';
 const distImageFilePath = '/images/';
@@ -34,21 +34,23 @@ const styleSRC = './src/scss/style.scss';
 
 // Path to place the compiled CSS file.
 const styleDevDestination = './src/scss/';
+const styleDevDestinationFilePath = './src/scss/style.css';
 const styleProdDestination = './dist/css/';
 
 // Available options → 'compact' or 'compressed' or 'nested' or 'expanded'
-const outputStyle = 'compact';
+const outputStyle = 'expanded';
 
 // >>>>> JS options.
 
 // Path to JS scripts folder.
 const jsSRC = './src/scripts/**/*.js';
 
-// Path to place the compiled JS custom scripts file.
+// Path to place the compiled JS scripts file.
 const jsDevDestination = './src/scripts/';
+const jsDevDestinationFilePath = './src/scripts/script.js';
 const jsProdDestination = './dist/scripts/';
 
-// Compiled JS custom file name. Default set to custom i.e. custom.js.
+// Compiled JS file name. Default set to script i.e. script.js.
 const jsFile = 'script';
 
 // >>>>> Images options.
@@ -92,10 +94,12 @@ module.exports = {
     htmlDestination,
     styleSRC,
     styleDevDestination,
+    styleDevDestinationFilePath,
     styleProdDestination,
     outputStyle,
     jsSRC,
     jsDevDestination,
+    jsDevDestinationFilePath,
     jsProdDestination,
     jsFile,
     imgSRC,

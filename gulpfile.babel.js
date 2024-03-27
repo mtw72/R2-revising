@@ -6,11 +6,11 @@
 // npm init -y
 
 // npm install 
-// npm install --save-dev gulp sass gulp-sass gulp-postcss gulp-autoprefixer postcss-combine-media-query gulp-clean-css
-// npm install --save-dev gulp-babel @babel/core @babel/preset-env gulp-concat gulp-terser  
+// npm install --save-dev gulp sass gulp-sass postcss gulp-postcss gulp-autoprefixer postcss-sort-media-queries gulp-clean-css
+// npm install --save-dev gulp-babel @babel/core @babel/register @babel/preset-env gulp-concat gulp-terser  
 // npm install --save-dev gulp-imagemin gulp-webp
 // npm install --save-dev gulp-rename gulp-replace gulp-line-ending-corrector gulp-sourcemaps browser-sync
-// npm install --save-dev gulp-remember 
+// npm install --save-dev gulp-remember gulp-load-plugins
 // npm install --save-dev gulp-notify gulp-plumber beepbeep
 
 
@@ -34,13 +34,22 @@
 const config = require('./gulp.config.js');
 
 // * Load gulp plugins and passing them semantic names.
-const gulp = require('gulp'); // Gulp of-course.
+import gulp from 'gulp';  // Gulp of-course.
+const { lastRun } = require('gulp');
+
+import loadPlugins from 'gulp-load-plugins';
+const plugins = loadPlugins({
+    // pattern: ['gulp-*', 'gulp.*', '@*/gulp{-,.}*'],
+    // replaceString: /^(gulp)(-|\.)(.*)$/,
+    // camelize: true,
+    // lazy: true
+});
 
 // CSS related plugins.
 const sass = require('gulp-sass')(require('sass')); // Gulp plugin for Sass compilation.
-const postcss = require('gulp-postcss');
-const autoprefixer = require('gulp-autoprefixer'); // Autoprefixing magic.
-const combinemq = require('postcss-combine-media-query'); // Combine matching media queries into one.
+import postcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
+const sortMediaQueries = require('postcss-sort-media-queries');
 const cleanCSS = require('gulp-clean-css'); // Minifies CSS files.
 
 // JS related plugins.
@@ -49,8 +58,30 @@ const concat = require('gulp-concat'); // Concatenates JS files.
 const terser = require('gulp-terser'); // Minifies JS files.
 
 // Image related plugins.
-const imagemin = require('gulp-imagemin'); // Minify PNG, JPEG, GIF and SVG images with imagemin.
-const imagewebp = require('gulp-webp'); // Convert PNG, JPEG, TIFF to WebP
+
+
+// const imagemin = require('gulp-imagemin'); // Minify PNG, JPEG, GIF and SVG images with imagemin.
+// import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
+// gulp.task('imagemin', () => {
+//     return gulp.src('src/images/*')
+//         .pipe(plugins.imagemin())
+//         .pipe(gulp.dest('dist/images'));
+// });
+
+// import imagemin from 'gulp-imagemin';
+
+
+
+
+// import imagewebp from 'gulp-webp';
+
+// const imagewebp = require('gulp-webp'); // Convert PNG, JPEG, TIFF to WebP
+
+// gulp.task('imagewebp', () => {
+//     return gulp.src('src/images/*.{jpg,png}')
+//         .pipe(plugins.webp())
+//         .pipe(gulp.dest('dist/images'));
+// });
 
 // Utility related plugins.
 const rename = require('gulp-rename'); // Renames files E.g. style.css -> style.min.css.
@@ -86,7 +117,7 @@ const errorHandler = r => {
  * @param {Mixed} done Done.
  */
 const browserSync = done => {
-    browserSync.init({
+    browsersync.init({
         proxy: config.productURL, //preset: './'
         open: config.browserAutoOpen, //preset: false
         injectChanges: config.injectChanges, //preset: true
@@ -113,11 +144,11 @@ const reload = done => {
  */
 
 gulp.task('htmlTask', () => {
-    return gulp.src(htmlSRC)
-        .pipe(replace(srcCSSFilePath, distCSSFilePath))
-        .pipe(replace(srcJSFilePath, distJSFilePath))
-        .pipe(replace(srcImageFilePath, distImageFilePath))
-        .pipe(gulp.dest('htmlDestination'))
+    return gulp.src(config.htmlSRC)
+        .pipe(replace(config.srcCSSFilePath, config.distCSSFilePath))
+        .pipe(replace(config.srcJSFilePath, config.distJSFilePath))
+        .pipe(replace(config.srcImageFilePath, config.distImageFilePath))
+        .pipe(gulp.dest(config.htmlDestination))
         .pipe(
             notify({
                 message: '\n\n✅  ===> HTML — completed!\n',
@@ -215,6 +246,7 @@ gulp.task('scssDevTask', () => {
         );
 });
 
+
 /**
  * Task: `scssProdTask`.
  *
@@ -223,19 +255,23 @@ gulp.task('scssDevTask', () => {
  * This task does the following:
  *    1. Gets the css file with prefixes
  *    2. Renames the CSS file with file extension .min.css
- *    3. Merge the media queries
+ *    3. Merge and sort the media queries
  *    4. Minifies the CSS file 
  *    5. Writes sourcemaps for it 
  *    6. Generates style.min.css in dist folder
  */
 gulp.task('scssProdTask', () => {
     return gulp
-        .src(config.styleDevDestination)
+        .src(config.styleDevDestinationFilePath)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
-        .pipe(rename({ extname: '.min.css' }))
-        .pipe(postcss(combinemq())) // Merge Media Queries only for .min.css version.
+        .pipe(postcss([
+            sortMediaQueries({
+                sort: 'mobile-first' // or 'desktop-first' or your custom sorting function
+            })
+        ]))// Merge and Sort Media Queries for .min.css version.
         .pipe(cleanCSS())
+        .pipe(rename({ extname: '.min.css' }))
         .pipe(sourcemaps.write('./')) // Output sourcemap for style.min.css.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
         .pipe(gulp.dest(config.styleProdDestination))
@@ -261,7 +297,7 @@ gulp.task('scssProdTask', () => {
  */
 gulp.task('jsDevTask', () => {
     return gulp
-        .src(config.jsSRC, { since: gulp.lastRun('jsDevTask') }) // Only run on changed files.
+        .src(config.jsSRC, { since: lastRun('jsDevTask') }) // Only run on changed files.
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(
@@ -303,16 +339,16 @@ gulp.task('jsDevTask', () => {
  */
 gulp.task('jsProdTask', () => {
     return gulp
-        .src(config.jsDevDestination)
+        .src(config.jsDevDestinationFilePath)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(terser())
         .pipe(
             rename({
                 basename: config.jsFile,
                 extname: '.min.js'
             })
         )
-        .pipe(terser())
         .pipe(sourcemaps.write('./')) // Output sourcemap for script.min.js.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
         .pipe(gulp.dest(config.jsProdDestination))
@@ -345,17 +381,25 @@ gulp.task('imageOptiTask', () => {
         .src(`${config.imgSRC}/*.{jpg,png,gif,svg}`, { since: lastRun('imageOptiTask') }) // Only run on changed files.
         .pipe(
             imagemin([
-                imagemin.gifsicle({ interlaced: true }),
-                imagemin.mozjpeg({ quality: 75, progressive: true }),
-                imagemin.optipng({ optimizationLevel: 5 }), // 0-7 low-high.
-                imagemin.svgo({
-                    plugins: [{ removeViewBox: true }, { cleanupIDs: false }]
+                gifsicle({ interlaced: true }),
+                mozjpeg({ quality: 75, progressive: true }),
+                optipng({ optimizationLevel: 5 }),
+                svgo({
+                    plugins: [
+                        {
+                            name: 'removeViewBox',
+                            active: true
+                        },
+                        {
+                            name: 'cleanupIDs',
+                            active: false
+                        }]
                 })
             ])
         )
         .pipe(gulp.dest(config.imgDevDestination))
         .pipe(
-            notify({
+            plugins.notify({
                 message: '\n\n✅  ===> IMAGES OPTIMIZATION — completed!\n',
                 onLast: true
             })
@@ -416,13 +460,15 @@ gulp.task('copyImage', () => {
  */
 
 gulp.task('default', gulp.series(
-    gulp.parallel('scssDevTask', 'jsDevTask', 'imageOptiTask', 'webpImage', browserSync),
+    gulp.parallel('scssDevTask', 'jsDevTask',
+        // 'imageOptiTask', 'webpImage',
+        browserSync),
     function watchFiles() {
         gulp.watch(config.watchHtml, reload); // Reload on HTML file changes.
         gulp.watch(config.watchStyles, gulp.series('scssDevTask', reload)); // Reload on SCSS file changes.
         gulp.watch(config.watchJs, gulp.series('jsDevTask', reload)); // Reload on JS file changes.
-        gulp.watch(config.imgSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
-        gulp.watch(config.imgDevDestination, gulp.series('webpImage', reload)); // Reload on webp file generation.
+        // gulp.watch(config.imgSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
+        // gulp.watch(config.imgDevDestination, gulp.series('webpImage', reload)); // Reload on webp file generation.
     }
 ));
 
@@ -432,12 +478,43 @@ gulp.task('default', gulp.series(
  * Copies the revised HTML, compiled CSS and JS, and optimized images to dist folder for production.
  */
 
-gulp.task(
-    'buildProject', gulp.parallel(
-        'htmlTask',
-        // gulp.series('htmlCopyTask', 'htmlReplaceFilePathTask'), //(for more HTML files in a HTML folder)
-        gulp.series('scssDevTask', 'scssProdTask'),
-        gulp.series('jsDevTask', 'jsProdTask'),
-        'copyImage'
-    )
-);
+// gulp.task(
+//     'build', gulp.parallel(
+//         'htmlTask',
+//         // gulp.series('htmlCopyTask', 'htmlReplaceFilePathTask'), //(for more HTML files in a HTML folder)
+//         gulp.series('scssDevTask', 'scssProdTask'),
+//         gulp.series('jsDevTask', 'jsProdTask'),
+//         // 'copyImage'
+//     )
+// );
+
+gulp.task('build', gulp.parallel(
+    'htmlTask',
+    gulp.series('scssDevTask', 'scssProdTask'),
+    gulp.series('jsDevTask', 'jsProdTask')
+));
+
+gulp.task('htmlTask', function (done) {
+    // Your HTML task logic here
+    done(); // Signal completion
+});
+
+gulp.task('scssDevTask', function (done) {
+    // Your SCSS dev task logic here
+    done(); // Signal completion
+});
+
+gulp.task('scssProdTask', function (done) {
+    // Your SCSS production task logic here
+    done(); // Signal completion
+});
+
+gulp.task('jsDevTask', function (done) {
+    // Your JS dev task logic here
+    done(); // Signal completion
+});
+
+gulp.task('jsProdTask', function (done) {
+    // Your JS production task logic here
+    done(); // Signal completion
+});
