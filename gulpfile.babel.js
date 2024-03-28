@@ -359,7 +359,7 @@ gulp.task('imageOptiTask', () => {
         .src(config.imgSRC) // Only run on changed files.
         .pipe(imagemin([
             imagemin.gifsicle({ interlaced: true }),
-            imagemin.mozjpeg({ quality: 75, progressive: true }),
+            imagemin.mozjpeg({ quality: 50, progressive: true }),
             imagemin.optipng({ optimizationLevel: 5 }),
             imagemin.svgo({
                 plugins: [
