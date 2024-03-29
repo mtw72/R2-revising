@@ -60,7 +60,7 @@ hr {
 // small menu
 //buttons when the accordion panel is close
 .small-menu__accordion {
-    background-color: $orange-2a;
+    background-color: $orange-5;
     color: $black-1;
 
     &:hover {
@@ -80,7 +80,7 @@ hr {
 
 //buttons when the accordion panel is open
 .small-menu__accordion--active {
-    background-color: $orange-2;
+    background-color: $orange-5;
     color: $yellow-2;
 
     // "minus" sign (-)
@@ -162,7 +162,7 @@ hr {
 }
 
 .large-menu__item-price {
-    background-color: $orange-2;
+    background-color: $orange-5;
     color: $white-1;
 }
 
