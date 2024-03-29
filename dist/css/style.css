@@ -422,7 +422,7 @@ hr {
   color: rgb(92, 92, 92);
 }
 .navbar__nav-link:visited {
-  color: rgb(172, 113, 42);
+  color: rgb(233, 205, 171);
 }
 .navbar__nav-link:active {
   color: rgb(119, 119, 119);
@@ -569,10 +569,10 @@ textarea:focus {
           box-shadow: 1px 1px 1px rgb(102, 102, 102);
 }
 .reservation__form--button:hover {
-  outline: 3px solid orange;
+  outline: 3px solid rgb(255, 165, 0);
 }
 .reservation__form--button:focus {
-  outline: 3px solid orange;
+  outline: 3px solid rgb(255, 165, 0);
 }
 
 .findus h2 {
@@ -591,7 +591,7 @@ social icons in footer  */
 }
 
 .g-link:hover {
-  color: rgb(172, 113, 42);
+  color: rgb(224, 177, 120);
 }
 
 .g-link:active {
