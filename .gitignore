@@ -42,7 +42,7 @@ Thumbs.db
 ##########
 **/.sass-cache
 **/.sass-cache/*
-**/.map
+# **/.map
 
 # Composer #
 ##########
