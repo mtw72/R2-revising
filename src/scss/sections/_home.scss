@@ -23,6 +23,12 @@
     overflow-clip-margin: content-box;
     overflow: clip;
     vertical-align: middle;
+    height: auto;
+
+    @include custom-max-mq (449.5) {
+        width: f.rem(449.5);
+        max-width: f.rem(449.5);
+    }
 }
 
 .hero-text {

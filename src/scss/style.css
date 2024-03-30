@@ -1045,6 +1045,13 @@ section.findus {
   overflow-clip-margin: content-box;
   overflow: clip;
   vertical-align: middle;
+  height: auto;
+}
+@media all and (max-width: 28.0925em) {
+  #home img {
+    width: 28.09375rem;
+    max-width: 28.09375rem;
+  }
 }
 
 .hero-text {
