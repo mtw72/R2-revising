@@ -1126,7 +1126,7 @@ section.findus {
 }
 @media all and (max-width: 28.0925em) {
   #home img {
-    width: 28.09375rem;
+    width: 100%;
     max-width: 28.09375rem;
   }
 }
