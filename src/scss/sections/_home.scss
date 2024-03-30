@@ -26,6 +26,7 @@
     height: auto;
 
     @include custom-max-mq (449.5) {
+        min-width: f.rem(250);
         width: 100%;
         max-width: f.rem(449.5);
     }
