@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Dancing Script';
+    src: url('DancingScript-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Dancing Script';
+    src: url('DancingScript-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
