@@ -10,6 +10,7 @@
 // npm install --save-dev gulp-babel @babel/core @babel/register @babel/preset-env gulp-concat gulp-terser  
 // npm i --save-dev gulp-imagemin@7.1.0 
 // npm i --save-dev gulp-webp@4.0.1
+// npm install --save-dev gulp-responsive
 // npm install --save-dev gulp-rename gulp-replace gulp-line-ending-corrector gulp-sourcemaps browser-sync
 // npm install --save-dev gulp-remember gulp-load-plugins
 // npm install --save-dev gulp-notify gulp-plumber beepbeep
@@ -59,6 +60,7 @@ const terser = require('gulp-terser'); // Minifies JS files.
 // Image related plugins.
 const imagemin = require('gulp-imagemin');
 const webp = require('gulp-webp');
+const responsive = require('gulp-responsive');
 
 // Utility related plugins.
 const rename = require('gulp-rename'); // Renames files E.g. style.css -> style.min.css.
@@ -339,13 +341,62 @@ gulp.task('jsProdTask', () => {
 });
 
 /**
+ * Task: `resizeImageTask`.
+ *
+ * Resizes PNG, JPEG, WebP and TIFF images.
+ *
+ * This task does the following:
+ *     1. Gets the source of images raw folder
+ *     2. Resizes PNG, JPEG, WebP and TIFF images according to different needs
+ *     3. Generates and saves the re-sized images in images resized folder
+ *
+ * This task will run only once, if you want to change the parameter, 
+ * you have to run it again, do it with the command `gulp imageOptiTask`.
+ *
+ * Read the following to change these options.
+ * @link https://github.com/mahnunchik/gulp-responsive
+ */
+gulp.task('resizeImageTask', () => {
+    return gulp
+        .src(config.imgrawSRC) // Only run on changed files.
+        .pipe(
+            responsive({
+                //   'background-*.jpg': {
+                //     width: 700,
+                //   },
+                'home-bg-smallscreen.jpeg': {
+                    width: 618,
+                },
+                // produce multiple images from one source
+                //   'logo.png': [
+                //     {
+                //       width: 200
+                //     },
+                //     {
+                //       width: 200 * 2,
+                //       rename: 'logo@2x.png'
+                //     }
+                //   ]
+            })
+        )
+
+        .pipe(gulp.dest(config.imgresizedSRC))
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> IMAGES RESIZE — completed!\n',
+                onLast: true
+            })
+        );
+});
+
+/**
  * Task: `imageOptiTask`.
  *
  * Minifies PNG, JPEG, GIF and SVG images.
  *
  * This task does the following:
  *     1. Gets the source of images raw folder
- *     2. Minifies PNG, JPEG, GIF and SVG images
+ *     2. Optimizes (re-sized) PNG and JPEG, as well as raw GIF and SVG images
  *     3. Generates and saves the optimized images in images optimized folder
  *
  * This task will run only once, if you want to change the parameter, 
@@ -356,9 +407,10 @@ gulp.task('jsProdTask', () => {
  */
 gulp.task('imageOptiTask', () => {
     return gulp
-        .src(config.imgSRC) // Only run on changed files.
+        .src(config.imgresizedSRC) // Only run on changed files.
         .pipe(imagemin([
             imagemin.gifsicle({ interlaced: true }),
+            imagemin.mozjpeg({ quality: 85, progressive: true }),
             imagemin.optipng({ optimizationLevel: 5 }),
             imagemin.svgo({
                 plugins: [
@@ -384,8 +436,8 @@ gulp.task('imageOptiTask', () => {
  * Convert PNG, JPEG and TIFF images to WebP images.
  * 
  *  * This task does the following:
- *     1. Gets the  optimized images (PNG and JPEG) and unoptimized images (TIFF) in src folder
- *     2. Convert PNG, JPEG and TIFF images to WebP images
+ *     1. Gets the optimized images (PNG and JPEG) and unoptimized images (TIFF) in dist folder
+ *     2. Converts PNG, JPEG and TIFF images to WebP images
  *     3. Saves the WebP images in dist folder
  * 
  */
@@ -439,7 +491,7 @@ gulp.task('default', gulp.series(
         gulp.watch(config.watchHtml, reload); // Reload on HTML file changes.
         gulp.watch(config.watchStyles, gulp.series('scssDevTask', reload)); // Reload on SCSS file changes.
         gulp.watch(config.watchJs, gulp.series('jsDevTask', reload)); // Reload on JS file changes.
-        gulp.watch(config.imgSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
+        gulp.watch(config.imgresizedSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
         gulp.watch(config.imgDevDestination, gulp.series('webpImage', reload)); // Reload on webp file generation.
     }
 ));

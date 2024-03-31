@@ -54,7 +54,8 @@ const jsFile = 'script';
 
 // Source folder of images which should be optimized and watched.
 // > You can also specify types e.g. raw/**.{png,jpg,gif} in the glob.
-const imgSRC = './src/images/*';
+const imgrawSRC = './src/images/raw/*';
+const imgresizedSRC = './src/images/resized/*';
 
 // Destination folder of optimized images.
 // > Must be different from the imagesSRC folder.
@@ -98,7 +99,8 @@ module.exports = {
     jsProdDestinationFilePath,
     jsProdDestination,
     jsFile,
-    imgSRC,
+    imgrawSRC,
+    imgresizedSRC,
     imgDevDestination,
     imgDevDestinationPath,
     imgProdDestination,
