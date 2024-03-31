@@ -12,7 +12,6 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image:alt" content="Interior of R2 Place">
   <meta name="twitter:image" content="https://mtw72.github.io/R2-revising/images/twitter-image.jpeg">
-  <!-- Images for this Card should be at least 280px in width, and at least 150px in height. Image must be less than 1MB in size. -->
 
   <meta itemprop="description" content="A place to Relax and Recharge.">
   <meta itemprop="url" content="https://mtw72.github.io/R2-revising/">
@@ -22,7 +21,6 @@
   <meta property="og:title" content="R2 Place" />
   <meta property="og:description" content="A place to Relax and Recharge." />
   <meta property="og:locale" content="en_GB" />
-  <!-- Use images with a 1.91:1 ratio and minimum recommended dimensions of 1200x630 for optimal clarity across all devices. -->
   <meta property="og:image:secure_url" content="https://mtw72.github.io/R2-revising/images/og-image.jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -97,13 +95,14 @@
       <!-- Home -->
       <section id="home">
         <picture>
-          <source media="(min-width: 930.5px)" srcset="./dist/images/home-bg-largescreen.webp" type="image/webp">
-          <source media="(min-width: 930.5px)" srcset="./dist/images/home-bg-largescreen.jpeg">
-          <source media="(min-width: 449.5px)" srcset="./dist/images/home-bg-mediumscreen.webp" type="image/webp">
-          <source media="(min-width: 449.5px)" srcset="./dist/images/home-bg-mediumscreen.jpeg">
-          <img src="./dist/images/home-bg-smallscreen.webp"
-            onerror="this.onerror=null; this.src='./dist/images/home-bg-smallscreen.jpeg';" alt="R2 Place"
-            fetchpriority="high">
+          <source media="(min-width: 1500.5px)" srcset="./dist/images/home-bg-xl.webp" type="image/webp">
+          <source media="(min-width: 1500.5px)" srcset="./dist/images/home-bg-xl.jpeg">
+          <source media="(min-width: 930.5px)" srcset="./dist/images/home-bg-lg.webp" type="image/webp">
+          <source media="(min-width: 930.5px)" srcset="./dist/images/home-bg-lg.jpeg">
+          <source media="(min-width: 449.5px)" srcset="./dist/images/home-bg-md.webp" type="image/webp">
+          <source media="(min-width: 449.5px)" srcset="./dist/images/home-bg-md.jpeg">
+          <img src="./dist/images/home-bg-sm.webp"
+            onerror="this.onerror=null; this.src='./dist/images/home-bg-sm.jpeg';" alt="R2 Place" fetchpriority="high">
         </picture>
         <div class="hero-text">
           <h1>R2 Place</h1>
@@ -307,9 +306,16 @@
         <div class="reservation">
           <!-- reservation photo -->
           <div class="reservation__photo">
-            <img src="./dist/images/r2place-entrance.webp"
+            <picture>
+              <source media="(min-width: 575.5px)" srcset="./dist/images/r2place-entrance-md.webp" type="image/webp">
+              <source media="(min-width: 575.5px)" srcset="./dist/images/r2place-entrance-md.jpeg">
+              <img src="./dist/images/r2place-entrance-sm.webp"
+                onerror="this.onerror=null; this.src='./dist/images/r2place-entrance-sm.jpeg';" alt="R2 Place Entrance"
+                title="R2 Place Entrance" loading="lazy">
+            </picture>
+            <!-- <img src="./dist/images/r2place-entrance.webp"
               onerror="this.onerror=null; this.src='./dist/images/r2place-entrance.jpeg';" alt="R2 Place Entrance"
-              title="R2 Place Entrance" loading="lazy">
+              title="R2 Place Entrance" loading="lazy"> -->
           </div>
 
           <!-- reservation form -->

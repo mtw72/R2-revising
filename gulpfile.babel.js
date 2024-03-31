@@ -10,7 +10,8 @@
 // npm install --save-dev gulp-babel @babel/core @babel/register @babel/preset-env gulp-concat gulp-terser  
 // npm i --save-dev gulp-imagemin@7.1.0 
 // npm i --save-dev gulp-webp@4.0.1
-// npm install --save-dev gulp-responsive
+// npm install --save-dev sharp (need to update nodejs and npm)
+// npm install --save-dev gulp-responsive (need to install python + many things for this)
 // npm install --save-dev gulp-rename gulp-replace gulp-line-ending-corrector gulp-sourcemaps browser-sync
 // npm install --save-dev gulp-remember gulp-load-plugins
 // npm install --save-dev gulp-notify gulp-plumber beepbeep
@@ -60,7 +61,6 @@ const terser = require('gulp-terser'); // Minifies JS files.
 // Image related plugins.
 const imagemin = require('gulp-imagemin');
 const webp = require('gulp-webp');
-const responsive = require('gulp-responsive');
 
 // Utility related plugins.
 const rename = require('gulp-rename'); // Renames files E.g. style.css -> style.min.css.
