@@ -341,55 +341,6 @@ gulp.task('jsProdTask', () => {
 });
 
 /**
- * Task: `resizeImageTask`.
- *
- * Resizes PNG, JPEG, WebP and TIFF images.
- *
- * This task does the following:
- *     1. Gets the source of images raw folder
- *     2. Resizes PNG, JPEG, WebP and TIFF images according to different needs
- *     3. Generates and saves the re-sized images in images resized folder
- *
- * This task will run only once, if you want to change the parameter, 
- * you have to run it again, do it with the command `gulp imageOptiTask`.
- *
- * Read the following to change these options.
- * @link https://github.com/mahnunchik/gulp-responsive
- */
-gulp.task('resizeImageTask', () => {
-    return gulp
-        .src(config.imgrawSRC) // Only run on changed files.
-        .pipe(
-            responsive({
-                //   'background-*.jpg': {
-                //     width: 700,
-                //   },
-                'home-bg-smallscreen.jpeg': {
-                    width: 618,
-                },
-                // produce multiple images from one source
-                //   'logo.png': [
-                //     {
-                //       width: 200
-                //     },
-                //     {
-                //       width: 200 * 2,
-                //       rename: 'logo@2x.png'
-                //     }
-                //   ]
-            })
-        )
-
-        .pipe(gulp.dest(config.imgresizedSRC))
-        .pipe(
-            notify({
-                message: '\n\n✅  ===> IMAGES RESIZE — completed!\n',
-                onLast: true
-            })
-        );
-});
-
-/**
  * Task: `imageOptiTask`.
  *
  * Minifies PNG, JPEG, GIF and SVG images.
@@ -410,7 +361,7 @@ gulp.task('imageOptiTask', () => {
         .src(config.imgresizedSRC) // Only run on changed files.
         .pipe(imagemin([
             imagemin.gifsicle({ interlaced: true }),
-            imagemin.mozjpeg({ quality: 85, progressive: true }),
+            imagemin.mozjpeg({ quality: 75, progressive: true }),
             imagemin.optipng({ optimizationLevel: 5 }),
             imagemin.svgo({
                 plugins: [

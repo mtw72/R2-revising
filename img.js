@@ -1,3 +1,21 @@
+/**
+ * Task: `img`. (type "node img" in the terminal)
+ *
+ * Resizes PNG, JPEG, WebP and TIFF images.
+ *
+ * This task does the following:
+ *     1. Gets the source of images raw folder
+ *     2. Resizes PNG, JPEG, WebP and TIFF images according to different needs
+ *     3. Generates and saves the re-sized images in images resized folder
+ *
+ * This task will run only once, if you want to change the parameter, 
+ * you have to run it again, do it with the command `gulp imageOptiTask`.
+ *
+ * Read the following to change these options.
+ * @link https://github.com/lovell/sharp
+ * @link https://github.com/VLabStudio/Tutorials/blob/master/Image%20Processing%20in%20Node.js%20with%20Sharp/app.js
+ */
+
 // config variables
 const rawImgSRC = "./src/images/raw/";
 const resizedImgDest = "./src/images/resized/";
@@ -38,17 +56,17 @@ const sharp = require("sharp");
             .toFile(resizedImgDest + "og-image" + jpeg);
 
         //Food Images - same size on different viewport widths
-        sharp(rawImgSRC + "salmon-spaghetti" + jpeg)
-            .resize(Math.round(380 * 1.3), Math.round(501 * 1.3))
-            .toFile(resizedImgDest + "salmon-spaghetti" + jpeg);
+        const imageNames = [
+            "salmon-spaghetti",
+            "satay-chicken-skewers",
+            "thai-pineapple-fried-rice"
+        ];
 
-        sharp(rawImgSRC + "satay-chicken-skewers" + jpeg)
-            .resize(Math.round(380 * 1.3), Math.round(501 * 1.3))
-            .toFile(resizedImgDest + "satay-chicken-skewers" + jpeg);
-
-        sharp(rawImgSRC + "thai-pineapple-fried-rice" + jpeg)
-            .resize(Math.round(380 * 1.3), Math.round(501 * 1.3))
-            .toFile(resizedImgDest + "thai-pineapple-fried-rice" + jpeg);
+        imageNames.forEach(imageName => {
+            sharp(rawImgSRC + imageName + jpeg)
+                .resize(Math.round(380 * 1.3), Math.round(501 * 1.3))
+                .toFile(resizedImgDest + imageName + jpeg);
+        });
 
         // Reservation Photo - different sizes on different viewport widths
         sharp(rawImgSRC + "r2place-entrance" + jpeg)
@@ -59,13 +77,9 @@ const sharp = require("sharp");
             .resize(Math.round(600 * 1.3), Math.round(361 * 1.3))
             .toFile(resizedImgDest + "r2place-entrance-md" + jpeg);
 
+        // Logo - unchanged
         sharp(rawImgSRC + "R2" + png)
             .toFile(resizedImgDest + "R2" + png);
-
-        // Convert image format to PNG, WebP, JPED, TIFF, HEIF, RAW
-        // const info = await sharp("images/shapes.png").png().toFile("images/edited-shapes.png");
-        // const info = await sharp("images/shapes.png")().toFile("images/edited-shapes");
-        // console.log(info);
 
         console.log('IMAGES RESIZE — completed!');
 
