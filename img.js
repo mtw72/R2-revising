@@ -31,15 +31,15 @@ const sharp = require("sharp");
         // // Resizes the image
         // Hero Image - different images on different viewport widths
         sharp(rawImgSRC + "home-bg-sm" + jpeg)
-            .resize(618, 824)
+            .resize(Math.round(450 * 1.3), Math.round(450 * 1.3 * 4 / 3))
             .toFile(resizedImgDest + "home-bg-sm" + jpeg);
 
         sharp(rawImgSRC + "home-bg-md" + jpeg)
-            .resize(1278, 1598)
+            .resize(Math.round(931 * 1.3), Math.round(931 * 1.3 * 4 / 5))
             .toFile(resizedImgDest + "home-bg-md" + jpeg);
 
         sharp(rawImgSRC + "home-bg-lg" + jpeg)
-            .resize(2000, 1125)
+            .resize(Math.round(1500 * 1.3), Math.round(1500 * 1.3 * 9 / 16))
             .toFile(resizedImgDest + "home-bg-lg" + jpeg);
 
         sharp(rawImgSRC + "home-bg-lg" + jpeg)
@@ -52,8 +52,17 @@ const sharp = require("sharp");
 
         // OG Image: Use images with a 1.91:1 ratio and minimum recommended dimensions of 1200x630 for optimal clarity across all devices.
         sharp(rawImgSRC + "og-image" + jpeg)
-            .resize(1200 * 1.5, 630 * 1.5)
+            .resize(Math.round(1200 * 1.3), Math.round(630 * 1.3))
             .toFile(resizedImgDest + "og-image" + jpeg);
+
+        // Reservation Photo - different sizes on different viewport widths
+        sharp(rawImgSRC + "r2place-entrance" + jpeg)
+            .resize(Math.round(425 * 1.3), Math.round(257 * 1.3))
+            .toFile(resizedImgDest + "r2place-entrance-sm" + jpeg);
+
+        sharp(rawImgSRC + "r2place-entrance" + jpeg)
+            .resize(Math.round(600 * 1.3), Math.round(361 * 1.3))
+            .toFile(resizedImgDest + "r2place-entrance-md" + jpeg);
 
         //Food Images - same size on different viewport widths
         const imageNames = [
