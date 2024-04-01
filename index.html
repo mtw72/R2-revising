@@ -42,31 +42,10 @@
     <link rel="stylesheet" href="./src/noscript.css">
   </noscript>
 
-  <!-- <script type="text/javascript">
-    // Check if the browser supports ES6 modules
-    const supportsES6Modules = 'noModule' in HTMLScriptElement.prototype;
-
-    // Load the appropriate script based on ES6 module support
-    if (supportsES6Modules) {
-      // Modern browser supporting ES6 modules
-      const script = document.createElement('script');
-      script.src = 'non-critical-modern-script.min.js';
-      script.type = 'module';
-      script.defer = true;
-      document.head.appendChild(script);
-    } else {
-      // Legacy browser not supporting ES6 modules
-      const script = document.createElement('script');
-      script.src = 'non-critical-legacy-script.min.js';
-      script.setAttribute('nomodule', '');
-      script.defer = true;
-      document.head.appendChild(script);
-    }
-  </script> -->
-
   <!-- Javascript for R2 Place -->
+  <script src="./dist/scripts/critical-modern-script.min.js" charset="utf-8"></script>
   <script defer src="./dist/scripts/non-critical-modern-script.min.js" charset="utf-8"></script>
-  <script defer src="./dist/scripts/non-critical-legacy-script.min.js" charset="utf-8"></script>
+  <!-- <script defer src="./dist/scripts/non-critical-legacy-script.min.js" charset="utf-8"></script> -->
 
 </head>
 

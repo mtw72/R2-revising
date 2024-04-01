@@ -263,6 +263,69 @@ gulp.task('scssProdTask', () => {
 });
 
 /**
+ * Task: `jsCRModernDevTask`.
+ *
+ * Concatenates critical JS.
+ *
+ * This task does the following:
+ *     1. Gets the source folder for critical JS files
+ *     2. Concatenates all the JS files 
+ *     3. Writes sourcemap for it 
+ *     4. Generates critical-modern-script.js in dist folder
+ */
+gulp.task('jsCRModernDevTask', () => {
+    return gulp
+        .src(config.jsCriticalSRC)
+        .pipe(plumber(errorHandler))
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(concat(config.jsCriticalModernFile + '.js'))
+        .pipe(sourcemaps.write('./')) // Output sourcemap for critical-modern-script.js.
+        .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
+        .pipe(gulp.dest(config.jsProdDestination))
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> CRITICAL MODERN JS — completed!\n',
+                onLast: true
+            })
+        );
+});
+
+/**
+ * Task: `jsCRModernProdTask`.
+ *
+ * Minifies critical concatenated JS.
+ *
+ * This task does the following:
+ *     1. Gets the concatenated critical JS
+ *     2. Renames the JS file with file extension .min.js
+ *     3. Minifies the JS file 
+ *     4. Writes sourcemaps for it 
+ *     5. Generates critical-modern-script.min.js in dist folder
+ */
+gulp.task('jsCRModernProdTask', () => {
+    return gulp
+        .src(config.jsCRModernProdFilePath)
+        .pipe(plumber(errorHandler))
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(terser())
+        .pipe(
+            rename({
+                basename: config.jsCriticalModernFile,
+                extname: '.min.js'
+            })
+        )
+        .pipe(sourcemaps.write('./')) // Output sourcemap for script.min.js.
+        .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
+        .pipe(gulp.dest(config.jsProdDestination))
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> MINIFIED CRITICAL MODERN JS — completed!\n',
+                onLast: true
+            })
+        );
+});
+
+/**
  * Task: `jsNCLegacyDevTask`.
  *
  * Babelifies and concatenates non-critical JS.
@@ -274,35 +337,35 @@ gulp.task('scssProdTask', () => {
  *     4. Writes sourcemap for it 
  *     5. Generates non-critical-legacy-script.js in dist folder
  */
-gulp.task('jsNCLegacyDevTask', () => {
-    return gulp
-        .src(config.jsNonCriticalSRC, { since: lastRun('jsNCLegacyDevTask') }) // Only run on changed files.
-        .pipe(plumber(errorHandler))
-        .pipe(sourcemaps.init({ loadMaps: true }))
-        .pipe(
-            babel({
-                presets: [
-                    [
-                        '@babel/preset-env', // Preset to compile your modern JS to ES5.
-                        {
-                            targets: { browsers: config.BROWSERS_LIST } // Target browser list to support.
-                        }
-                    ]
-                ]
-            })
-        )
-        .pipe(remember(config.jsNonCriticalSRC)) // Bring all files back to stream.
-        .pipe(concat(config.jsNonCriticalLegacyFile + '.js')) // Concatenate and rename file
-        .pipe(sourcemaps.write('./')) // Output sourcemap for non-critical-legacy-script.js.
-        .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
-        .pipe(gulp.dest(config.jsProdDestination))
-        .pipe(
-            notify({
-                message: '\n\n✅  ===> NON-CRITICAL LEGACY JS — completed!\n',
-                onLast: true
-            })
-        );
-});
+// gulp.task('jsNCLegacyDevTask', () => {
+//     return gulp
+//         .src(config.jsNonCriticalSRC, { since: lastRun('jsNCLegacyDevTask') }) // Only run on changed files.
+//         .pipe(plumber(errorHandler))
+//         .pipe(sourcemaps.init({ loadMaps: true }))
+//         .pipe(
+//             babel({
+//                 presets: [
+//                     [
+//                         '@babel/preset-env', // Preset to compile your modern JS to ES5.
+//                         {
+//                             targets: { browsers: config.BROWSERS_LIST } // Target browser list to support.
+//                         }
+//                     ]
+//                 ]
+//             })
+//         )
+//         .pipe(remember(config.jsNonCriticalSRC)) // Bring all files back to stream.
+//         .pipe(concat(config.jsNonCriticalLegacyFile + '.js')) // Concatenate and rename file
+//         .pipe(sourcemaps.write('./')) // Output sourcemap for non-critical-legacy-script.js.
+//         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
+//         .pipe(gulp.dest(config.jsProdDestination))
+//         .pipe(
+//             notify({
+//                 message: '\n\n✅  ===> NON-CRITICAL LEGACY JS — completed!\n',
+//                 onLast: true
+//             })
+//         );
+// });
 
 /**
  * Task: `jsNCLegacyProdTask`.
@@ -316,28 +379,28 @@ gulp.task('jsNCLegacyDevTask', () => {
  *     4. Writes sourcemaps for it 
  *     5. Generates non-critical-legacy-script.min.js in dist folder
  */
-gulp.task('jsNCLegacyProdTask', () => {
-    return gulp
-        .src(config.jsNCLegacyProdFilePath)
-        .pipe(plumber(errorHandler))
-        .pipe(sourcemaps.init({ loadMaps: true }))
-        .pipe(terser())
-        .pipe(
-            rename({
-                basename: config.jsNonCriticalLegacyFile,
-                extname: '.min.js'
-            })
-        )
-        .pipe(sourcemaps.write('./')) // Output sourcemap for non-critical-legacy-script.min.js.
-        .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
-        .pipe(gulp.dest(config.jsProdDestination))
-        .pipe(
-            notify({
-                message: '\n\n✅  ===> MINIFIED NON-CRITICAL LEGACY JS — completed!\n',
-                onLast: true
-            })
-        );
-});
+// gulp.task('jsNCLegacyProdTask', () => {
+//     return gulp
+//         .src(config.jsNCLegacyProdFilePath)
+//         .pipe(plumber(errorHandler))
+//         .pipe(sourcemaps.init({ loadMaps: true }))
+//         .pipe(terser())
+//         .pipe(
+//             rename({
+//                 basename: config.jsNonCriticalLegacyFile,
+//                 extname: '.min.js'
+//             })
+//         )
+//         .pipe(sourcemaps.write('./')) // Output sourcemap for non-critical-legacy-script.min.js.
+//         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
+//         .pipe(gulp.dest(config.jsProdDestination))
+//         .pipe(
+//             notify({
+//                 message: '\n\n✅  ===> MINIFIED NON-CRITICAL LEGACY JS — completed!\n',
+//                 onLast: true
+//             })
+//         );
+// });
 
 /**
  * Task: `jsNCModernDevTask`.
@@ -377,7 +440,7 @@ gulp.task('jsNCModernDevTask', () => {
  *     2. Renames the JS file with file extension .min.js
  *     3. Minifies the JS file 
  *     4. Writes sourcemaps for it 
- *     5. Generates script.min.js in dist folder
+ *     5. Generates non-critical-modern-script.min.js in dist folder
  */
 gulp.task('jsNCModernProdTask', () => {
     return gulp
@@ -509,7 +572,8 @@ gulp.task('webpImage', () => {
 gulp.task('b', gulp.parallel(
     // 'htmlTask',
     // gulp.series('scssDevTask', 'scssProdTask'),
-    gulp.series('jsNCLegacyDevTask', 'jsNCLegacyProdTask'),
+    // gulp.series('jsNCLegacyDevTask', 'jsNCLegacyProdTask'),
+    gulp.series('jsCRModernDevTask', 'jsCRModernProdTask'),
     gulp.series('jsNCModernDevTask', 'jsNCModernProdTask'),
     // 'imageOptiTask',
     // 'webpImage'

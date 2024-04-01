@@ -53,6 +53,8 @@ const jsNonCriticalLegacyFile = 'non-critical-legacy-script';
 const jsNonCriticalModernFile = 'non-critical-modern-script';
 
 // File path of intermediate JS file.
+const jsCRLegacyProdFilePath = './dist/scripts/' + jsCriticalLegacyFile + '.js';
+const jsCRModernProdFilePath = './dist/scripts/' + jsCriticalModernFile + '.js';
 const jsNCLegacyProdFilePath = './dist/scripts/' + jsNonCriticalLegacyFile + '.js';
 const jsNCModernProdFilePath = './dist/scripts/' + jsNonCriticalModernFile + '.js';
 
@@ -101,6 +103,8 @@ module.exports = {
     jsCriticalSRC,
     jsNonCriticalSRC,
     jsProdDestination,
+    jsCRLegacyProdFilePath,
+    jsCRModernProdFilePath,
     jsNCLegacyProdFilePath,
     jsNCModernProdFilePath,
     jsCriticalLegacyFile,

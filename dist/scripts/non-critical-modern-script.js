@@ -7,14 +7,6 @@ document.getElementById("year").textContent = copyrightYear;
 
 'use strict';
 
-window.addEventListener('load', function () {
-  // hide the loader
-  document.querySelector('.loader__container').style.display = 'none';
-  // show the content
-  document.querySelector('.website-content').classList.remove('website-content--hidden');
-});
-'use strict';
-
 const navbarToggler = document.querySelector('.navbar__toggler');
 const navList = document.querySelector('.navbar__collapse');
 const navLinks = document.querySelectorAll('.navbar__nav-link');
@@ -104,63 +96,6 @@ function checkScreenSize() {
     addDefaultAriaAttributes();
   } else {
     removeDefaultAriaAttributes();
-  }
-}
-'use strict';
-
-const menuAccordion = document.getElementsByClassName("small-menu__accordion");
-
-// open the accordion when the website is loaded
-window.addEventListener('load', openMenuPanel)
-
-function openMenuPanel() {
-  for (let i = 0; i < menuAccordion.length; i++) {
-    if (menuAccordion[i].classList.contains("small-menu__accordion--active")) {
-      menuAccordion[i].setAttribute('aria-expanded', 'true');
-      let menuPanel = menuAccordion[i].nextElementSibling;
-      menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
-      menuPanel.classList.add("small-menu__panel--open");
-      menuPanel.setAttribute('role', 'region');
-    }
-  }
-};
-
-
-// open or close the accordion through clicks
-for (let i = 0; i < menuAccordion.length; i++) {
-  menuAccordion[i].addEventListener("click", function () {
-    this.classList.toggle("small-menu__accordion--active");
-
-    // toggle aria-expanded value
-    let expanded = this.getAttribute('aria-expanded');
-    if (expanded === 'true') {
-      this.setAttribute('aria-expanded', 'false');
-    } else {
-      this.setAttribute('aria-expanded', 'true');
-    };
-
-    // toggle open or close panel, and aria-hidden value
-    let menuPanel = this.nextElementSibling;
-    if (menuPanel.classList.contains("small-menu__panel--open")) {
-      menuPanel.style.maxHeight = null;
-      menuPanel.classList.remove("small-menu__panel--open");
-      menuPanel.removeAttribute('role', 'region');
-    } else {
-      menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
-      menuPanel.classList.add("small-menu__panel--open");
-      menuPanel.setAttribute('role', 'region');
-    }
-  });
-}
-
-
-// when the screen re-sizes, open the accordion
-window.addEventListener('resize', handleResize);
-
-function handleResize() {
-  let screenWidth = window.innerWidth;
-  if (screenWidth <= 450) {
-    openMenuPanel();
   }
 }
 'use strict';
