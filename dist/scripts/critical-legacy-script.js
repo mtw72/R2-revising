@@ -6,4 +6,4 @@ window.addEventListener('load', function () {
   // show the content
   document.querySelector('.website-content').classList.remove('website-content--hidden');
 });
-//# sourceMappingURL=critical-modern-script.js.map
+//# sourceMappingURL=critical-legacy-script.js.map

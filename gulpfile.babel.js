@@ -263,6 +263,83 @@ gulp.task('scssProdTask', () => {
 });
 
 /**
+ * Task: `jsCRLegacyDevTask`.
+ *
+ * Babelifies and concatenates critical JS.
+ *
+ * This task does the following:
+ *     1. Gets the source folder for critical JS files
+ *     2. Babelifies the JS files
+ *     3. Concatenates all the JS files 
+ *     4. Writes sourcemap for it 
+ *     5. Generates critical-legacy-script.js in dist folder
+ */
+gulp.task('jsCRLegacyDevTask', () => {
+    return gulp
+        .src(config.jsCriticalSRC, { since: lastRun('jsCRLegacyDevTask') }) // Only run on changed files.
+        .pipe(plumber(errorHandler))
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(
+            babel({
+                presets: [
+                    [
+                        '@babel/preset-env', // Preset to compile your modern JS to ES5.
+                        {
+                            targets: { browsers: config.BROWSERS_LIST } // Target browser list to support.
+                        }
+                    ]
+                ]
+            })
+        )
+        .pipe(remember(config.jsCriticalSRC)) // Bring all files back to stream.
+        .pipe(concat(config.jsCriticalLegacyFile + '.js')) // Concatenate and rename file
+        .pipe(sourcemaps.write('./')) // Output sourcemap for critical-legacy-script.js.
+        .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
+        .pipe(gulp.dest(config.jsProdDestination))
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> CRITICAL LEGACY JS — completed!\n',
+                onLast: true
+            })
+        );
+});
+
+/**
+ * Task: `jsCRLegacyProdTask`.
+ *
+ * Minifies babelified and concatenated critical JS.
+ *
+ * This task does the following:
+ *     1. Gets the babelified and concatenated critical JS
+ *     2. Renames the JS file with file extension .min.js
+ *     3. Minifies the JS file 
+ *     4. Writes sourcemaps for it 
+ *     5. Generates critical-legacy-script.min.js in dist folder
+ */
+gulp.task('jsCRLegacyProdTask', () => {
+    return gulp
+        .src(config.jsCRLegacyProdFilePath)
+        .pipe(plumber(errorHandler))
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(terser())
+        .pipe(
+            rename({
+                basename: config.jsCriticalLegacyFile,
+                extname: '.min.js'
+            })
+        )
+        .pipe(sourcemaps.write('./')) // Output sourcemap for critical-legacy-script.min.js.
+        .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
+        .pipe(gulp.dest(config.jsProdDestination))
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> MINIFIED CRITICAL LEGACY JS — completed!\n',
+                onLast: true
+            })
+        );
+});
+
+/**
  * Task: `jsCRModernDevTask`.
  *
  * Concatenates critical JS.
@@ -572,9 +649,10 @@ gulp.task('webpImage', () => {
 gulp.task('b', gulp.parallel(
     // 'htmlTask',
     // gulp.series('scssDevTask', 'scssProdTask'),
+    gulp.series('jsCRLegacyDevTask', 'jsCRLegacyProdTask'),
     gulp.series('jsNCLegacyDevTask', 'jsNCLegacyProdTask'),
-    // gulp.series('jsCRModernDevTask', 'jsCRModernProdTask'),
-    // gulp.series('jsNCModernDevTask', 'jsNCModernProdTask'),
+    gulp.series('jsCRModernDevTask', 'jsCRModernProdTask'),
+    gulp.series('jsNCModernDevTask', 'jsNCModernProdTask'),
     // 'imageOptiTask',
     // 'webpImage'
 ));
