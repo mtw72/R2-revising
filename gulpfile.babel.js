@@ -10,7 +10,7 @@
 // npm install --save-dev gulp-babel @babel/core @babel/register @babel/preset-env gulp-concat gulp-terser  
 // npm i --save-dev gulp-imagemin@7.1.0 
 // npm i --save-dev gulp-webp@4.0.1
-// npm install --save-dev sharp (need to update nodejs and npm)
+// npm install --save-dev sharp
 // npm install --save-dev gulp-rename gulp-replace gulp-line-ending-corrector gulp-sourcemaps browser-sync
 // npm install --save-dev gulp-remember gulp-load-plugins
 // npm install --save-dev gulp-notify gulp-plumber beepbeep
@@ -70,7 +70,6 @@ const browsersync = require('browser-sync').create(); // Reloads browser and inj
 const remember = require('gulp-remember'); //  Adds all the files it has ever seen back into the stream.
 const notify = require('gulp-notify'); // Sends message notification to you.
 const plumber = require('gulp-plumber'); // Prevent pipe breaking caused by errors from gulp plugins.
-// const beep = require('beepbeep'); // Make a console beep sound.
 // const cache = require('gulp-cache'); // Cache files in stream for later use. (not used for clearing cache of photos)
 
 
@@ -647,12 +646,13 @@ gulp.task('webpImage', () => {
 // );
 
 gulp.task('b', gulp.parallel(
-    // 'htmlTask',
+    'htmlTask',
     // gulp.series('scssDevTask', 'scssProdTask'),
-    gulp.series('jsCRLegacyDevTask', 'jsCRLegacyProdTask'),
-    gulp.series('jsNCLegacyDevTask', 'jsNCLegacyProdTask'),
-    gulp.series('jsCRModernDevTask', 'jsCRModernProdTask'),
-    gulp.series('jsNCModernDevTask', 'jsNCModernProdTask'),
+    // gulp.series('jsCRLegacyDevTask', 'jsCRLegacyProdTask'),
+    // gulp.series('jsNCLegacyDevTask', 'jsNCLegacyProdTask'),
+    // gulp.series('jsCRModernDevTask', 'jsCRModernProdTask'),
+    // gulp.series('jsNCModernDevTask', 'jsNCModernProdTask'),
+    // gulp.series('imageOptiTask', 'webpImage'),
     // 'imageOptiTask',
     // 'webpImage'
 ));
@@ -678,11 +678,6 @@ gulp.task('b', gulp.parallel(
 // });
 
 // gulp.task('jsLegacyProdTask', function (done) {
-//     // Your JS production task logic here
-//     done(); // Signal completion
-// });
-
-// gulp.task('copyImage', function (done) {
 //     // Your JS production task logic here
 //     done(); // Signal completion
 // });

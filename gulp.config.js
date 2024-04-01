@@ -30,7 +30,6 @@ const htmlDestination = './dist/';  //(same for more HTML files in a HTML folder
 const styleSRC = './src/scss/style.scss';
 
 // Path to place the compiled CSS file.
-const styleDevDestination = './src/scss/';
 const styleProdDestinationFilePath = './dist/css/style.css';
 const styleProdDestination = './dist/css/';
 
@@ -96,7 +95,6 @@ module.exports = {
     distJSFilePath,
     htmlDestination,
     styleSRC,
-    styleDevDestination,
     styleProdDestinationFilePath,
     styleProdDestination,
     outputStyle,
