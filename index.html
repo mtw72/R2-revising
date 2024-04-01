@@ -42,7 +42,7 @@
     <link rel="stylesheet" href="./src/noscript.css">
   </noscript>
 
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     // Check if the browser supports ES6 modules
     const supportsES6Modules = 'noModule' in HTMLScriptElement.prototype;
 
@@ -62,10 +62,11 @@
       script.defer = true;
       document.head.appendChild(script);
     }
-  </script>
+  </script> -->
 
   <!-- Javascript for R2 Place -->
-  <!-- <script defer src="./dist/scripts/script.min.js" charset="utf-8"></script> -->
+  <script defer src="./dist/scripts/non-critical-modern-script.min.js" charset="utf-8"></script>
+  <script defer src="./dist/scripts/non-critical-legacy-script.min.js" charset="utf-8"></script>
 
 </head>
 
