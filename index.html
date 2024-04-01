@@ -54,10 +54,11 @@
   </script>
   <script nomodule defer src="./dist/scripts/non-critical-legacy-script.min.js" charset="utf-8"></script> -->
 
-  <script type="module">
+  <script type="module" defer>
     // Import the entire concatenated script file
     import './dist/scripts/non-critical-modern-script.min.js';
   </script>
+  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.min.js" charset="utf-8"></script>
 
 </head>
 
