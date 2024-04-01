@@ -39,16 +39,22 @@ const outputStyle = 'expanded';
 
 // >>>>> JS options.
 
-// Path to JS scripts folder.
-const jsSRC = './src/scripts/**/*.js';
+// Path to JS scripts folders.
+const jsCriticalSRC = './src/scripts/critical/**/*.js';
+const jsNonCriticalSRC = './src/scripts/non-critical/**/*.js';
 
-// Path to place the compiled JS scripts file.
-const jsDevDestination = './src/scripts/';
-const jsProdDestinationFilePath = './dist/scripts/script.js';
+// Path to place the compiled JS file.
 const jsProdDestination = './dist/scripts/';
 
-// Compiled JS file name. Default set to script i.e. script.js.
-const jsFile = 'script';
+// Compiled JS file name.
+const jsCriticalLegacyFile = 'critical-legacy-script';
+const jsCriticalModernFile = 'critical-modern-script';
+const jsNonCriticalLegacyFile = 'non-critical-legacy-script';
+const jsNonCriticalModernFile = 'non-critical-modern-script';
+
+// File path of intermediate JS file.
+const jsNCLegacyProdFilePath = './dist/scripts/' + jsNonCriticalLegacyFile + '.js';
+const jsNCModernProdFilePath = './dist/scripts/' + jsNonCriticalModernFile + '.js';
 
 // >>>>> Images options.
 
@@ -59,8 +65,6 @@ const imgresizedSRC = './src/images/resized/*';
 
 // Destination folder of optimized images.
 // > Must be different from the imagesSRC folder.
-const imgDevDestination = './src/images/optimized/';
-const imgDevDestinationPath = './src/images/optimized/*';
 const imgProdDestination = './dist/images/';
 
 // >>>>> Watch files paths.
@@ -94,15 +98,17 @@ module.exports = {
     styleProdDestinationFilePath,
     styleProdDestination,
     outputStyle,
-    jsSRC,
-    jsDevDestination,
-    jsProdDestinationFilePath,
+    jsCriticalSRC,
+    jsNonCriticalSRC,
     jsProdDestination,
-    jsFile,
+    jsNCLegacyProdFilePath,
+    jsNCModernProdFilePath,
+    jsCriticalLegacyFile,
+    jsCriticalModernFile,
+    jsNonCriticalLegacyFile,
+    jsNonCriticalModernFile,
     imgrawSRC,
     imgresizedSRC,
-    imgDevDestination,
-    imgDevDestinationPath,
     imgProdDestination,
     watchHtml,
     watchStyles,

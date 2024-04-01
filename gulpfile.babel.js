@@ -11,7 +11,6 @@
 // npm i --save-dev gulp-imagemin@7.1.0 
 // npm i --save-dev gulp-webp@4.0.1
 // npm install --save-dev sharp (need to update nodejs and npm)
-// npm install --save-dev gulp-responsive (need to install python + many things for this)
 // npm install --save-dev gulp-rename gulp-replace gulp-line-ending-corrector gulp-sourcemaps browser-sync
 // npm install --save-dev gulp-remember gulp-load-plugins
 // npm install --save-dev gulp-notify gulp-plumber beepbeep
@@ -71,7 +70,7 @@ const browsersync = require('browser-sync').create(); // Reloads browser and inj
 const remember = require('gulp-remember'); //  Adds all the files it has ever seen back into the stream.
 const notify = require('gulp-notify'); // Sends message notification to you.
 const plumber = require('gulp-plumber'); // Prevent pipe breaking caused by errors from gulp plugins.
-const beep = require('beepbeep'); // Make a console beep sound.
+// const beep = require('beepbeep'); // Make a console beep sound.
 // const cache = require('gulp-cache'); // Cache files in stream for later use. (not used for clearing cache of photos)
 
 
@@ -264,20 +263,20 @@ gulp.task('scssProdTask', () => {
 });
 
 /**
- * Task: `jsDevTask`.
+ * Task: `jsNCLegacyDevTask`.
  *
- * Babelifies and concatenates JS.
+ * Babelifies and concatenates non-critical JS.
  *
  * This task does the following:
- *     1. Gets the source folder for JS files
+ *     1. Gets the source folder for non-critical JS files
  *     2. Babelifies the JS files
  *     3. Concatenates all the JS files 
  *     4. Writes sourcemap for it 
- *     5. Generates script.js in src folder
+ *     5. Generates non-critical-legacy-script.js in dist folder
  */
-gulp.task('jsDevTask', () => {
+gulp.task('jsNCLegacyDevTask', () => {
     return gulp
-        .src(config.jsSRC, { since: lastRun('jsDevTask') }) // Only run on changed files.
+        .src(config.jsNonCriticalSRC, { since: lastRun('jsNCLegacyDevTask') }) // Only run on changed files.
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(
@@ -292,40 +291,103 @@ gulp.task('jsDevTask', () => {
                 ]
             })
         )
-        .pipe(remember(config.jsSRC)) // Bring all files back to stream.
-        .pipe(concat(config.jsFile + '.js'))
-        .pipe(sourcemaps.write('./')) // Output sourcemap for custom.js.
+        .pipe(remember(config.jsNonCriticalSRC)) // Bring all files back to stream.
+        .pipe(concat(config.jsNonCriticalLegacyFile + '.js')) // Concatenate and rename file
+        .pipe(sourcemaps.write('./')) // Output sourcemap for non-critical-legacy-script.js.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
         .pipe(gulp.dest(config.jsProdDestination))
         .pipe(
             notify({
-                message: '\n\n✅  ===> JS — completed!\n',
+                message: '\n\n✅  ===> NON-CRITICAL LEGACY JS — completed!\n',
                 onLast: true
             })
         );
 });
 
 /**
- * Task: `jsProdTask`.
+ * Task: `jsNCLegacyProdTask`.
  *
- * Minifies babelified and concatenated JS.
+ * Minifies babelified and concatenated non-critical JS.
  *
  * This task does the following:
- *     1. Gets the babelified and concatenated JS
+ *     1. Gets the babelified and concatenated non-critical JS
  *     2. Renames the JS file with file extension .min.js
  *     3. Minifies the JS file 
  *     4. Writes sourcemaps for it 
- *     5. Generates script.min.js in dist folder
+ *     5. Generates non-critical-legacy-script.min.js in dist folder
  */
-gulp.task('jsProdTask', () => {
+gulp.task('jsNCLegacyProdTask', () => {
     return gulp
-        .src(config.jsProdDestinationFilePath)
+        .src(config.jsNCLegacyProdFilePath)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(terser())
         .pipe(
             rename({
-                basename: config.jsFile,
+                basename: config.jsNonCriticalLegacyFile,
+                extname: '.min.js'
+            })
+        )
+        .pipe(sourcemaps.write('./')) // Output sourcemap for non-critical-legacy-script.min.js.
+        .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
+        .pipe(gulp.dest(config.jsProdDestination))
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> MINIFIED NON-CRITICAL LEGACY JS — completed!\n',
+                onLast: true
+            })
+        );
+});
+
+/**
+ * Task: `jsNCModernDevTask`.
+ *
+ * Concatenates non-critical JS.
+ *
+ * This task does the following:
+ *     1. Gets the source folder for non-critical JS files
+ *     2. Concatenates all the JS files 
+ *     3. Writes sourcemap for it 
+ *     4. Generates non-critical-modern-script.js in dist folder
+ */
+gulp.task('jsNCModernDevTask', () => {
+    return gulp
+        .src(config.jsNonCriticalSRC)
+        .pipe(plumber(errorHandler))
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(concat(config.jsNonCriticalModernFile + '.js'))
+        .pipe(sourcemaps.write('./')) // Output sourcemap for non-critical-modern-script.js.
+        .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
+        .pipe(gulp.dest(config.jsProdDestination))
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> NON-CRITICAL MODERN JS — completed!\n',
+                onLast: true
+            })
+        );
+});
+
+/**
+ * Task: `jsNCModernProdTask`.
+ *
+ * Minifies non-critical concatenated JS.
+ *
+ * This task does the following:
+ *     1. Gets the concatenated non-critical JS
+ *     2. Renames the JS file with file extension .min.js
+ *     3. Minifies the JS file 
+ *     4. Writes sourcemaps for it 
+ *     5. Generates script.min.js in dist folder
+ */
+gulp.task('jsNCModernProdTask', () => {
+    return gulp
+        .src(config.jsNCModernProdFilePath)
+        .pipe(plumber(errorHandler))
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(terser())
+        .pipe(
+            rename({
+                basename: config.jsNonCriticalModernFile,
                 extname: '.min.js'
             })
         )
@@ -334,7 +396,7 @@ gulp.task('jsProdTask', () => {
         .pipe(gulp.dest(config.jsProdDestination))
         .pipe(
             notify({
-                message: '\n\n✅  ===> MINIFIED JS — completed!\n',
+                message: '\n\n✅  ===> MINIFIED NON-CRITICAL MODERN JS — completed!\n',
                 onLast: true
             })
         );
@@ -405,27 +467,8 @@ gulp.task('webpImage', () => {
         );
 });
 
-/**
- * Task: `copyImage`.
- *
- * Copy the optimized images, TIFF images and WebP images to dist folder.
- * 
- *  * This task does the following:
- *     1. Gets the optimized images (PNG, JPEG, GIF and SVG), unoptimized images (TIFF) and webp images in src folder
- *     2. Copy them to images folder in dist folder
- * 
- */
-// gulp.task('copyImage', () => {
-//     return gulp
-//         .src(config.imgDevDestinationPath, { since: lastRun('copyImage') }) // Only run on changed files.
-//         .pipe(gulp.dest(config.imgProdDestination))
-//         .pipe(
-//             notify({
-//                 message: '\n\n✅  ===> COPY IMAGES  — completed!\n',
-//                 onLast: true
-//             })
-//         );
-// });
+// Create new task - convert TTF to WOFF2 & WOFF
+
 
 /**
  * Default Task with Watch Tasks
@@ -434,18 +477,18 @@ gulp.task('webpImage', () => {
  * 
  */
 
-gulp.task('default', gulp.series(
-    gulp.parallel('scssDevTask', 'jsDevTask',
-        gulp.series('imageOptiTask', 'webpImage'),
-        browserSync),
-    function watchFiles() {
-        gulp.watch(config.watchHtml, reload); // Reload on HTML file changes.
-        gulp.watch(config.watchStyles, gulp.series('scssDevTask', reload)); // Reload on SCSS file changes.
-        gulp.watch(config.watchJs, gulp.series('jsDevTask', reload)); // Reload on JS file changes.
-        gulp.watch(config.imgresizedSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
-        gulp.watch(config.imgDevDestination, gulp.series('webpImage', reload)); // Reload on webp file generation.
-    }
-));
+// gulp.task('default', gulp.series(
+//     gulp.parallel('scssDevTask', 'jsLegacyDevTask',
+//         gulp.series('imageOptiTask', 'webpImage'),
+//         browserSync),
+//     function watchFiles() {
+//         gulp.watch(config.watchHtml, reload); // Reload on HTML file changes.
+//         gulp.watch(config.watchStyles, gulp.series('scssDevTask', reload)); // Reload on SCSS file changes.
+//         gulp.watch(config.watchJs, gulp.series('jsLegacyDevTask', reload)); // Reload on JS file changes.
+//         gulp.watch(config.imgresizedSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
+//         gulp.watch(config.imgProdDestination, gulp.series('webpImage', reload)); // Reload on webp file generation.
+//     }
+// ));
 
 /**
  * Build Task
@@ -458,17 +501,18 @@ gulp.task('default', gulp.series(
 //         'htmlTask',
 //         // gulp.series('htmlCopyTask', 'htmlReplaceFilePathTask'), //(for more HTML files in a HTML folder)
 //         gulp.series('scssDevTask', 'scssProdTask'),
-//         gulp.series('jsDevTask', 'jsProdTask'),
+//         gulp.series('jsLegacyDevTask', 'jsLegacyProdTask'),
 //         // 'copyImage'
 //     )
 // );
 
-gulp.task('build', gulp.parallel(
-    'htmlTask',
-    gulp.series('scssDevTask', 'scssProdTask'),
-    gulp.series('jsDevTask', 'jsProdTask'),
-    'imageOptiTask',
-    'webpImage'
+gulp.task('b', gulp.parallel(
+    // 'htmlTask',
+    // gulp.series('scssDevTask', 'scssProdTask'),
+    gulp.series('jsNCLegacyDevTask', 'jsNCLegacyProdTask'),
+    gulp.series('jsNCModernDevTask', 'jsNCModernProdTask'),
+    // 'imageOptiTask',
+    // 'webpImage'
 ));
 
 // gulp.task('htmlTask', function (done) {
@@ -486,12 +530,12 @@ gulp.task('build', gulp.parallel(
 //     done(); // Signal completion
 // });
 
-// gulp.task('jsDevTask', function (done) {
+// gulp.task('jsLegacyDevTask', function (done) {
 //     // Your JS dev task logic here
 //     done(); // Signal completion
 // });
 
-// gulp.task('jsProdTask', function (done) {
+// gulp.task('jsLegacyProdTask', function (done) {
 //     // Your JS production task logic here
 //     done(); // Signal completion
 // });

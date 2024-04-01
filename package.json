@@ -43,7 +43,6 @@
     "gulp-terser": "^2.1.0",
     "gulp-webp": "^4.0.1",
     "postcss": "^8.4.38",
-    "postcss-combine-media-query": "^1.0.1",
     "postcss-sort-media-queries": "^5.2.0",
     "sass": "^1.72.0",
     "sharp": "^0.33.3"
