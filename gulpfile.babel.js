@@ -13,7 +13,9 @@
 // npm install --save-dev sharp
 // npm install --save-dev gulp-rename gulp-replace gulp-line-ending-corrector gulp-sourcemaps browser-sync
 // npm install --save-dev gulp-remember gulp-load-plugins
-// npm install --save-dev gulp-notify gulp-plumber beepbeep
+// npm install --save-dev gulp-notify gulp-plumber 
+
+// npm install --save-dev @fortawesome/fontawesome-free
 
 
 // * Gulpfile.
