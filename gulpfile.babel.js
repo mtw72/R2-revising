@@ -283,7 +283,7 @@ gulp.task('scssNCDevTask', () => {
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(
             sass({
-                includePaths: 'node_modules/@fortawesome',
+                // includePaths: 'node_modules/@fortawesome', (using npm and gulp)
                 errLogToConsole: config.errLogToConsole,
                 outputStyle: config.outputStyle,
                 precision: config.precision

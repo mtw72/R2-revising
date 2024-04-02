@@ -1,66 +1,83 @@
-// // Font Awesome
-// //$fa-font-path: "../../plugins/fontawesome/webfonts";
-$fa-font-path: "../../../../node_modules/@fortawesome/fontawesome-free/webfonts";
-// // $fa-font-solid: "../../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2";
-// // $fa-font-brands: "../../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2";
+/* Font Awesome */
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 900;
+    src: url('../webfonts/fa-solid-900.woff2') format('woff2'),
+        url('../webfonts/fa-solid-900.ttf') format('ttf');
+    font-display: swap;
+}
 
-// /* CSS pseudo-element styling */
+@font-face {
+    font-family: 'Font Awesome 6 Brands';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../webfonts/fa-brands-400.woff2') format('woff2'),
+        url('../webfonts/fa-brands-400.ttf') format('ttf');
+    font-display: swap;
+}
 
-// /* general reset/setup styling for icons - needed on all */
-// .icon::before {
-//     display: inline-block;
-//     font-style: normal;
-//     font-variant: normal;
-//     text-rendering: auto;
-//     -webkit-font-smoothing: antialiased;
+
+// // Font Awesome (using npm and gulp)
+// $fa-font-path: "../../../../node_modules/@fortawesome/fontawesome-free/webfonts";
+
+/* CSS pseudo-element styling */
+
+/* general reset/setup styling for icons - needed on all */
+.icon::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* defining the right font-family/font-face and inherited weight for each style */
+.icon-solid::before {
+    font-family: "Font Awesome 6 Free";
+    // font-weight: 900;
+    // font: $fa-font-solid;
+}
+
+.icon-brand::before {
+    font-family: "Font Awesome 6 Brands";
+    // font-weight: 400;
+    // font: $fa-font-brands;
+}
+
+// .icon-regular::before {
+//   font: $fa-font-regular;
 // }
 
-// /* defining the right font-family/font-face and inherited weight for each style */
-// .icon-solid::before {
-//     font-family: "Font Awesome 6 Free";
-//     font-weight: 900;
-//     font: $fa-font-solid;
+// .icon-light::before {
+//   font: $fa-font-light;
 // }
 
-// .icon-brand::before {
-//     font-family: "Font Awesome 6 Free";
-//     font-weight: 400;
-//     font: $fa-font-brands;
+// .icon-thin::before {
+//   font: $fa-font-thin;
 // }
 
-// // .icon-regular::before {
-// //   font: $fa-font-regular;
-// // }
+/* defining the right unicode values for each icon */
+.icon-location::before {
+    content: "\f3c5";
+}
 
-// // .icon-light::before {
-// //   font: $fa-font-light;
-// // }
+.icon-phone::before {
+    content: "\f095";
+}
 
-// // .icon-thin::before {
-// //   font: $fa-font-thin;
-// // }
+.icon-envelope::before {
+    content: "\f0e0";
+}
 
-// /* defining the right unicode values for each icon */
-// .icon-location::before {
-//     content: "\f3c5";
-// }
+.icon-meta::before {
+    content: "\e49b";
+}
 
-// .icon-phone::before {
-//     content: "\f095";
-// }
+.icon-twitter::before {
+    content: "\e61b";
+}
 
-// .icon-envelope::before {
-//     content: "\f0e0";
-// }
-
-// .icon-meta::before {
-//     content: "\e49b";
-// }
-
-// .icon-twitter::before {
-//     content: "\e61b";
-// }
-
-// .icon-instagram::before {
-//     content: "\f16d";
-// }
+.icon-instagram::before {
+    content: "\f16d";
+}
