@@ -1,3 +1,9 @@
+// Font Awesome
+//$fa-font-path: "../../plugins/fontawesome/webfonts";
+// $fa-font-path: "../../../../node_modules/@fortawesome/fontawesome-free/webfonts";
+$fa-font-solid: "../../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2";
+$fa-font-brands: "../../../../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2";
+
 /* CSS pseudo-element styling */
 
 /* general reset/setup styling for icons - needed on all */
@@ -13,25 +19,25 @@
 .icon-solid::before {
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
-    font: var(--fa-font-solid);
+    font: $fa-font-solid;
 }
 
 .icon-brand::before {
     font-family: "Font Awesome 6 Free";
     font-weight: 400;
-    font: var(--fa-font-brands);
+    font: $fa-font-brands;
 }
 
 // .icon-regular::before {
-//   font: var(--fa-font-regular);
+//   font: $fa-font-regular;
 // }
 
 // .icon-light::before {
-//   font: var(--fa-font-light);
+//   font: $fa-font-light;
 // }
 
 // .icon-thin::before {
-//   font: var(--fa-font-thin);
+//   font: $fa-font-thin;
 // }
 
 /* defining the right unicode values for each icon */
