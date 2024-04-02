@@ -1,3 +1,6 @@
+// // Font Awesome (using npm and gulp)
+// $fa-font-path: "../../../../node_modules/@fortawesome/fontawesome-free/webfonts";
+
 /* Font Awesome */
 @font-face {
     font-family: 'Font Awesome 6 Free';
@@ -17,12 +20,7 @@
     font-display: swap;
 }
 
-
-// // Font Awesome (using npm and gulp)
-// $fa-font-path: "../../../../node_modules/@fortawesome/fontawesome-free/webfonts";
-
 /* CSS pseudo-element styling */
-
 /* general reset/setup styling for icons - needed on all */
 .icon::before {
     display: inline-block;
@@ -35,14 +33,10 @@
 /* defining the right font-family/font-face and inherited weight for each style */
 .icon-solid::before {
     font-family: "Font Awesome 6 Free";
-    // font-weight: 900;
-    // font: $fa-font-solid;
 }
 
 .icon-brand::before {
     font-family: "Font Awesome 6 Brands";
-    // font-weight: 400;
-    // font: $fa-font-brands;
 }
 
 // .icon-regular::before {

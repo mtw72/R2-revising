@@ -15,7 +15,7 @@
 // npm install --save-dev gulp-remember gulp-load-plugins
 // npm install --save-dev gulp-notify gulp-plumber 
 
-// npm install --save-dev @fortawesome/fontawesome-free
+// npm install --save-dev @fortawesome/fontawesome-free (not used)
 
 
 // * Gulpfile.
@@ -40,12 +40,6 @@ const config = require('./gulp.config.js');
 // * Load gulp plugins and passing them semantic names.
 import gulp from 'gulp';  // Gulp of-course.
 const { lastRun } = require('gulp');
-
-
-import plugins from 'gulp-load-plugins';
-// const pluginsLoaded = plugins(); // Load all gulp plugins into pluginsLoaded
-// import loadPlugins from 'gulp-load-plugins';
-// const plugins = loadPlugins();
 
 // CSS related plugins.
 const sass = require('gulp-sass')(require('sass')); // Gulp plugin for Sass compilation.
@@ -723,13 +717,14 @@ gulp.task('webpImage', () => {
 // );
 
 gulp.task('b', gulp.parallel(
-    'htmlTask',
-    // gulp.series('scssDevTask', 'scssProdTask'),
-    // gulp.series('jsCRLegacyDevTask', 'jsCRLegacyProdTask'),
-    // gulp.series('jsNCLegacyDevTask', 'jsNCLegacyProdTask'),
-    // gulp.series('jsCRModernDevTask', 'jsCRModernProdTask'),
-    // gulp.series('jsNCModernDevTask', 'jsNCModernProdTask'),
-    // gulp.series('imageOptiTask', 'webpImage'),
+    // 'htmlTask',
+    gulp.series('scssCRDevTask', 'scssCRProdTask'),
+    gulp.series('scssNCDevTask', 'scssNCProdTask'),
+    gulp.series('jsCRLegacyDevTask', 'jsCRLegacyProdTask'),
+    gulp.series('jsNCLegacyDevTask', 'jsNCLegacyProdTask'),
+    gulp.series('jsCRModernDevTask', 'jsCRModernProdTask'),
+    gulp.series('jsNCModernDevTask', 'jsNCModernProdTask'),
+    gulp.series('imageOptiTask', 'webpImage'),
     // 'imageOptiTask',
     // 'webpImage'
 ));
