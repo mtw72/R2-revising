@@ -39,7 +39,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rancho&display=swap">
 
   <!-- Font Awesome -->
-  <script defer src="https://kit.fontawesome.com/b406833c6d.js" crossorigin="anonymous"></script>
+  <!-- <script defer src="https://kit.fontawesome.com/b406833c6d.js" crossorigin="anonymous"></script> -->
 
   <!-- Internal source -->
   <!-- Google fonts -->
@@ -489,6 +489,19 @@
 
     <!-- end of hidden content -->
   </div>
+
+  <script>
+    // Dynamically load Font Awesome asynchronously
+    function loadFontAwesome() {
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://kit.fontawesome.com/xxx.css';
+      link.crossorigin = 'anonymous';
+      document.head.appendChild(link);
+    }
+    // Call the function to load Font Awesome after the page has loaded
+    window.addEventListener('load', loadFontAwesome);
+  </script>
 
 </body>
 
