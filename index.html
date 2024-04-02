@@ -87,7 +87,18 @@
   </style>
 
   <!-- Critical js -->
-  <script src="./dist/scripts/critical-modern-script.min.js"></script>
+  <script>
+    'use strict';
+
+    window.addEventListener('load', function () {
+      // hide the loader
+      document.querySelector('.loader__container').style.display = 'none';
+      // show the content
+      document.querySelector('.website-content').classList.remove('website-content--hidden');
+    });
+  </script>
+
+  <!-- <script src="./dist/scripts/critical-modern-script.min.js"></script> -->
   <script nomodule src="./dist/scripts/critical-legacy-script.min.js" type="text/javascript"></script>
 
   <link rel="stylesheet" href="./dist/css/critical-style.min.css">
