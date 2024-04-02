@@ -1,7 +1,5 @@
-@use './loader' as *;
 @use './navbar' as *;
 
 
 
-@forward '../components/loader';
 @forward '../components/navbar';
