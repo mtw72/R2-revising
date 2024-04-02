@@ -1,0 +1,60 @@
+/* CSS pseudo-element styling */
+
+/* general reset/setup styling for icons - needed on all */
+.icon::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* defining the right font-family/font-face and inherited weight for each style */
+.icon-solid::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font: var(--fa-font-solid);
+}
+
+.icon-brand::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 400;
+    font: var(--fa-font-brands);
+}
+
+// .icon-regular::before {
+//   font: var(--fa-font-regular);
+// }
+
+// .icon-light::before {
+//   font: var(--fa-font-light);
+// }
+
+// .icon-thin::before {
+//   font: var(--fa-font-thin);
+// }
+
+/* defining the right unicode values for each icon */
+.icon-location::before {
+    content: "\f3c5";
+}
+
+.icon-phone::before {
+    content: "\f095";
+}
+
+.icon-envelope::before {
+    content: "\f0e0";
+}
+
+.icon-meta::before {
+    content: "\e49b";
+}
+
+.icon-twitter::before {
+    content: "\e61b";
+}
+
+.icon-instagram::before {
+    content: "\f16d";
+}
