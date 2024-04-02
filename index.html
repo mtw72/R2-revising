@@ -93,7 +93,9 @@
   </noscript>
 
   <!-- Non-critical css -->
-  <link defer rel="stylesheet" href="./dist/css/non-critical-style.min.css">
+  <!-- <link defer rel="stylesheet" href="./dist/css/non-critical-style.min.css"> -->
+  <link rel="preload" href="./dist/css/non-critical-style.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
 
   <!-- Javascript for R2 Place -->
   <!-- Critical js -->
