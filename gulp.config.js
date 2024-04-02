@@ -27,11 +27,15 @@ const htmlDestination = './dist/';  //(same for more HTML files in a HTML folder
 
 // >>>>> Style options.
 // Path to main .scss file.
-const styleSRC = './src/scss/style.scss';
+const styleCRSRC = './src/scss/critical-css/critical-style.scss';
+const styleNCSRC = './src/scss/non-critical-css/non-critical-style.scss';
 
 // Path to place the compiled CSS file.
-const styleProdDestinationFilePath = './dist/css/style.css';
 const styleProdDestination = './dist/css/';
+
+// Path to place the compiled CSS file.
+const styleCRProdFilePath = './dist/css/critical-style.css';
+const styleNCProdFilePath = './dist/css/non-critical-style.css';
 
 // Available options → 'compact' or 'compressed' or 'nested' or 'expanded'
 const outputStyle = 'expanded';
@@ -52,10 +56,10 @@ const jsNonCriticalLegacyFile = 'non-critical-legacy-script';
 const jsNonCriticalModernFile = 'non-critical-modern-script';
 
 // File path of intermediate JS file.
-const jsCRLegacyProdFilePath = './dist/scripts/' + jsCriticalLegacyFile + '.js';
-const jsCRModernProdFilePath = './dist/scripts/' + jsCriticalModernFile + '.js';
-const jsNCLegacyProdFilePath = './dist/scripts/' + jsNonCriticalLegacyFile + '.js';
-const jsNCModernProdFilePath = './dist/scripts/' + jsNonCriticalModernFile + '.js';
+const jsCRLegacyProdFilePath = jsProdDestination + jsCriticalLegacyFile + '.js';
+const jsCRModernProdFilePath = jsProdDestination + jsCriticalModernFile + '.js';
+const jsNCLegacyProdFilePath = jsProdDestination + jsNonCriticalLegacyFile + '.js';
+const jsNCModernProdFilePath = jsProdDestination + jsNonCriticalModernFile + '.js';
 
 // >>>>> Images options.
 
@@ -94,9 +98,11 @@ module.exports = {
     srcJSFilePath,
     distJSFilePath,
     htmlDestination,
-    styleSRC,
-    styleProdDestinationFilePath,
+    styleCRSRC,
+    styleNCSRC,
     styleProdDestination,
+    styleCRProdFilePath,
+    styleNCProdFilePath,
     outputStyle,
     jsCriticalSRC,
     jsNonCriticalSRC,

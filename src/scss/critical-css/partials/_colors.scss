@@ -1,0 +1,131 @@
+@use '../../common-partials/variables' as *;
+@use '../../common-partials/mixins' as *;
+
+body {
+    background-color: $yellow-1;
+}
+
+hr {
+    border: 1px solid $orange-3;
+}
+
+// skip-link for keyboard users
+.skip-link {
+    color: $white-1;
+    background-color: $red-1;
+}
+
+// navbar
+.navbar {
+    background-color: $yellow-2a;
+    color: $black-1;
+}
+
+.navbar__brand {
+    color: $black-1;
+}
+
+.navbar__toggler {
+    background-color: transparent;
+    outline: 1px solid $grey-2;
+    color: $grey-3;
+    border: transparent;
+
+    &:focus {
+        outline: 2px solid $grey-3;
+    }
+}
+
+.navbar__nav-link {
+    color: $grey-1;
+
+    &:visited {
+        color: $brown-1;
+    }
+
+    &:active {
+        color: $grey-3;
+    }
+}
+
+// home
+#home {
+    border-bottom: 1px solid $orange-3;
+}
+
+.hero-text {
+    color: $white-4;
+}
+
+// small menu
+//buttons when the accordion panel is close
+.small-menu__accordion {
+    background-color: $orange-5;
+    color: $black-1;
+
+    &:hover {
+        background-color: $orange-2;
+        color: $yellow-2;
+    }
+
+    //"plus" sign (+) 
+    &:after {
+        color: $grey-3;
+    }
+
+    &:focus {
+        outline: 2px solid $orange-3;
+    }
+}
+
+//buttons when the accordion panel is open
+.small-menu__accordion--active {
+    background-color: $orange-5;
+    color: $yellow-2;
+
+    // "minus" sign (-)
+    &:after {
+        color: $yellow-2;
+    }
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.small-menu__panel {
+    background-color: $white-1;
+    border: 1px solid $orange-1;
+}
+
+// large menu
+.large-menu__tab {
+    border: 1px solid $orange-1;
+    background-color: $yellow-2b;
+
+    &:hover {
+        background-color: $orange-2;
+        font-weight: bold;
+    }
+
+    &--active {
+        border: 1px solid $orange-1;
+        background-color: $orange-2;
+    }
+}
+
+// menu content
+.large-food-menu {
+    border: 1px solid $orange-1;
+    background-color: $white-1;
+}
+
+.large-menu__item {
+    border-bottom: 1px solid $orange-1;
+
+    @include min-mq(md) {
+        border-right: 1px solid $orange-1;
+    }
+}
+
+.large-menu__item-price {
+    background-color: $orange-5;
+    color: $white-1;
+}

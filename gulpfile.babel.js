@@ -188,20 +188,20 @@ gulp.task('htmlTask', () => {
 // });
 
 /**
- * Task: `scssDevTask`.
+ * Task: `scssCRDevTask`.
  *
- * Compiles Scss and Autoprefixes CSS.
+ * Compiles critical Scss and Autoprefixes CSS.
  *
  * This task does the following:
- *    1. Gets the source scss file
+ *    1. Gets the source critical scss file
  *    2. Compiles Scss to CSS
  *    3. Autoprefixes it 
  *    4. Writes sourcemaps for it
- *    5. Generates style.css in src folder
+ *    5. Generates critical.style.css in dist folder
  */
-gulp.task('scssDevTask', () => {
+gulp.task('scssCRDevTask', () => {
     return gulp
-        .src(config.styleSRC, { allowEmpty: true })
+        .src(config.styleCRSRC, { allowEmpty: true })
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(
@@ -218,29 +218,28 @@ gulp.task('scssDevTask', () => {
         .pipe(gulp.dest(config.styleProdDestination))
         .pipe(
             notify({
-                message: '\n\n✅  ===> STYLES WITH PREFIXES — completed!\n',
+                message: '\n\n✅  ===> CRITICAL STYLES WITH PREFIXES — completed!\n',
                 onLast: true
             })
         );
 });
 
-
 /**
- * Task: `scssProdTask`.
+ * Task: `scssCRProdTask`.
  *
- * Minifies auto-prefixed CSS.
+ * Minifies auto-prefixed critical CSS.
  *
  * This task does the following:
- *    1. Gets the css file with prefixes
+ *    1. Gets the critical css file with prefixes
  *    2. Renames the CSS file with file extension .min.css
  *    3. Merge and sort the media queries
  *    4. Minifies the CSS file 
  *    5. Writes sourcemaps for it 
- *    6. Generates style.min.css in dist folder
+ *    6. Generates critical.style.css in dist folder
  */
-gulp.task('scssProdTask', () => {
+gulp.task('scssCRProdTask', () => {
     return gulp
-        .src(config.styleProdDestinationFilePath)
+        .src(config.styleCRProdFilePath)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(postcss([
@@ -255,7 +254,80 @@ gulp.task('scssProdTask', () => {
         .pipe(gulp.dest(config.styleProdDestination))
         .pipe(
             notify({
-                message: '\n\n✅  ===> MINIFIED STYLES WITH PREFIXES — completed!\n',
+                message: '\n\n✅  ===> MINIFIED CRITICAL STYLES WITH PREFIXES — completed!\n',
+                onLast: true
+            })
+        );
+});
+
+/**
+ * Task: `scssNCDevTask`.
+ *
+ * Compiles non-critical Scss and Autoprefixes CSS.
+ *
+ * This task does the following:
+ *    1. Gets the source non-critical scss file
+ *    2. Compiles Scss to CSS
+ *    3. Autoprefixes it 
+ *    4. Writes sourcemaps for it
+ *    5. Generates non-critical.style.css in dist folder
+ */
+gulp.task('scssNCDevTask', () => {
+    return gulp
+        .src(config.styleNCSRC, { allowEmpty: true })
+        .pipe(plumber(errorHandler))
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(
+            sass({
+                errLogToConsole: config.errLogToConsole,
+                outputStyle: config.outputStyle,
+                precision: config.precision
+            })
+        )
+        .on('error', sass.logError)
+        .pipe(postcss([autoprefixer(config.BROWSERS_LIST)]))
+        .pipe(sourcemaps.write('./')) // Output sourcemap for style.css.
+        .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
+        .pipe(gulp.dest(config.styleProdDestination))
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> NON-CRITICAL STYLES WITH PREFIXES — completed!\n',
+                onLast: true
+            })
+        );
+});
+
+/**
+ * Task: `scssNCProdTask`.
+ *
+ * Minifies auto-prefixed non-critical CSS.
+ *
+ * This task does the following:
+ *    1. Gets the non-critical css file with prefixes
+ *    2. Renames the CSS file with file extension .min.css
+ *    3. Merge and sort the media queries
+ *    4. Minifies the CSS file 
+ *    5. Writes sourcemaps for it 
+ *    6. Generates non-critical.style.css in dist folder
+ */
+gulp.task('scssNCProdTask', () => {
+    return gulp
+        .src(config.styleNCProdFilePath)
+        .pipe(plumber(errorHandler))
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(postcss([
+            sortMediaQueries({
+                sort: 'mobile-first' // or 'desktop-first' or your custom sorting function
+            })
+        ]))// Merge and Sort Media Queries for .min.css version.
+        .pipe(cleanCSS())
+        .pipe(rename({ extname: '.min.css' }))
+        .pipe(sourcemaps.write('./')) // Output sourcemap for style.min.css.
+        .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
+        .pipe(gulp.dest(config.styleProdDestination))
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> MINIFIED NON-CRITICAL STYLES WITH PREFIXES — completed!\n',
                 onLast: true
             })
         );

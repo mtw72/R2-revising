@@ -1,0 +1,86 @@
+@use '../../common-partials/variables' as *;
+@use './colors' as *;
+@use '../../common-partials/fonts' as *;
+
+body {
+    font-family: $bodyfont;
+    font-size: clamp(1.25rem, 0.9rem + 1vw, 1.5rem);
+}
+
+// logo font in navbar and findus
+.g-logofont {
+    font-family: $logofont;
+    font-size: clamp(2rem, 1.5rem + 1vw, 2.5rem);
+}
+
+// navbar
+.navbar {
+    font-size: clamp(1.5rem, 1rem + 1vw, 2rem);
+}
+
+.navbar__nav-link:hover {
+    font-weight: bold;
+}
+
+//hero text in home
+.hero-text {
+    font-family: $logofont;
+}
+
+.hero-text h1 {
+    font-size: clamp(1.5rem, 1.5rem + 1.5vw, 2.7rem);
+}
+
+.hero-text h2 {
+    font-size: clamp(1rem, 1rem + 1vw, 2rem);
+}
+
+// menu
+#menu h1,
+#reservation h1 {
+    font-size: clamp(2.2rem, 2rem + 1vw, 3rem);
+    text-shadow: 2px 3px $pink-1;
+}
+
+// small menu
+//buttons when the accordion panel is close
+.small-menu__accordion {
+    font-size: 1.4rem;
+
+    //"plus" sign (+) 
+    &:after {
+        font-weight: bold;
+    }
+}
+
+// "minus" sign (-)
+.small-menu__accordion--active:after {
+    font-weight: bold;
+}
+
+// large menu
+// menu tab
+.large-menu__tab {
+    font-size: clamp(1.35rem, 1.2rem + 1vw, 2rem);
+}
+
+// menu description
+.large-food-menu h3 {
+    font-size: clamp(1.35rem, 1.2rem + 1vw, 1.75rem);
+    font-weight: bold;
+}
+
+.large-menu__item p {
+    font-size: clamp(1.3rem, 0.9rem + 1vw, 1.5rem);
+}
+
+.large-menu__item-price {
+    font-size: clamp(1.2rem, 1rem + 1vw, 1.4rem);
+    font-weight: 700;
+    line-height: 0.75rem;
+}
+
+.large-menu__image-description {
+    font-size: clamp(1.3rem, 0.9rem + 1vw, 1.5rem);
+    text-shadow: 1px 1px $yellow-3;
+}
