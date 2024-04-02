@@ -202,6 +202,7 @@ gulp.task('htmlTask', () => {
 gulp.task('scssCRDevTask', () => {
     return gulp
         .src(config.styleCRSRC, { allowEmpty: true })
+        // .src("./src/loader.css", { allowEmpty: true })
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(
@@ -240,6 +241,7 @@ gulp.task('scssCRDevTask', () => {
 gulp.task('scssCRProdTask', () => {
     return gulp
         .src(config.styleCRProdFilePath)
+        // .src("./dist/css/loader.css")
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(postcss([
