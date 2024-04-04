@@ -17,10 +17,26 @@ const htmlSRC = './index.html';
 // const htmlSRC = ['index.html', 'html/**/*.html']; //(for more HTML files in a HTML folder)
 
 // Change of file paths in index.html file.
-const srcCSSFilePath = './dist/css/style.css';
-const distCSSFilePath = './css/style.min.css';
-const srcJSFilePath = './dist/scripts/script.js';
-const distJSFilePath = './scripts/script.min.js';
+const srcCRCSSFilePath = './dist/css/non-critical-style.css';
+const srcNCCSSFilePath = './dist/css/non-critical-style.css';
+const distCRCSSFilePath = './dist/css/critical-style.min.css';
+const distNCCSSFilePath = './dist/css/non-critical-style.min.css';
+
+const srcGFontCSSFilePath = './src/googlefont/google-fonts.css';
+const distGFontCSSFilePath = './dist/css/googlefont/google-fonts.min.css';
+
+const srcNoJSCSSFilePath = './src/noscript.css';
+const distNoJSCSSFilePath = './dist/css/noscript.min.css';
+
+// const srcCRLegacyJSFilePath = './dist/scripts/critical-legacy-script.js';    //legacy code same as modern code
+const srcCRModernJSFilePath = './dist/scripts/critical-modern-script.js';
+const srcNCLegacyJSFilePath = './dist/scripts/non-critical-legacy-script.js';
+const srcNCModernJSFilePath = './dist/scripts/non-critical-modern-script.js';
+
+// const distCRLegacyJSFilePath = './dist/scripts/critical-legacy-script.min.js';    //legacy code same as modern code
+const distCRModernJSFilePath = './dist/scripts/critical-modern-script.min.js';
+const distNCLegacyJSFilePath = './dist/scripts/non-critical-legacy-script.min.js';
+const distNCModernJSFilePath = './dist/scripts/non-critical-modern-script.min.js';
 
 // Path to place the revised HTML file.
 const htmlDestination = './dist/';  //(same for more HTML files in a HTML folder)
@@ -29,6 +45,7 @@ const htmlDestination = './dist/';  //(same for more HTML files in a HTML folder
 // Path to main .scss file.
 const styleCRSRC = './src/scss/critical-css/critical-style.scss';
 const styleNCSRC = './src/scss/non-critical-css/non-critical-style.scss';
+const styleNCSRCsmall = './src/scss/non-critical-css/**/*.scss';
 
 // Path to place the compiled CSS file.
 const styleProdDestination = './dist/css/';
@@ -93,13 +110,14 @@ module.exports = {
     browserAutoOpen,
     injectChanges,
     htmlSRC,
-    srcCSSFilePath,
-    distCSSFilePath,
-    srcJSFilePath,
-    distJSFilePath,
+    // srcCSSFilePath,
+    // distCSSFilePath,
+    // srcJSFilePath,
+    // distJSFilePath,
     htmlDestination,
     styleCRSRC,
     styleNCSRC,
+    styleNCSRCsmall,
     styleProdDestination,
     styleCRProdFilePath,
     styleNCProdFilePath,

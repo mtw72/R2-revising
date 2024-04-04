@@ -11,12 +11,11 @@
 // npm i --save-dev gulp-imagemin@7.1.0 
 // npm i --save-dev gulp-webp@4.0.1
 // npm install --save-dev sharp
-// npm install --save-dev gulp-rename gulp-replace gulp-line-ending-corrector gulp-sourcemaps browser-sync
-// npm install --save-dev gulp-remember gulp-load-plugins
-// npm install --save-dev gulp-notify gulp-plumber 
-
+// npm install --save-dev gulp-ttf2woff2
 // npm install --save-dev @fortawesome/fontawesome-free (not used)
-
+// npm install --save-dev gulp-rename gulp-replace gulp-line-ending-corrector gulp-sourcemaps browser-sync
+// npm install --save-dev gulp-remember
+// npm install --save-dev gulp-notify gulp-plumber 
 
 // * Gulpfile.
 // *
@@ -56,6 +55,9 @@ const terser = require('gulp-terser'); // Minifies JS files.
 // Image related plugins.
 const imagemin = require('gulp-imagemin');
 const webp = require('gulp-webp');
+
+// Font related plugins.
+const ttf2woff2 = require('gulp-ttf2woff2');
 
 // Utility related plugins.
 const rename = require('gulp-rename'); // Renames files E.g. style.css -> style.min.css.
@@ -677,8 +679,22 @@ gulp.task('webpImage', () => {
         );
 });
 
-// Create new task - convert TTF to WOFF2 & WOFF
-
+/**
+ * Task: `changeFontFormat`.
+ *
+ * Convert TTF to WOFF2.
+ * 
+ *  * This task does the following:
+ *     1. Gets the source TTF
+ *     2. Converts TTF to WOFF2
+ *     3. Saves the WOFF2 in dist folder
+ * 
+ */
+gulp.task('changeFontFormat', function () {
+    gulp.src(['fonts/*.ttf'])
+        .pipe(ttf2woff2())
+        .pipe(gulp.dest('fonts/'));
+});
 
 /**
  * Default Task with Watch Tasks
@@ -687,18 +703,18 @@ gulp.task('webpImage', () => {
  * 
  */
 
-// gulp.task('default', gulp.series(
-//     gulp.parallel('scssDevTask', 'jsLegacyDevTask',
-//         gulp.series('imageOptiTask', 'webpImage'),
-//         browserSync),
-//     function watchFiles() {
-//         gulp.watch(config.watchHtml, reload); // Reload on HTML file changes.
-//         gulp.watch(config.watchStyles, gulp.series('scssDevTask', reload)); // Reload on SCSS file changes.
-//         gulp.watch(config.watchJs, gulp.series('jsLegacyDevTask', reload)); // Reload on JS file changes.
-//         gulp.watch(config.imgresizedSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
-//         gulp.watch(config.imgProdDestination, gulp.series('webpImage', reload)); // Reload on webp file generation.
-//     }
-// ));
+gulp.task('default', gulp.series(
+    gulp.parallel(gulp.series('scssNCDevTask', 'scssNCProdTask'),
+        // gulp.series('imageOptiTask', 'webpImage'),
+        browserSync),
+    function watchFiles() {
+        // gulp.watch(config.watchHtml, reload); // Reload on HTML file changes.
+        gulp.watch(config.styleNCSRCsmall, gulp.series('scssNCDevTask', 'scssNCProdTask', reload)); // Reload on SCSS file changes.
+        // gulp.watch(config.watchJs, gulp.series('jsLegacyDevTask', reload)); // Reload on JS file changes.
+        // gulp.watch(config.imgresizedSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
+        // gulp.watch(config.imgProdDestination, gulp.series('webpImage', reload)); // Reload on webp file generation.
+    }
+));
 
 /**
  * Build Task
