@@ -1,5 +1,0 @@
-@use '../../../common-partials/mixins' as *;
-
-#menu h1 {
-    @include h1-styles(1.5rem);
-}

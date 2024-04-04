@@ -1,0 +1,29 @@
+@use '../../scss-common-partials/variables' as *;
+@use './colors' as *;
+@use '../../scss-common-partials/fonts' as *;
+
+// carousel text
+.small-menu__image-description {
+    font-size: 1.3rem;
+}
+
+// reservation form
+.input-control,
+.textarea-control,
+select {
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.5;
+    font-family: inherit;
+}
+
+.reservation__form--button {
+    font-size: 1.25rem;
+    font-family: inherit;
+}
+
+// findus
+.findus h2 {
+    font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+    font-weight: 400;
+}

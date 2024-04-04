@@ -186,6 +186,64 @@ gulp.task('htmlTask', () => {
 // });
 
 /**
+ * Task: `cssDevTask`.
+ *
+ * Autoprefixes very critical CSS and/or noscript CSS file(s).
+ *
+ * This task does the following:
+ *    1. Gets the source of css file(s)
+ *    2. Autoprefixes the file(s) 
+ *    3. Generates .css file(s) in dist folder
+ */
+gulp.task('cssDevTask', () => {
+    return gulp
+        .src(config.styleCRSRC, { allowEmpty: true }, { since: lastRun('cssDevTask') }) // Only run on changed files.
+        .pipe(plumber(errorHandler))
+        .pipe(postcss([autoprefixer(config.BROWSERS_LIST)]))
+        .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
+        .pipe(gulp.dest(config.styleProdDestination))
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> VERY CRITICAL STYLES AND/OR NOSCRIPT STYLES WITH PREFIXES — completed!\n',
+                onLast: true
+            })
+        );
+});
+
+/**
+ * Task: `cssProdTask`.
+ *
+ * Minifies very critical CSS and/or noscript CSS file(s).
+ *
+ * This task does the following:
+ *    1. Gets the critical css file with prefixes
+ *    2. Renames the CSS file with file extension .min.css
+ *    3. Merge and sort the media queries
+ *    4. Minifies the CSS file 
+ *    6. Generates critical.style.css in dist folder
+ */
+gulp.task('cssProdTask', () => {
+    return gulp
+        .src(config.styleCRInterFilePath)
+        .pipe(plumber(errorHandler))
+        .pipe(postcss([
+            sortMediaQueries({
+                sort: 'mobile-first' // or 'desktop-first' or your custom sorting function
+            })
+        ]))// Merge and Sort Media Queries for .min.css version.
+        .pipe(cleanCSS())
+        .pipe(rename({ extname: '.min.css' }))
+        .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
+        .pipe(gulp.dest(config.styleProdDestination))
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> MINIFIED VERY CRITICAL STYLES AND/OR NOSCRIPT STYLES WITH PREFIXES — completed!\n',
+                onLast: true
+            })
+        );
+});
+
+/**
  * Task: `scssCRDevTask`.
  *
  * Compiles critical Scss and Autoprefixes CSS.
@@ -200,7 +258,6 @@ gulp.task('htmlTask', () => {
 gulp.task('scssCRDevTask', () => {
     return gulp
         .src(config.styleCRSRC, { allowEmpty: true })
-        // .src("./src/loader.css", { allowEmpty: true })
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(
@@ -238,8 +295,7 @@ gulp.task('scssCRDevTask', () => {
  */
 gulp.task('scssCRProdTask', () => {
     return gulp
-        .src(config.styleCRProdFilePath)
-        // .src("./dist/css/loader.css")
+        .src(config.styleCRInterFilePath)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(postcss([
@@ -313,7 +369,7 @@ gulp.task('scssNCDevTask', () => {
  */
 gulp.task('scssNCProdTask', () => {
     return gulp
-        .src(config.styleNCProdFilePath)
+        .src(config.styleNCInterFilePath)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(postcss([
@@ -348,7 +404,7 @@ gulp.task('scssNCProdTask', () => {
  */
 gulp.task('jsCRLegacyDevTask', () => {
     return gulp
-        .src(config.jsCriticalSRC, { since: lastRun('jsCRLegacyDevTask') }) // Only run on changed files.
+        .src(config.jsCRSRC, { since: lastRun('jsCRLegacyDevTask') }) // Only run on changed files.
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(
@@ -363,8 +419,8 @@ gulp.task('jsCRLegacyDevTask', () => {
                 ]
             })
         )
-        .pipe(remember(config.jsCriticalSRC)) // Bring all files back to stream.
-        .pipe(concat(config.jsCriticalLegacyFile + '.js')) // Concatenate and rename file
+        .pipe(remember(config.jsCRSRC)) // Bring all files back to stream.
+        .pipe(concat(config.jsCRLegacyFileName + '.js')) // Concatenate and rename file
         .pipe(sourcemaps.write('./')) // Output sourcemap for critical-legacy-script.js.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
         .pipe(gulp.dest(config.jsProdDestination))
@@ -390,13 +446,13 @@ gulp.task('jsCRLegacyDevTask', () => {
  */
 gulp.task('jsCRLegacyProdTask', () => {
     return gulp
-        .src(config.jsCRLegacyProdFilePath)
+        .src(config.jsCRLegacyInterFilePath)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(terser())
         .pipe(
             rename({
-                basename: config.jsCriticalLegacyFile,
+                basename: config.jsCRLegacyFileName,
                 extname: '.min.js'
             })
         )
@@ -424,10 +480,10 @@ gulp.task('jsCRLegacyProdTask', () => {
  */
 gulp.task('jsCRModernDevTask', () => {
     return gulp
-        .src(config.jsCriticalSRC)
+        .src(config.jsCRSRC)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
-        .pipe(concat(config.jsCriticalModernFile + '.js'))
+        .pipe(concat(config.jsCRModernFileName + '.js'))
         .pipe(sourcemaps.write('./')) // Output sourcemap for critical-modern-script.js.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
         .pipe(gulp.dest(config.jsProdDestination))
@@ -453,13 +509,13 @@ gulp.task('jsCRModernDevTask', () => {
  */
 gulp.task('jsCRModernProdTask', () => {
     return gulp
-        .src(config.jsCRModernProdFilePath)
+        .src(config.jsCRModernInterFilePath)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(terser())
         .pipe(
             rename({
-                basename: config.jsCriticalModernFile,
+                basename: config.jsCRModernFileName,
                 extname: '.min.js'
             })
         )
@@ -488,7 +544,7 @@ gulp.task('jsCRModernProdTask', () => {
  */
 gulp.task('jsNCLegacyDevTask', () => {
     return gulp
-        .src(config.jsNonCriticalSRC, { since: lastRun('jsNCLegacyDevTask') }) // Only run on changed files.
+        .src(config.jsNCSRC, { since: lastRun('jsNCLegacyDevTask') }) // Only run on changed files.
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(
@@ -503,8 +559,8 @@ gulp.task('jsNCLegacyDevTask', () => {
                 ]
             })
         )
-        .pipe(remember(config.jsNonCriticalSRC)) // Bring all files back to stream.
-        .pipe(concat(config.jsNonCriticalLegacyFile + '.js')) // Concatenate and rename file
+        .pipe(remember(config.jsNCSRC)) // Bring all files back to stream.
+        .pipe(concat(config.jsNCLegacyFileName + '.js')) // Concatenate and rename file
         .pipe(sourcemaps.write('./')) // Output sourcemap for non-critical-legacy-script.js.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
         .pipe(gulp.dest(config.jsProdDestination))
@@ -530,13 +586,13 @@ gulp.task('jsNCLegacyDevTask', () => {
  */
 gulp.task('jsNCLegacyProdTask', () => {
     return gulp
-        .src(config.jsNCLegacyProdFilePath)
+        .src(config.jsNCLegacyInterFilePath)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(terser())
         .pipe(
             rename({
-                basename: config.jsNonCriticalLegacyFile,
+                basename: config.jsNCLegacyFileName,
                 extname: '.min.js'
             })
         )
@@ -564,10 +620,10 @@ gulp.task('jsNCLegacyProdTask', () => {
  */
 gulp.task('jsNCModernDevTask', () => {
     return gulp
-        .src(config.jsNonCriticalSRC)
+        .src(config.jsNCSRC)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
-        .pipe(concat(config.jsNonCriticalModernFile + '.js'))
+        .pipe(concat(config.jsNCModernFileName + '.js'))
         .pipe(sourcemaps.write('./')) // Output sourcemap for non-critical-modern-script.js.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
         .pipe(gulp.dest(config.jsProdDestination))
@@ -593,13 +649,13 @@ gulp.task('jsNCModernDevTask', () => {
  */
 gulp.task('jsNCModernProdTask', () => {
     return gulp
-        .src(config.jsNCModernProdFilePath)
+        .src(config.jsNCModernInterFilePath)
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(terser())
         .pipe(
             rename({
-                basename: config.jsNonCriticalModernFile,
+                basename: config.jsNCModernFileName,
                 extname: '.min.js'
             })
         )
@@ -680,7 +736,7 @@ gulp.task('webpImage', () => {
 });
 
 /**
- * Task: `changeFontFormat`.
+ * Task: `changeFontFormat`. (run on demand)
  *
  * Convert TTF to WOFF2.
  * 
@@ -709,7 +765,7 @@ gulp.task('default', gulp.series(
         browserSync),
     function watchFiles() {
         // gulp.watch(config.watchHtml, reload); // Reload on HTML file changes.
-        gulp.watch(config.styleNCSRCsmall, gulp.series('scssNCDevTask', 'scssNCProdTask', reload)); // Reload on SCSS file changes.
+        gulp.watch(config.watchNCStyles, gulp.series('scssNCDevTask', 'scssNCProdTask', reload)); // Reload on SCSS file changes.
         // gulp.watch(config.watchJs, gulp.series('jsLegacyDevTask', reload)); // Reload on JS file changes.
         // gulp.watch(config.imgresizedSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
         // gulp.watch(config.imgProdDestination, gulp.series('webpImage', reload)); // Reload on webp file generation.

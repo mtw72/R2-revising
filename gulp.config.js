@@ -16,74 +16,71 @@ const injectChanges = true;
 const htmlSRC = './index.html';
 // const htmlSRC = ['index.html', 'html/**/*.html']; //(for more HTML files in a HTML folder)
 
-// Change of file paths in index.html file.
-const srcCRCSSFilePath = './dist/css/non-critical-style.css';
-const srcNCCSSFilePath = './dist/css/non-critical-style.css';
-const distCRCSSFilePath = './dist/css/critical-style.min.css';
-const distNCCSSFilePath = './dist/css/non-critical-style.min.css';
+const styleCRFontSRC = './dist/css/googlefont.css';
+const styleCRFontFinalFilePath = './dist/css/googlefont.min.css';
 
-const srcGFontCSSFilePath = './src/googlefont/google-fonts.css';
-const distGFontCSSFilePath = './dist/css/googlefont/google-fonts.min.css';
-
-const srcNoJSCSSFilePath = './src/noscript.css';
-const distNoJSCSSFilePath = './dist/css/noscript.min.css';
-
-// const srcCRLegacyJSFilePath = './dist/scripts/critical-legacy-script.js';    //legacy code same as modern code
-const srcCRModernJSFilePath = './dist/scripts/critical-modern-script.js';
-const srcNCLegacyJSFilePath = './dist/scripts/non-critical-legacy-script.js';
-const srcNCModernJSFilePath = './dist/scripts/non-critical-modern-script.js';
-
-// const distCRLegacyJSFilePath = './dist/scripts/critical-legacy-script.min.js';    //legacy code same as modern code
-const distCRModernJSFilePath = './dist/scripts/critical-modern-script.min.js';
-const distNCLegacyJSFilePath = './dist/scripts/non-critical-legacy-script.min.js';
-const distNCModernJSFilePath = './dist/scripts/non-critical-modern-script.min.js';
+const styleNoJSSRC = './dist/css/noscript.css';
+const styleNoJSFinalFilePath = './dist/css/noscript.min.css';
 
 // Path to place the revised HTML file.
 const htmlDestination = './dist/';  //(same for more HTML files in a HTML folder)
 
 // >>>>> Style options.
 // Path to main .scss file.
-const styleCRSRC = './src/scss/critical-css/critical-style.scss';
-const styleNCSRC = './src/scss/non-critical-css/non-critical-style.scss';
-const styleNCSRCsmall = './src/scss/non-critical-css/**/*.scss';
+const styleCRSRC = './src/css/scss-critical/critical-style.scss';
+const styleNCSRC = './src/css/scss-non-critical/non-critical-style.scss';
 
 // Path to place the compiled CSS file.
 const styleProdDestination = './dist/css/';
 
-// Path to place the compiled CSS file.
-const styleCRProdFilePath = './dist/css/critical-style.css';
-const styleNCProdFilePath = './dist/css/non-critical-style.css';
+// Compiled CSS file name.
+const styleCRFile = 'critical-style';
+const styleNCFile = 'non-critical-style';
+
+// Path to intermediate CSS file.
+const styleCRInterFilePath = styleProdDestination + styleCRFile + '.css';
+const styleNCInterFilePath = styleProdDestination + styleNCFile + '.css';
+
+// Path to final CSS file.
+const styleCRFinalFilePath = styleProdDestination + styleCRFile + '.min.css';
+const styleNCFinalFilePath = styleProdDestination + styleNCFile + '.min.css';
 
 // Available options → 'compact' or 'compressed' or 'nested' or 'expanded'
 const outputStyle = 'expanded';
 
 // >>>>> JS options.
 
-// Path to JS scripts folders.
-const jsCriticalSRC = './src/scripts/critical/**/*.js';
-const jsNonCriticalSRC = './src/scripts/non-critical/**/*.js';
+// Path to all .js files.
+const jsCRSRC = './src/scripts/js-critical/**/*.js';
+const jsNCSRC = './src/scripts/js-non-critical/**/*.js';
 
 // Path to place the compiled JS file.
 const jsProdDestination = './dist/scripts/';
 
 // Compiled JS file name.
-const jsCriticalLegacyFile = 'critical-legacy-script';
-const jsCriticalModernFile = 'critical-modern-script';
-const jsNonCriticalLegacyFile = 'non-critical-legacy-script';
-const jsNonCriticalModernFile = 'non-critical-modern-script';
+const jsCRLegacyFileName = 'critical-legacy-script';
+const jsCRModernFileName = 'critical-modern-script';
+const jsNCLegacyFileName = 'non-critical-legacy-script';
+const jsNCModernFileName = 'non-critical-modern-script';
 
-// File path of intermediate JS file.
-const jsCRLegacyProdFilePath = jsProdDestination + jsCriticalLegacyFile + '.js';
-const jsCRModernProdFilePath = jsProdDestination + jsCriticalModernFile + '.js';
-const jsNCLegacyProdFilePath = jsProdDestination + jsNonCriticalLegacyFile + '.js';
-const jsNCModernProdFilePath = jsProdDestination + jsNonCriticalModernFile + '.js';
+// Path to intermediate JS file.
+// const jsCRLegacyInterFilePath = jsProdDestination + jsCRLegacyFileName + '.js';   //legacy code same as modern code
+const jsCRModernInterFilePath = jsProdDestination + jsCRModernFileName + '.js';
+const jsNCLegacyInterFilePath = jsProdDestination + jsNCLegacyFileName + '.js';
+const jsNCModernInterFilePath = jsProdDestination + jsNCModernFileName + '.js';
+
+// Path to final JS file.
+// const jsCRLegacyFinalFilePath = jsProdDestination + jsCRLegacyFileName + '.min.js';  //legacy code same as modern code
+const jsCRModernFinalFilePath = jsProdDestination + jsCRModernFileName + '.min.js';
+const jsNCLegacyFinalFilePath = jsProdDestination + jsNCLegacyFileName + '.min.js';
+const jsNCModernFinalFilePath = jsProdDestination + jsNCModernFileName + '.min.js';
 
 // >>>>> Images options.
 
 // Source folder of images which should be optimized and watched.
 // > You can also specify types e.g. raw/**.{png,jpg,gif} in the glob.
-const imgrawSRC = './src/images/raw/*';
-const imgresizedSRC = './src/images/resized/*';
+const imgRawSRC = './src/images/raw/*';
+const imgResizedSRC = './src/images/resized/*';
 
 // Destination folder of optimized images.
 // > Must be different from the imagesSRC folder.
@@ -94,11 +91,12 @@ const imgProdDestination = './dist/images/';
 const watchHtml = './**/*.html';
 
 // Path to all *.scss files inside scss folder and inside them.
-const watchStyles = './src/scss/**/*.scss';
+const watchCRStyles = './src/css/scss-critical/**/*.scss';
+const watchNCStyles = './src/css/scss-non-critical/**/*.scss';
 
 // Path to all JS files.
-const watchJs = './src/scripts/*.js';
-
+const watchCRJs = jsCRSRC;
+const watchNCJs = jsNCSRC;
 
 // Browsers you care about for auto-prefixing. Browserlist https://github.com/ai/browserslist
 // The following list is set as per WordPress requirements. Though; Feel free to change.
@@ -109,35 +107,51 @@ module.exports = {
     productURL,
     browserAutoOpen,
     injectChanges,
+    // HTML
     htmlSRC,
-    // srcCSSFilePath,
-    // distCSSFilePath,
-    // srcJSFilePath,
-    // distJSFilePath,
     htmlDestination,
+    // CSS
+    styleCRFontSRC,
+    styleCRFontFinalFilePath,
+    styleNoJSSRC,
+    styleNoJSFinalFilePath,
     styleCRSRC,
     styleNCSRC,
-    styleNCSRCsmall,
+    styleCRSRCall,
+    styleNCSRCall,
     styleProdDestination,
-    styleCRProdFilePath,
-    styleNCProdFilePath,
+    styleCRFile,
+    styleNCFile,
+    styleCRInterFilePath,
+    styleNCInterFilePath,
+    styleCRFinalFilePath,
+    styleNCFinalFilePath,
     outputStyle,
-    jsCriticalSRC,
-    jsNonCriticalSRC,
+    // JS
+    jsCRSRC,
+    jsNCSRC,
     jsProdDestination,
-    jsCRLegacyProdFilePath,
-    jsCRModernProdFilePath,
-    jsNCLegacyProdFilePath,
-    jsNCModernProdFilePath,
-    jsCriticalLegacyFile,
-    jsCriticalModernFile,
-    jsNonCriticalLegacyFile,
-    jsNonCriticalModernFile,
-    imgrawSRC,
-    imgresizedSRC,
+    jsCRLegacyFileName,
+    jsCRModernFileName,
+    jsNCLegacyFileName,
+    jsNCModernFileName,
+    jsCRLegacyInterFilePath,
+    jsCRModernInterFilePath,
+    jsNCLegacyInterFilePath,
+    jsNCModernInterFilePath,
+    jsCRLegacyFinalFilePath,
+    jsCRModernFinalFilePath,
+    jsNCLegacyFinalFilePath,
+    jsNCModernFinalFilePath,
+    // IMG
+    imgRawSRC,
+    imgResizedSRC,
     imgProdDestination,
+    // WATCH
     watchHtml,
-    watchStyles,
-    watchJs,
+    watchCRStyles,
+    watchNCStyles,
+    watchCRJs,
+    watchNCJs,
     BROWSERS_LIST
 };

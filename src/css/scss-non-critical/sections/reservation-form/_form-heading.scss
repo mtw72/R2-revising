@@ -1,0 +1,5 @@
+@use '../../../scss-common-partials/mixins' as *;
+
+#reservation h1 {
+    @include h1-styles(1rem);
+}

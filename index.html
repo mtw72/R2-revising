@@ -27,12 +27,13 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
-  <link rel="icon" type="image/x-icon" href="./dist/images/R2.png">
+  <link rel="icon" type="image/x-icon" href="./dist/assets/images/R2.png">
   <link rel="canonical" href="https://mtw72.github.io/R2-revising/">
 
   <!-- Critical resources -->
   <!-- google fonts -->
-  <link rel="stylesheet" href="./src/googlefont/google-fonts.css">
+  <!-- <link rel="stylesheet" href="./dist/css/googlefont.css"> -->
+  <link rel="stylesheet" href="./dist/css/googlefont.min.css">
   <!-- loader -->
   <link rel="stylesheet" href="./dist/css/loader.min.css">
   <script src="./dist/scripts/critical-modern-script.min.js"></script>
@@ -48,7 +49,8 @@
 
   <!-- No script -->
   <noscript>
-    <link rel="stylesheet" href="./src/noscript.css">
+    <!-- <link rel="stylesheet" href="./dist/css/noscript.css"> -->
+    <link rel="stylesheet" href="./dist/css/noscript.min.css">
   </noscript>
 </head>
 
@@ -100,14 +102,15 @@
       <!-- Home -->
       <section id="home">
         <picture>
-          <source media="(min-width: 1500.5px)" srcset="./dist/images/home-bg-xl.webp" type="image/webp">
-          <source media="(min-width: 1500.5px)" srcset="./dist/images/home-bg-xl.jpeg">
-          <source media="(min-width: 930.5px)" srcset="./dist/images/home-bg-lg.webp" type="image/webp">
-          <source media="(min-width: 930.5px)" srcset="./dist/images/home-bg-lg.jpeg">
-          <source media="(min-width: 449.5px)" srcset="./dist/images/home-bg-md.webp" type="image/webp">
-          <source media="(min-width: 449.5px)" srcset="./dist/images/home-bg-md.jpeg">
-          <img src="./dist/images/home-bg-sm.webp"
-            onerror="this.onerror=null; this.src='./dist/images/home-bg-sm.jpeg';" alt="R2 Place" fetchpriority="high">
+          <source media="(min-width: 1500.5px)" srcset="./dist/assets/images/home-bg-xl.webp" type="image/webp">
+          <source media="(min-width: 1500.5px)" srcset="./dist/assets/images/home-bg-xl.jpeg">
+          <source media="(min-width: 930.5px)" srcset="./dist/assets/images/home-bg-lg.webp" type="image/webp">
+          <source media="(min-width: 930.5px)" srcset="./dist/assets/images/home-bg-lg.jpeg">
+          <source media="(min-width: 449.5px)" srcset="./dist/assets/images/home-bg-md.webp" type="image/webp">
+          <source media="(min-width: 449.5px)" srcset="./dist/assets/images/home-bg-md.jpeg">
+          <img src="./dist/assets/images/home-bg-sm.webp"
+            onerror="this.onerror=null; this.src='./dist/assets/images/home-bg-sm.jpeg';" alt="R2 Place"
+            fetchpriority="high">
         </picture>
         <div class="hero-text">
           <h1>R2 Place</h1>
@@ -195,9 +198,9 @@
               <p>Macaroni and Cheese with Parma Ham</p>
             </div>
             <div class="large-menu__image">
-              <img src="./dist/images/salmon-spaghetti.webp"
-                onerror="this.onerror=null; this.src='./dist/images/salmon-spaghetti.jpeg';" alt="Salmon Spaghetti"
-                title="Salmon Spaghetti" loading="lazy">
+              <img src="./dist/assets/images/salmon-spaghetti.webp"
+                onerror="this.onerror=null; this.src='./dist/assets/images/salmon-spaghetti.jpeg';"
+                alt="Salmon Spaghetti" title="Salmon Spaghetti" loading="lazy">
               <p class="large-menu__image-description">Salmon Spaghetti</p>
             </div>
           </div>
@@ -216,8 +219,8 @@
               <p>Grilled Mackerel with Tofu and Black Rice</p>
             </div>
             <div class="large-menu__image">
-              <img src="./dist/images/thai-pineapple-fried-rice.webp"
-                onerror="this.onerror=null; this.src='./dist/images/thai-pineapple-fried-rice.jpeg';"
+              <img src="./dist/assets/images/thai-pineapple-fried-rice.webp"
+                onerror="this.onerror=null; this.src='./dist/assets/images/thai-pineapple-fried-rice.jpeg';"
                 alt="Thai Pineapple Fried Rice" title="Thai Pineapple Fried Rice" loading="lazy">
               <p class="large-menu__image-description">Thai Pineapple Fried Rice</p>
             </div>
@@ -237,8 +240,8 @@
               <p>Curry Prawn in Petits Pains</p>
             </div>
             <div class="large-menu__image">
-              <img src="./dist/images/satay-chicken-skewers.webp"
-                onerror="this.onerror=null; this.src='./dist/images/satay-chicken-skewers.jpeg';"
+              <img src="./dist/assets/images/satay-chicken-skewers.webp"
+                onerror="this.onerror=null; this.src='./dist/assets/images/satay-chicken-skewers.jpeg';"
                 alt="Satay Chicken Skewers" title="Satay Chicken Skewers" loading="lazy">
               <p class="large-menu__image-description">Satay Chicken Skewers</p>
             </div>
@@ -252,24 +255,24 @@
               <!-- images with caption text -->
               <div class="small-menu__slide small-menu__slide--fade" id="slide1" role="tabpanel"
                 aria-roledescription="slide" aria-label="Slide 1 of 3">
-                <img src="./dist/images/salmon-spaghetti.webp"
-                  onerror="this.onerror=null; this.src='./dist/images/salmon-spaghetti.jpeg';" alt="Salmon Spaghetti"
-                  title="Salmon Spaghetti" loading="lazy">
+                <img src="./dist/assets/images/salmon-spaghetti.webp"
+                  onerror="this.onerror=null; this.src='./dist/assets/images/salmon-spaghetti.jpeg';"
+                  alt="Salmon Spaghetti" title="Salmon Spaghetti" loading="lazy">
                 <div class="small-menu__image-description">Salmon Spaghetti</div>
               </div>
 
               <div class="small-menu__slide small-menu__slide--fade" id="slide2" role="tabpanel"
                 aria-roledescription="slide" aria-label="Slide 2 of 3">
-                <img src="./dist/images/thai-pineapple-fried-rice.webp"
-                  onerror="this.onerror=null; this.src='./dist/images/thai-pineapple-fried-rice.jpeg';"
+                <img src="./dist/assets/images/thai-pineapple-fried-rice.webp"
+                  onerror="this.onerror=null; this.src='./dist/assets/images/thai-pineapple-fried-rice.jpeg';"
                   alt="Thai Pineapple Fried Rice" title="Thai Pineapple Fried Rice" loading="lazy">
                 <div class="small-menu__image-description">Thai Pineapple Fried Rice</div>
               </div>
 
               <div class="small-menu__slide small-menu__slide--fade" id="slide3" role="tabpanel"
                 aria-roledescription="slide" aria-label="Slide 3 of 3">
-                <img src="./dist/images/satay-chicken-skewers.webp"
-                  onerror="this.onerror=null; this.src='./dist/images/satay-chicken-skewers.jpeg';"
+                <img src="./dist/assets/images/satay-chicken-skewers.webp"
+                  onerror="this.onerror=null; this.src='./dist/assets/images/satay-chicken-skewers.jpeg';"
                   alt="Satay Chicken Skewers" title="Satay Chicken Skewers" loading="lazy">
                 <div class="small-menu__image-description">Satay Chicken Skewers</div>
               </div>
@@ -312,15 +315,13 @@
           <!-- reservation photo -->
           <div class="reservation__photo">
             <picture>
-              <source media="(min-width: 575.5px)" srcset="./dist/images/r2place-entrance-md.webp" type="image/webp">
-              <source media="(min-width: 575.5px)" srcset="./dist/images/r2place-entrance-md.jpeg">
-              <img src="./dist/images/r2place-entrance-sm.webp"
-                onerror="this.onerror=null; this.src='./dist/images/r2place-entrance-sm.jpeg';" alt="R2 Place Entrance"
-                title="R2 Place Entrance" loading="lazy">
+              <source media="(min-width: 575.5px)" srcset="./dist/assets/images/r2place-entrance-md.webp"
+                type="image/webp">
+              <source media="(min-width: 575.5px)" srcset="./dist/assets/images/r2place-entrance-md.jpeg">
+              <img src="./dist/assets/images/r2place-entrance-sm.webp"
+                onerror="this.onerror=null; this.src='./dist/assets/images/r2place-entrance-sm.jpeg';"
+                alt="R2 Place Entrance" title="R2 Place Entrance" loading="lazy">
             </picture>
-            <!-- <img src="./dist/images/r2place-entrance.webp"
-              onerror="this.onerror=null; this.src='./dist/images/r2place-entrance.jpeg';" alt="R2 Place Entrance"
-              title="R2 Place Entrance" loading="lazy"> -->
           </div>
 
           <!-- reservation form -->

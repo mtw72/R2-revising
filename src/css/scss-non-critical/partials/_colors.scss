@@ -1,0 +1,110 @@
+@use '../../scss-common-partials/variables' as *;
+@use '../../scss-common-partials/mixins' as *;
+
+// carousel
+/* Caption text */
+.small-menu__image-description {
+    background-color: $orange-3;
+    color: $white-3;
+    border-top: 1px solid $orange-3;
+}
+
+//Next & previous buttons
+.small-menu__slideshow-button--prev,
+.small-menu__slideshow-button--next {
+    color: $orange-3;
+}
+
+.small-menu__slideshow-dot {
+    background-color: $orange-1;
+}
+
+.small-menu__slideshow-dot:hover,
+.slideshow-dot--active {
+    background-color: $orange-2;
+}
+
+// reservation-form
+.reservation__photo img {
+    border: 1px solid $white-5;
+    background-color: $white-1;
+    // background-color: gr;
+}
+
+.mandatory-field {
+    color: $red-1;
+    // color: aqua;
+}
+
+.input-control {
+    color: $black-2;
+}
+
+.textarea-control {
+    color: $black-2a;
+}
+
+.input-control,
+.textarea-control,
+select {
+    background-color: $white-1;
+    border: 1px solid $grey-2;
+}
+
+/* change textarea color when the user is typing */
+.textarea-control.input {
+    color: $black-1;
+}
+
+input:focus,
+textarea:focus {
+    border: 1px solid $black-1;
+    outline: 1px solid $black-1;
+}
+
+.error-input {
+    border: 1px solid $red-1;
+    outline: 1px solid $red-1;
+}
+
+.error-message {
+    color: $red-1;
+}
+
+.reservation__form--button {
+    background-color: $black-1;
+    color: $white-1;
+    box-shadow: 1px 1px 1px $grey-4;
+
+    &:hover {
+        outline: 3px solid $orange-4;
+    }
+
+    &:focus {
+        outline: 3px solid $orange-4;
+    }
+}
+
+// findus
+.findus h2 {
+    border-bottom: 4px dotted $grey-2;
+}
+
+.contact__icon {
+    color: $grey-3;
+}
+
+/* links for 
+contacts in findus and
+social icons in footer  */
+.g-link {
+    color: $brown-1;
+}
+
+.g-link:hover {
+    color: $brown-2;
+}
+
+.g-link:active {
+    color: $brown-3;
+}
