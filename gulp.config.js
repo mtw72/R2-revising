@@ -11,21 +11,17 @@ const productURL = '.';
 const browserAutoOpen = false;
 const injectChanges = true;
 
-// >>>>> Style options.
+// >>>>> Html options.
 // Path to .html file.
-const htmlSRC = './index.html';
-// const htmlSRC = ['index.html', 'html/**/*.html']; //(for more HTML files in a HTML folder)
+const htmlIndexSRC = './index.html';
 
-const styleCRFontSRC = './dist/css/googlefont.css';
-const styleCRFontFinalFilePath = './dist/css/googlefont.min.css';
-
-const styleNoJSSRC = './dist/css/noscript.css';
-const styleNoJSFinalFilePath = './dist/css/noscript.min.css';
-
-// Path to place the revised HTML file.
-const htmlDestination = './dist/';  //(same for more HTML files in a HTML folder)
+// Path to place the copied HTML file.
+const htmlDestination = './dist/';
 
 // >>>>> Style options.
+// Path to very critical css file and noscript css file.
+const styleCSSSRC = './src/css/*.css';
+
 // Path to main .scss file.
 const styleCRSRC = './src/css/scss-critical/critical-style.scss';
 const styleNCSRC = './src/css/scss-non-critical/non-critical-style.scss';
@@ -38,6 +34,8 @@ const styleCRFile = 'critical-style';
 const styleNCFile = 'non-critical-style';
 
 // Path to intermediate CSS file.
+const styleCSSInterFilePath
+    = [styleProdDestination + 'googlefont.css', styleProdDestination + 'loader.css', styleProdDestination + 'noscript.css',];
 const styleCRInterFilePath = styleProdDestination + styleCRFile + '.css';
 const styleNCInterFilePath = styleProdDestination + styleNCFile + '.css';
 
@@ -64,27 +62,42 @@ const jsNCLegacyFileName = 'non-critical-legacy-script';
 const jsNCModernFileName = 'non-critical-modern-script';
 
 // Path to intermediate JS file.
-// const jsCRLegacyInterFilePath = jsProdDestination + jsCRLegacyFileName + '.js';   //legacy code same as modern code
+// const jsCRLegacyInterFilePath = jsProdDestination + jsCRLegacyFileName + '.js';   //legacy code same as modern code in this project
 const jsCRModernInterFilePath = jsProdDestination + jsCRModernFileName + '.js';
 const jsNCLegacyInterFilePath = jsProdDestination + jsNCLegacyFileName + '.js';
 const jsNCModernInterFilePath = jsProdDestination + jsNCModernFileName + '.js';
 
 // Path to final JS file.
-// const jsCRLegacyFinalFilePath = jsProdDestination + jsCRLegacyFileName + '.min.js';  //legacy code same as modern code
+// const jsCRLegacyFinalFilePath = jsProdDestination + jsCRLegacyFileName + '.min.js';  //legacy code same as modern code in this project
 const jsCRModernFinalFilePath = jsProdDestination + jsCRModernFileName + '.min.js';
 const jsNCLegacyFinalFilePath = jsProdDestination + jsNCLegacyFileName + '.min.js';
 const jsNCModernFinalFilePath = jsProdDestination + jsNCModernFileName + '.min.js';
 
 // >>>>> Images options.
 
-// Source folder of images which should be optimized and watched.
+// Path to raw images to be optimized.
 // > You can also specify types e.g. raw/**.{png,jpg,gif} in the glob.
-const imgRawSRC = './src/images/raw/*';
-const imgResizedSRC = './src/images/resized/*';
+const imgResizedSRC = './src/assets/images/resized/*';
 
-// Destination folder of optimized images.
+// Path to optimized images.
 // > Must be different from the imagesSRC folder.
-const imgProdDestination = './dist/images/';
+const imgProdDestination = './dist/assets/images/';
+
+// >>>>> Fonts options.
+
+// Path to all fonts to be copied.
+const fontAllSRC = './src/assets/webfonts/**/*';
+
+// Path to copied fonts.
+// > Must be different from the fontAllSRC folder.
+const fontAllProdDestination = './dist/assets/webfonts/';
+
+// Path to Google Fonts to be converted to a different format.
+const fontGoogleSRC = './src/assets/webfonts/googlefonts/*';
+
+// Path to reformatted Google Fonts.
+// > Must be different from the fontGoogleSRC folder.
+const fontGoogleProdDestination = './dist/assets/webfonts/googlefonts/';
 
 // >>>>> Watch files paths.
 // Path to all *.html files inside root directory
@@ -92,6 +105,7 @@ const watchHtml = './**/*.html';
 
 // Path to all *.scss files inside scss folder and inside them.
 const watchCRStyles = './src/css/scss-critical/**/*.scss';
+const watchCommonStyles = './src/css/scss-common-partials/**/*.scss';
 const watchNCStyles = './src/css/scss-non-critical/**/*.scss';
 
 // Path to all JS files.
@@ -108,20 +122,22 @@ module.exports = {
     browserAutoOpen,
     injectChanges,
     // HTML
-    htmlSRC,
+    htmlIndexSRC,
     htmlDestination,
     // CSS
-    styleCRFontSRC,
-    styleCRFontFinalFilePath,
-    styleNoJSSRC,
-    styleNoJSFinalFilePath,
+    // styleCRFontSRC,
+    // styleCRFontFinalFilePath,
+    // styleNoJSSRC,
+    // styleNoJSFinalFilePath,
+    styleCSSSRC,
     styleCRSRC,
     styleNCSRC,
-    styleCRSRCall,
-    styleNCSRCall,
+    // styleCRSRCall,
+    // styleNCSRCall,
     styleProdDestination,
     styleCRFile,
     styleNCFile,
+    styleCSSInterFilePath,
     styleCRInterFilePath,
     styleNCInterFilePath,
     styleCRFinalFilePath,
@@ -135,21 +151,26 @@ module.exports = {
     jsCRModernFileName,
     jsNCLegacyFileName,
     jsNCModernFileName,
-    jsCRLegacyInterFilePath,
+    // jsCRLegacyInterFilePath,
     jsCRModernInterFilePath,
     jsNCLegacyInterFilePath,
     jsNCModernInterFilePath,
-    jsCRLegacyFinalFilePath,
+    // jsCRLegacyFinalFilePath,
     jsCRModernFinalFilePath,
     jsNCLegacyFinalFilePath,
     jsNCModernFinalFilePath,
     // IMG
-    imgRawSRC,
     imgResizedSRC,
     imgProdDestination,
+    // FONT
+    fontAllSRC,
+    fontAllProdDestination,
+    fontGoogleSRC,
+    fontGoogleProdDestination,
     // WATCH
     watchHtml,
     watchCRStyles,
+    watchCommonStyles,
     watchNCStyles,
     watchCRJs,
     watchNCJs,

@@ -17,8 +17,8 @@
  */
 
 // Config variables
-const rawImgSRC = "./src/images/raw/";
-const resizedImgDest = "./src/images/resized/";
+const imgRawSRC = "./src/assets/images/raw/";
+const imgResizedDEST = "./src/assets/images/resized/"; //The folder must be manually created
 const jpeg = ".jpeg";
 const png = ".png";
 
@@ -36,20 +36,20 @@ const sharp = require("sharp");
         }
 
         // Hero images
-        resizeImage(rawImgSRC + "home-bg-sm" + jpeg, resizedImgDest + "home-bg-sm" + jpeg, 450, 450 * 4 / 3);
-        resizeImage(rawImgSRC + "home-bg-md" + jpeg, resizedImgDest + "home-bg-md" + jpeg, 931, 931 * 4 / 5);
-        resizeImage(rawImgSRC + "home-bg-lg" + jpeg, resizedImgDest + "home-bg-lg" + jpeg, 1500, 1500 * 9 / 16);
+        resizeImage(imgRawSRC + "home-bg-sm" + jpeg, imgResizedDEST + "home-bg-sm" + jpeg, 450, 450 * 4 / 3);
+        resizeImage(imgRawSRC + "home-bg-md" + jpeg, imgResizedDEST + "home-bg-md" + jpeg, 931, 931 * 4 / 5);
+        resizeImage(imgRawSRC + "home-bg-lg" + jpeg, imgResizedDEST + "home-bg-lg" + jpeg, 1500, 1500 * 9 / 16);
         // unchanged but rename the xl background image
-        sharp(rawImgSRC + "home-bg-lg" + jpeg)
-            .toFile(resizedImgDest + "home-bg-xl" + jpeg);
+        sharp(imgRawSRC + "home-bg-lg" + jpeg)
+            .toFile(imgResizedDEST + "home-bg-xl" + jpeg);
 
         //Twitter Card Image: should be at least 280px in width, and at least 150px in height. Image must be less than 1MB in size.
-        sharp(rawImgSRC + "home-bg-lg" + jpeg)
+        sharp(imgRawSRC + "home-bg-lg" + jpeg)
             .resize(280 * 16 / 10, 280 * 9 / 10)
-            .toFile(resizedImgDest + "twitter-image" + jpeg);
+            .toFile(imgResizedDEST + "twitter-image" + jpeg);
 
         // OG Image: use images with a 1.91:1 ratio and minimum recommended dimensions of 1200x630 for optimal clarity across all devices.
-        resizeImage(rawImgSRC + "og-image" + jpeg, resizedImgDest + "og-image" + jpeg, 1200, 630);
+        resizeImage(imgRawSRC + "og-image" + jpeg, imgResizedDEST + "og-image" + jpeg, 1200, 630);
 
         //Food Images - same size on different viewport widths
         const foodImageNames = [
@@ -59,16 +59,16 @@ const sharp = require("sharp");
         ];
 
         foodImageNames.forEach(imageName => {
-            resizeImage(rawImgSRC + imageName + jpeg, resizedImgDest + imageName + jpeg, 380, 501);
+            resizeImage(imgRawSRC + imageName + jpeg, imgResizedDEST + imageName + jpeg, 380, 501);
         });
 
         // Reservation Photo - different sizes on different viewport widths
-        resizeImage(rawImgSRC + "r2place-entrance" + jpeg, resizedImgDest + "r2place-entrance-sm" + jpeg, 425, 425 / 1.68);
-        resizeImage(rawImgSRC + "r2place-entrance" + jpeg, resizedImgDest + "r2place-entrance-md" + jpeg, 600, 600 / 1.68);
+        resizeImage(imgRawSRC + "r2place-entrance" + jpeg, imgResizedDEST + "r2place-entrance-sm" + jpeg, 425, 425 / 1.68);
+        resizeImage(imgRawSRC + "r2place-entrance" + jpeg, imgResizedDEST + "r2place-entrance-md" + jpeg, 600, 600 / 1.68);
 
         // Logo - unchanged
-        sharp(rawImgSRC + "R2" + png)
-            .toFile(resizedImgDest + "R2" + png);
+        sharp(imgRawSRC + "R2" + png)
+            .toFile(imgResizedDEST + "R2" + png);
 
         console.log('IMAGES RESIZE — completed!');
 

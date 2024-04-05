@@ -749,14 +749,14 @@ footer {
   font-family: "Font Awesome 6 Free";
   font-style: normal;
   font-weight: 900;
-  src: url("../webfonts/fa-solid-900.woff2") format("woff2"), url("../webfonts/fa-solid-900.ttf") format("ttf");
+  src: url("../assets/webfonts/fontawesome/fa-solid-900.woff2") format("woff2"), url("../assets/webfonts/fontawesome/fa-solid-900.ttf") format("ttf");
   font-display: swap;
 }
 @font-face {
   font-family: "Font Awesome 6 Brands";
   font-style: normal;
   font-weight: 400;
-  src: url("../webfonts/fa-brands-400.woff2") format("woff2"), url("../webfonts/fa-brands-400.ttf") format("ttf");
+  src: url("../assets/webfonts/fontawesome/fa-brands-400.woff2") format("woff2"), url("../assets/webfonts/fontawesome/fa-brands-400.ttf") format("ttf");
   font-display: swap;
 }
 /* CSS pseudo-element styling */

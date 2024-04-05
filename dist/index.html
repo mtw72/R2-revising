@@ -2,6 +2,8 @@
 <html lang="en-gb" dir="ltr">
 
 <head>
+  <title>R2 Place</title>
+
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +14,6 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image:alt" content="Interior of R2 Place">
   <meta name="twitter:image" content="https://mtw72.github.io/R2-revising/images/twitter-image.jpeg">
-  <!-- Images for this Card should be at least 280px in width, and at least 150px in height. Image must be less than 1MB in size. -->
 
   <meta itemprop="description" content="A place to Relax and Recharge.">
   <meta itemprop="url" content="https://mtw72.github.io/R2-revising/">
@@ -22,56 +23,34 @@
   <meta property="og:title" content="R2 Place" />
   <meta property="og:description" content="A place to Relax and Recharge." />
   <meta property="og:locale" content="en_GB" />
-  <!-- Use images with a 1.91:1 ratio and minimum recommended dimensions of 1200x630 for optimal clarity across all devices. -->
   <meta property="og:image:secure_url" content="https://mtw72.github.io/R2-revising/images/og-image.jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
-  <title>R2 Place</title>
-  <link rel="icon" type="image/x-icon" href="./images/R2.png">
+  <link rel="icon" type="image/x-icon" href="./assets/images/R2.png">
   <link rel="canonical" href="https://mtw72.github.io/R2-revising/">
 
-  <!-- external source -->
-  <!-- Google font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Google font for logo -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap">
-  <!-- Google font for body -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rancho&display=swap">
-  <!-- Font Awesome -->
-  <script defer src="https://kit.fontawesome.com/b406833c6d.js" crossorigin="anonymous"></script>
+  <!-- Critical resources -->
+  <!-- google fonts -->
+  <link rel="stylesheet" href="./css/googlefont.min.css">
+  <!-- loader -->
+  <link rel="stylesheet" href="./css/loader.min.css">
+  <script src="./scripts/critical-modern-script.min.js"></script>
 
-  <!-- internal source -->
-  <!-- CSS for R2 Place -->
-  <link rel="stylesheet" href="./dist/css/critical-style.min.css">
+  <link rel="stylesheet" href="./css/critical-style.min.css">
+
+  <!-- Non-critical resources -->
+  <link rel="preload" href="./css/non-critical-style.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+
+  <script defer src="./scripts/non-critical-modern-script.min.js"></script>
+  <script nomodule defer src="./scripts/non-critical-legacy-script.min.js" type="text/javascript"></script>
+
+  <!-- No script -->
   <noscript>
-    <link rel="stylesheet" href="./src/noscript.css">
+    <!-- <link rel="stylesheet" href="./css/noscript.min.css"> -->
+    <link rel="stylesheet" href="./css/noscript.min.min.css">
   </noscript>
-
-  <!-- Javascript for R2 Place -->
-  <script defer src="./scripts/script.min.js" charset="utf-8"></script>
-
-  <!-- script for loader -->
-  <!-- <script defer src="./src/scripts/loader.js" charset="utf-8"></script> -->
-  <!-- script for navbar -->
-  <!-- <script defer src="./src/scripts/navbar.js" charset="utf-8"></script> -->
-  <!-- script for small menu -->
-  <!-- <script defer src="./src/scripts/menu/smallMenu.js" charset="utf-8"></script> -->
-  <!-- script for carousel -->
-  <!-- <script defer src="./src/scripts/menu/carousel.js" charset="utf-8"></script> -->
-  <!-- script for large menu -->
-  <!-- <script defer src="./src/scripts/menu/largeMenu.js" charset="utf-8"></script> -->
-  <!-- script for default values in reservation form -->
-  <!-- <script defer src="./src/scripts/reservationForm/formDefaultValues.js" charset="utf-8"></script> -->
-  <!-- script for validation of reservation form -->
-  <!-- <script defer src="./src/scripts/reservationForm/formValidation.js" charset="utf-8"></script> -->
-  <!-- script for textarea in reservation form -->
-  <!-- <script defer src="./src/scripts/reservationForm/formTextarea.js" charset="utf-8"></script> -->
-  <!-- script for reservation form -->
-  <!-- <script defer src="./src/scripts/reservationForm/formSubmission.js" charset="utf-8"></script> -->
-  <!-- script for footer -->
-  <!-- <script defer src="./src/scripts/footer.js" charset="utf-8"></script> --> -->
 </head>
 
 <body>
@@ -122,11 +101,15 @@
       <!-- Home -->
       <section id="home">
         <picture>
-          <!-- <source media="(min-width: 930.5px)" srcset="./images/home-bg-largescreen.webp" type="image/webp"> -->
-          <source media="(min-width: 930.5px)" srcset="./images/home-bg-largescreen.jpeg">
-          <!-- <source media="(min-width: 449.5px)" srcset="./images/home-bg-mediumscreen.webp" type="image/webp"> -->
-          <source media="(min-width: 449.5px)" srcset="./images/home-bg-mediumscreen.jpeg">
-          <img src="./images/home-bg-smallscreen.jpeg" alt="R2 Place">
+          <source media="(min-width: 1500.5px)" srcset="./assets/images/home-bg-xl.webp" type="image/webp">
+          <source media="(min-width: 1500.5px)" srcset="./assets/images/home-bg-xl.jpeg">
+          <source media="(min-width: 930.5px)" srcset="./assets/images/home-bg-lg.webp" type="image/webp">
+          <source media="(min-width: 930.5px)" srcset="./assets/images/home-bg-lg.jpeg">
+          <source media="(min-width: 449.5px)" srcset="./assets/images/home-bg-md.webp" type="image/webp">
+          <source media="(min-width: 449.5px)" srcset="./assets/images/home-bg-md.jpeg">
+          <img src="./assets/images/home-bg-sm.webp"
+            onerror="this.onerror=null; this.src='./assets/images/home-bg-sm.jpeg';" alt="R2 Place"
+            fetchpriority="high">
         </picture>
         <div class="hero-text">
           <h1>R2 Place</h1>
@@ -214,9 +197,9 @@
               <p>Macaroni and Cheese with Parma Ham</p>
             </div>
             <div class="large-menu__image">
-              <img src="./images/salmon-spaghetti.webp"
-                onerror="this.onerror=null; this.src='./images/salmon-spaghetti.jpeg';" alt="Salmon Spaghetti"
-                title="Salmon Spaghetti" loading="lazy">
+              <img src="./assets/images/salmon-spaghetti.webp"
+                onerror="this.onerror=null; this.src='./assets/images/salmon-spaghetti.jpeg';"
+                alt="Salmon Spaghetti" title="Salmon Spaghetti" loading="lazy">
               <p class="large-menu__image-description">Salmon Spaghetti</p>
             </div>
           </div>
@@ -235,8 +218,8 @@
               <p>Grilled Mackerel with Tofu and Black Rice</p>
             </div>
             <div class="large-menu__image">
-              <img src="./images/thai-pineapple-fried-rice.webp"
-                onerror="this.onerror=null; this.src='./images/thai-pineapple-fried-rice.jpeg';"
+              <img src="./assets/images/thai-pineapple-fried-rice.webp"
+                onerror="this.onerror=null; this.src='./assets/images/thai-pineapple-fried-rice.jpeg';"
                 alt="Thai Pineapple Fried Rice" title="Thai Pineapple Fried Rice" loading="lazy">
               <p class="large-menu__image-description">Thai Pineapple Fried Rice</p>
             </div>
@@ -256,9 +239,9 @@
               <p>Curry Prawn in Petits Pains</p>
             </div>
             <div class="large-menu__image">
-              <img src="./images/satay-chicken-skewers.webp"
-                onerror="this.onerror=null; this.src='./images/satay-chicken-skewers.jpeg';" alt="Satay Chicken Skewers"
-                title="Satay Chicken Skewers" loading="lazy">
+              <img src="./assets/images/satay-chicken-skewers.webp"
+                onerror="this.onerror=null; this.src='./assets/images/satay-chicken-skewers.jpeg';"
+                alt="Satay Chicken Skewers" title="Satay Chicken Skewers" loading="lazy">
               <p class="large-menu__image-description">Satay Chicken Skewers</p>
             </div>
           </div>
@@ -271,24 +254,24 @@
               <!-- images with caption text -->
               <div class="small-menu__slide small-menu__slide--fade" id="slide1" role="tabpanel"
                 aria-roledescription="slide" aria-label="Slide 1 of 3">
-                <img src="./images/salmon-spaghetti.webp"
-                  onerror="this.onerror=null; this.src='./images/salmon-spaghetti.jpeg';" alt="Salmon Spaghetti"
-                  title="Salmon Spaghetti" loading="lazy">
+                <img src="./assets/images/salmon-spaghetti.webp"
+                  onerror="this.onerror=null; this.src='./assets/images/salmon-spaghetti.jpeg';"
+                  alt="Salmon Spaghetti" title="Salmon Spaghetti" loading="lazy">
                 <div class="small-menu__image-description">Salmon Spaghetti</div>
               </div>
 
               <div class="small-menu__slide small-menu__slide--fade" id="slide2" role="tabpanel"
                 aria-roledescription="slide" aria-label="Slide 2 of 3">
-                <img src="./images/thai-pineapple-fried-rice.webp"
-                  onerror="this.onerror=null; this.src='./images/thai-pineapple-fried-rice.jpeg';"
+                <img src="./assets/images/thai-pineapple-fried-rice.webp"
+                  onerror="this.onerror=null; this.src='./assets/images/thai-pineapple-fried-rice.jpeg';"
                   alt="Thai Pineapple Fried Rice" title="Thai Pineapple Fried Rice" loading="lazy">
                 <div class="small-menu__image-description">Thai Pineapple Fried Rice</div>
               </div>
 
               <div class="small-menu__slide small-menu__slide--fade" id="slide3" role="tabpanel"
                 aria-roledescription="slide" aria-label="Slide 3 of 3">
-                <img src="./images/satay-chicken-skewers.webp"
-                  onerror="this.onerror=null; this.src='./images/satay-chicken-skewers.jpeg';"
+                <img src="./assets/images/satay-chicken-skewers.webp"
+                  onerror="this.onerror=null; this.src='./assets/images/satay-chicken-skewers.jpeg';"
                   alt="Satay Chicken Skewers" title="Satay Chicken Skewers" loading="lazy">
                 <div class="small-menu__image-description">Satay Chicken Skewers</div>
               </div>
@@ -302,13 +285,22 @@
 
           <!-- The dots/circles -->
           <div class="small-menu__slideshow-dots" role="tablist" aria-label="Slides">
+            <span class="small-menu__slideshow-dot" onclick="currentSlide(1)" type="button" role="tab"
+              aria-label="Slide 1" aria-controls="slide1"></span>
+            <span class="small-menu__slideshow-dot" onclick="currentSlide(2)" type="button" role="tab"
+              aria-label="Slide 2" aria-controls="slide2"></span>
+            <span class="small-menu__slideshow-dot" onclick="currentSlide(3)" type="button" role="tab"
+              aria-label="Slide 3" aria-controls="slide3"></span>
+          </div>
+
+          <!-- <div class="small-menu__slideshow-dots" role="tablist" aria-label="Slides">
             <button class="small-menu__slideshow-dot" onclick="currentSlide(1)" type="button" role="tab"
               aria-label="Slide 1" aria-controls="slide1"></button>
             <button class="small-menu__slideshow-dot" onclick="currentSlide(2)" type="button" role="tab"
               aria-label="Slide 2" aria-controls="slide2"></button>
             <button class="small-menu__slideshow-dot" onclick="currentSlide(3)" type="button" role="tab"
               aria-label="Slide 3" aria-controls="slide3"></button>
-          </div>
+          </div> -->
 
         </div>
       </section>
@@ -321,9 +313,14 @@
         <div class="reservation">
           <!-- reservation photo -->
           <div class="reservation__photo">
-            <img src="./images/r2place-entrance.webp"
-              onerror="this.onerror=null; this.src='./images/r2place-entrance.jpeg';" alt="R2 Place Entrance"
-              title="R2 Place Entrance" loading="lazy">
+            <picture>
+              <source media="(min-width: 575.5px)" srcset="./assets/images/r2place-entrance-md.webp"
+                type="image/webp">
+              <source media="(min-width: 575.5px)" srcset="./assets/images/r2place-entrance-md.jpeg">
+              <img src="./assets/images/r2place-entrance-sm.webp"
+                onerror="this.onerror=null; this.src='./assets/images/r2place-entrance-sm.jpeg';"
+                alt="R2 Place Entrance" title="R2 Place Entrance" loading="lazy">
+            </picture>
           </div>
 
           <!-- reservation form -->
@@ -419,13 +416,15 @@
             <div class="findus__contact-content">
               <h2>Find Us</h2>
               <ul class="findus__grid">
-                <li><i class="contact__icon contact__icon--location fa-solid fa-location-dot" role="img"
+                <li><i class="contact__icon contact__icon--location icon icon-solid icon-location" role="img"
                     aria-label="Address" title="Address"></i></li>
                 <li>R2&nbsp;Place,<wbr> 2&nbsp;Relax&nbsp;Street,<wbr> R2&nbsp;1ST</li>
-                <li><i class="contact__icon fa-solid fa-phone" role="img" aria-label="Telephone" title="Telephone"></i>
+                <li><i class="contact__icon icon icon-solid icon-phone" role="img" aria-label="Telephone"
+                    title="Telephone"></i>
                 </li>
                 <li><a href="tel:+441234567890" class="g-link">0123 456 7890</a></li>
-                <li><i class="contact__icon fas fa-envelope" role="img" aria-label="Email" title="Email"></i></li>
+                <li><i class="contact__icon icon icon-solid icon-envelope" role="img" aria-label="Email"
+                    title="Email"></i></li>
                 <li><a href="mailto:info@r2p.com" class="g-link">info@r2p.com</a></li>
               </ul>
             </div>
@@ -470,10 +469,11 @@
     <!-- Footer -->
     <footer>
       <div class="social-icons">
-        <a href="#home"><i class="g-link fa-brands fa-meta" role="img" aria-label="Meta Icon" title="Meta"></i></a>
-        <a href="#home"><i class="g-link fa-brands fa-x-twitter" role="img" aria-label="X Twitter Icon"
+        <a href="#home"><i class="g-link icon icon-brand icon-meta" role="img" aria-label="Meta Icon"
+            title="Meta"></i></a>
+        <a href="#home"><i class="g-link icon icon-brand icon-twitter" role="img" aria-label="X Twitter Icon"
             title="X (Twitter)"></i></a>
-        <a href="#home"><i class="g-link fab fa-instagram" role="img" aria-label="Instagram Icon"
+        <a href="#home"><i class="g-link icon icon-brand icon-instagram" role="img" aria-label="Instagram Icon"
             title="Instagram"></i></a>
       </div>
       <p>© <span id="year"></span> R2&nbsp;Place. All&nbsp;rights&nbsp;reserved</p>
@@ -481,7 +481,6 @@
 
     <!-- end of hidden content -->
   </div>
-
 </body>
 
 </html>

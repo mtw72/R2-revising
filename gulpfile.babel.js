@@ -6,7 +6,7 @@
 // npm init -y
 
 // npm install 
-// npm install --save-dev gulp sass gulp-sass postcss gulp-postcss gulp-autoprefixer postcss-sort-media-queries gulp-clean-css
+// npm install --save-dev gulp sass gulp-sass postcss gulp-postcss gulp-autoprefixer postcss-sort-media-queries gulp-clean-css 
 // npm install --save-dev gulp-babel @babel/core @babel/register @babel/preset-env gulp-concat gulp-terser  
 // npm i --save-dev gulp-imagemin@7.1.0 
 // npm i --save-dev gulp-webp@4.0.1
@@ -14,6 +14,7 @@
 // npm install --save-dev gulp-ttf2woff2
 // npm install --save-dev @fortawesome/fontawesome-free (not used)
 // npm install --save-dev gulp-rename gulp-replace gulp-line-ending-corrector gulp-sourcemaps browser-sync
+// npm i --save-dev gulp-filter@6.0.0
 // npm install --save-dev gulp-remember
 // npm install --save-dev gulp-notify gulp-plumber 
 
@@ -78,8 +79,6 @@ const plumber = require('gulp-plumber'); // Prevent pipe breaking caused by erro
  */
 const errorHandler = r => {
     notify.onError('\n\n❌  ===> ERROR: <%= error.message %>\n')(r);
-    beep();
-
     // this.emit('end');
 };
 
@@ -110,80 +109,29 @@ const reload = done => {
 };
 
 /**
- * Task: `htmlTask`. (for a single index.html file)
+ * Task: `htmlIndexTask`. (for the index.html file)
  *
- * Change the file path of css, js and images files inside index.html
+ * Change the file path of css and js files inside index.html
  * 
  * This task does the following:
  *    1. Gets the source html file
- *    2. Replaces the source path of css, js and images files
+ *    2. Replaces the source path of css and js files files
  *    3. Generates the amended file in dist folder
  */
 
-gulp.task('htmlTask', () => {
-    return gulp.src(config.htmlSRC)
-        .pipe(replace(config.srcCSSFilePath, config.distCSSFilePath))
-        .pipe(replace(config.srcJSFilePath, config.distJSFilePath))
+gulp.task('htmlIndexTask', () => {
+    return gulp.src(config.htmlIndexSRC)
+        .pipe(replace('./dist/', './'))
+        .pipe(replace('.css', '.min.css'))
+        .pipe(replace('.js', '.min.js'))
         .pipe(gulp.dest(config.htmlDestination))
         .pipe(
             notify({
-                message: '\n\n✅  ===> HTML — completed!\n',
+                message: '\n\n✅  ===> HTML INDEX — completed!\n',
                 onLast: true
             })
         );
 });
-
-/**
- * Task: `htmlCopyTask`. (for more HTML files in a HTML folder)
- *
- * Copy the html files from src folder to dist folder
- *
- * This task does the following:
- *    1. Gets the source html files
- *    2. Renames the directory name for html files in the html folder
- *    3. Copies the files to dist folder
- */
-
-// gulp.task('htmlCopyTask', () => {
-//     return gulp.src(htmlSRC, { since: gulp.lastRun('htmlCopyTask') })
-//         .pipe(rename((path) => {
-//             if (path.dirname !== '.') {
-//                 path.dirname = 'html/' + path.dirname; // Adding 'html/' prefix to subdirectories
-//             }
-//         }))
-//         .pipe(gulp.dest('htmlDestination'))
-//         .pipe(
-//             notify({
-//                 message: '\n\n✅ ===> COPY HTML TO PRODUCTION FOLDER — completed!\n',
-//                 onLast: true
-//             })
-//         );
-// });
-
-/**
- * Task: `htmlReplaceFilePathTask`. (for more HTML files in a HTML folder)
- *
- * Changes the source path of css, js and images files inside index.html
- *
- * This task does the following:
- *    1. Gets the copied index.html file
- *    2. Replaces the source path of css, js and images files
- *    3. Generates the amended file in dist folder
- */
-
-// gulp.task('htmlReplaceFilePathTask', () => {
-//     return gulp.src('./dist/index.html')
-//          .pipe(replace('./src/scss/style.css', './dist/css/style.min.css'))
-//          .pipe(replace('./src/scripts/script.js', './dist/scripts/script.min.js'))
-//          .pipe(replace('/images/optimized/', '/images/'))
-//          .pipe(gulp.dest('./')) 
-//          .pipe(
-//             notify({
-//                 message: '\n\n✅  ===> FINAL HTML.INDEX — completed!\n',
-//                 onLast: true
-//             })
-//         );
-// });
 
 /**
  * Task: `cssDevTask`.
@@ -197,7 +145,7 @@ gulp.task('htmlTask', () => {
  */
 gulp.task('cssDevTask', () => {
     return gulp
-        .src(config.styleCRSRC, { allowEmpty: true }, { since: lastRun('cssDevTask') }) // Only run on changed files.
+        .src(config.styleCSSSRC, { allowEmpty: true }, { since: lastRun('cssDevTask') }) // Only run on changed files.
         .pipe(plumber(errorHandler))
         .pipe(postcss([autoprefixer(config.BROWSERS_LIST)]))
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.
@@ -224,7 +172,7 @@ gulp.task('cssDevTask', () => {
  */
 gulp.task('cssProdTask', () => {
     return gulp
-        .src(config.styleCRInterFilePath)
+        .src(config.styleCSSInterFilePath)
         .pipe(plumber(errorHandler))
         .pipe(postcss([
             sortMediaQueries({
@@ -688,7 +636,7 @@ gulp.task('jsNCModernProdTask', () => {
  */
 gulp.task('imageOptiTask', () => {
     return gulp
-        .src(config.imgresizedSRC) // Only run on changed files.
+        .src(config.imgResizedSRC) // Only run on changed files.
         .pipe(imagemin([
             imagemin.gifsicle({ interlaced: true }),
             imagemin.mozjpeg({ quality: 75, progressive: true }),
@@ -736,7 +684,29 @@ gulp.task('webpImage', () => {
 });
 
 /**
- * Task: `changeFontFormat`. (run on demand)
+ * Task: `copyFont`. (run on demand)
+ *
+ * Convert font files from src folder to dist foler.
+ * 
+ *  * This task does the following:
+ *     1. Gets the source font files
+ *     2. Saves the files in dist folder
+ * 
+ */
+gulp.task('copyFont', function (done) {
+    gulp.src(config.fontAllSRC)
+        .pipe(gulp.dest(config.fontAllProdDestination))
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> COPY FONT — completed!\n',
+                onLast: true
+            })
+        );
+    done();
+});
+
+/**
+ * Task: `changeGoogleFontFormat`. (especially for google font, run on demand)
  *
  * Convert TTF to WOFF2.
  * 
@@ -746,10 +716,17 @@ gulp.task('webpImage', () => {
  *     3. Saves the WOFF2 in dist folder
  * 
  */
-gulp.task('changeFontFormat', function () {
-    gulp.src(['fonts/*.ttf'])
+gulp.task('changeGoogleFontFormat', function (done) {
+    gulp.src(config.fontGoogleSRC)
         .pipe(ttf2woff2())
-        .pipe(gulp.dest('fonts/'));
+        .pipe(gulp.dest(config.fontGoogleProdDestination))
+        .pipe(
+            notify({
+                message: '\n\n✅  ===> CHANGE GOOGLE FONT FORMAT  — completed!\n',
+                onLast: true
+            })
+        );
+    done();
 });
 
 /**
@@ -760,68 +737,30 @@ gulp.task('changeFontFormat', function () {
  */
 
 gulp.task('default', gulp.series(
-    gulp.parallel(gulp.series('scssNCDevTask', 'scssNCProdTask'),
-        // gulp.series('imageOptiTask', 'webpImage'),
+    gulp.parallel(
+        gulp.series('scssNCDevTask', 'scssNCProdTask'),
+        gulp.series('imageOptiTask', 'webpImage'),
         browserSync),
+    // after initial setup, watch files:
     function watchFiles() {
         // gulp.watch(config.watchHtml, reload); // Reload on HTML file changes.
-        gulp.watch(config.watchNCStyles, gulp.series('scssNCDevTask', 'scssNCProdTask', reload)); // Reload on SCSS file changes.
+        gulp.watch(config.watchNCStyles, gulp.series('scssNCDevTask', reload)); // Reload on SCSS file changes.
         // gulp.watch(config.watchJs, gulp.series('jsLegacyDevTask', reload)); // Reload on JS file changes.
         // gulp.watch(config.imgresizedSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
         // gulp.watch(config.imgProdDestination, gulp.series('webpImage', reload)); // Reload on webp file generation.
     }
 ));
 
-/**
- * Build Task
- *
- * Copies the revised HTML, compiled CSS and JS, and optimized images to dist folder for production.
- */
-
-// gulp.task(
-//     'build', gulp.parallel(
-//         'htmlTask',
-//         // gulp.series('htmlCopyTask', 'htmlReplaceFilePathTask'), //(for more HTML files in a HTML folder)
-//         gulp.series('scssDevTask', 'scssProdTask'),
-//         gulp.series('jsLegacyDevTask', 'jsLegacyProdTask'),
-//         // 'copyImage'
-//     )
-// );
-
-gulp.task('b', gulp.parallel(
-    // 'htmlTask',
+gulp.task('build', gulp.parallel(
+    'htmlIndexTask',
+    gulp.series('cssDevTask', 'cssProdTask'),
     gulp.series('scssCRDevTask', 'scssCRProdTask'),
     gulp.series('scssNCDevTask', 'scssNCProdTask'),
-    gulp.series('jsCRLegacyDevTask', 'jsCRLegacyProdTask'),
+    // gulp.series('jsCRLegacyDevTask', 'jsCRLegacyProdTask'), //legacy code same as modern code in this project
     gulp.series('jsNCLegacyDevTask', 'jsNCLegacyProdTask'),
     gulp.series('jsCRModernDevTask', 'jsCRModernProdTask'),
     gulp.series('jsNCModernDevTask', 'jsNCModernProdTask'),
     gulp.series('imageOptiTask', 'webpImage'),
-    // 'imageOptiTask',
-    // 'webpImage'
+    'copyFont',
+    'changeGoogleFontFormat',
 ));
-
-// gulp.task('htmlTask', function (done) {
-//     // Your HTML task logic here
-//     done(); // Signal completion
-// });
-
-// gulp.task('scssDevTask', function (done) {
-//     // Your SCSS dev task logic here
-//     done(); // Signal completion
-// });
-
-// gulp.task('scssProdTask', function (done) {
-//     // Your SCSS production task logic here
-//     done(); // Signal completion
-// });
-
-// gulp.task('jsLegacyDevTask', function (done) {
-//     // Your JS dev task logic here
-//     done(); // Signal completion
-// });
-
-// gulp.task('jsLegacyProdTask', function (done) {
-//     // Your JS production task logic here
-//     done(); // Signal completion
-// });
