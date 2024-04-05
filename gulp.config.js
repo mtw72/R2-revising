@@ -30,18 +30,14 @@ const styleNCSRC = './src/styles/scss-non-critical/non-critical-style.scss';
 const styleProdDestination = './dist/styles/';
 
 // Compiled CSS file name.
-const styleCRFile = 'critical-style';
-const styleNCFile = 'non-critical-style';
+const styleCRFileName = 'critical-style';
+const styleNCFileName = 'non-critical-style';
 
 // Path to intermediate CSS file.
 const styleCSSInterFilePath
     = [styleProdDestination + 'googlefont.css', styleProdDestination + 'loader.css', styleProdDestination + 'noscript.css',];
-const styleCRInterFilePath = styleProdDestination + styleCRFile + '.css';
-const styleNCInterFilePath = styleProdDestination + styleNCFile + '.css';
-
-// Path to final CSS file.
-const styleCRFinalFilePath = styleProdDestination + styleCRFile + '.min.css';
-const styleNCFinalFilePath = styleProdDestination + styleNCFile + '.min.css';
+const styleCRInterFilePath = styleProdDestination + styleCRFileName + '.css';
+const styleNCInterFilePath = styleProdDestination + styleNCFileName + '.css';
 
 // Available options → 'compact' or 'compressed' or 'nested' or 'expanded'
 const outputStyle = 'expanded';
@@ -66,12 +62,6 @@ const jsNCModernFileName = 'non-critical-modern-script';
 const jsCRModernInterFilePath = jsProdDestination + jsCRModernFileName + '.js';
 const jsNCLegacyInterFilePath = jsProdDestination + jsNCLegacyFileName + '.js';
 const jsNCModernInterFilePath = jsProdDestination + jsNCModernFileName + '.js';
-
-// Path to final JS file.
-// const jsCRLegacyFinalFilePath = jsProdDestination + jsCRLegacyFileName + '.min.js';  //legacy code same as modern code in this project
-const jsCRModernFinalFilePath = jsProdDestination + jsCRModernFileName + '.min.js';
-const jsNCLegacyFinalFilePath = jsProdDestination + jsNCLegacyFileName + '.min.js';
-const jsNCModernFinalFilePath = jsProdDestination + jsNCModernFileName + '.min.js';
 
 // >>>>> Images options.
 
@@ -131,16 +121,12 @@ module.exports = {
     styleCSSSRC,
     styleCRSRC,
     styleNCSRC,
-    // styleCRSRCall,
-    // styleNCSRCall,
     styleProdDestination,
-    styleCRFile,
-    styleNCFile,
+    styleCRFileName,
+    styleNCFileName,
     styleCSSInterFilePath,
     styleCRInterFilePath,
     styleNCInterFilePath,
-    styleCRFinalFilePath, //
-    styleNCFinalFilePath, //
     outputStyle,
     // JS
     jsCRSRC,
@@ -154,10 +140,6 @@ module.exports = {
     jsCRModernInterFilePath,
     jsNCLegacyInterFilePath,
     jsNCModernInterFilePath,
-    // jsCRLegacyFinalFilePath,
-    jsCRModernFinalFilePath, //
-    jsNCLegacyFinalFilePath, //
-    jsNCModernFinalFilePath, //
     // IMG
     imgResizedSRC,
     imgProdDestination,
@@ -174,5 +156,6 @@ module.exports = {
     watchNCStyles,
     watchCRJs,
     watchNCJs,
+    // AUTOPREFIXING
     BROWSERS_LIST
 };
