@@ -628,15 +628,12 @@ gulp.task('jsNCModernProdTask', () => {
  *     2. Optimizes (re-sized) PNG and JPEG, as well as raw GIF and SVG images
  *     3. Generates and saves the optimized images in images optimized folder
  *
- * This task will run only once, if you want to change the parameter, 
- * you have to run it again, do it with the command `gulp imageOptiTask`.
- *
  * Read the following to change these options.
  * @link https://github.com/sindresorhus/gulp-imagemin
  */
 gulp.task('imageOptiTask', () => {
     return gulp
-        .src(config.imgResizedSRC) // Only run on changed files.
+        .src(config.imgResizedSRC)
         .pipe(imagemin([
             imagemin.gifsicle({ interlaced: true }),
             imagemin.mozjpeg({ quality: 75, progressive: true }),
@@ -730,26 +727,56 @@ gulp.task('changeGoogleFontFormat', function (done) {
 });
 
 /**
- * Default Task with Watch Tasks
+ * Watch Tasks
  * 
  * Watches for file changes and runs specific tasks.
  * 
  */
 
+gulp.task('watchFiles', function () {
+    // Watch HTML files and reload browserSync on change
+    gulp.watch(config.watchHtml, reload); // Reload on HTML file changes.
+    gulp.watch(config.watchCssStyles, gulp.series('cssDevTask', reload)); // Reload on CSS file changes.
+    gulp.watch(config.watchCRStyles, gulp.series('scssCRDevTask', reload)); // Reload on SCSS file changes.
+    gulp.watch(config.watchCommonStyles, gulp.series('scssCRDevTask', 'scssNCDevTask', reload)); // Reload on SCSS file changes.
+    gulp.watch(config.watchNCStyles, gulp.series('scssNCDevTask', reload)); // Reload on SCSS file changes.
+    gulp.watch(config.watchCRJs, gulp.series('jsCRModernDevTask', reload)); // Reload on JS file changes.
+    // gulp.watch(config.watchCRJs, gulp.series('jsCRLegacyDevTask','jsCRModernDevTask', reload)); // Reload on JS file changes.
+    gulp.watch(config.watchNCJs, gulp.series('jsNCLegacyDevTask', 'jsNCModernDevTask', reload)); // Reload on JS file changes.
+    gulp.watch(config.imgResizedSRC, gulp.series('imageOptiTask', 'webpImage', reload)); // Reload on image file changes.
+    gulp.watch(config.fontAllSRC, gulp.series('copyFont', 'changeGoogleFontFormat', reload)); // Reload on font file changes.
+});
+
+/**
+ * Default Task with Dev tasks and Watch Tasks
+ * 
+ * Initial project setup and start watching file changes.
+ * 
+ */
+
 gulp.task('default', gulp.series(
     gulp.parallel(
-        gulp.series('scssNCDevTask', 'scssNCProdTask'),
-        gulp.series('imageOptiTask', 'webpImage'),
-        browserSync),
-    // after initial setup, watch files:
-    function watchFiles() {
-        // gulp.watch(config.watchHtml, reload); // Reload on HTML file changes.
-        gulp.watch(config.watchNCStyles, gulp.series('scssNCDevTask', reload)); // Reload on SCSS file changes.
-        // gulp.watch(config.watchJs, gulp.series('jsLegacyDevTask', reload)); // Reload on JS file changes.
-        // gulp.watch(config.imgresizedSRC, gulp.series('imageOptiTask', reload)); // Reload on image file changes.
-        // gulp.watch(config.imgProdDestination, gulp.series('webpImage', reload)); // Reload on webp file generation.
-    }
+        // 'cssDevTask',
+        // 'scssCRDevTask',
+        // 'scssNCDevTask',
+        // // 'jsCRLegacyDevTask', //legacy code same as modern code in this project
+        // 'jsCRModernDevTask',
+        // 'jsNCLegacyDevTask',
+        // 'jsNCModernDevTask',
+        // gulp.series('imageOptiTask', 'webpImage'),
+        // 'copyFont',
+        // 'changeGoogleFontFormat',
+        browserSync
+    ),
+    'watchFiles' // after initial setup
 ));
+
+/**
+ * Build Task with Dev tasks and Prod Tasks
+ * 
+ * Output all the production files to dist folder.
+ * 
+ */
 
 gulp.task('build', gulp.parallel(
     'htmlIndexTask',

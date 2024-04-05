@@ -20,14 +20,14 @@ const htmlDestination = './dist/';
 
 // >>>>> Style options.
 // Path to very critical css file and noscript css file.
-const styleCSSSRC = './src/css/*.css';
+const styleCSSSRC = './src/styles/*.css';
 
 // Path to main .scss file.
-const styleCRSRC = './src/css/scss-critical/critical-style.scss';
-const styleNCSRC = './src/css/scss-non-critical/non-critical-style.scss';
+const styleCRSRC = './src/styles/scss-critical/critical-style.scss';
+const styleNCSRC = './src/styles/scss-non-critical/non-critical-style.scss';
 
 // Path to place the compiled CSS file.
-const styleProdDestination = './dist/css/';
+const styleProdDestination = './dist/styles/';
 
 // Compiled CSS file name.
 const styleCRFile = 'critical-style';
@@ -101,14 +101,17 @@ const fontGoogleProdDestination = './dist/assets/webfonts/googlefonts/';
 
 // >>>>> Watch files paths.
 // Path to all *.html files inside root directory
-const watchHtml = './**/*.html';
+const watchHtml = './index.html';
 
 // Path to all *.scss files inside scss folder and inside them.
-const watchCRStyles = './src/css/scss-critical/**/*.scss';
-const watchCommonStyles = './src/css/scss-common-partials/**/*.scss';
-const watchNCStyles = './src/css/scss-non-critical/**/*.scss';
+const watchCssStyles = styleCSSSRC;
 
-// Path to all JS files.
+// Path to all *.scss files inside scss folder and inside them.
+const watchCRStyles = './src/styles/scss-critical/**/*.scss';
+const watchCommonStyles = './src/styles/scss-common-partials/**/*.scss';
+const watchNCStyles = './src/styles/scss-non-critical/**/*.scss';
+
+// Path to all .js files.
 const watchCRJs = jsCRSRC;
 const watchNCJs = jsNCSRC;
 
@@ -125,10 +128,6 @@ module.exports = {
     htmlIndexSRC,
     htmlDestination,
     // CSS
-    // styleCRFontSRC,
-    // styleCRFontFinalFilePath,
-    // styleNoJSSRC,
-    // styleNoJSFinalFilePath,
     styleCSSSRC,
     styleCRSRC,
     styleNCSRC,
@@ -140,8 +139,8 @@ module.exports = {
     styleCSSInterFilePath,
     styleCRInterFilePath,
     styleNCInterFilePath,
-    styleCRFinalFilePath,
-    styleNCFinalFilePath,
+    styleCRFinalFilePath, //
+    styleNCFinalFilePath, //
     outputStyle,
     // JS
     jsCRSRC,
@@ -156,9 +155,9 @@ module.exports = {
     jsNCLegacyInterFilePath,
     jsNCModernInterFilePath,
     // jsCRLegacyFinalFilePath,
-    jsCRModernFinalFilePath,
-    jsNCLegacyFinalFilePath,
-    jsNCModernFinalFilePath,
+    jsCRModernFinalFilePath, //
+    jsNCLegacyFinalFilePath, //
+    jsNCModernFinalFilePath, //
     // IMG
     imgResizedSRC,
     imgProdDestination,
@@ -169,6 +168,7 @@ module.exports = {
     fontGoogleProdDestination,
     // WATCH
     watchHtml,
+    watchCssStyles,
     watchCRStyles,
     watchCommonStyles,
     watchNCStyles,
