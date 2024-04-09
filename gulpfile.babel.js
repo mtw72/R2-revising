@@ -756,9 +756,9 @@ gulp.task('watchFiles', function () {
 
 gulp.task('default', gulp.series(
     gulp.parallel(
-        // 'cssDevTask',
-        // 'scssCRDevTask',
-        // 'scssNCDevTask',
+        'cssDevTask',
+        'scssCRDevTask',
+        'scssNCDevTask',
         // // 'jsCRLegacyDevTask', //legacy code same as modern code in this project
         // 'jsCRModernDevTask',
         // 'jsNCLegacyDevTask',
@@ -784,10 +784,10 @@ gulp.task('build', gulp.parallel(
     gulp.series('scssCRDevTask', 'scssCRProdTask'),
     gulp.series('scssNCDevTask', 'scssNCProdTask'),
     // gulp.series('jsCRLegacyDevTask', 'jsCRLegacyProdTask'), //legacy code same as modern code in this project
-    gulp.series('jsNCLegacyDevTask', 'jsNCLegacyProdTask'),
-    gulp.series('jsCRModernDevTask', 'jsCRModernProdTask'),
-    gulp.series('jsNCModernDevTask', 'jsNCModernProdTask'),
-    gulp.series('imageOptiTask', 'webpImage'),
-    'copyFont',
-    'changeGoogleFontFormat',
+    // gulp.series('jsNCLegacyDevTask', 'jsNCLegacyProdTask'),
+    // gulp.series('jsCRModernDevTask', 'jsCRModernProdTask'),
+    // gulp.series('jsNCModernDevTask', 'jsNCModernProdTask'),
+    // gulp.series('imageOptiTask', 'webpImage'),
+    // 'copyFont',
+    // 'changeGoogleFontFormat',
 ));

@@ -97,31 +97,34 @@ hr {
 
 // large menu
 .large-menu__tab {
-    border: 1px solid $orange-1;
-    background-color: $yellow-2b;
+    background-color: #fff0b8c7;
+    color: #A35A00;
+    border: 1px solid $white-1;
 
     &:hover {
-        background-color: $orange-2;
         font-weight: bold;
+        color: rgb(250, 248, 241);
+        background-color: rgb(197, 137, 64);
     }
 
     &--active {
         border: 1px solid $orange-1;
-        background-color: $orange-2;
+        color: #FFF0B8;
+        background-color: #A35A00;
     }
 }
 
 // menu content
 .large-food-menu {
-    border: 1px solid $orange-1;
+    border: $large-menu-border-color;
     background-color: $white-1;
 }
 
 .large-menu__item {
-    border-bottom: 1px solid $orange-1;
+    border-bottom: $large-menu-border-color;
 
     @include min-mq(md) {
-        border-right: 1px solid $orange-1;
+        border-right: $large-menu-border-color;
     }
 }
 

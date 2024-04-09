@@ -435,29 +435,32 @@ hr {
 }
 
 .large-menu__tab {
-  border: 1px solid rgb(255, 231, 204);
-  background-color: rgba(255, 251, 235, 0.7);
+  background-color: rgba(255, 240, 184, 0.7803921569);
+  color: #A35A00;
+  border: 1px solid rgb(255, 255, 255);
 }
 .large-menu__tab:hover {
-  background-color: rgb(248, 203, 166);
   font-weight: bold;
+  color: rgb(250, 248, 241);
+  background-color: rgb(197, 137, 64);
 }
 .large-menu__tab--active {
   border: 1px solid rgb(255, 231, 204);
-  background-color: rgb(248, 203, 166);
+  color: #FFF0B8;
+  background-color: #A35A00;
 }
 
 .large-food-menu {
-  border: 1px solid rgb(255, 231, 204);
+  border: 1px solid rgb(224, 177, 120);
   background-color: rgb(255, 255, 255);
 }
 
 .large-menu__item {
-  border-bottom: 1px solid rgb(255, 231, 204);
+  border-bottom: 1px solid rgb(224, 177, 120);
 }
 @media all and (min-width: 48em) {
   .large-menu__item {
-    border-right: 1px solid rgb(255, 231, 204);
+    border-right: 1px solid rgb(224, 177, 120);
   }
 }
 
@@ -1032,8 +1035,8 @@ section:not(:first-of-type) {
       -ms-flex: 1 0 33.33%;
           flex: 1 0 33.33%;
   padding: 1rem;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
   position: relative;
   text-align: center;
   cursor: pointer;
