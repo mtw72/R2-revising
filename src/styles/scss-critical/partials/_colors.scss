@@ -60,32 +60,36 @@ hr {
 // small menu
 //buttons when the accordion panel is close
 .small-menu__accordion {
-    background-color: $orange-5;
-    color: $black-1;
+    background-color: #A35A00;
+    color: $yellow-2;
 
     &:hover {
-        background-color: $orange-2;
+        background-color: #A35A00;
         color: $yellow-2;
     }
 
     //"plus" sign (+) 
     &:after {
-        color: $grey-3;
+        color: $yellow-2;
     }
 
     &:focus {
         outline: 2px solid $orange-3;
+
+        &:after {
+            color: $yellow-2;
+        }
     }
 }
 
 //buttons when the accordion panel is open
 .small-menu__accordion--active {
-    color: #FFF0B8;
-    background-color: #A35A00;
+    color: black;
+    background-color: rgb(255, 194, 111);
 
     // "minus" sign (-)
     &:after {
-        color: #FFF0B8;
+        color: $grey-3;
     }
 }
 
@@ -97,18 +101,19 @@ hr {
 
 // large menu
 .large-menu__tab {
-    background-color: #fff0b8c7;
+    background-color: #fff6d7ce;
     color: #A35A00;
-    border: 1px solid $white-1;
+    border: 1px solid #ffde67;
 
     &:hover {
         font-weight: bold;
         color: rgb(250, 248, 241);
         background-color: rgb(197, 137, 64);
+        border: 1px solid rgb(197, 137, 64);
     }
 
     &--active {
-        border: 1px solid $orange-1;
+        border: 1px solid rgb(197, 137, 64);
         color: #FFF0B8;
         background-color: #A35A00;
     }

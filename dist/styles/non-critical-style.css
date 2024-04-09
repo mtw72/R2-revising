@@ -1,13 +1,13 @@
 /* Caption text */
 .small-menu__image-description {
-  border-top: 1px solid #8e3200;
+  border-top: 1px solid #A35A00;
   color: #FFF0B8;
-  background-color: #8e3200;
+  background-color: #A35A00;
 }
 
 .small-menu__slideshow-button--prev,
 .small-menu__slideshow-button--next {
-  color: #A35A00;
+  color: rgb(229, 186, 115);
 }
 
 .small-menu__slideshow-dot {
@@ -16,7 +16,7 @@
 
 .small-menu__slideshow-dot:hover,
 .slideshow-dot--active {
-  background-color: #A35A00;
+  background-color: rgb(229, 186, 115);
 }
 
 .reservation__photo img {
@@ -740,8 +740,12 @@ footer {
   padding-block: calc(1rem + 1.5vw);
 }
 
+.social-icons {
+  margin-bottom: 0.5rem;
+}
+
 .social-icons i {
-  margin: 0.5rem 0.625rem 1.25rem 0.625rem;
+  margin: 0.5rem 0.625rem;
 }
 
 /* Font Awesome */
