@@ -1,10 +1,8 @@
 /* Caption text */
 .small-menu__image-description {
-  background-color: rgb(229, 186, 115);
-  color: rgb(243, 243, 243);
   border-top: 1px solid #be7b28;
   color: white;
-  background-color: #8e3200;
+  background-color: black;
 }
 
 .small-menu__slideshow-button--prev,
