@@ -4,24 +4,24 @@
 // carousel
 /* Caption text */
 .small-menu__image-description {
-    border-top: 1px solid #be7b28;
-    color: white;
-    background-color: black;
+    border-top: 1px solid #8e3200;
+    color: #FFF0B8;
+    background-color: #8e3200;
 }
 
 //Next & previous buttons
 .small-menu__slideshow-button--prev,
 .small-menu__slideshow-button--next {
-    color: $orange-3;
+    color: #A35A00;
 }
 
 .small-menu__slideshow-dot {
-    background-color: $orange-1;
+    background-color: #fcdeb9;
 }
 
 .small-menu__slideshow-dot:hover,
 .slideshow-dot--active {
-    background-color: $orange-2;
+    background-color: #A35A00;
 }
 
 // reservation-form
@@ -33,7 +33,6 @@
 
 .mandatory-field {
     color: $red-1;
-    // color: aqua;
 }
 
 .input-control {
