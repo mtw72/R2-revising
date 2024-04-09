@@ -779,8 +779,8 @@ gulp.task('default', gulp.series(
  */
 
 gulp.task('build', gulp.parallel(
-    'htmlIndexTask',
-    gulp.series('cssDevTask', 'cssProdTask'),
+    // 'htmlIndexTask',
+    // gulp.series('cssDevTask', 'cssProdTask'),
     gulp.series('scssCRDevTask', 'scssCRProdTask'),
     gulp.series('scssNCDevTask', 'scssNCProdTask'),
     // gulp.series('jsCRLegacyDevTask', 'jsCRLegacyProdTask'), //legacy code same as modern code in this project
