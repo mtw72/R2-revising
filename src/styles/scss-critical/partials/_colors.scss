@@ -80,19 +80,19 @@ hr {
 
 //buttons when the accordion panel is open
 .small-menu__accordion--active {
-    background-color: $orange-5;
-    color: $yellow-2;
+    color: #FFF0B8;
+    background-color: #A35A00;
 
     // "minus" sign (-)
     &:after {
-        color: $yellow-2;
+        color: #FFF0B8;
     }
 }
 
 /* Style the accordion panel. Note: hidden by default */
 .small-menu__panel {
     background-color: $white-1;
-    border: 1px solid $orange-1;
+    border: $large-menu-border-color;
 }
 
 // large menu
