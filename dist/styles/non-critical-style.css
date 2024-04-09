@@ -353,19 +353,19 @@ section.findus {
 
 @-webkit-keyframes fade {
   from {
-    visibility: hidden;
+    opacity: 0.8;
   }
   to {
-    visibility: visible;
+    opacity: 1;
   }
 }
 
 @keyframes fade {
   from {
-    visibility: hidden;
+    opacity: 0.8;
   }
   to {
-    visibility: visible;
+    opacity: 1;
   }
 }
 .reservation {

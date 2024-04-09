@@ -99,12 +99,10 @@
 
 @keyframes fade {
     from {
-        // opacity: 0.6;
-        visibility: hidden;
+        opacity: 0.8;
     }
 
     to {
-        // opacity: 1;
-        visibility: visible;
+        opacity: 1;
     }
 }
