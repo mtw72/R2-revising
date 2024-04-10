@@ -43,7 +43,16 @@ function closeNavbar() {
   }
 }
 var findusLink = document.getElementById('findus-link');
-findusLink.addEventListener('keydown', closeNavbar());
+findusLink.addEventListener('keydown', closeNavbarByTab);
+function closeNavbarByTab(event) {
+  var keyCode = event.keyCode || event.which;
+  if (event.shiftKey && event.keyCode == 9) {
+    // Check if the key pressed is 'tab'
+    event.stopPropagation();
+  } else if (keyCode === 9) {
+    closeNavbar();
+  }
+}
 
 // When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar 
 var prevScrollpos = window.scrollY;
