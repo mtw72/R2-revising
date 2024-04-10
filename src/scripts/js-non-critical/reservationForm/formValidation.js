@@ -67,26 +67,6 @@ submitButton.addEventListener('click', (event) => {
         dateError.style.display = "none";
     }
 
-    //validate time input
-    // Get the selected time from the time input field
-    const selectedTime = timeInput.value;
-    // Get the minimum allowed time from the min attribute of the time input field
-    const minTime = timeInput.min;
-    // Get the maximum allowed time from the max attribute of the time input field
-    const maxTime = timeInput.max;
-
-    // Check if the selected time
-    if (selectedTime < minTime || selectedTime > maxTime || selectedTime === '') {
-        event.preventDefault();
-        timeInput.classList.add('error-input');
-        timeInput.setAttribute('aria-describedby', 'time-error');
-        timeInput.setAttribute('aria-invalid', 'true');
-        timeError.style.display = "block";
-    } else {
-        timeInput.classList.remove('error-input');
-        timeError.style.display = "none";
-    }
-
     // Add the input event listener after first submission
     nameInput.addEventListener('input', nameInputEvent);
     phoneNumberInput.addEventListener('input', phoneNumberInputEvent);
@@ -160,26 +140,5 @@ function dateInputEvent() {
         dateInput.setAttribute('aria-describedby', 'date-error');
         dateInput.setAttribute('aria-invalid', 'true');
         dateError.style.display = "block";
-    }
-}
-
-function timeInputEvent() {
-    // Get the selected time from the time input field
-    const selectedTime = timeInput.value;
-    // Get the minimum allowed time from the min attribute of the time input field
-    const minTime = timeInput.min;
-    // Get the maximum allowed time from the max attribute of the time input field
-    const maxTime = timeInput.max;
-
-    if (selectedTime > minTime && selectedTime < maxTime) {
-        timeInput.classList.remove('error-input');
-        timeInput.removeAttribute('aria-describedby', 'time-error');
-        timeInput.removeAttribute('aria-invalid', 'true');
-        timeError.style.display = "none";
-    } else {
-        timeInput.classList.add('error-input');
-        timeInput.setAttribute('aria-describedby', 'time-error');
-        timeInput.setAttribute('aria-invalid', 'true');
-        timeError.style.display = "block";
     }
 }

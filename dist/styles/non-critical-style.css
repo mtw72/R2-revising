@@ -353,7 +353,7 @@ section.findus {
 
 @-webkit-keyframes fade {
   from {
-    opacity: 0.8;
+    opacity: 0.9;
   }
   to {
     opacity: 1;
@@ -362,7 +362,7 @@ section.findus {
 
 @keyframes fade {
   from {
-    opacity: 0.8;
+    opacity: 0.9;
   }
   to {
     opacity: 1;
@@ -742,6 +742,10 @@ footer {
 
 .social-icons {
   margin-bottom: 0.5rem;
+}
+
+.social-icons a {
+  padding-block: 0.3rem;
 }
 
 .social-icons i {

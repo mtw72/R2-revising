@@ -277,56 +277,113 @@ switch (tdyDay) {
       dateInput.min = today;
     }
 }
+dateInput.addEventListener('input', generateTimeOptions);
 
-// time picker - set default time (.defaultValue) and prevent choosing invalid hours (.min: before opening time / during operating time)
-var timeInput = document.getElementById('time');
-// const defaultTime = (tdyHour + 2) + ":" + ("00"); //default time
-var validHour = tdyHour + 1 + ":" + "00"; //valid booking time
-
-// for the same day (today), set the default time to 12nn before noon, or an hour later after noon
-if (dateInput.value === today) {
-  if (tdyHour > 11) {
-    timeInput.defaultValue = validHour;
-    timeInput.min = validHour;
-  } else {
-    timeInput.defaultValue = "12:00";
-    timeInput.min = "12:00";
-  }
-} else {
-  // for another day (tomorrow), set the default time to 12nn
-  timeInput.value = "12:00";
-  timeInput.min = "12:00";
+// time picker - set default time
+// Function to pad single digit numbers with leading zero
+function pad(number) {
+  return (number < 10 ? '0' : '') + number;
 }
 
-// time picker - prevent choosing invalid hours (.max: before closing time)
-// booking using default date
-if (tdyDay === 0) {
-  // Sunday
-  timeInput.max = '16:00';
-} else if (tdyDay === 5 || tdyDay === 6) {
-  // Friday & Saturday
-  timeInput.max = '20:00';
-} else {
-  // Monday to Thursday
-  timeInput.max = '19:00';
+// Function to check if current time is within restaurant opening hours
+function isWithinOpeningHours(day, hour, minute) {
+  var openingHours = {
+    Sunday: {
+      start: 1200,
+      end: 1600
+    },
+    Monday: {
+      start: 1200,
+      end: 1900
+    },
+    Tuesday: {
+      start: 1200,
+      end: 1900
+    },
+    Wednesday: {
+      start: 1200,
+      end: 1900
+    },
+    Thursday: {
+      start: 1200,
+      end: 1900
+    },
+    Friday: {
+      start: 1200,
+      end: 2000
+    },
+    Saturday: {
+      start: 1200,
+      end: 2000
+    }
+  };
+  var currentTime = hour * 100 + minute;
+  var _openingHours$day = openingHours[day],
+    start = _openingHours$day.start,
+    end = _openingHours$day.end;
+  return currentTime >= start && currentTime <= end;
 }
 
-//booking using new date
-dateInput.addEventListener('input', function (event) {
-  var selectedDate = new Date(event.target.value);
-  var dayOfWeek = selectedDate.getDay();
-  timeInput.min = '12:00';
-  if (dayOfWeek === 0) {
-    // Sunday
-    timeInput.max = '16:00';
-  } else if (dayOfWeek === 5 || dayOfWeek === 6) {
-    // Friday & Saturday
-    timeInput.max = '20:00';
+// Function to generate time options based on current day and time
+function generateTimeOptions() {
+  var now = new Date();
+  var day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][now.getDay()];
+  var currentHour = now.getHours();
+  var currentMinute = now.getMinutes();
+  var select = document.getElementById('time');
+  select.innerHTML = '';
+  if (dateInput.value === today) {
+    for (var hour = 12; hour <= 21; hour++) {
+      for (var minute = 0; minute < 60; minute += 15) {
+        var displayHour = hour > 12 ? hour - 12 : hour; // Convert to 12-hour format
+        var amPm = hour >= 12 ? 'pm' : 'am'; // Determine if it's AM or PM
+        if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || hour === currentHour + 1 && minute >= currentMinute)) {
+          var option = new Option(displayHour + ':' + pad(minute) + amPm, time);
+          select.add(option);
+        }
+      }
+    }
   } else {
-    // Any other day
-    timeInput.max = '19:00';
+    var selectedDate = new Date(dateInput.value);
+    var chosenDay = selectedDate.getDay();
+    switch (chosenDay) {
+      case 0:
+        for (var _hour = 12; _hour <= 16; _hour++) {
+          for (var _minute = 0; _minute < 60; _minute += 15) {
+            var _displayHour = _hour > 12 ? _hour - 12 : _hour; // Convert to 12-hour format
+            var _amPm = _hour >= 12 ? 'pm' : 'am'; // Determine if it's AM or PM
+            var _option = new Option(_displayHour + ':' + pad(_minute) + _amPm, time);
+            select.add(_option);
+          }
+        }
+        break;
+      case 5:
+      case 6:
+        for (var _hour2 = 12; _hour2 <= 20; _hour2++) {
+          for (var _minute2 = 0; _minute2 < 60; _minute2 += 15) {
+            var _displayHour2 = _hour2 > 12 ? _hour2 - 12 : _hour2; // Convert to 12-hour format
+            var _amPm2 = _hour2 >= 12 ? 'pm' : 'am'; // Determine if it's AM or PM
+            var _option2 = new Option(_displayHour2 + ':' + pad(_minute2) + _amPm2, time);
+            select.add(_option2);
+          }
+        }
+        break;
+      default:
+        //Monday to Thursday
+        for (var _hour3 = 12; _hour3 <= 19; _hour3++) {
+          for (var _minute3 = 0; _minute3 < 60; _minute3 += 15) {
+            var _displayHour3 = _hour3 > 12 ? _hour3 - 12 : _hour3; // Convert to 12-hour format
+            var _amPm3 = _hour3 >= 12 ? 'pm' : 'am'; // Determine if it's AM or PM
+            var _option3 = new Option(_displayHour3 + ':' + pad(_minute3) + _amPm3, time);
+            select.add(_option3);
+          }
+        }
+    }
   }
-});
+}
+
+// Generate time options when the page loads
+generateTimeOptions();
 'use strict';
 
 // check the form onsubmit
@@ -433,26 +490,6 @@ submitButton.addEventListener('click', function (event) {
     dateError.style.display = "none";
   }
 
-  //validate time input
-  // Get the selected time from the time input field
-  var selectedTime = timeInput.value;
-  // Get the minimum allowed time from the min attribute of the time input field
-  var minTime = timeInput.min;
-  // Get the maximum allowed time from the max attribute of the time input field
-  var maxTime = timeInput.max;
-
-  // Check if the selected time
-  if (selectedTime < minTime || selectedTime > maxTime || selectedTime === '') {
-    event.preventDefault();
-    timeInput.classList.add('error-input');
-    timeInput.setAttribute('aria-describedby', 'time-error');
-    timeInput.setAttribute('aria-invalid', 'true');
-    timeError.style.display = "block";
-  } else {
-    timeInput.classList.remove('error-input');
-    timeError.style.display = "none";
-  }
-
   // Add the input event listener after first submission
   nameInput.addEventListener('input', nameInputEvent);
   phoneNumberInput.addEventListener('input', phoneNumberInputEvent);
@@ -519,25 +556,6 @@ function dateInputEvent() {
     dateInput.setAttribute('aria-describedby', 'date-error');
     dateInput.setAttribute('aria-invalid', 'true');
     dateError.style.display = "block";
-  }
-}
-function timeInputEvent() {
-  // Get the selected time from the time input field
-  var selectedTime = timeInput.value;
-  // Get the minimum allowed time from the min attribute of the time input field
-  var minTime = timeInput.min;
-  // Get the maximum allowed time from the max attribute of the time input field
-  var maxTime = timeInput.max;
-  if (selectedTime > minTime && selectedTime < maxTime) {
-    timeInput.classList.remove('error-input');
-    timeInput.removeAttribute('aria-describedby', 'time-error');
-    timeInput.removeAttribute('aria-invalid', 'true');
-    timeError.style.display = "none";
-  } else {
-    timeInput.classList.add('error-input');
-    timeInput.setAttribute('aria-describedby', 'time-error');
-    timeInput.setAttribute('aria-invalid', 'true');
-    timeError.style.display = "block";
   }
 }
 //# sourceMappingURL=non-critical-legacy-script.js.map
