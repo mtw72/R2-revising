@@ -470,6 +470,10 @@ hr {
 .large-menu__item-price {
   background-color: rgba(186, 90, 12, 0.75);
   color: rgb(255, 255, 255);
+  background-color: rgba(255, 246, 215, 0.8078431373);
+  color: #A35A00;
+  -webkit-box-shadow: 1px 1px 2px rgb(197, 137, 64);
+          box-shadow: 1px 1px 2px rgb(197, 137, 64);
 }
 
 body {
@@ -1083,7 +1087,7 @@ section:not(:first-of-type) {
   width: 4.6875rem;
   height: 2.5rem;
   padding-block: 0.9rem;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
   text-align: center;
 }
 
