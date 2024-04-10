@@ -85,8 +85,10 @@ function checkScreenSize() {
   var screenWidth = window.innerWidth;
   if (screenWidth <= 576) {
     addDefaultAriaAttributes();
+    negativeTabIndex();
   } else {
     removeDefaultAriaAttributes();
+    zeroTabIndex();
   }
 }
 'use strict';
