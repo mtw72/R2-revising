@@ -52,7 +52,7 @@ findusLink.addEventListener('keydown', closeNavbarByTab);
 function closeNavbarByTab(event) {
   const keyCode = event.keyCode || event.which;
   if (event.shiftKey && event.keyCode == 9) { // Check if the key pressed is 'tab'
-    event.stopPropagation();
+    // act normally if pressing "shift" + "tab" (going backwards)
   } else if (keyCode === 9) {
     closeNavbar();
   }

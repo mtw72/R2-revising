@@ -46,9 +46,8 @@ var findusLink = document.getElementById('findus-link');
 findusLink.addEventListener('keydown', closeNavbarByTab);
 function closeNavbarByTab(event) {
   var keyCode = event.keyCode || event.which;
-  if (event.shiftKey && event.keyCode == 9) {
-    // Check if the key pressed is 'tab'
-    event.stopPropagation();
+  if (event.shiftKey && event.keyCode == 9) {// Check if the key pressed is 'tab'
+    // act normally if pressing "shift" + "tab" (going backwards)
   } else if (keyCode === 9) {
     closeNavbar();
   }
