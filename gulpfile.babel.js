@@ -784,9 +784,9 @@ gulp.task('build', gulp.parallel(
     gulp.series('scssCRDevTask', 'scssCRProdTask'),
     gulp.series('scssNCDevTask', 'scssNCProdTask'),
     // gulp.series('jsCRLegacyDevTask', 'jsCRLegacyProdTask'), //legacy code same as modern code in this project
-    // gulp.series('jsNCLegacyDevTask', 'jsNCLegacyProdTask'),
+    gulp.series('jsNCLegacyDevTask', 'jsNCLegacyProdTask'),
     // gulp.series('jsCRModernDevTask', 'jsCRModernProdTask'),
-    // gulp.series('jsNCModernDevTask', 'jsNCModernProdTask'),
+    gulp.series('jsNCModernDevTask', 'jsNCModernProdTask'),
     // gulp.series('imageOptiTask', 'webpImage'),
     // 'copyFont',
     // 'changeGoogleFontFormat',

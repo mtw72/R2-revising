@@ -82,8 +82,8 @@
 
 .small-menu__slideshow-dot {
     cursor: pointer;
-    height: 0.425rem;
-    width: 0.425rem;
+    height: 0.5rem;
+    width: 0.5rem;
     margin: 0 3px;
     border-radius: 100%;
     display: inline-block;
@@ -99,7 +99,7 @@
 
 @keyframes fade {
     from {
-        opacity: 0.8;
+        // opacity: 0.8;
     }
 
     to {

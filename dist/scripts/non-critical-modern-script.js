@@ -513,6 +513,7 @@ function openMenuPanel() {
       menuAccordion[i].setAttribute('aria-expanded', 'true');
       let menuPanel = menuAccordion[i].nextElementSibling;
       menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
+      menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
       menuPanel.classList.add("small-menu__panel--open");
       menuPanel.setAttribute('role', 'region');
     }
@@ -538,9 +539,11 @@ for (let i = 0; i < menuAccordion.length; i++) {
     if (menuPanel.classList.contains("small-menu__panel--open")) {
       menuPanel.style.maxHeight = null;
       menuPanel.classList.remove("small-menu__panel--open");
+      menuPanel.style.border = "none";
       menuPanel.removeAttribute('role', 'region');
     } else {
       menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
+      menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
       menuPanel.classList.add("small-menu__panel--open");
       menuPanel.setAttribute('role', 'region');
     }

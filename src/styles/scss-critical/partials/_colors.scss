@@ -60,8 +60,8 @@ hr {
 // small menu
 //buttons when the accordion panel is close
 .small-menu__accordion {
-    background-color: #A35A00;
-    color: $yellow-2;
+    color: black;
+    background-color: rgb(249, 224, 187);
 
     &:hover {
         background-color: #A35A00;
@@ -70,7 +70,7 @@ hr {
 
     //"plus" sign (+) 
     &:after {
-        color: $yellow-2;
+        color: $grey-3;
     }
 
     &:focus {
@@ -84,19 +84,19 @@ hr {
 
 //buttons when the accordion panel is open
 .small-menu__accordion--active {
-    color: black;
-    background-color: rgb(255, 194, 111);
+    background-color: #A35A00;
+    color: $yellow-2;
 
     // "minus" sign (-)
     &:after {
-        color: $grey-3;
+        color: $yellow-2;
     }
 }
 
 /* Style the accordion panel. Note: hidden by default */
 .small-menu__panel {
     background-color: $white-1;
-    border: $large-menu-border-color;
+    // border color change in the small-menu.js
 }
 
 // large menu
@@ -136,4 +136,5 @@ hr {
 .large-menu__item-price {
     background-color: $orange-5;
     color: $white-1;
+    // background-color: rgb(215, 168, 110);
 }

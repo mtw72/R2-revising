@@ -5,14 +5,14 @@
 /* Caption text */
 .small-menu__image-description {
     border-top: 1px solid #A35A00;
-    color: #FFF0B8;
     background-color: #A35A00;
+    color: $yellow-2;
 }
 
 //Next & previous buttons
 .small-menu__slideshow-button--prev,
 .small-menu__slideshow-button--next {
-    color: rgb(229, 186, 115);
+    color: rgb(195, 129, 84);
 }
 
 .small-menu__slideshow-dot {
@@ -21,7 +21,7 @@
 
 .small-menu__slideshow-dot:hover,
 .slideshow-dot--active {
-    background-color: rgb(229, 186, 115);
+    background-color: rgb(195, 129, 84);
 }
 
 // reservation-form

@@ -406,15 +406,15 @@ hr {
 }
 
 .small-menu__accordion {
-  background-color: #A35A00;
-  color: rgb(255, 251, 235);
+  color: black;
+  background-color: rgb(249, 224, 187);
 }
 .small-menu__accordion:hover {
   background-color: #A35A00;
   color: rgb(255, 251, 235);
 }
 .small-menu__accordion:after {
-  color: rgb(255, 251, 235);
+  color: rgb(119, 119, 119);
 }
 .small-menu__accordion:focus {
   outline: 2px solid rgb(229, 186, 115);
@@ -424,17 +424,16 @@ hr {
 }
 
 .small-menu__accordion--active {
-  color: black;
-  background-color: rgb(255, 194, 111);
+  background-color: #A35A00;
+  color: rgb(255, 251, 235);
 }
 .small-menu__accordion--active:after {
-  color: rgb(119, 119, 119);
+  color: rgb(255, 251, 235);
 }
 
 /* Style the accordion panel. Note: hidden by default */
 .small-menu__panel {
   background-color: rgb(255, 255, 255);
-  border: 1px solid rgba(226, 186, 137, 0.842);
 }
 
 .large-menu__tab {
@@ -535,7 +534,7 @@ body {
 
 .large-menu__item-price {
   font-size: clamp(1.2rem, 1rem + 1vw, 1.4rem);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 0.75rem;
 }
 
@@ -1083,7 +1082,7 @@ section:not(:first-of-type) {
   border-radius: 10px;
   width: 4.6875rem;
   height: 2.5rem;
-  padding-block: 0.95rem;
+  padding-block: 0.9rem;
   margin-left: 0.5rem;
   text-align: center;
 }
