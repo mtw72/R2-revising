@@ -16,12 +16,10 @@ navbarToggler.addEventListener('click', function (event) {
   if (navList.style.maxHeight) {
     navList.style.maxHeight = null;
     navbarToggler.setAttribute('aria-expanded', 'false');
-    navList.setAttribute('aria-hidden', 'true');
     negativeTabIndex();
   } else {
     navList.style.maxHeight = navList.scrollHeight + "px";
     navbarToggler.setAttribute('aria-expanded', 'true');
-    navList.setAttribute('aria-hidden', 'false');
     zeroTabIndex();
   }
   event.stopPropagation();
@@ -210,7 +208,7 @@ function handleResize() {
     openMenuPanel();
   }
 }
-"use strict";
+'use strict';
 
 // default date and time values in reservation form
 // get date of today
@@ -422,7 +420,7 @@ textarea.addEventListener('input', function () {
     textarea.classList.remove('input');
   }
 });
-"use strict";
+'use strict';
 
 var submitButton = document.getElementById('formSumbitButton');
 var nameInput = document.getElementById("name");

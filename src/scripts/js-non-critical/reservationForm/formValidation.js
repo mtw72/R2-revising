@@ -1,3 +1,5 @@
+'use strict';
+
 const submitButton = document.getElementById('formSumbitButton');
 
 const nameInput = document.getElementById("name");

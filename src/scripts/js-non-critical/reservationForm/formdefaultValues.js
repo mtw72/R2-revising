@@ -1,3 +1,5 @@
+'use strict';
+
 // default date and time values in reservation form
 // get date of today
 const dateOfToday = new Date();

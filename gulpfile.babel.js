@@ -757,8 +757,8 @@ gulp.task('watchFiles', function () {
 gulp.task('default', gulp.series(
     gulp.parallel(
         // 'cssDevTask',
-        'scssCRDevTask',
-        'scssNCDevTask',
+        // 'scssCRDevTask',
+        // 'scssNCDevTask',
         // // 'jsCRLegacyDevTask', //legacy code same as modern code in this project
         // 'jsCRModernDevTask',
         // 'jsNCLegacyDevTask',

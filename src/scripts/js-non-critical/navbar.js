@@ -10,12 +10,11 @@ navbarToggler.addEventListener('click', (event) => {
   if (navList.style.maxHeight) {
     navList.style.maxHeight = null;
     navbarToggler.setAttribute('aria-expanded', 'false');
-    navList.setAttribute('aria-hidden', 'true');
+
     negativeTabIndex();
   } else {
     navList.style.maxHeight = navList.scrollHeight + "px";
     navbarToggler.setAttribute('aria-expanded', 'true');
-    navList.setAttribute('aria-hidden', 'false');
     zeroTabIndex();
   }
   event.stopPropagation();
