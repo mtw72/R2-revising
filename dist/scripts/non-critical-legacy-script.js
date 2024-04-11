@@ -101,6 +101,127 @@ function checkScreenSize() {
 }
 'use strict';
 
+//carousel for small & medium menu
+var slideIndex = 1;
+showSlides(slideIndex);
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("small-menu__carousel__slide");
+  var dots = document.getElementsByClassName("small-menu__carousel-dot");
+  if (n > slides.length || slideIndex > slides.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+    slides[i].className = slides[i].className.replace(" current-slide", "");
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" current-slide", "");
+    dots[i].setAttribute('aria-selected', 'false');
+  }
+  slides[slideIndex - 1].style.display = "block";
+  slides[slideIndex - 1].className += " current-slide";
+  dots[slideIndex - 1].className += " current-slide";
+  dots[slideIndex - 1].setAttribute('aria-selected', 'true');
+}
+function autoplay() {
+  slideIndex++;
+  showSlides();
+}
+var timer = setInterval(autoplay, 3500);
+function resetTimer() {
+  clearInterval(timer);
+  timer = setInterval(autoplay, 3500);
+}
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+  resetTimer();
+}
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+  resetTimer();
+}
+'use strict';
+
+function openMenu(event, menuName) {
+  var i, menutabs, menus;
+  menutabs = document.getElementsByClassName("large-menu__tab");
+  for (i = 0; i < menutabs.length; i++) {
+    menutabs[i].classList.remove("large-menu__tab--active");
+    menutabs[i].setAttribute('aria-selected', 'false');
+  }
+  event.currentTarget.classList.add("large-menu__tab--active");
+  event.currentTarget.setAttribute('aria-selected', 'true');
+  menus = document.getElementsByClassName("large-food-menu");
+  for (i = 0; i < menus.length; i++) {
+    menus[i].style.display = "none";
+  }
+  document.getElementById(menuName).style.display = "grid";
+}
+document.getElementById("pasta-tab").click();
+'use strict';
+
+var menuAccordion = document.getElementsByClassName("small-menu__accordion");
+
+// open the accordion when the website is loaded
+window.addEventListener('load', openMenuPanel);
+function openMenuPanel() {
+  for (var i = 0; i < menuAccordion.length; i++) {
+    if (menuAccordion[i].classList.contains("small-menu__accordion--active")) {
+      menuAccordion[i].setAttribute('aria-expanded', 'true');
+      var menuPanel = menuAccordion[i].nextElementSibling;
+      menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
+      menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
+      menuPanel.classList.add("small-menu__panel--open");
+      menuPanel.setAttribute('role', 'region');
+    }
+  }
+}
+;
+
+// open or close the accordion through clicks
+for (var i = 0; i < menuAccordion.length; i++) {
+  menuAccordion[i].addEventListener("click", function () {
+    this.classList.toggle("small-menu__accordion--active");
+
+    // toggle aria-expanded value
+    var expanded = this.getAttribute('aria-expanded');
+    if (expanded === 'true') {
+      this.setAttribute('aria-expanded', 'false');
+    } else {
+      this.setAttribute('aria-expanded', 'true');
+    }
+    ;
+
+    // toggle open or close panel, and aria-hidden value
+    var menuPanel = this.nextElementSibling;
+    if (menuPanel.classList.contains("small-menu__panel--open")) {
+      menuPanel.style.maxHeight = null;
+      menuPanel.classList.remove("small-menu__panel--open");
+      menuPanel.style.border = "none";
+      menuPanel.removeAttribute('role', 'region');
+    } else {
+      menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
+      menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
+      menuPanel.classList.add("small-menu__panel--open");
+      menuPanel.setAttribute('role', 'region');
+    }
+  });
+}
+
+// when the screen re-sizes, open the accordion
+window.addEventListener('resize', handleResize);
+function handleResize() {
+  var screenWidth = window.innerWidth;
+  if (screenWidth <= 450) {
+    openMenuPanel();
+  }
+}
+'use strict';
+
 // default date and time values in reservation form
 // get date of today
 var dateOfToday = new Date();
@@ -447,127 +568,6 @@ function dateInputEvent() {
     dateInput.setAttribute('aria-describedby', 'date-error');
     dateInput.setAttribute('aria-invalid', 'true');
     dateError.style.display = "block";
-  }
-}
-'use strict';
-
-//carousel for small & medium menu
-var slideIndex = 1;
-showSlides(slideIndex);
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("small-menu__carousel__slide");
-  var dots = document.getElementsByClassName("small-menu__carousel-dot");
-  if (n > slides.length || slideIndex > slides.length) {
-    slideIndex = 1;
-  }
-  if (n < 1) {
-    slideIndex = slides.length;
-  }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-    slides[i].className = slides[i].className.replace(" current-slide", "");
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" current-slide", "");
-    dots[i].setAttribute('aria-selected', 'false');
-  }
-  slides[slideIndex - 1].style.display = "block";
-  slides[slideIndex - 1].className += " current-slide";
-  dots[slideIndex - 1].className += " current-slide";
-  dots[slideIndex - 1].setAttribute('aria-selected', 'true');
-}
-function autoplay() {
-  slideIndex++;
-  showSlides();
-}
-var timer = setInterval(autoplay, 3500);
-function resetTimer() {
-  clearInterval(timer);
-  timer = setInterval(autoplay, 3500);
-}
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-  resetTimer();
-}
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-  resetTimer();
-}
-'use strict';
-
-function openMenu(event, menuName) {
-  var i, menutabs, menus;
-  menutabs = document.getElementsByClassName("large-menu__tab");
-  for (i = 0; i < menutabs.length; i++) {
-    menutabs[i].classList.remove("large-menu__tab--active");
-    menutabs[i].setAttribute('aria-selected', 'false');
-  }
-  event.currentTarget.classList.add("large-menu__tab--active");
-  event.currentTarget.setAttribute('aria-selected', 'true');
-  menus = document.getElementsByClassName("large-food-menu");
-  for (i = 0; i < menus.length; i++) {
-    menus[i].style.display = "none";
-  }
-  document.getElementById(menuName).style.display = "grid";
-}
-document.getElementById("pasta-tab").click();
-'use strict';
-
-var menuAccordion = document.getElementsByClassName("small-menu__accordion");
-
-// open the accordion when the website is loaded
-window.addEventListener('load', openMenuPanel);
-function openMenuPanel() {
-  for (var i = 0; i < menuAccordion.length; i++) {
-    if (menuAccordion[i].classList.contains("small-menu__accordion--active")) {
-      menuAccordion[i].setAttribute('aria-expanded', 'true');
-      var menuPanel = menuAccordion[i].nextElementSibling;
-      menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
-      menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
-      menuPanel.classList.add("small-menu__panel--open");
-      menuPanel.setAttribute('role', 'region');
-    }
-  }
-}
-;
-
-// open or close the accordion through clicks
-for (var i = 0; i < menuAccordion.length; i++) {
-  menuAccordion[i].addEventListener("click", function () {
-    this.classList.toggle("small-menu__accordion--active");
-
-    // toggle aria-expanded value
-    var expanded = this.getAttribute('aria-expanded');
-    if (expanded === 'true') {
-      this.setAttribute('aria-expanded', 'false');
-    } else {
-      this.setAttribute('aria-expanded', 'true');
-    }
-    ;
-
-    // toggle open or close panel, and aria-hidden value
-    var menuPanel = this.nextElementSibling;
-    if (menuPanel.classList.contains("small-menu__panel--open")) {
-      menuPanel.style.maxHeight = null;
-      menuPanel.classList.remove("small-menu__panel--open");
-      menuPanel.style.border = "none";
-      menuPanel.removeAttribute('role', 'region');
-    } else {
-      menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
-      menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
-      menuPanel.classList.add("small-menu__panel--open");
-      menuPanel.setAttribute('role', 'region');
-    }
-  });
-}
-
-// when the screen re-sizes, open the accordion
-window.addEventListener('resize', handleResize);
-function handleResize() {
-  var screenWidth = window.innerWidth;
-  if (screenWidth <= 450) {
-    openMenuPanel();
   }
 }
 //# sourceMappingURL=non-critical-legacy-script.js.map
