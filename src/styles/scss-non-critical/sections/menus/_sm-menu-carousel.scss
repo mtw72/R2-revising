@@ -12,28 +12,23 @@
 /* Hide the images by default */
 .small-menu__carousel__slide {
     display: none;
-    left: 50px;
-    transition: 0.5s;
 }
 
+/* Fading animation */
 .small-menu__carousel__slide.current-slide {
-    // animation-name: carousel;
-    // animation-duration: 1s;
-    display: block;
-    // position: relative;
-    left: 0px;
-    transition: 0.5s;
+    animation-name: fade;
+    animation-duration: 0.5s;
 }
 
-// @keyframes carousel {
-//     from {
-//         left: 50px;
-//     }
+@keyframes fade {
+    from {
+        opacity: 0.8;
+    }
 
-//     to {
-//         left: 0px;
-//     }
-// }
+    to {
+        opacity: 1;
+    }
+}
 
 .small-menu__carousel__image {
     display: block;
@@ -111,20 +106,4 @@
     display: inline-block;
     transition: background-color 0.6s ease;
     border: none;
-}
-
-/* Fading animation */
-.small-menu__carousel__slide--fade {
-    animation-name: fade;
-    animation-duration: 0.5s;
-}
-
-@keyframes fade {
-    from {
-        opacity: 0.9;
-    }
-
-    to {
-        opacity: 1;
-    }
 }

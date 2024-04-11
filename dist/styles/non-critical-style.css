@@ -15,7 +15,7 @@
 }
 
 .small-menu__carousel-dot:hover,
-.small-menu__carousel-dot.current-slide {
+.small-menu__carousel-dot.current-dot {
   background-color: rgb(195, 129, 84);
 }
 
@@ -264,18 +264,33 @@ section.findus {
 /* Hide the images by default */
 .small-menu__carousel__slide {
   display: none;
-  left: 50px;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
 }
 
+/* Fading animation */
 .small-menu__carousel__slide.current-slide {
-  display: block;
-  left: 0px;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-animation-name: fade;
+          animation-name: fade;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
+@-webkit-keyframes fade {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .small-menu__carousel__image {
   display: block;
   margin-inline: auto;
@@ -354,31 +369,6 @@ section.findus {
   border: none;
 }
 
-/* Fading animation */
-.small-menu__carousel__slide--fade {
-  -webkit-animation-name: fade;
-          animation-name: fade;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-}
-
-@-webkit-keyframes fade {
-  from {
-    opacity: 0.9;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade {
-  from {
-    opacity: 0.9;
-  }
-  to {
-    opacity: 1;
-  }
-}
 .reservation {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -15,12 +15,12 @@ function showSlides(n) {
     slides[i].className = slides[i].className.replace(" current-slide", "");
   }
   for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" small-menu__carousel__slide--fade", "");
+    dots[i].className = dots[i].className.replace(" current-dot", "");
     dots[i].setAttribute('aria-current', 'false');
   }
   slides[slideIndex - 1].style.display = "block";
-  slides[slideIndex - 1].className += " small-menu__carousel__slide--fade";
-  dots[slideIndex - 1].className += " current-slide";
+  slides[slideIndex - 1].className += " current-slide";
+  dots[slideIndex - 1].className += " current-dot";
   dots[slideIndex - 1].setAttribute('aria-current', 'true');
 }
 
