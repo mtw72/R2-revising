@@ -2,7 +2,7 @@
 @use '../../../scss-common-partials/mixins' as *;
 
 /* Slideshow container */
-.small-menu__slideshow-container {
+.small-menu__carousel__track-container {
     position: relative;
     margin: auto;
     margin-top: f.rem(25);
@@ -10,11 +10,27 @@
 }
 
 /* Hide the images by default */
-.small-menu__slide {
+.small-menu__carousel__slide {
     display: none;
 }
 
-.small-menu__slide img {
+.small-menu__carousel__slide.current-slide {
+    animation-name: example;
+    animation-duration: 1s;
+    position: relative;
+}
+
+@keyframes example {
+    from {
+        left: 50px;
+    }
+
+    to {
+        left: 0px;
+    }
+}
+
+.small-menu__carousel__image {
     display: block;
     margin-inline: auto;
     width: 85%;
@@ -33,8 +49,8 @@
 }
 
 //Next & previous buttons
-.small-menu__slideshow-button--prev,
-.small-menu__slideshow-button--next {
+.small-menu__carousel__button,
+.small-menu__carousel__button {
     cursor: pointer;
     position: absolute;
     top: 45%;
@@ -47,44 +63,45 @@
     background-color: transparent;
 }
 
-.small-menu__slideshow-button--prev {
+.small-menu__carousel__button--prev {
     left: -4px;
 }
 
-.small-menu__slideshow-button--next {
+.small-menu__carousel__button--next {
     right: -4px;
 }
 
 @include min-mq (xs) {
 
-    .small-menu__slideshow-button--prev,
-    .small-menu__slideshow-button--next {
+    .small-menu__carousel__button,
+    .small-menu__carousel__button {
         top: 42%;
         font-size: 1.25rem;
         transition: 0.6s ease;
         padding: 1rem;
     }
 
-    .small-menu__slideshow-button--prev {
+    .small-menu__carousel__button--prev {
         left: -30px;
     }
 
-    .small-menu__slideshow-button--next {
+    .small-menu__carousel__button--next {
         right: -30px;
     }
 }
 
 /* The dots indicators */
-.small-menu__slideshow-dots {
+.small-menu__carousel-dots {
     text-align: center;
     margin-top: 0.75rem;
 }
 
-.small-menu__slideshow-dot {
+.small-menu__carousel-dot {
     cursor: pointer;
     height: 0.5rem;
     width: 0.5rem;
     margin: 0 3px;
+    padding-inline: 1px;
     border-radius: 100%;
     display: inline-block;
     transition: background-color 0.6s ease;
@@ -92,17 +109,17 @@
 }
 
 /* Fading animation */
-.small-menu__slide--fade {
+.small-menu__carousel__slide--fade {
     animation-name: fade;
     animation-duration: 3.5s;
 }
 
-@keyframes fade {
-    from {
-        opacity: 0.9;
-    }
+// @keyframes fade {
+//     from {
+//         opacity: 0.9;
+//     }
 
-    to {
-        opacity: 1;
-    }
-}
+//     to {
+//         opacity: 1;
+//     }
+// }

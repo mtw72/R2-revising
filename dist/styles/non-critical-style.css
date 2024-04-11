@@ -5,17 +5,17 @@
   color: rgb(255, 251, 235);
 }
 
-.small-menu__slideshow-button--prev,
-.small-menu__slideshow-button--next {
+.small-menu__carousel__button--prev,
+.small-menu__carousel__button--next {
   color: rgb(195, 129, 84);
 }
 
-.small-menu__slideshow-dot {
+.small-menu__carousel-dot {
   background-color: #fcdeb9;
 }
 
-.small-menu__slideshow-dot:hover,
-.slideshow-dot--active {
+.small-menu__carousel-dot:hover,
+.small-menu__carousel-dot.current-slide {
   background-color: rgb(195, 129, 84);
 }
 
@@ -254,7 +254,7 @@ section.findus {
 }
 
 /* Slideshow container */
-.small-menu__slideshow-container {
+.small-menu__carousel__track-container {
   position: relative;
   margin: auto;
   margin-top: 1.5625rem;
@@ -262,11 +262,36 @@ section.findus {
 }
 
 /* Hide the images by default */
-.small-menu__slide {
+.small-menu__carousel__slide {
   display: none;
 }
 
-.small-menu__slide img {
+.small-menu__carousel__slide.current-slide {
+  -webkit-animation-name: example;
+          animation-name: example;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  position: relative;
+}
+
+@-webkit-keyframes example {
+  from {
+    left: 50px;
+  }
+  to {
+    left: 0px;
+  }
+}
+
+@keyframes example {
+  from {
+    left: 50px;
+  }
+  to {
+    left: 0px;
+  }
+}
+.small-menu__carousel__image {
   display: block;
   margin-inline: auto;
   width: 85%;
@@ -283,8 +308,8 @@ section.findus {
   border-radius: 0 0 5px 5px;
 }
 
-.small-menu__slideshow-button--prev,
-.small-menu__slideshow-button--next {
+.small-menu__carousel__button,
+.small-menu__carousel__button {
   cursor: pointer;
   position: absolute;
   top: 45%;
@@ -301,41 +326,42 @@ section.findus {
   background-color: transparent;
 }
 
-.small-menu__slideshow-button--prev {
+.small-menu__carousel__button--prev {
   left: -4px;
 }
 
-.small-menu__slideshow-button--next {
+.small-menu__carousel__button--next {
   right: -4px;
 }
 
 @media all and (min-width: 28.125em) {
-  .small-menu__slideshow-button--prev,
-  .small-menu__slideshow-button--next {
+  .small-menu__carousel__button,
+  .small-menu__carousel__button {
     top: 42%;
     font-size: 1.25rem;
     -webkit-transition: 0.6s ease;
     transition: 0.6s ease;
     padding: 1rem;
   }
-  .small-menu__slideshow-button--prev {
+  .small-menu__carousel__button--prev {
     left: -30px;
   }
-  .small-menu__slideshow-button--next {
+  .small-menu__carousel__button--next {
     right: -30px;
   }
 }
 /* The dots indicators */
-.small-menu__slideshow-dots {
+.small-menu__carousel-dots {
   text-align: center;
   margin-top: 0.75rem;
 }
 
-.small-menu__slideshow-dot {
+.small-menu__carousel-dot {
   cursor: pointer;
   height: 0.5rem;
   width: 0.5rem;
   margin: 0 3px;
+  padding-inline: 1px;
   border-radius: 100%;
   display: inline-block;
   -webkit-transition: background-color 0.6s ease;
@@ -344,30 +370,13 @@ section.findus {
 }
 
 /* Fading animation */
-.small-menu__slide--fade {
+.small-menu__carousel__slide--fade {
   -webkit-animation-name: fade;
           animation-name: fade;
   -webkit-animation-duration: 3.5s;
           animation-duration: 3.5s;
 }
 
-@-webkit-keyframes fade {
-  from {
-    opacity: 0.9;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade {
-  from {
-    opacity: 0.9;
-  }
-  to {
-    opacity: 1;
-  }
-}
 .reservation {
   display: -webkit-box;
   display: -ms-flexbox;

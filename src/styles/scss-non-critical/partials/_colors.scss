@@ -10,17 +10,17 @@
 }
 
 //Next & previous buttons
-.small-menu__slideshow-button--prev,
-.small-menu__slideshow-button--next {
+.small-menu__carousel__button--prev,
+.small-menu__carousel__button--next {
     color: rgb(195, 129, 84);
 }
 
-.small-menu__slideshow-dot {
+.small-menu__carousel-dot {
     background-color: #fcdeb9;
 }
 
-.small-menu__slideshow-dot:hover,
-.slideshow-dot--active {
+.small-menu__carousel-dot:hover,
+.small-menu__carousel-dot.current-slide {
     background-color: rgb(195, 129, 84);
 }
 

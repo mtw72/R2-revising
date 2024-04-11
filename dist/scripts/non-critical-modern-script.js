@@ -118,19 +118,21 @@ showSlides(slideIndex);
 
 function showSlides(n) {
   let i;
-  let slides = document.getElementsByClassName("small-menu__slide");
-  let dots = document.getElementsByClassName("small-menu__slideshow-dot");
+  let slides = document.getElementsByClassName("small-menu__carousel__slide");
+  let dots = document.getElementsByClassName("small-menu__carousel-dot");
   if (n > slides.length || slideIndex > slides.length) { slideIndex = 1 }
   if (n < 1) { slideIndex = slides.length }
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
+    slides[i].className = slides[i].className.replace(" current-slide", "");
   }
   for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" slideshow-dot--active", "");
+    dots[i].className = dots[i].className.replace(" current-slide", "");
     dots[i].setAttribute('aria-selected', 'false');
   }
   slides[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].className += " slideshow-dot--active";
+  slides[slideIndex - 1].className += " current-slide";
+  dots[slideIndex - 1].className += " current-slide";
   dots[slideIndex - 1].setAttribute('aria-selected', 'true');
 }
 
