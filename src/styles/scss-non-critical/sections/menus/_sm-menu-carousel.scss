@@ -16,6 +16,7 @@
 
 /* Fading animation */
 .small-menu__carousel__slide.current-slide {
+    display: block;
     animation-name: fade;
     animation-duration: 0.5s;
 }
