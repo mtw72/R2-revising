@@ -2,17 +2,17 @@
 @use '../../scss-common-partials/mixins' as *;
 
 body {
-    background-color: $yellow-1;
+    background-color: $yellow-1a;
 }
 
 hr {
-    border: 1px solid $orange-3;
+    border: 1px solid $orange-1;
 }
 
 // skip-link for keyboard users
 .skip-link {
-    color: $white-1;
     background-color: $red-1;
+    color: $white-1;
 }
 
 // navbar
@@ -27,9 +27,9 @@ hr {
 
 .navbar__toggler {
     background-color: transparent;
-    outline: 1px solid $grey-2;
     color: $grey-3;
     border: transparent;
+    outline: 1px solid $grey-2;
 
     &:focus {
         outline: 2px solid $grey-3;
@@ -50,21 +50,21 @@ hr {
 
 // home
 #home {
-    border-bottom: 1px solid $orange-3;
+    border-bottom: 1px solid $orange-1;
 }
 
 .hero-text {
-    color: $white-4;
+    color: $white-2;
 }
 
 // small menu
 //buttons when the accordion panel is close
 .small-menu__accordion {
-    color: black;
-    background-color: rgb(249, 224, 187);
+    background-color: $orange-3;
+    color: $black-1;
 
     &:hover {
-        background-color: #A35A00;
+        background-color: $brown-2;
         color: $yellow-2;
     }
 
@@ -74,7 +74,7 @@ hr {
     }
 
     &:focus {
-        outline: 2px solid $orange-3;
+        outline: 2px solid $orange-1;
 
         &:after {
             color: $yellow-2;
@@ -84,7 +84,7 @@ hr {
 
 //buttons when the accordion panel is open
 .small-menu__accordion--active {
-    background-color: #A35A00;
+    background-color: $brown-2;
     color: $yellow-2;
 
     // "minus" sign (-)
@@ -101,42 +101,40 @@ hr {
 
 // large menu
 .large-menu__tab {
-    background-color: #fff6d7ce;
-    color: #A35A00;
-    border: 1px solid #ffde67;
+    background-color: $yellow-6a;
+    color: $brown-2;
+    border: 1px solid $yellow-4;
 
     &:hover {
         font-weight: bold;
-        color: rgb(250, 248, 241);
-        background-color: rgb(197, 137, 64);
-        border: 1px solid rgb(197, 137, 64);
+        background-color: $brown-3;
+        color: $white-2;
+        border: 1px solid $brown-3;
     }
 
     &--active {
-        border: 1px solid rgb(197, 137, 64);
-        color: #FFF0B8;
-        background-color: #A35A00;
+        background-color: $brown-2;
+        color: $yellow-5;
+        border: 1px solid $brown-3;
     }
 }
 
 // menu content
 .large-food-menu {
-    border: $large-menu-border-color;
     background-color: $white-1;
+    border: 1px solid $brown-5;
 }
 
 .large-menu__item {
-    border-bottom: $large-menu-border-color;
+    border-bottom: 1px solid $brown-5;
 
     @include min-mq(md) {
-        border-right: $large-menu-border-color;
+        border-right: 1px solid $brown-5;
     }
 }
 
 .large-menu__item-price {
-    background-color: $orange-5;
-    color: $white-1;
-    background-color: #fff6d7ce;
-    color: #A35A00;
-    box-shadow: 1px 1px 2px rgb(197, 137, 64);
+    background-color: $yellow-6a;
+    color: $brown-2;
+    box-shadow: 1px 1px 2px $brown-3;
 }

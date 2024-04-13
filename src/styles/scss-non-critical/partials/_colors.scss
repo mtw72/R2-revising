@@ -4,30 +4,30 @@
 // carousel
 /* Caption text */
 .small-menu__image-description {
-    border-top: 1px solid #A35A00;
-    background-color: #A35A00;
+    background-color: $brown-2;
     color: $yellow-2;
+    border-top: 1px solid $brown-2;
 }
 
 //Next & previous buttons
 .small-menu__carousel__button--prev,
 .small-menu__carousel__button--next {
-    color: rgb(195, 129, 84);
+    color: $brown-4;
 }
 
 .small-menu__carousel-dot {
-    background-color: #fcdeb9;
+    background-color: $orange-6;
 }
 
 .small-menu__carousel-dot:hover,
 .small-menu__carousel-dot.current-dot {
-    background-color: rgb(195, 129, 84);
+    background-color: $brown-4;
 }
 
 // reservation-form
 .reservation__photo img {
-    border: 1px solid $white-5;
     background-color: $white-1;
+    border: 1px solid $white-3;
 }
 
 .mandatory-field {
@@ -75,11 +75,11 @@ textarea:focus {
     box-shadow: 1px 1px 1px $grey-4;
 
     &:hover {
-        outline: 3px solid $orange-4;
+        outline: 3px solid $orange-2;
     }
 
     &:focus {
-        outline: 3px solid $orange-4;
+        outline: 3px solid $orange-2;
     }
 }
 
@@ -96,13 +96,13 @@ textarea:focus {
 contacts in findus and
 social icons in footer  */
 .g-link {
-    color: $brown-1;
-}
-
-.g-link:hover {
     color: $brown-2;
 }
 
+.g-link:hover {
+    color: $orange-4;
+}
+
 .g-link:active {
-    color: $brown-3;
+    color: $orange-5;
 }

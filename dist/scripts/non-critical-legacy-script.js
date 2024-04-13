@@ -440,7 +440,6 @@ var phoneNumberError = document.getElementById("phone-error");
 var emailInput = document.getElementById("email");
 var emailError = document.getElementById("email-error");
 var dateError = document.getElementById("date-error");
-var timeError = document.getElementById("time-error");
 
 // first validation on submit
 submitButton.addEventListener('click', function (event) {
@@ -505,7 +504,6 @@ submitButton.addEventListener('click', function (event) {
   phoneNumberInput.addEventListener('input', phoneNumberInputEvent);
   emailInput.addEventListener('input', emailInputEvent);
   dateInput.addEventListener('input', dateInputEvent);
-  timeInput.addEventListener('input', timeInputEvent);
 });
 function nameInputEvent() {
   var letterPattern = /^[A-Za-z ]+$/;

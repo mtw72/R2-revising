@@ -1,8 +1,8 @@
 /* Caption text */
 .small-menu__image-description {
-  border-top: 1px solid #A35A00;
-  background-color: #A35A00;
+  background-color: rgb(163, 90, 0);
   color: rgb(255, 251, 235);
+  border-top: 1px solid rgb(163, 90, 0);
 }
 
 .small-menu__carousel__button--prev,
@@ -11,7 +11,7 @@
 }
 
 .small-menu__carousel-dot {
-  background-color: #fcdeb9;
+  background-color: rgb(252, 222, 185);
 }
 
 .small-menu__carousel-dot:hover,
@@ -20,8 +20,8 @@
 }
 
 .reservation__photo img {
-  border: 1px solid rgb(222, 226, 230);
   background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(222, 226, 230);
 }
 
 .mandatory-field {
@@ -88,7 +88,7 @@ textarea:focus {
 contacts in findus and
 social icons in footer  */
 .g-link {
-  color: rgb(174, 96, 0);
+  color: rgb(163, 90, 0);
 }
 
 .g-link:hover {

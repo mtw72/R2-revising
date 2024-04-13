@@ -1,36 +1,34 @@
 // color variables
 $white-1: rgb(255, 255, 255);
-$white-2: rgb(245, 245, 245);
-$white-3: rgb(243, 243, 243);
-$white-4: rgb(240, 248, 255);
-$white-5: rgb(222, 226, 230);
-$yellow-1: rgba(255, 251, 245, 0.5);
+$white-2: rgb(240, 248, 255);
+$white-3: rgb(222, 226, 230);
+$yellow-1a: rgba(255, 251, 245, 0.5);
 $yellow-2: rgb(255, 251, 235);
 $yellow-2a: rgba(255, 251, 235, 0.95);
-$yellow-2b: rgba(255, 251, 235, 0.7);
 $yellow-3: rgb(255, 239, 213);
+$yellow-4: rgb(255, 222, 103);
+$yellow-5: rgb(255, 240, 184);
+$yellow-6a: rgba(255, 246, 215, 0.808);
 $pink-1: rgb(255, 192, 203);
-$pink-2: rgb(255, 182, 193); //maybe for warning input field
 $red-1: rgb(255, 0, 0);
-$orange-1: rgb(255, 231, 204);
-$orange-2: rgb(248, 203, 166);
-$orange-2a: rgba(248, 203, 166, 0.7);
-$orange-3: rgb(229, 186, 115);
-$orange-4: rgb(255, 165, 0);
-$orange-5: rgba(186, 90, 12, 0.75);
+$orange-1: rgb(229, 186, 115);
+$orange-2: rgb(255, 165, 0);
+$orange-3: rgb(249, 224, 187);
+$orange-4: rgb(224, 177, 120);
+$orange-5: rgb(233, 205, 171);
+$orange-6: rgb(252, 222, 185);
 $brown-1: rgb(174, 96, 0);
-$brown-2: rgb(224, 177, 120);
-$brown-3: rgb(233, 205, 171);
+$brown-2: rgb(163, 90, 0);
+$brown-3: rgb(197, 137, 64);
+$brown-4: rgb(195, 129, 84);
+$brown-5: rgba(226, 186, 137, 0.842);
 $grey-1: rgb(92, 92, 92);
 $grey-2: rgb(206, 212, 218);
 $grey-3: rgb(119, 119, 119);
 $grey-4: rgb(102, 102, 102);
 $black-1: rgb(0, 0, 0);
-$black-1a: rgba(0, 0, 0, 0.7);
 $black-2: rgb(33, 37, 41);
 $black-2a: rgba(33, 37, 41, 0.7);
-
-$large-menu-border-color: 1px solid rgba(226, 186, 137, 0.842);
 
 // max-width variables within container for veritcal alignment purpose in different screen size
 $mw-xxs: 300;

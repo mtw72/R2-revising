@@ -9,7 +9,6 @@ const phoneNumberError = document.getElementById("phone-error");
 const emailInput = document.getElementById("email");
 const emailError = document.getElementById("email-error");
 const dateError = document.getElementById("date-error");
-const timeError = document.getElementById("time-error");
 
 // first validation on submit
 submitButton.addEventListener('click', (event) => {
@@ -74,7 +73,6 @@ submitButton.addEventListener('click', (event) => {
     phoneNumberInput.addEventListener('input', phoneNumberInputEvent);
     emailInput.addEventListener('input', emailInputEvent);
     dateInput.addEventListener('input', dateInputEvent);
-    timeInput.addEventListener('input', timeInputEvent);
 });
 
 function nameInputEvent() {
