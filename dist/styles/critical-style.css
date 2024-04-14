@@ -639,7 +639,7 @@ body {
     padding-inline: 1.5rem;
   }
 }
-@media all and (min-width: 78.125em) {
+@media all and (min-width: 76.25em) {
   .navbar__container {
     padding-inline: 2rem;
   }
@@ -787,7 +787,7 @@ section:not(:first-of-type) {
     padding-block: 5rem;
   }
 }
-@media all and (min-width: 78.125em) {
+@media all and (min-width: 76.25em) {
   section:not(:first-of-type) {
     width: min(100% - 6rem, 93.75rem);
     padding-block: 6rem 8.5rem;
@@ -823,7 +823,7 @@ section:not(:first-of-type) {
     max-width: 62.5rem;
   }
 }
-@media all and (min-width: 78.125em) {
+@media all and (min-width: 87.5em) {
   .large-menu {
     max-width: 78.125rem;
   }
@@ -937,7 +937,7 @@ section:not(:first-of-type) {
     margin-bottom: 3rem;
   }
 }
-@media all and (min-width: 78.125em) {
+@media all and (min-width: 76.25em) {
   #menu h1 {
     margin-bottom: 3.5rem;
   }
