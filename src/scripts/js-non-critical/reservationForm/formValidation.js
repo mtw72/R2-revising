@@ -68,6 +68,10 @@ submitButton.addEventListener('click', (event) => {
         dateError.style.display = "none";
     }
 
+    if (nameError.style.display === "block" || phoneNumberError.style.display === "block" || emailError.style.display === "block" || dateError.style.display === "block") {
+        alert("Please provide valid input.");
+    }
+
     // Add the input event listener after first submission
     nameInput.addEventListener('input', nameInputEvent);
     phoneNumberInput.addEventListener('input', phoneNumberInputEvent);

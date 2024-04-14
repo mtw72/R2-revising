@@ -61,23 +61,23 @@ function closeNavbarByTab(event) {
 }
 
 // When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar 
-let prevScrollpos = window.scrollY;
-window.onscroll = function () {
-  let currentScrollPos = window.scrollY;
-  let screenWidth = window.innerWidth;
+// let prevScrollpos = window.scrollY;
+// window.onscroll = function () {
+//   let currentScrollPos = window.scrollY;
+//   let screenWidth = window.innerWidth;
 
-  if (prevScrollpos > currentScrollPos) {
-    navBar.style.top = "0";
-    if (screenWidth <= 350 || screenWidth <= 600 && screenWidth > 450) {
-      home.style.paddingTop = "70px";
-    }
-  } else {
-    navBar.style.top = "-500px";
-    home.style.paddingTop = "0px";
-    closeNavbar();
-  }
-  prevScrollpos = currentScrollPos;
-}
+//   if (prevScrollpos > currentScrollPos) {
+//     navBar.style.top = "0";
+//     if (screenWidth <= 350 || screenWidth <= 600 && screenWidth > 450) {
+//       home.style.paddingTop = "70px";
+//     }
+//   } else {
+//     navBar.style.top = "-500px";
+//     home.style.paddingTop = "0px";
+//     closeNavbar();
+//   }
+//   prevScrollpos = currentScrollPos;
+// }
 
 window.onresize = function () {
   // Update the screenWidth variable with the current window width
@@ -521,6 +521,10 @@ submitButton.addEventListener('click', (event) => {
         dateError.style.display = "none";
     }
 
+    if (nameError.style.display === "block" || phoneNumberError.style.display === "block" || emailError.style.display === "block" || dateError.style.display === "block") {
+        alert("Please provide valid input.");
+    }
+
     // Add the input event listener after first submission
     nameInput.addEventListener('input', nameInputEvent);
     phoneNumberInput.addEventListener('input', phoneNumberInputEvent);
@@ -595,4 +599,18 @@ function dateInputEvent() {
         dateError.style.display = "block";
     }
 }
+'use strict';
+
+// Open the modal
+function openModal(event, modalName) {
+    document.getElementById(modalName).style.display = "block";
+}
+
+// Get the close buttons
+const closeButton = document.getElementsByClassName("reservation__message__close-button");
+
+// Add an event listener to the close button to close the message
+closeButton[0].addEventListener("click", function () {
+    this.closest(".reservation__message-container").style.display = "none";
+});
 //# sourceMappingURL=non-critical-modern-script.js.map

@@ -54,23 +54,23 @@ function closeNavbarByTab(event) {
 }
 
 // When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar 
-let prevScrollpos = window.scrollY;
-window.onscroll = function () {
-  let currentScrollPos = window.scrollY;
-  let screenWidth = window.innerWidth;
+// let prevScrollpos = window.scrollY;
+// window.onscroll = function () {
+//   let currentScrollPos = window.scrollY;
+//   let screenWidth = window.innerWidth;
 
-  if (prevScrollpos > currentScrollPos) {
-    navBar.style.top = "0";
-    if (screenWidth <= 350 || screenWidth <= 600 && screenWidth > 450) {
-      home.style.paddingTop = "70px";
-    }
-  } else {
-    navBar.style.top = "-500px";
-    home.style.paddingTop = "0px";
-    closeNavbar();
-  }
-  prevScrollpos = currentScrollPos;
-}
+//   if (prevScrollpos > currentScrollPos) {
+//     navBar.style.top = "0";
+//     if (screenWidth <= 350 || screenWidth <= 600 && screenWidth > 450) {
+//       home.style.paddingTop = "70px";
+//     }
+//   } else {
+//     navBar.style.top = "-500px";
+//     home.style.paddingTop = "0px";
+//     closeNavbar();
+//   }
+//   prevScrollpos = currentScrollPos;
+// }
 
 window.onresize = function () {
   // Update the screenWidth variable with the current window width

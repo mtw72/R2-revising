@@ -5,6 +5,7 @@
 @use './form-textarea' as *;
 @use './form-paragraph' as *;
 @use './form-button' as *;
+@use './form-message' as *;
 
 
 
@@ -16,3 +17,4 @@
 @forward '../reservation-form/form-textarea';
 @forward '../reservation-form/form-paragraph';
 @forward '../reservation-form/form-button';
+@forward '../reservation-form/form-message';

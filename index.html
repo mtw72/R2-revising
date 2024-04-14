@@ -52,7 +52,7 @@
   </noscript> -->
 
 
-  <!-- <link rel="stylesheet" href="./dist/styles/googlefont.css">
+  <link rel="stylesheet" href="./dist/styles/googlefont.css">
   <link rel="stylesheet" href="./dist/styles/loader.css">
   <script src="./dist/scripts/critical-modern-script.js"></script>
 
@@ -62,13 +62,13 @@
     onload="this.onload=null;this.rel='stylesheet'">
 
   <script defer src="./dist/scripts/non-critical-modern-script.js"></script>
-  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.js" type="text/javascript"></script> -->
+  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.js" type="text/javascript"></script>
 
 
 
 
 
-  <link rel="stylesheet" href="./dist/styles/googlefont.min.css">
+  <!-- <link rel="stylesheet" href="./dist/styles/googlefont.min.css">
   <link rel="stylesheet" href="./dist/styles/loader.min.css">
   <script src="./dist/scripts/critical-modern-script.min.js"></script>
 
@@ -78,7 +78,7 @@
     onload="this.onload=null;this.rel='stylesheet'">
 
   <script defer src="./dist/scripts/non-critical-modern-script.min.js"></script>
-  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.min.js" type="text/javascript"></script>
+  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.min.js" type="text/javascript"></script> -->
 
 </head>
 
@@ -416,12 +416,35 @@
               </div>
 
               <div class="reservation__form--bottom-part">
+
                 <div class="clearfix">
                   <button id="formSumbitButton" type="submit" class="reservation__form--button">Submit</button>
                 </div>
               </div>
             </div>
           </form>
+
+          <!-- confirmation or error message -->
+          <div class="reservation__message-container">
+            <div class="reservation__message-content">
+              <h2>Booking Summary<span class="reservation__message__close-button">&times;</span></h2>
+              <p>Please confirm the following details:-</p>
+              <ul class="reservation__message-list">
+                <li>Your Name:</li>
+                <li>Number of Guest:</li>
+                <li>Date:</li>
+                <li>Time:</li>
+                <li>Your Phone Number:</li>
+                <li>Your Email:</li>
+              </ul>
+              <div class="reservation__message__bottom-buttons">
+                <button type="button"
+                  class="reservation__message__bottom-button reservation__message__bottom-button--confirm">Confirm</button>
+                <button type="button"
+                  class="reservation__message__bottom-button reservation__message__bottom-button--cancel">Cancel</button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
