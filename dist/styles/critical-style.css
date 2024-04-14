@@ -832,6 +832,8 @@ section:not(:first-of-type) {
 #home {
   padding-top: 4.375rem;
   position: relative;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 @media all and (min-width: 21.875em) and (max-width: 28.0925em) {
   #home {

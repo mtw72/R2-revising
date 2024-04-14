@@ -6,9 +6,11 @@ var copyrightYear = copyrightDate.getFullYear();
 document.getElementById("year").textContent = copyrightYear;
 'use strict';
 
+var navBar = document.getElementById("navbar");
 var navbarToggler = document.querySelector('.navbar__toggler');
 var navList = document.querySelector('.navbar__collapse');
 var navLinks = document.querySelectorAll('.navbar__nav-link');
+var home = document.getElementById("home");
 
 // Show or hide the collapsible navbar when toggler is clicked
 navbarToggler.addEventListener('click', function (event) {
@@ -57,13 +59,29 @@ function closeNavbarByTab(event) {
 var prevScrollpos = window.scrollY;
 window.onscroll = function () {
   var currentScrollPos = window.scrollY;
+  var screenWidth = window.innerWidth;
   if (prevScrollpos > currentScrollPos) {
-    document.getElementById("navbar").style.top = "0";
+    navBar.style.top = "0";
+    if (screenWidth <= 350 || screenWidth <= 600 && screenWidth > 450) {
+      home.style.paddingTop = "70px";
+    }
   } else {
-    document.getElementById("navbar").style.top = "-500px";
+    navBar.style.top = "-500px";
+    home.style.paddingTop = "0px";
     closeNavbar();
   }
   prevScrollpos = currentScrollPos;
+};
+window.onresize = function () {
+  // Update the screenWidth variable with the current window width
+  var screenWidth = window.innerWidth;
+
+  // Check the screenWidth and adjust paddingTop accordingly
+  if (screenWidth <= 350 || screenWidth <= 600 && screenWidth > 450) {
+    home.style.paddingTop = "70px";
+  } else {
+    home.style.paddingTop = "0px";
+  }
 };
 
 // add or remove aria-attributes values of menu toggler

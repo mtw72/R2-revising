@@ -2,8 +2,10 @@
 @use '../../scss-common-partials/mixins' as *;
 
 #home {
+    // mq (0-350 & 450-600), padding-top : 70px 
     padding-top: f.rem(70);
     position: relative;
+    transition: 0.5s;
 
     @include custom-between-mq (350, 449.5) {
         padding-top: 0;

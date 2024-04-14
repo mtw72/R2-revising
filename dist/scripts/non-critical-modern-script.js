@@ -7,9 +7,11 @@ document.getElementById("year").textContent = copyrightYear;
 
 'use strict';
 
+const navBar = document.getElementById("navbar");
 const navbarToggler = document.querySelector('.navbar__toggler');
 const navList = document.querySelector('.navbar__collapse');
 const navLinks = document.querySelectorAll('.navbar__nav-link');
+const home = document.getElementById("home");
 
 // Show or hide the collapsible navbar when toggler is clicked
 navbarToggler.addEventListener('click', (event) => {
@@ -62,15 +64,32 @@ function closeNavbarByTab(event) {
 let prevScrollpos = window.scrollY;
 window.onscroll = function () {
   let currentScrollPos = window.scrollY;
+  let screenWidth = window.innerWidth;
+
   if (prevScrollpos > currentScrollPos) {
-    document.getElementById("navbar").style.top = "0";
+    navBar.style.top = "0";
+    if (screenWidth <= 350 || screenWidth <= 600 && screenWidth > 450) {
+      home.style.paddingTop = "70px";
+    }
   } else {
-    document.getElementById("navbar").style.top = "-500px";
+    navBar.style.top = "-500px";
+    home.style.paddingTop = "0px";
     closeNavbar();
   }
   prevScrollpos = currentScrollPos;
 }
 
+window.onresize = function () {
+  // Update the screenWidth variable with the current window width
+  let screenWidth = window.innerWidth;
+
+  // Check the screenWidth and adjust paddingTop accordingly
+  if (screenWidth <= 350 || screenWidth <= 600 && screenWidth > 450) {
+    home.style.paddingTop = "70px";
+  } else {
+    home.style.paddingTop = "0px";
+  }
+}
 
 // add or remove aria-attributes values of menu toggler
 function addDefaultAriaAttributes() {
@@ -108,132 +127,6 @@ function checkScreenSize() {
   } else {
     removeDefaultAriaAttributes();
     zeroTabIndex();
-  }
-}
-'use strict';
-
-//carousel for small & medium menu
-let slideIndex = 1;
-showSlides(slideIndex);
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("small-menu__carousel__slide");
-  let dots = document.getElementsByClassName("small-menu__carousel-dot");
-  if (n > slides.length || slideIndex > slides.length) { slideIndex = 1 }
-  if (n < 1) { slideIndex = slides.length }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].className = slides[i].className.replace(" current-slide", "");
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" current-dot", "");
-    dots[i].setAttribute('aria-current', 'false');
-  }
-  slides[slideIndex - 1].className += " current-slide";
-  dots[slideIndex - 1].className += " current-dot";
-  dots[slideIndex - 1].setAttribute('aria-current', 'true');
-}
-
-function autoplay() {
-  slideIndex++;
-  showSlides();
-}
-
-let timer = setInterval(autoplay, 3500)
-
-function resetTimer() {
-  clearInterval(timer);
-  timer = setInterval(autoplay, 3500);
-}
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-  resetTimer();
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-  resetTimer();
-}
-'use strict';
-
-function openMenu(event, menuName) {
-  let i, menutabs, menus;
-
-  menutabs = document.getElementsByClassName("large-menu__tab");
-  for (i = 0; i < menutabs.length; i++) {
-    menutabs[i].classList.remove("large-menu__tab--active");
-    menutabs[i].setAttribute('aria-selected', 'false');
-  }
-  event.currentTarget.classList.add("large-menu__tab--active");
-  event.currentTarget.setAttribute('aria-selected', 'true');
-
-  menus = document.getElementsByClassName("large-food-menu");
-  for (i = 0; i < menus.length; i++) {
-    menus[i].style.display = "none";
-  }
-  document.getElementById(menuName).style.display = "grid";
-}
-
-document.getElementById("pasta-tab").click();
-'use strict';
-
-const menuAccordion = document.getElementsByClassName("small-menu__accordion");
-
-// open the accordion when the website is loaded
-window.addEventListener('load', openMenuPanel)
-
-function openMenuPanel() {
-  for (let i = 0; i < menuAccordion.length; i++) {
-    if (menuAccordion[i].classList.contains("small-menu__accordion--active")) {
-      menuAccordion[i].setAttribute('aria-expanded', 'true');
-      let menuPanel = menuAccordion[i].nextElementSibling;
-      menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
-      menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
-      menuPanel.classList.add("small-menu__panel--open");
-      menuPanel.setAttribute('role', 'region');
-    }
-  }
-};
-
-
-// open or close the accordion through clicks
-for (let i = 0; i < menuAccordion.length; i++) {
-  menuAccordion[i].addEventListener("click", function () {
-    this.classList.toggle("small-menu__accordion--active");
-
-    // toggle aria-expanded value
-    let expanded = this.getAttribute('aria-expanded');
-    if (expanded === 'true') {
-      this.setAttribute('aria-expanded', 'false');
-    } else {
-      this.setAttribute('aria-expanded', 'true');
-    };
-
-    // toggle open or close panel, and aria-hidden value
-    let menuPanel = this.nextElementSibling;
-    if (menuPanel.classList.contains("small-menu__panel--open")) {
-      menuPanel.style.maxHeight = null;
-      menuPanel.classList.remove("small-menu__panel--open");
-      menuPanel.style.border = "none";
-      menuPanel.removeAttribute('role', 'region');
-    } else {
-      menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
-      menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
-      menuPanel.classList.add("small-menu__panel--open");
-      menuPanel.setAttribute('role', 'region');
-    }
-  });
-}
-
-
-// when the screen re-sizes, open the accordion
-window.addEventListener('resize', handleResize);
-
-function handleResize() {
-  let screenWidth = window.innerWidth;
-  if (screenWidth <= 450) {
-    openMenuPanel();
   }
 }
 'use strict';
@@ -575,5 +468,131 @@ function dateInputEvent() {
         dateInput.setAttribute('aria-invalid', 'true');
         dateError.style.display = "block";
     }
+}
+'use strict';
+
+//carousel for small & medium menu
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("small-menu__carousel__slide");
+  let dots = document.getElementsByClassName("small-menu__carousel-dot");
+  if (n > slides.length || slideIndex > slides.length) { slideIndex = 1 }
+  if (n < 1) { slideIndex = slides.length }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].className = slides[i].className.replace(" current-slide", "");
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" current-dot", "");
+    dots[i].setAttribute('aria-current', 'false');
+  }
+  slides[slideIndex - 1].className += " current-slide";
+  dots[slideIndex - 1].className += " current-dot";
+  dots[slideIndex - 1].setAttribute('aria-current', 'true');
+}
+
+function autoplay() {
+  slideIndex++;
+  showSlides();
+}
+
+let timer = setInterval(autoplay, 3500)
+
+function resetTimer() {
+  clearInterval(timer);
+  timer = setInterval(autoplay, 3500);
+}
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+  resetTimer();
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+  resetTimer();
+}
+'use strict';
+
+function openMenu(event, menuName) {
+  let i, menutabs, menus;
+
+  menutabs = document.getElementsByClassName("large-menu__tab");
+  for (i = 0; i < menutabs.length; i++) {
+    menutabs[i].classList.remove("large-menu__tab--active");
+    menutabs[i].setAttribute('aria-selected', 'false');
+  }
+  event.currentTarget.classList.add("large-menu__tab--active");
+  event.currentTarget.setAttribute('aria-selected', 'true');
+
+  menus = document.getElementsByClassName("large-food-menu");
+  for (i = 0; i < menus.length; i++) {
+    menus[i].style.display = "none";
+  }
+  document.getElementById(menuName).style.display = "grid";
+}
+
+document.getElementById("pasta-tab").click();
+'use strict';
+
+const menuAccordion = document.getElementsByClassName("small-menu__accordion");
+
+// open the accordion when the website is loaded
+window.addEventListener('load', openMenuPanel)
+
+function openMenuPanel() {
+  for (let i = 0; i < menuAccordion.length; i++) {
+    if (menuAccordion[i].classList.contains("small-menu__accordion--active")) {
+      menuAccordion[i].setAttribute('aria-expanded', 'true');
+      let menuPanel = menuAccordion[i].nextElementSibling;
+      menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
+      menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
+      menuPanel.classList.add("small-menu__panel--open");
+      menuPanel.setAttribute('role', 'region');
+    }
+  }
+};
+
+
+// open or close the accordion through clicks
+for (let i = 0; i < menuAccordion.length; i++) {
+  menuAccordion[i].addEventListener("click", function () {
+    this.classList.toggle("small-menu__accordion--active");
+
+    // toggle aria-expanded value
+    let expanded = this.getAttribute('aria-expanded');
+    if (expanded === 'true') {
+      this.setAttribute('aria-expanded', 'false');
+    } else {
+      this.setAttribute('aria-expanded', 'true');
+    };
+
+    // toggle open or close panel, and aria-hidden value
+    let menuPanel = this.nextElementSibling;
+    if (menuPanel.classList.contains("small-menu__panel--open")) {
+      menuPanel.style.maxHeight = null;
+      menuPanel.classList.remove("small-menu__panel--open");
+      menuPanel.style.border = "none";
+      menuPanel.removeAttribute('role', 'region');
+    } else {
+      menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
+      menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
+      menuPanel.classList.add("small-menu__panel--open");
+      menuPanel.setAttribute('role', 'region');
+    }
+  });
+}
+
+
+// when the screen re-sizes, open the accordion
+window.addEventListener('resize', handleResize);
+
+function handleResize() {
+  let screenWidth = window.innerWidth;
+  if (screenWidth <= 450) {
+    openMenuPanel();
+  }
 }
 //# sourceMappingURL=non-critical-modern-script.js.map
