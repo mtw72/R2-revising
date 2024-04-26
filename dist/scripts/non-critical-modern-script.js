@@ -65,25 +65,12 @@ let prevScrollPos = window.scrollY;
 
 window.onscroll = function () {
   let currentScrollPos = window.scrollY;
-  let screenWidth = window.innerWidth;
 
-  // keep the navbar at certain screen width for 70px from top
-  if (screenWidth <= 350 || screenWidth <= 600 && screenWidth > 450) {
-    if (prevScrollPos > currentScrollPos && currentScrollPos > 70) {
-      navbar.style.top = "0";
-    } else if (currentScrollPos < 70) {
-      navbar.style.top = "0";
-    } else {
-      navbar.style.top = "-500px";
-      closeNavbar();
-    }
+  if (prevScrollPos > currentScrollPos) {
+    navbar.style.top = "0";
   } else {
-    if (prevScrollPos > currentScrollPos) {
-      navbar.style.top = "0";
-    } else {
-      navbar.style.top = "-500px";
-      closeNavbar();
-    }
+    navbar.style.top = "-500px";
+    closeNavbar();
   }
 
   prevScrollPos = currentScrollPos;
