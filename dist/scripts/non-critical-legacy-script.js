@@ -59,11 +59,16 @@ function closeNavbarByTab(event) {
 var prevScrollPos = window.scrollY;
 window.onscroll = function () {
   var currentScrollPos = window.scrollY;
-  if (prevScrollPos > currentScrollPos) {
-    navbar.style.top = "0";
-  } else {
-    navbar.style.top = "-500px";
+  var screenWidth = window.innerWidth;
+  if (prevScrollPos < currentScrollPos) {
     closeNavbar();
+  }
+  if (screenWidth > 900) {
+    if (prevScrollPos > currentScrollPos) {
+      navbar.style.top = "0";
+    } else {
+      navbar.style.top = "-500px";
+    }
   }
   prevScrollPos = currentScrollPos;
 };

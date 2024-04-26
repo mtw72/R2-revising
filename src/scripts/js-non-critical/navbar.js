@@ -58,12 +58,18 @@ let prevScrollPos = window.scrollY;
 
 window.onscroll = function () {
   let currentScrollPos = window.scrollY;
+  let screenWidth = window.innerWidth;
 
-  if (prevScrollPos > currentScrollPos) {
-    navbar.style.top = "0";
-  } else {
-    navbar.style.top = "-500px";
+  if (prevScrollPos < currentScrollPos) {
     closeNavbar();
+  }
+
+  if (screenWidth > 900) {
+    if (prevScrollPos > currentScrollPos) {
+      navbar.style.top = "0";
+    } else {
+      navbar.style.top = "-500px";
+    }
   }
 
   prevScrollPos = currentScrollPos;
