@@ -54,34 +54,35 @@ function closeNavbarByTab(event) {
 }
 
 // When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar 
-let prevScrollpos = window.scrollY;
+let prevScrollPos = window.scrollY;
 
 window.onscroll = function () {
   let currentScrollPos = window.scrollY;
-  let distanceFromTop = home.offsetTop - currentScrollPos;
   let screenWidth = window.innerWidth;
 
-  if (prevScrollpos > currentScrollPos) {
-    navBar.style.top = "0";
-    // Check if the user is within a certain distance from the hero section
-    if (distanceFromTop < 200 && distanceFromTop > -200) {
-      if (screenWidth <= 350 || (screenWidth <= 600 && screenWidth > 450)) {
-        // Adjust padding only when the user is near the hero section at certain screen width
-        home.style.paddingTop = "70px";
-      }
+  // keep the navbar at certain screen width for 70px from top
+  if (screenWidth <= 350 || screenWidth <= 600 && screenWidth > 450) {
+    if (prevScrollPos > currentScrollPos && currentScrollPos > 70) {
+      navbar.style.top = "0";
+    } else if (currentScrollPos < 70) {
+      navbar.style.top = "0";
+    } else {
+      navbar.style.top = "-500px";
+      closeNavbar();
     }
   } else {
-    navBar.style.top = "-500px";
-    closeNavbar();
-    if (distanceFromTop < 200 && distanceFromTop > -200) {
-      if (screenWidth <= 350 || (screenWidth <= 600 && screenWidth > 450)) {
-        home.style.paddingTop = "0px";
-      }
+    if (prevScrollPos > currentScrollPos) {
+      navbar.style.top = "0";
+    } else {
+      navbar.style.top = "-500px";
+      closeNavbar();
     }
   }
-  prevScrollpos = currentScrollPos;
+
+  prevScrollPos = currentScrollPos;
 }
 
+// adjust the padding top of the hero image according to the screen size
 window.onresize = function () {
   // Update the screenWidth variable with the current window width
   let screenWidth = window.innerWidth;
