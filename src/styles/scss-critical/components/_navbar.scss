@@ -12,6 +12,7 @@
     top: 0;
     right: 0;
     left: 0;
+    overflow: hidden;
 
     @include min-mq(sm) {
         padding-block: 0.25rem;
