@@ -555,9 +555,7 @@ section.findus {
 }
 
 .reservation__message-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;

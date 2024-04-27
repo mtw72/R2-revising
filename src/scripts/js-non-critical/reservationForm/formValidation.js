@@ -12,9 +12,10 @@ const dateError = document.getElementById("date-error");
 
 // first validation on submit
 submitButton.addEventListener('click', (event) => {
-    const trimmedValue = nameInput.value.trim(); // Trim the input value
 
     //validate name input
+    const trimmedValue = nameInput.value.trim(); // Trim the input value
+
     if (nameInput.validity.patternMismatch || trimmedValue.length < 2 || nameInput.value === '') {
         event.preventDefault(); // Prevent form submission if there are validation errors
         nameInput.classList.add('error-input');

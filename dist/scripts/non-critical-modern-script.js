@@ -342,13 +342,13 @@ function pad(number) {
 // Function to check if current time is within restaurant opening hours
 function isWithinOpeningHours(day, hour, minute) {
   const openingHours = {
-    Sunday: { start: 1200, end: 1600 },
-    Monday: { start: 1200, end: 1900 },
-    Tuesday: { start: 1200, end: 1900 },
-    Wednesday: { start: 1200, end: 1900 },
-    Thursday: { start: 1200, end: 1900 },
-    Friday: { start: 1200, end: 2000 },
-    Saturday: { start: 1200, end: 2000 }
+    Sunday: { start: 1200, end: 1700 },
+    Monday: { start: 1200, end: 2000 },
+    Tuesday: { start: 1200, end: 2000 },
+    Wednesday: { start: 1200, end: 2000 },
+    Thursday: { start: 1200, end: 2000 },
+    Friday: { start: 1200, end: 2100 },
+    Saturday: { start: 1200, end: 2100 }
   };
 
   const currentTime = hour * 100 + minute;
@@ -367,15 +367,57 @@ function generateTimeOptions() {
   select.innerHTML = '';
 
   if (dateInput.value === today) {
-    for (let hour = 12; hour <= 21; hour++) {
-      for (let minute = 0; minute < 60; minute += 15) {
-        const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
-        const amPm = (hour >= 12) ? 'pm' : 'am'; // Determine if it's AM or PM
-        if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || (hour === currentHour + 1 && minute >= currentMinute))) {
-          const option = new Option(displayHour + ':' + pad(minute) + amPm, time);
-          select.add(option);
+    switch (day) {
+      case 0:
+        for (let hour = 12; hour <= 16; hour++) {
+          for (let minute = 0; minute < 60; minute += 15) {
+            // Skip generating options for 4:15pm, 4:30pm, and 4:45pm
+            if (hour === 16 && (minute === 15 || minute === 30 || minute === 45)) {
+              continue;
+            }
+
+            const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
+
+            if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || (hour === currentHour + 1 && minute >= currentMinute))) {
+              const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
+              select.add(option);
+            }
+          }
         }
-      }
+        break;
+      case 5:
+      case 6:
+        for (let hour = 12; hour <= 20; hour++) {
+          for (let minute = 0; minute < 60; minute += 15) {
+            // Skip generating options for 8:15pm, 8:30pm, and 8:45pm
+            if (hour === 20 && (minute === 15 || minute === 30 || minute === 45)) {
+              continue;
+            }
+            const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
+
+            if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || (hour === currentHour + 1 && minute >= currentMinute))) {
+              const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
+              select.add(option);
+            }
+          }
+        }
+        break;
+      default: //Monday to Thursday
+        for (let hour = 12; hour <= 19; hour++) {
+          for (let minute = 0; minute < 60; minute += 15) {
+            // Skip generating options for 7:15pm, 7:30pm, and 7:45pm
+            if (hour === 19 && (minute === 15 || minute === 30 || minute === 45)) {
+              continue;
+            }
+
+            const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
+
+            if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || (hour === currentHour + 1 && minute >= currentMinute))) {
+              const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
+              select.add(option);
+            }
+          }
+        }
     }
   }
   else {
@@ -385,9 +427,13 @@ function generateTimeOptions() {
       case 0:
         for (let hour = 12; hour <= 16; hour++) {
           for (let minute = 0; minute < 60; minute += 15) {
+            // Skip generating options for 4:15pm, 4:30pm, and 4:45pm
+            if (hour === 16 && (minute === 15 || minute === 30 || minute === 45)) {
+              continue;
+            }
+
             const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
-            const amPm = (hour >= 12) ? 'pm' : 'am'; // Determine if it's AM or PM
-            const option = new Option(displayHour + ':' + pad(minute) + amPm, time);
+            const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
             select.add(option);
           }
         }
@@ -396,9 +442,13 @@ function generateTimeOptions() {
       case 6:
         for (let hour = 12; hour <= 20; hour++) {
           for (let minute = 0; minute < 60; minute += 15) {
+            // Skip generating options for 8:15pm, 8:30pm, and 8:45pm
+            if (hour === 20 && (minute === 15 || minute === 30 || minute === 45)) {
+              continue;
+            }
+
             const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
-            const amPm = (hour >= 12) ? 'pm' : 'am'; // Determine if it's AM or PM
-            const option = new Option(displayHour + ':' + pad(minute) + amPm, time);
+            const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
             select.add(option);
           }
         }
@@ -406,9 +456,13 @@ function generateTimeOptions() {
       default: //Monday to Thursday
         for (let hour = 12; hour <= 19; hour++) {
           for (let minute = 0; minute < 60; minute += 15) {
+            // Skip generating options for 7:15pm, 7:30pm, and 7:45pm
+            if (hour === 19 && (minute === 15 || minute === 30 || minute === 45)) {
+              continue;
+            }
+
             const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
-            const amPm = (hour >= 12) ? 'pm' : 'am'; // Determine if it's AM or PM
-            const option = new Option(displayHour + ':' + pad(minute) + amPm, time);
+            const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
             select.add(option);
           }
         }
@@ -418,12 +472,6 @@ function generateTimeOptions() {
 
 // Generate time options when the page loads
 generateTimeOptions();
-'use strict';
-
-// check the form onsubmit
-function formSubmitted() {
-    alert("Thanks for choosing our restaurant!\nWe will contact you shortly to confirm your reservation.");
-}
 'use strict';
 
 // textarea in reservation form
@@ -469,9 +517,10 @@ const dateError = document.getElementById("date-error");
 
 // first validation on submit
 submitButton.addEventListener('click', (event) => {
-    const trimmedValue = nameInput.value.trim(); // Trim the input value
 
     //validate name input
+    const trimmedValue = nameInput.value.trim(); // Trim the input value
+
     if (nameInput.validity.patternMismatch || trimmedValue.length < 2 || nameInput.value === '') {
         event.preventDefault(); // Prevent form submission if there are validation errors
         nameInput.classList.add('error-input');
@@ -605,16 +654,32 @@ function dateInputEvent() {
 }
 'use strict';
 
+const reservationMessage = document.getElementById("reservation-message");
+const confirmButton = document.querySelector(".reservation__message__bottom-button--confirm");
+const closeButton = document.querySelector(".reservation__message__close-button");
+const cancelButton = document.querySelector(".reservation__message__bottom-button--cancel");
+
+
 // Open the modal
-function openModal(event, modalName) {
-    document.getElementById(modalName).style.display = "block";
+function openModal(event) {
+    event.preventDefault(); // Prevent default form submission
+    reservationMessage.style.display = "block";
 }
 
-// Get the close buttons
-const closeButton = document.getElementsByClassName("reservation__message__close-button");
+// Submit form upon confirmation of information
+confirmButton.addEventListener("click", formSubmitted);
 
-// Add an event listener to the close button to close the message
-closeButton[0].addEventListener("click", function () {
-    this.closest(".reservation__message-container").style.display = "none";
-});
+function formSubmitted() {
+    alert("Thanks for choosing our restaurant!\nWe will contact you shortly to confirm your reservation.");
+    closeMessage();
+}
+
+// Add an event listener to the close button and cancel button to close the message
+closeButton.addEventListener("click", closeMessage);
+
+cancelButton.addEventListener("click", closeMessage);
+
+function closeMessage() {
+    reservationMessage.style.display = "none";
+}
 //# sourceMappingURL=non-critical-modern-script.js.map

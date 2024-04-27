@@ -346,7 +346,7 @@
           </div>
 
           <!-- reservation form -->
-          <form action="" onsubmit="formSubmitted()" method="post" enctype="text/plain">
+          <form action="" onsubmit="openModal(event)" method="post" enctype="text/plain">
             <div class="reservation__form">
               <div class="reservation__form--name">
                 <label for="name">Name<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>
@@ -425,7 +425,7 @@
           </form>
 
           <!-- confirmation or error message -->
-          <div class="reservation__message-container">
+          <div class="reservation__message-container" id="reservation-message">
             <div class="reservation__message-content">
               <h2>Booking Summary<span class="reservation__message__close-button">&times;</span></h2>
               <p>Please confirm the following details:-</p>
