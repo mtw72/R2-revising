@@ -4,7 +4,7 @@ const submitButton = document.getElementById('formSumbitButton');
 
 const nameInput = document.getElementById("name");
 const nameError = document.getElementById("name-error");
-const phoneNumberInput = document.getElementById("tel");
+const phoneNumberInput = document.getElementById("phone");
 const phoneNumberError = document.getElementById("phone-error");
 const emailInput = document.getElementById("email");
 const emailError = document.getElementById("email-error");

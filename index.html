@@ -357,9 +357,9 @@
               </div>
 
               <div class="reservation__form--phone">
-                <label for="tel">Phone Number<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>
-                <input type="tel" class="input-control" id="tel" placeholder="Enter Phone Number" name="tel" required
-                  aria-required="true" autocomplete="tel" pattern="[0-9+]{7,}"
+                <label for="phone">Phone Number<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>
+                <input type="tel" class="input-control" id="phone" placeholder="Enter Phone Number" name="phone"
+                  required aria-required="true" autocomplete="tel" pattern="[0-9+]{7,}"
                   title="Please enter a valid phone number">
                 <p class="error-message" id="phone-error" role="alert">Please enter a valid phone number</p>
               </div>
@@ -430,12 +430,20 @@
               <h2>Booking Summary<span class="reservation__message__close-button">&times;</span></h2>
               <p>Please confirm the following details:-</p>
               <ul class="reservation__message-list">
-                <li>Your Name:</li>
+                <li>Name:</li>
+                <li id="name-value"></li>
+                <li>Phone Number:</li>
+                <li id="phone-value"></li>
+                <li>Email:</li>
+                <li id="email-value"></li>
                 <li>Number of Guest:</li>
+                <li id="guest-number-value"></li>
                 <li>Date:</li>
+                <li id="date-value"></li>
                 <li>Time:</li>
-                <li>Your Phone Number:</li>
-                <li>Your Email:</li>
+                <li id="time-value"></li>
+                <li>Message / Special Request:</li>
+                <li id="message-value"></li>
               </ul>
               <div class="reservation__message__bottom-buttons">
                 <button type="button"

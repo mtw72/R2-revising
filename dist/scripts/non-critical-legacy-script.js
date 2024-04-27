@@ -502,7 +502,7 @@ textarea.addEventListener('input', function () {
 var submitButton = document.getElementById('formSumbitButton');
 var nameInput = document.getElementById("name");
 var nameError = document.getElementById("name-error");
-var phoneNumberInput = document.getElementById("tel");
+var phoneNumberInput = document.getElementById("phone");
 var phoneNumberError = document.getElementById("phone-error");
 var emailInput = document.getElementById("email");
 var emailError = document.getElementById("email-error");
@@ -642,11 +642,32 @@ var reservationMessage = document.getElementById("reservation-message");
 var confirmButton = document.querySelector(".reservation__message__bottom-button--confirm");
 var closeButton = document.querySelector(".reservation__message__close-button");
 var cancelButton = document.querySelector(".reservation__message__bottom-button--cancel");
+var guestNumberInput = document.getElementById("ppl");
+var timeInput = document.getElementById("time");
+var messageInput = document.getElementById("message");
+var nameValue = document.getElementById("name-value");
+var phoneValue = document.getElementById("phone-value");
+var emailValue = document.getElementById("email-value");
+var guestNumberValue = document.getElementById("guest-number-value");
+var dateValue = document.getElementById("date-value");
+var timeValue = document.getElementById("time-value");
+var messageValue = document.getElementById("message-value");
 
 // Open the modal
 function openModal(event) {
   event.preventDefault(); // Prevent default form submission
-  reservationMessage.style.display = "block";
+  reservationMessage.style.display = "flex";
+  nameValue.textContent = nameInput.value;
+  phoneValue.textContent = phoneNumberInput.value;
+  emailValue.textContent = emailInput.value;
+  guestNumberValue.textContent = guestNumberInput.value;
+  dateValue.textContent = dateInput.value;
+  timeValue.textContent = timeInput.options[timeInput.selectedIndex].text;
+  if (messageValue === '' || '(e.g. Dietary Restriction, Special Occasions)') {
+    messageValue.textContent = "N/A";
+  } else {
+    messageValue.textContent = messageInput.value;
+  }
 }
 
 // Submit form upon confirmation of information
