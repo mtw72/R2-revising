@@ -466,9 +466,6 @@ function generateTimeOptions() {
 generateTimeOptions();
 'use strict';
 
-// check the form onsubmit
-'use strict';
-
 // textarea in reservation form
 var textarea = document.getElementById('message');
 function clearPlaceholder() {
