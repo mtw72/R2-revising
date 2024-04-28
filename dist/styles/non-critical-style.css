@@ -634,7 +634,9 @@ section.findus {
 .reservation__message-list {
   padding-bottom: 1rem;
   overflow: auto;
-  height: 18.75rem;
+  height: 40vh;
+  height: 40dvh;
+  height: 40svh;
 }
 @media all and (min-width: 36em) {
   .reservation__message-list {
