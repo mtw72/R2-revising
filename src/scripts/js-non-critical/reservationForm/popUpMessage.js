@@ -27,7 +27,7 @@ function openModal(event) {
     guestNumberValue.textContent = guestNumberInput.value;
     dateValue.textContent = dateInput.value;
     timeValue.textContent = timeInput.options[timeInput.selectedIndex].text
-    if (messageValue === '' || '(e.g. Dietary Restriction, Special Occasions)') {
+    if (messageInput.value === '' || messageInput.value === '(e.g. Dietary Restriction, Special Occasions)') {
         messageValue.textContent = "N/A";
     } else {
         messageValue.textContent = messageInput.value;
@@ -38,8 +38,17 @@ function openModal(event) {
 confirmButton.addEventListener("click", formSubmitted);
 
 function formSubmitted() {
+    // Trigger form submission
+    document.querySelector('form').submit();
     alert("Thanks for choosing our restaurant!\nWe will contact you shortly to confirm your reservation.");
-    closeMessage();
+
+    // closeMessage();
+    // reset the form
+    // nameInput.value = '';
+    // phoneNumberInput.value = '';
+    // emailInput.value = '';
+    // textarea.value = '(e.g. Dietary Restriction, Special Occasions)';
+    // textarea.classList.remove('input');
 }
 
 // Add an event listener to the close button and cancel button to close the message
