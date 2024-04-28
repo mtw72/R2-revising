@@ -684,8 +684,20 @@ function openModal(event) {
     if (messageInput.value === '' || messageInput.value === '(e.g. Dietary Restriction, Special Occasions)') {
         messageValue.textContent = "N/A";
     } else {
-        messageValue.textContent = messageInput.value;
+        // Encode the message input value to prevent HTML injection
+        const encodedMessage = encodeHTML(messageInput.value);
+        messageValue.innerHTML = encodedMessage;
     }
+}
+
+// Function to encode HTML entities
+function encodeHTML(text) {
+    return text.replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/(\r\n|\n|\r)/g, '<br>'); // Preserve line breaks
 }
 
 // Submit form upon confirmation of information
