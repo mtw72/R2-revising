@@ -4,7 +4,6 @@
 
 .reservation__message-container {
     display: none;
-    // display: flex;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -13,8 +12,6 @@
     top: 0px;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    /* Enable scroll if needed */
     background-color: rgba(211, 211, 211, 0.5);
 }
 
@@ -22,7 +19,12 @@
     background-color: #fefefe;
     border: none;
     width: auto;
+    max-width: 90%;
     box-shadow: 0px 0px 3px grey;
+
+    @include min-mq(sm) {
+        max-width: auto;
+    }
 }
 
 .reservation__message-content h2 {
@@ -45,23 +47,44 @@
 
 .reservation__message-content p,
 .reservation__message-list {
-    margin-inline: 1.5rem;
+    margin-left: 1.5rem;
 
     @include min-mq(sm) {
-        margin-inline: 4.5rem;
+        margin-left: 4.5rem;
+    }
+}
+
+.reservation__message-list li:nth-of-type(even) {
+    @include min-mq(sm) {
+        margin-right: 4.5rem;
     }
 }
 
 .reservation__message-content p {
-    padding-top: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 0.25rem;
+    padding-right: 1.5rem;
+
+    @include min-mq(sm) {
+        padding-top: 1.5rem;
+    }
 }
 
 .reservation__message-list {
-    padding-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    overflow: auto;
+    height: 50vh;
+    height: 50dvh;
+    height: 50svh;
+
+    @include min-mq(sm) {
+        padding-bottom: 1.5rem;
+        height: auto;
+    }
 
     @include min-mq(xs) {
         display: grid;
-        grid-template-rows: repeat(7, 1fr);
+        grid-template-rows: repeat(7, auto);
         grid-template-columns: repeat(2, auto);
         column-gap: f.rem(12);
         row-gap: 0;
