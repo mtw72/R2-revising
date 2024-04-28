@@ -73,9 +73,7 @@
 .reservation__message-list {
     padding-bottom: 1rem;
     overflow: auto;
-    height: 50vh;
-    height: 50dvh;
-    height: 50svh;
+    height: f.rem(300);
 
     @include min-mq(sm) {
         padding-bottom: 1.5rem;
