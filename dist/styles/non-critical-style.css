@@ -654,9 +654,6 @@ section.findus {
         -ms-flex-align: start;
             align-items: start;
     text-align: left;
-    height: 50vh;
-    height: 50dvh;
-    height: 50svh;
   }
 }
 @media all and (min-width: 36em) {
