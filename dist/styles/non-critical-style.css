@@ -638,12 +638,6 @@ section.findus {
   height: 40dvh;
   height: 40svh;
 }
-@media all and (min-width: 36em) {
-  .reservation__message-list {
-    padding-bottom: 1.5rem;
-    height: auto;
-  }
-}
 @media all and (min-width: 28.125em) {
   .reservation__message-list {
     display: grid;
@@ -660,6 +654,15 @@ section.findus {
         -ms-flex-align: start;
             align-items: start;
     text-align: left;
+    height: 50vh;
+    height: 50dvh;
+    height: 50svh;
+  }
+}
+@media all and (min-width: 36em) {
+  .reservation__message-list {
+    padding-bottom: 1.5rem;
+    height: auto;
   }
 }
 
