@@ -2,9 +2,10 @@
 @use '../../../scss-common-partials/functions' as f;
 @use '../../../scss-common-partials/mixins' as *;
 
+// need esc key to close the msg
+
 .reservation__message-container {
     display: none;
-    display: flex;
     justify-content: center;
     align-items: center;
     position: fixed;
