@@ -1,6 +1,17 @@
 @use '../../scss-common-partials/functions' as f;
 @use '../../scss-common-partials/mixins' as *;
 
+.findus-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    @include min-mq (sm) {
+        flex-direction: row;
+        gap: 0;
+    }
+}
+
 .findus__logofont-container {
     display: none;
 
@@ -10,6 +21,10 @@
     }
 
     @include min-mq (xl) {
+        flex: 1 0 46%;
+    }
+
+    @include min-mq (xxl) {
         flex: 1 0 50%;
     }
 }
@@ -18,7 +33,7 @@
 .findus__openhour-container {
     flex: 1 0 100%;
     width: 100%;
-    margin: 0.5rem auto;
+    margin-inline: auto;
     display: flex;
     justify-content: center;
 
@@ -35,6 +50,10 @@
     }
 
     @include min-mq (xl) {
+        flex: 1 0 27%;
+    }
+
+    @include min-mq (xxl) {
         flex: 1 0 25%;
     }
 }
@@ -47,10 +66,6 @@
 }
 
 .findus__openhour-container {
-
-    @include between-mq (xxs, sm) {
-        padding-top: 2rem;
-    }
 
     @include min-mq (lg) {
         justify-content: flex-end;
@@ -66,6 +81,11 @@
         max-width: f.rem(320);
         width: 95%;
     }
+
+    // @include min-mq (xl) {
+    //     max-width: f.rem(500);
+    //     width: 95%;
+    // }
 }
 
 .findus h2 {

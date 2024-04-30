@@ -1,8 +1,11 @@
+@use '../../scss-common-partials/functions' as f;
+
 html {
     box-sizing: border-box;
     background-repeat: no-repeat;
     scroll-behavior: smooth;
     height: 100%;
+    min-width: f.rem(250);
 }
 
 *,

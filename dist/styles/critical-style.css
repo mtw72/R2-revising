@@ -328,6 +328,7 @@ html {
   background-repeat: no-repeat;
   scroll-behavior: smooth;
   height: 100%;
+  min-width: 15.625rem;
 }
 
 *,
@@ -969,7 +970,7 @@ section:not(:first-of-type) {
 }
 
 .small-menu__accordion:not(:first-of-type) {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 .small-menu__accordion--active:after {

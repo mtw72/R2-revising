@@ -18,8 +18,10 @@ select {
 }
 
 .reservation__form--button {
-    font-size: 1.25rem;
-    font-family: inherit;
+
+    &:hover {
+        font-weight: bold;
+    }
 }
 
 // findus

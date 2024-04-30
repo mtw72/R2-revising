@@ -6,27 +6,14 @@ footer {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-block: 1.5rem;
-
-    @include min-mq (xs) {
-        padding-block: 1.75rem;
-    }
-
-    @include min-mq (sm) {
-        padding-block: 2rem;
-    }
-
-    @include min-mq (md) {
-        padding-block: 2.25rem;
-    }
-
-    @include min-mq (lg) {
-        padding-block: 2.5rem;
-    }
 }
 
 .social-icons {
     margin-bottom: 0.5rem;
+
+    @include min-mq (lg) {
+        margin-bottom: 0.75rem;
+    }
 }
 
 .social-icons a {

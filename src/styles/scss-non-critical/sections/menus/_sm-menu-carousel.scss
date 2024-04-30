@@ -7,6 +7,10 @@
     margin: auto;
     margin-top: f.rem(25);
     max-width: f.rem(350);
+
+    @include min-mq (xs) {
+        margin-top: f.rem(45);
+    }
 }
 
 /* Hide the images by default */
@@ -94,7 +98,7 @@
 /* The dots indicators */
 .small-menu__carousel-dots {
     text-align: center;
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
 }
 
 .small-menu__carousel-dot {
