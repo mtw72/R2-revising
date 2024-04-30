@@ -60,10 +60,6 @@ window.onscroll = function () {
   let currentScrollPos = window.scrollY;
   let screenWidth = window.innerWidth;
 
-  // if (prevScrollPos < currentScrollPos) {
-  //   closeNavbar();
-  // }
-
   if (screenWidth > 900) {
     if (prevScrollPos > currentScrollPos) {
       navbar.style.top = "0";

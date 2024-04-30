@@ -608,7 +608,6 @@ body {
   right: 0;
   left: 0;
   overflow: hidden;
-  overflow: auto;
 }
 @media all and (min-width: 36em) {
   .navbar {
@@ -694,7 +693,7 @@ body {
   margin: 0;
   padding: 0;
   max-height: 0;
-  overflow: auto;
+  overflow: hidden;
   -webkit-transition: max-height 0.3s ease-in-out;
   transition: max-height 0.3s ease-in-out;
 }
@@ -731,7 +730,6 @@ body {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
-  overflow: auto;
 }
 @media all and (min-width: 36em) {
   .navbar__nav {
