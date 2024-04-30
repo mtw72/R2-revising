@@ -13,6 +13,7 @@
     right: 0;
     left: 0;
     overflow: hidden;
+    overflow: auto;
 
     @include min-mq(sm) {
         padding-block: 0.25rem;
@@ -78,7 +79,7 @@
     margin: 0;
     padding: 0;
     max-height: 0;
-    overflow: hidden;
+    overflow: auto;
     transition: max-height 0.3s ease-in-out;
 
     @include min-mq(sm) {
