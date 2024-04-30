@@ -943,6 +943,11 @@ section:not(:first-of-type) {
     margin-bottom: 3.5rem;
   }
 }
+@media all and (min-width: 87.5em) {
+  #menu h1 {
+    margin-bottom: 4rem;
+  }
+}
 
 .small-menu__accordion {
   padding: 0.8rem;

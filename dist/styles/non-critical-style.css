@@ -476,6 +476,11 @@ section.findus {
     margin-bottom: 3.5rem;
   }
 }
+@media all and (min-width: 87.5em) {
+  #reservation h1 {
+    margin-bottom: 4rem;
+  }
+}
 
 .reservation__photo {
   display: none;
@@ -871,7 +876,27 @@ footer {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
-  padding-block: calc(1rem + 1.5vw);
+  padding-block: 1.5rem;
+}
+@media all and (min-width: 28.125em) {
+  footer {
+    padding-block: 1.75rem;
+  }
+}
+@media all and (min-width: 36em) {
+  footer {
+    padding-block: 2rem;
+  }
+}
+@media all and (min-width: 48em) {
+  footer {
+    padding-block: 2.25rem;
+  }
+}
+@media all and (min-width: 62em) {
+  footer {
+    padding-block: 2.5rem;
+  }
 }
 
 .social-icons {
