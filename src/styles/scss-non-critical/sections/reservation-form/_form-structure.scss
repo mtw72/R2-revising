@@ -9,6 +9,11 @@
 
     @include min-mq (xl) {
         display: grid;
+        grid-template-columns: 1fr 1.25fr;
+        gap: f.rem(35);
+    }
+
+    @include min-mq (xxl) {
         grid-template-columns: 1fr 1.1fr;
         gap: f.rem(40);
     }
