@@ -71,6 +71,9 @@ textarea:focus {
   -webkit-box-shadow: 1px 1px 1px rgb(128, 70, 0);
           box-shadow: 1px 1px 1px rgb(128, 70, 0);
 }
+.reservation__form--button:hover {
+  outline: 3px solid rgb(255, 165, 0);
+}
 .reservation__form--button:focus {
   outline: 3px solid rgb(255, 165, 0);
 }

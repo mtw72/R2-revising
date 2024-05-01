@@ -76,6 +76,10 @@ textarea:focus {
     color: $yellow-2;
     box-shadow: 1px 1px 1px $brown-6;
 
+    &:hover {
+        outline: 3px solid $orange-2;
+    }
+
     &:focus {
         outline: 3px solid $orange-2;
     }
