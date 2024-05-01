@@ -276,7 +276,7 @@
           </div>
         </div>
 
-        <div class="small-menu__carousel" aria-roledescription="carousel" aria-label="Food Highlight">
+        <div class="small-menu__carousel" aria-roledescription="carousel">
           <!-- carousel content for small to medium menu -->
           <div class="small-menu__carousel__track-container">
             <div id="small-menu__carousel__track">
@@ -376,7 +376,8 @@
                     aria-hidden="true">&nbsp;*</span></label>
                 <select class="select-control" id="ppl" name="ppl" required aria-required="true"
                   title="Please select the number of guest(s)">
-                  <option value="1" placeholder="1">1</option>
+                  <option value="" disabled selected>Select number of guests</option>
+                  <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
@@ -402,6 +403,7 @@
                 <label for="time">Time<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>
                 <select class="select-control" id="time" name="time" required aria-required="true"
                   title="Please select a valid time">
+                  <option value="" disabled selected>Select time</option>
                   <!-- Options will be dynamically generated here -->
                 </select>
                 <p class="error-message" id="time-error" role="alert">Please select a valid time</p>
