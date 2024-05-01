@@ -36,8 +36,8 @@ body {
 }
 
 // menu
-#menu>h1,
-#reservation>h1 {
+#menu>h2,
+#reservation>h2 {
     font-size: clamp(2.2rem, 2rem + 1vw, 3rem);
     text-shadow: 2px 3px $pink-1;
 }
@@ -65,13 +65,14 @@ body {
 }
 
 // menu description
-.large-food-menu h3 {
+.large-food-menu h4 {
     font-size: clamp(1.35rem, 1.2rem + 1vw, 1.75rem);
     font-weight: bold;
 }
 
 .large-menu__item p {
     font-size: clamp(1.3rem, 0.9rem + 1vw, 1.5rem);
+    font-weight: 400;
 }
 
 .large-menu__item-price {
@@ -83,4 +84,5 @@ body {
 .large-menu__image-description {
     font-size: clamp(1.3rem, 0.9rem + 1vw, 1.5rem);
     text-shadow: 1px 1px $yellow-3;
+    font-weight: 400;
 }

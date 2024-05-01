@@ -505,8 +505,8 @@ body {
   font-size: clamp(1rem, 1rem + 1vw, 2rem);
 }
 
-#menu > h1,
-#reservation > h1 {
+#menu > h2,
+#reservation > h2 {
   font-size: clamp(2.2rem, 2rem + 1vw, 3rem);
   text-shadow: 2px 3px rgb(255, 192, 203);
 }
@@ -526,13 +526,14 @@ body {
   font-size: clamp(1.35rem, 1.2rem + 1vw, 2rem);
 }
 
-.large-food-menu h3 {
+.large-food-menu h4 {
   font-size: clamp(1.35rem, 1.2rem + 1vw, 1.75rem);
   font-weight: bold;
 }
 
 .large-menu__item p {
   font-size: clamp(1.3rem, 0.9rem + 1vw, 1.5rem);
+  font-weight: 400;
 }
 
 .large-menu__item-price {
@@ -544,6 +545,7 @@ body {
 .large-menu__image-description {
   font-size: clamp(1.3rem, 0.9rem + 1vw, 1.5rem);
   text-shadow: 1px 1px rgb(255, 239, 213);
+  font-weight: 400;
 }
 
 .clearfix::after {
@@ -920,32 +922,32 @@ section:not(:first-of-type) {
     border-radius: 0 0 15px 15px;
   }
 }
-#menu h1 {
+#menu h2 {
   margin-bottom: 1.5rem;
   text-align: center;
 }
 @media all and (min-width: 28.125em) {
-  #menu h1 {
+  #menu h2 {
     margin-bottom: 2rem;
   }
 }
 @media all and (min-width: 48em) {
-  #menu h1 {
+  #menu h2 {
     margin-bottom: 2.5rem;
   }
 }
 @media all and (min-width: 62em) {
-  #menu h1 {
+  #menu h2 {
     margin-bottom: 3rem;
   }
 }
 @media all and (min-width: 76.25em) {
-  #menu h1 {
+  #menu h2 {
     margin-bottom: 3.5rem;
   }
 }
 @media all and (min-width: 87.5em) {
-  #menu h1 {
+  #menu h2 {
     margin-bottom: 4rem;
   }
 }
@@ -1091,7 +1093,7 @@ section:not(:first-of-type) {
   }
 }
 /* menu description */
-.large-food-menu h3 {
+.large-food-menu h4 {
   padding: 2%;
   padding-left: calc(0.5rem + 1vw);
   display: inline-block;

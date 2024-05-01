@@ -81,14 +81,9 @@
         max-width: f.rem(320);
         width: 95%;
     }
-
-    // @include min-mq (xl) {
-    //     max-width: f.rem(500);
-    //     width: 95%;
-    // }
 }
 
-.findus h2 {
+.findus h3 {
     margin-inline: auto;
     margin-bottom: 0.7rem;
     padding-bottom: 0.7rem;

@@ -75,7 +75,7 @@ textarea:focus {
   outline: 3px solid rgb(255, 165, 0);
 }
 
-.findus h2 {
+.findus h3 {
   border-bottom: 4px dotted rgb(206, 212, 218);
 }
 
@@ -88,10 +88,13 @@ contacts in findus and
 social icons in footer  */
 .g-link {
   color: rgb(163, 90, 0);
+  -webkit-transition: 0.1s ease-in-out;
+  transition: 0.1s ease-in-out;
 }
 
 .g-link:hover {
   color: rgb(224, 177, 120);
+  border-bottom: 2px solid rgb(224, 177, 120);
 }
 
 .g-link:active {
@@ -115,8 +118,12 @@ select {
   font-weight: bold;
 }
 
-.findus h2 {
+.findus h3 {
   font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+  font-weight: 400;
+}
+
+footer p {
   font-weight: 400;
 }
 
@@ -474,32 +481,32 @@ footer {
     grid-area: 5/1/6/4;
   }
 }
-#reservation h1 {
+#reservation h2 {
   margin-bottom: 1rem;
   text-align: center;
 }
 @media all and (min-width: 28.125em) {
-  #reservation h1 {
+  #reservation h2 {
     margin-bottom: 2rem;
   }
 }
 @media all and (min-width: 48em) {
-  #reservation h1 {
+  #reservation h2 {
     margin-bottom: 2.5rem;
   }
 }
 @media all and (min-width: 62em) {
-  #reservation h1 {
+  #reservation h2 {
     margin-bottom: 3rem;
   }
 }
 @media all and (min-width: 76.25em) {
-  #reservation h1 {
+  #reservation h2 {
     margin-bottom: 3.5rem;
   }
 }
 @media all and (min-width: 87.5em) {
-  #reservation h1 {
+  #reservation h2 {
     margin-bottom: 4rem;
   }
 }
@@ -908,7 +915,7 @@ footer {
   }
 }
 
-.findus h2 {
+.findus h3 {
   margin-inline: auto;
   margin-bottom: 0.7rem;
   padding-bottom: 0.7rem;

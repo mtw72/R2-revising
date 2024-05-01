@@ -82,7 +82,7 @@ textarea:focus {
 }
 
 // findus
-.findus h2 {
+.findus h3 {
     border-bottom: 4px dotted $grey-2;
 }
 
@@ -95,10 +95,12 @@ contacts in findus and
 social icons in footer  */
 .g-link {
     color: $brown-2;
+    transition: 0.1s ease-in-out;
 }
 
 .g-link:hover {
     color: $orange-4;
+    border-bottom: 2px solid $orange-4;
 }
 
 .g-link:active {
