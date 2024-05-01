@@ -893,12 +893,6 @@ section:not(:first-of-type) {
 .small-menu__carousel {
   display: block;
 }
-@media all and (min-width: 48em) {
-  .small-menu__carousel {
-    display: none;
-  }
-}
-
 .large-menu {
   display: none;
 }

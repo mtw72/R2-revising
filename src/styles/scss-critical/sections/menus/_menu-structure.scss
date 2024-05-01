@@ -9,7 +9,7 @@
     display: block;
 
     @include min-mq(md) {
-        display: none;
+        // display: none;
     }
 }
 
