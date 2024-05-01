@@ -893,6 +893,7 @@ section:not(:first-of-type) {
 .small-menu__carousel {
   display: block;
 }
+
 .large-menu {
   display: none;
 }

@@ -8,9 +8,9 @@
 .small-menu__carousel {
     display: block;
 
-    @include min-mq(md) {
-        // display: none;
-    }
+    // @include min-mq(md) {
+    //     display: none;
+    // }
 }
 
 .large-menu {
