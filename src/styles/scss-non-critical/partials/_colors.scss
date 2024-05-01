@@ -82,7 +82,8 @@ textarea:focus {
 }
 
 // findus
-.findus h3 {
+.findus__contact-container h2,
+.findus__openhour-container h2 {
     border-bottom: 4px dotted $grey-2;
 }
 

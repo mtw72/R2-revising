@@ -75,7 +75,8 @@ textarea:focus {
   outline: 3px solid rgb(255, 165, 0);
 }
 
-.findus h3 {
+.findus__contact-container h2,
+.findus__openhour-container h2 {
   border-bottom: 4px dotted rgb(206, 212, 218);
 }
 
@@ -118,13 +119,9 @@ select {
   font-weight: bold;
 }
 
-.findus h3 {
+.findus__contact-container h2,
+.findus__openhour-container h2 {
   font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
-  font-weight: 400;
-}
-
-footer p {
-  font-weight: 400;
 }
 
 .clearfix::after {
@@ -915,7 +912,8 @@ footer {
   }
 }
 
-.findus h3 {
+.findus__contact-container h2,
+.findus__openhour-container h2 {
   margin-inline: auto;
   margin-bottom: 0.7rem;
   padding-bottom: 0.7rem;
