@@ -893,6 +893,11 @@ section:not(:first-of-type) {
 .small-menu__carousel {
   display: block;
 }
+@media all and (min-width: 48em) {
+  .small-menu__carousel {
+    display: none;
+  }
+}
 
 .large-menu {
   display: none;
@@ -902,6 +907,9 @@ section:not(:first-of-type) {
   /* hide the small menu, show the large menu */
   .large-menu__item:nth-of-type(3) {
     border-bottom: 0;
+  }
+  .small-menu {
+    display: none;
   }
   .large-menu {
     display: block;
