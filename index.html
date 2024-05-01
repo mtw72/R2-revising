@@ -110,14 +110,14 @@
             aria-label="Open Menu" id="menu-toggler">&#9776;</button>
 
           <div class="navbar__collapse" id="collapsibleNavbar" role="menu" aria-labelledby="menu-toggler">
-            <ul class="navbar__nav" role="none">
-              <li class="navbar__nav-item" role="none">
+            <ul class="navbar__nav" role="group">
+              <li class="navbar__nav-item" role="presentation">
                 <a class="navbar__nav-link" href="#menu" role="menuitem">Menu</a>
               </li>
-              <li class="navbar__nav-item" role="none">
+              <li class="navbar__nav-item" role="presentation">
                 <a class="navbar__nav-link" href="#reservation" role="menuitem">Reservation</a>
               </li>
-              <li class="navbar__nav-item" role="none">
+              <li class="navbar__nav-item" role="presentation">
                 <a class="navbar__nav-link" href="#findus" role="menuitem" id="findus-link">Find
                   Us</a>
             </ul>
@@ -142,12 +142,12 @@
         </picture>
         <div class="hero-text">
           <h1>R2 Place</h1>
-          <h2>A place to Relax and Recharge</h2>
+          <p>A place to Relax and Recharge</p>
         </div>
       </section>
 
       <!-- Menu Container -->
-      <section id="menu">
+      <section id="menu" role="region" aria-label="menu">
         <h2>MENU</h2>
         <div class="small-menu">
           <button type="button" class="small-menu__accordion small-menu__accordion--active" aria-controls="pasta-panel"
@@ -214,15 +214,15 @@
 
           <div class="large-food-menu" role="tabpanel" id="pasta-menu" aria-labelledby="pasta-tab">
             <div class="large-menu__item large-menu__item--1">
-              <h4>Salmon Spaghetti<span class="large-menu__item-price">£12.50</span></h4>
+              <h4>Salmon Spaghetti <span class="large-menu__item-price">£12.50</span></h4>
               <p>Salmon Spaghetti with Mushroom Sauce</p>
             </div>
             <div class="large-menu__item large-menu__item--2">
-              <h4>Baked Seafood Fettuccine<span class="large-menu__item-price">£14.50</span></h4>
+              <h4>Baked Seafood Fettuccine <span class="large-menu__item-price">£14.50</span></h4>
               <p>Prawn and Squid with Fettuccine with White Sauce</p>
             </div>
             <div class="large-menu__item large-menu__item--3">
-              <h4>Mac and Cheese with Ham<span class="large-menu__item-price">£10.50</span></h4>
+              <h4>Mac and Cheese with Ham <span class="large-menu__item-price">£10.50</span></h4>
               <p>Macaroni and Cheese with Parma Ham</p>
             </div>
             <div class="large-menu__image">
@@ -235,15 +235,15 @@
 
           <div class="large-food-menu" role="tabpanel" id="rice-menu" aria-labelledby="rice-tab">
             <div class="large-menu__item large-menu__item--1">
-              <h4>Thai Pineapple Fried Rice<span class="large-menu__item-price">£16.50</span></h4>
+              <h4>Thai Pineapple Fried Rice <span class="large-menu__item-price">£16.50</span></h4>
               <p>Thai-style Fried Rice with Seafood and Pineapple</p>
             </div>
             <div class="large-menu__item large-menu__item--2">
-              <h4>Salmon and Prawn Risotto<span class="large-menu__item-price">£14.50</span></h4>
+              <h4>Salmon and Prawn Risotto <span class="large-menu__item-price">£14.50</span></h4>
               <p>Salmon and Prawn Risotto in Mushroom Sauce</p>
             </div>
             <div class="large-menu__item large-menu__item--3">
-              <h4>Mackerel with Black Rice<span class="large-menu__item-price">£12.50</span></h4>
+              <h4>Mackerel with Black Rice <span class="large-menu__item-price">£12.50</span></h4>
               <p>Grilled Mackerel with Tofu and Black Rice</p>
             </div>
             <div class="large-menu__image">
@@ -256,15 +256,15 @@
 
           <div class="large-food-menu" role="tabpanel" id="sides-menu" aria-labelledby="sides-tab">
             <div class="large-menu__item large-menu__item--1">
-              <h4>Satay Chicken Skewers<span class="large-menu__item-price">£8.00</span></h4>
+              <h4>Satay Chicken Skewers <span class="large-menu__item-price">£8.00</span></h4>
               <p>Grilled Chicken Skewers with Satay Sauce</p>
             </div>
             <div class="large-menu__item large-menu__item--2">
-              <h4>Salmon Avocado Rolls<span class="large-menu__item-price">£9.50</span></h4>
+              <h4>Salmon Avocado Rolls <span class="large-menu__item-price">£9.50</span></h4>
               <p>Salmon, Egg and Avocado in Rice Paper Rolls</p>
             </div>
             <div class="large-menu__item large-menu__item--3">
-              <h4>Petits Pains Curry Prawn<span class="large-menu__item-price">£8.50</span></h4>
+              <h4>Petits Pains Curry Prawn <span class="large-menu__item-price">£8.50</span></h4>
               <p>Curry Prawn in Petits Pains</p>
             </div>
             <div class="large-menu__image">
@@ -329,7 +329,7 @@
       <hr>
 
       <!-- Reservation -->
-      <section id="reservation">
+      <section id="reservation" role="region" aria-label="reservation">
         <h2>RESERVATION</h2>
         <div class="reservation">
           <!-- reservation photo -->
@@ -423,7 +423,7 @@
           <!-- confirmation message -->
           <div class="reservation__message-container" id="reservation-message">
             <div class="reservation__message-content">
-              <h2>Booking Summary<span class="reservation__message__close-button" tabindex="0">&times;</span></h2>
+              <h3>Booking Summary<span class="reservation__message__close-button" tabindex="0">&times;</span></h3>
               <p>Please confirm the following details:</p>
               <ul class="reservation__message-list">
                 <li>Name:</li>
@@ -455,7 +455,7 @@
       <hr>
 
       <!-- Find us -->
-      <section class="findus" id="findus">
+      <section class="findus" id="findus" role="region" aria-label="find us">
         <div class="findus-container">
           <div class="findus__logofont-container">
             <h2 class="g-logofont" aria-hidden="true">R2 Place</h2>
@@ -466,16 +466,29 @@
             <div class="findus__contact-content">
               <h2>Find Us</h2>
               <ul class="findus__grid">
-                <li><i class="contact__icon contact__icon--location icon icon-solid icon-location" role="img"
-                    aria-label="Address" title="Address"></i></li>
-                <li>R2&nbsp;Place,<wbr> 2&nbsp;Relax&nbsp;Street,<wbr> R2&nbsp;1ST</li>
-                <li><i class="contact__icon icon icon-solid icon-phone" role="img" aria-label="Telephone"
-                    title="Telephone"></i>
+                <li>
+                  <i class="contact__icon contact__icon--location icon icon-solid icon-location" role="img"
+                    aria-label="Address" title="Address"></i>
                 </li>
-                <li><a href="tel:+441234567890" class="g-link">0123 456 7890</a></li>
-                <li><i class="contact__icon icon icon-solid icon-envelope" role="img" aria-label="Email"
-                    title="Email"></i></li>
-                <li><a href="mailto:info@r2p.com" class="g-link">info@r2p.com</a></li>
+                <li>
+                  R2&nbsp;Place,<wbr> 2&nbsp;Relax&nbsp;Street,<wbr> R2&nbsp;1ST
+                </li>
+                <li>
+                  <i class="contact__icon icon icon-solid icon-phone" role="img" aria-label="Telephone"
+                    title="Telephone">
+                  </i>
+                </li>
+                <li>
+                  <a href="tel:+441234567890" class="g-link" aria-label="Call us at 0123 456 7890">0123
+                    456 7890</a>
+                </li>
+                <li>
+                  <i class="contact__icon icon icon-solid icon-envelope" role="img" aria-label="Email"
+                    title="Email"></i>
+                </li>
+                <li>
+                  <a href="mailto:info@r2p.com" class="g-link" aria-label="Email us at info@r2p.com">info@r2p.com</a>
+                </li>
               </ul>
             </div>
           </div>
