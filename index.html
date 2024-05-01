@@ -15,8 +15,8 @@
   <meta name="twitter:image:alt" content="Interior of R2 Place">
   <meta name="twitter:image" content="https://mtw72.github.io/R2-revising/images/twitter-image.jpeg">
 
-  <meta itemprop="description" content="A place to Relax and Recharge.">
-  <meta itemprop="url" content="https://mtw72.github.io/R2-revising/">
+  <!-- <meta itemprop="description" content="A place to Relax and Recharge.">
+  <meta itemprop="url" content="https://mtw72.github.io/R2-revising/"> -->
 
   <meta property="og:url" content="https://mtw72.github.io/R2-revising/" />
   <meta property="og:type" content="website" />
@@ -152,7 +152,7 @@
         <div class="small-menu">
           <button type="button" class="small-menu__accordion small-menu__accordion--active" aria-controls="pasta-panel"
             id="pasta-button">
-            <h3>PASTA</h3>
+            PASTA
           </button>
           <div class="small-menu__panel" id="pasta-panel" aria-labelledby="pasta-button">
             <div class="small-menu__content">
@@ -167,7 +167,7 @@
 
           <button type="button" class="small-menu__accordion small-menu__accordion--active" aria-controls="rice-panel"
             id="rice-button">
-            <h3>RICE</h3>
+            RICE
           </button>
           <div class="small-menu__panel" id="rice-panel" aria-labelledby="rice-button">
             <div class="small-menu__content">
@@ -182,7 +182,7 @@
 
           <button type="button" class="small-menu__accordion small-menu__accordion--active" aria-controls="sides-panel"
             id="sides-button">
-            <h3>SIDES</h3>
+            SIDES
           </button>
           <div class="small-menu__panel" id="sides-panel" aria-labelledby="sides-button">
             <div class="small-menu__content">
@@ -200,15 +200,15 @@
           <div class="large-menu__tabs" role="tablist" aria-label="Menu-tabs">
             <button onclick="openMenu(event, 'pasta-menu');" class="large-menu__tab large-menu__tab--active" role="tab"
               aria-controls="pasta-menu" id="pasta-tab">
-              <h3>PASTA</h3>
+              PASTA
             </button>
             <button onclick="openMenu(event, 'rice-menu');" class="large-menu__tab" role="tab" aria-controls="rice-menu"
               id="rice-tab">
-              <h3>RICE</h3>
+              RICE
             </button>
             <button onclick="openMenu(event, 'sides-menu');" class="large-menu__tab" role="tab"
               aria-controls="sides-menu" id="sides-tab">
-              <h3>SIDES</h3>
+              SIDES
             </button>
           </div>
 
@@ -375,7 +375,7 @@
                 <label for="ppl">Number of Guest(s)<span class="mandatory-field"
                     aria-hidden="true">&nbsp;*</span></label>
                 <select class="select-control" id="ppl" name="ppl" required aria-required="true"
-                  title="Please select the number of guest(s)">
+                  title="Please select the number of guest(s)" placeholder="1">
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -393,8 +393,8 @@
 
               <div class="reservation__form--date">
                 <label for="date">Date<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>
-                <input type="date" class="input-control" id="date" placeholder="Date" name="date" required
-                  aria-required="true" title="Please select a valid date">
+                <input type="date" class="input-control" id="date" name="date" required aria-required="true"
+                  title="Please select a valid date">
                 <p class="error-message" id="date-error" role="alert">Please select a valid date</p>
               </div>
 
