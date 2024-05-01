@@ -903,9 +903,6 @@ section:not(:first-of-type) {
   .large-menu__item:nth-of-type(3) {
     border-bottom: 0;
   }
-  .small-menu {
-    display: none;
-  }
   .large-menu {
     display: block;
   }
@@ -974,7 +971,7 @@ section:not(:first-of-type) {
   content: "−";
 }
 
-.small-menu__accordion h2 {
+.small-menu__accordion h3 {
   display: inline;
 }
 
