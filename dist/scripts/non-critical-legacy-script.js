@@ -282,7 +282,7 @@ var dateInput = document.getElementById('date');
 switch (tdyDay) {
   case 0:
     //Sunday
-    if (tdyHour > 15) {
+    if (tdyHour >= 15) {
       dateInput.value = tomorrow;
       dateInput.min = tomorrow;
     } else {
@@ -293,7 +293,7 @@ switch (tdyDay) {
   case 5:
   case 6:
     //Friday & Saturday
-    if (tdyHour > 19) {
+    if (tdyHour >= 19) {
       dateInput.value = tomorrow;
       dateInput.min = tomorrow;
     } else {
@@ -303,7 +303,7 @@ switch (tdyDay) {
     break;
   default:
     //Monday to Thursday
-    if (tdyHour > 18) {
+    if (tdyHour >= 18) {
       dateInput.value = tomorrow;
       dateInput.min = tomorrow;
     } else {
@@ -313,6 +313,7 @@ switch (tdyDay) {
 }
 dateInput.addEventListener('input', generateTimeOptions);
 
+// 1801 missing the option
 // time picker - set default time
 // Function to pad single digit numbers with leading zero
 function pad(number) {
