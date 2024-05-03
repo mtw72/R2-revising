@@ -366,8 +366,14 @@ function generateTimeOptions() {
   const day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][now.getDay()];
   const currentHour = now.getHours();
   const currentMinute = now.getMinutes();
-  const select = document.getElementById('time');
-  select.innerHTML = '';
+  const timeSelect = document.getElementById('time');
+  const timeFirstOption = document.getElementById('time-first-option');
+
+  // Clear existing options (if any)
+  timeSelect.innerHTML = '';
+
+  // Add initial option
+  timeSelect.appendChild(timeFirstOption);
 
   if (dateInput.value === today) {
     switch (day) {
@@ -382,8 +388,9 @@ function generateTimeOptions() {
             const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
 
             if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || (hour === currentHour + 1 && minute >= currentMinute))) {
-              const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
-              select.add(option);
+              const optionText = displayHour + ':' + pad(minute) + 'pm';
+              const option = new Option(optionText, optionText); // Set the value same as the text
+              timeSelect.add(option);
             }
           }
         }
@@ -399,8 +406,9 @@ function generateTimeOptions() {
             const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
 
             if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || (hour === currentHour + 1 && minute >= currentMinute))) {
-              const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
-              select.add(option);
+              const optionText = displayHour + ':' + pad(minute) + 'pm';
+              const option = new Option(optionText, optionText); // Set the value same as the text
+              timeSelect.add(option);
             }
           }
         }
@@ -416,8 +424,9 @@ function generateTimeOptions() {
             const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
 
             if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || (hour === currentHour + 1 && minute >= currentMinute))) {
-              const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
-              select.add(option);
+              const optionText = displayHour + ':' + pad(minute) + 'pm';
+              const option = new Option(optionText, optionText); // Set the value same as the text
+              timeSelect.add(option);
             }
           }
         }
@@ -436,8 +445,9 @@ function generateTimeOptions() {
             }
 
             const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
-            const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
-            select.add(option);
+            const optionText = displayHour + ':' + pad(minute) + 'pm';
+            const option = new Option(optionText, optionText); // Set the value same as the text
+            timeSelect.add(option);
           }
         }
         break;
@@ -451,8 +461,9 @@ function generateTimeOptions() {
             }
 
             const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
-            const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
-            select.add(option);
+            const optionText = displayHour + ':' + pad(minute) + 'pm';
+            const option = new Option(optionText, optionText); // Set the value same as the text
+            timeSelect.add(option);
           }
         }
         break;
@@ -465,8 +476,9 @@ function generateTimeOptions() {
             }
 
             const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
-            const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
-            select.add(option);
+            const optionText = displayHour + ':' + pad(minute) + 'pm';
+            const option = new Option(optionText, optionText); // Set the value same as the text
+            timeSelect.add(option);
           }
         }
     }
@@ -516,7 +528,11 @@ const phoneNumberInput = document.getElementById("phone");
 const phoneNumberError = document.getElementById("phone-error");
 const emailInput = document.getElementById("email");
 const emailError = document.getElementById("email-error");
+const guestNumberInput = document.getElementById("guest-number");
+const guestNumberError = document.getElementById("guest-number-error");
 const dateError = document.getElementById("date-error");
+const timeInput = document.getElementById("time");
+const timeError = document.getElementById("time-error");
 
 // first validation on submit
 submitButton.addEventListener('click', (event) => {
@@ -559,6 +575,18 @@ submitButton.addEventListener('click', (event) => {
         emailError.style.display = "none";
     }
 
+    //validate guest number input
+    if (guestNumberInput.value === '') {
+        event.preventDefault(); // Prevent form submission if there are validation errors
+        guestNumberInput.classList.add('error-input');
+        guestNumberInput.setAttribute('aria-describedby', 'guest-number-error');
+        guestNumberInput.setAttribute('aria-invalid', 'true');
+        guestNumberError.style.display = "block";
+    } else {
+        guestNumberInput.classList.remove('error-input');
+        guestNumberError.style.display = "none";
+    }
+
     //validate date input
     // Get the selected date from the date input field
     const selectedDate = new Date(dateInput.value);
@@ -581,11 +609,25 @@ submitButton.addEventListener('click', (event) => {
         alert("Please provide valid input.");
     }
 
+    //validate time input
+    if (timeInput.value === '') {
+        event.preventDefault(); // Prevent form submission if there are validation errors
+        timeInput.classList.add('error-input');
+        timeInput.setAttribute('aria-describedby', 'time-error');
+        timeInput.setAttribute('aria-invalid', 'true');
+        timeError.style.display = "block";
+    } else {
+        timeInput.classList.remove('error-input');
+        timeError.style.display = "none";
+    }
+
     // Add the input event listener after first submission
     nameInput.addEventListener('input', nameInputEvent);
     phoneNumberInput.addEventListener('input', phoneNumberInputEvent);
     emailInput.addEventListener('input', emailInputEvent);
+    guestNumberInput.addEventListener('input', guestNumberInputEvent);
     dateInput.addEventListener('input', dateInputEvent);
+    timeInput.addEventListener('input', timeInputEvent);
 });
 
 function nameInputEvent() {
@@ -637,6 +679,20 @@ function emailInputEvent() {
     }
 }
 
+function guestNumberInputEvent() {
+    if (guestNumberInput.value === '') {
+        guestNumberInput.classList.add('error-input');
+        guestNumberInput.setAttribute('aria-describedby', 'guest-number-error');
+        guestNumberInput.setAttribute('aria-invalid', 'true');
+        guestNumberError.style.display = "block";
+    } else {
+        guestNumberInput.classList.remove('error-input');
+        guestNumberInput.removeAttribute('aria-describedby', 'guest-number-error');
+        guestNumberInput.removeAttribute('aria-invalid', 'true');
+        guestNumberError.style.display = "none";
+    }
+}
+
 function dateInputEvent() {
     // Get the selected date from the date input field
     const selectedDate = new Date(dateInput.value);
@@ -655,6 +711,20 @@ function dateInputEvent() {
         dateError.style.display = "block";
     }
 }
+
+function timeInputEvent() {
+    if (timeInput.value === '') {
+        timeInput.classList.add('error-input');
+        timeInput.setAttribute('aria-describedby', 'time-error');
+        timeInput.setAttribute('aria-invalid', 'true');
+        timeError.style.display = "block";
+    } else {
+        timeInput.classList.remove('error-input');
+        timeInput.removeAttribute('aria-describedby', 'time-error');
+        timeInput.removeAttribute('aria-invalid', 'true');
+        timeError.style.display = "none";
+    }
+}
 'use strict';
 
 const reservationMessage = document.getElementById("reservation-message");
@@ -662,8 +732,6 @@ const confirmButton = document.querySelector(".reservation__message__bottom-butt
 const closeButton = document.querySelector(".reservation__message__close-button");
 const cancelButton = document.querySelector(".reservation__message__bottom-button--cancel");
 
-const guestNumberInput = document.getElementById("ppl");
-const timeInput = document.getElementById("time");
 const messageInput = document.getElementById("message");
 
 let nameValue = document.getElementById("name-value");
@@ -723,5 +791,13 @@ cancelButton.addEventListener("click", closeMessage);
 
 function closeMessage() {
     reservationMessage.style.display = "none";
+}
+
+window.addEventListener('keydown', closeMessageByEsc);
+
+function closeMessageByEsc(event) {
+    if (event.keyCode == 27) { // Check if the key pressed is 'esc'
+        closeMessage();
+    }
 }
 //# sourceMappingURL=non-critical-modern-script.js.map

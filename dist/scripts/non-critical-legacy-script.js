@@ -365,8 +365,14 @@ function generateTimeOptions() {
   var day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][now.getDay()];
   var currentHour = now.getHours();
   var currentMinute = now.getMinutes();
-  var select = document.getElementById('time');
-  select.innerHTML = '';
+  var timeSelect = document.getElementById('time');
+  var timeFirstOption = document.getElementById('time-first-option');
+
+  // Clear existing options (if any)
+  timeSelect.innerHTML = '';
+
+  // Add initial option
+  timeSelect.appendChild(timeFirstOption);
   if (dateInput.value === today) {
     switch (day) {
       case 0:
@@ -379,8 +385,9 @@ function generateTimeOptions() {
             var displayHour = hour > 12 ? hour - 12 : hour; // Convert to 12-hour format
 
             if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || hour === currentHour + 1 && minute >= currentMinute)) {
-              var option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
-              select.add(option);
+              var optionText = displayHour + ':' + pad(minute) + 'pm';
+              var option = new Option(optionText, optionText); // Set the value same as the text
+              timeSelect.add(option);
             }
           }
         }
@@ -396,8 +403,9 @@ function generateTimeOptions() {
             var _displayHour = _hour > 12 ? _hour - 12 : _hour; // Convert to 12-hour format
 
             if (isWithinOpeningHours(day, _hour, _minute) && (_hour > currentHour + 1 || _hour === currentHour + 1 && _minute >= currentMinute)) {
-              var _option = new Option(_displayHour + ':' + pad(_minute) + 'pm', time);
-              select.add(_option);
+              var _optionText = _displayHour + ':' + pad(_minute) + 'pm';
+              var _option = new Option(_optionText, _optionText); // Set the value same as the text
+              timeSelect.add(_option);
             }
           }
         }
@@ -413,8 +421,9 @@ function generateTimeOptions() {
             var _displayHour2 = _hour2 > 12 ? _hour2 - 12 : _hour2; // Convert to 12-hour format
 
             if (isWithinOpeningHours(day, _hour2, _minute2) && (_hour2 > currentHour + 1 || _hour2 === currentHour + 1 && _minute2 >= currentMinute)) {
-              var _option2 = new Option(_displayHour2 + ':' + pad(_minute2) + 'pm', time);
-              select.add(_option2);
+              var _optionText2 = _displayHour2 + ':' + pad(_minute2) + 'pm';
+              var _option2 = new Option(_optionText2, _optionText2); // Set the value same as the text
+              timeSelect.add(_option2);
             }
           }
         }
@@ -431,8 +440,9 @@ function generateTimeOptions() {
               continue;
             }
             var _displayHour3 = _hour3 > 12 ? _hour3 - 12 : _hour3; // Convert to 12-hour format
-            var _option3 = new Option(_displayHour3 + ':' + pad(_minute3) + 'pm', time);
-            select.add(_option3);
+            var _optionText3 = _displayHour3 + ':' + pad(_minute3) + 'pm';
+            var _option3 = new Option(_optionText3, _optionText3); // Set the value same as the text
+            timeSelect.add(_option3);
           }
         }
         break;
@@ -445,8 +455,9 @@ function generateTimeOptions() {
               continue;
             }
             var _displayHour4 = _hour4 > 12 ? _hour4 - 12 : _hour4; // Convert to 12-hour format
-            var _option4 = new Option(_displayHour4 + ':' + pad(_minute4) + 'pm', time);
-            select.add(_option4);
+            var _optionText4 = _displayHour4 + ':' + pad(_minute4) + 'pm';
+            var _option4 = new Option(_optionText4, _optionText4); // Set the value same as the text
+            timeSelect.add(_option4);
           }
         }
         break;
@@ -459,8 +470,9 @@ function generateTimeOptions() {
               continue;
             }
             var _displayHour5 = _hour5 > 12 ? _hour5 - 12 : _hour5; // Convert to 12-hour format
-            var _option5 = new Option(_displayHour5 + ':' + pad(_minute5) + 'pm', time);
-            select.add(_option5);
+            var _optionText5 = _displayHour5 + ':' + pad(_minute5) + 'pm';
+            var _option5 = new Option(_optionText5, _optionText5); // Set the value same as the text
+            timeSelect.add(_option5);
           }
         }
     }
@@ -508,7 +520,11 @@ var phoneNumberInput = document.getElementById("phone");
 var phoneNumberError = document.getElementById("phone-error");
 var emailInput = document.getElementById("email");
 var emailError = document.getElementById("email-error");
+var guestNumberInput = document.getElementById("guest-number");
+var guestNumberError = document.getElementById("guest-number-error");
 var dateError = document.getElementById("date-error");
+var timeInput = document.getElementById("time");
+var timeError = document.getElementById("time-error");
 
 // first validation on submit
 submitButton.addEventListener('click', function (event) {
@@ -550,6 +566,18 @@ submitButton.addEventListener('click', function (event) {
     emailError.style.display = "none";
   }
 
+  //validate guest number input
+  if (guestNumberInput.value === '') {
+    event.preventDefault(); // Prevent form submission if there are validation errors
+    guestNumberInput.classList.add('error-input');
+    guestNumberInput.setAttribute('aria-describedby', 'guest-number-error');
+    guestNumberInput.setAttribute('aria-invalid', 'true');
+    guestNumberError.style.display = "block";
+  } else {
+    guestNumberInput.classList.remove('error-input');
+    guestNumberError.style.display = "none";
+  }
+
   //validate date input
   // Get the selected date from the date input field
   var selectedDate = new Date(dateInput.value);
@@ -571,11 +599,25 @@ submitButton.addEventListener('click', function (event) {
     alert("Please provide valid input.");
   }
 
+  //validate time input
+  if (timeInput.value === '') {
+    event.preventDefault(); // Prevent form submission if there are validation errors
+    timeInput.classList.add('error-input');
+    timeInput.setAttribute('aria-describedby', 'time-error');
+    timeInput.setAttribute('aria-invalid', 'true');
+    timeError.style.display = "block";
+  } else {
+    timeInput.classList.remove('error-input');
+    timeError.style.display = "none";
+  }
+
   // Add the input event listener after first submission
   nameInput.addEventListener('input', nameInputEvent);
   phoneNumberInput.addEventListener('input', phoneNumberInputEvent);
   emailInput.addEventListener('input', emailInputEvent);
+  guestNumberInput.addEventListener('input', guestNumberInputEvent);
   dateInput.addEventListener('input', dateInputEvent);
+  timeInput.addEventListener('input', timeInputEvent);
 });
 function nameInputEvent() {
   var letterPattern = /^[A-Za-z ]+$/;
@@ -621,6 +663,19 @@ function emailInputEvent() {
     emailError.style.display = "block";
   }
 }
+function guestNumberInputEvent() {
+  if (guestNumberInput.value === '') {
+    guestNumberInput.classList.add('error-input');
+    guestNumberInput.setAttribute('aria-describedby', 'guest-number-error');
+    guestNumberInput.setAttribute('aria-invalid', 'true');
+    guestNumberError.style.display = "block";
+  } else {
+    guestNumberInput.classList.remove('error-input');
+    guestNumberInput.removeAttribute('aria-describedby', 'guest-number-error');
+    guestNumberInput.removeAttribute('aria-invalid', 'true');
+    guestNumberError.style.display = "none";
+  }
+}
 function dateInputEvent() {
   // Get the selected date from the date input field
   var selectedDate = new Date(dateInput.value);
@@ -638,14 +693,25 @@ function dateInputEvent() {
     dateError.style.display = "block";
   }
 }
+function timeInputEvent() {
+  if (timeInput.value === '') {
+    timeInput.classList.add('error-input');
+    timeInput.setAttribute('aria-describedby', 'time-error');
+    timeInput.setAttribute('aria-invalid', 'true');
+    timeError.style.display = "block";
+  } else {
+    timeInput.classList.remove('error-input');
+    timeInput.removeAttribute('aria-describedby', 'time-error');
+    timeInput.removeAttribute('aria-invalid', 'true');
+    timeError.style.display = "none";
+  }
+}
 'use strict';
 
 var reservationMessage = document.getElementById("reservation-message");
 var confirmButton = document.querySelector(".reservation__message__bottom-button--confirm");
 var closeButton = document.querySelector(".reservation__message__close-button");
 var cancelButton = document.querySelector(".reservation__message__bottom-button--cancel");
-var guestNumberInput = document.getElementById("ppl");
-var timeInput = document.getElementById("time");
 var messageInput = document.getElementById("message");
 var nameValue = document.getElementById("name-value");
 var phoneValue = document.getElementById("phone-value");
@@ -696,5 +762,12 @@ closeButton.addEventListener("click", closeMessage);
 cancelButton.addEventListener("click", closeMessage);
 function closeMessage() {
   reservationMessage.style.display = "none";
+}
+window.addEventListener('keydown', closeMessageByEsc);
+function closeMessageByEsc(event) {
+  if (event.keyCode == 27) {
+    // Check if the key pressed is 'esc'
+    closeMessage();
+  }
 }
 //# sourceMappingURL=non-critical-legacy-script.js.map

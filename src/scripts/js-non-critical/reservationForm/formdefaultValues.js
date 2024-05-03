@@ -103,8 +103,14 @@ function generateTimeOptions() {
   const day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][now.getDay()];
   const currentHour = now.getHours();
   const currentMinute = now.getMinutes();
-  const select = document.getElementById('time');
-  select.innerHTML = '';
+  const timeSelect = document.getElementById('time');
+  const timeFirstOption = document.getElementById('time-first-option');
+
+  // Clear existing options (if any)
+  timeSelect.innerHTML = '';
+
+  // Add initial option
+  timeSelect.appendChild(timeFirstOption);
 
   if (dateInput.value === today) {
     switch (day) {
@@ -119,8 +125,9 @@ function generateTimeOptions() {
             const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
 
             if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || (hour === currentHour + 1 && minute >= currentMinute))) {
-              const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
-              select.add(option);
+              const optionText = displayHour + ':' + pad(minute) + 'pm';
+              const option = new Option(optionText, optionText); // Set the value same as the text
+              timeSelect.add(option);
             }
           }
         }
@@ -136,8 +143,9 @@ function generateTimeOptions() {
             const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
 
             if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || (hour === currentHour + 1 && minute >= currentMinute))) {
-              const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
-              select.add(option);
+              const optionText = displayHour + ':' + pad(minute) + 'pm';
+              const option = new Option(optionText, optionText); // Set the value same as the text
+              timeSelect.add(option);
             }
           }
         }
@@ -153,8 +161,9 @@ function generateTimeOptions() {
             const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
 
             if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || (hour === currentHour + 1 && minute >= currentMinute))) {
-              const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
-              select.add(option);
+              const optionText = displayHour + ':' + pad(minute) + 'pm';
+              const option = new Option(optionText, optionText); // Set the value same as the text
+              timeSelect.add(option);
             }
           }
         }
@@ -173,8 +182,9 @@ function generateTimeOptions() {
             }
 
             const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
-            const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
-            select.add(option);
+            const optionText = displayHour + ':' + pad(minute) + 'pm';
+            const option = new Option(optionText, optionText); // Set the value same as the text
+            timeSelect.add(option);
           }
         }
         break;
@@ -188,8 +198,9 @@ function generateTimeOptions() {
             }
 
             const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
-            const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
-            select.add(option);
+            const optionText = displayHour + ':' + pad(minute) + 'pm';
+            const option = new Option(optionText, optionText); // Set the value same as the text
+            timeSelect.add(option);
           }
         }
         break;
@@ -202,8 +213,9 @@ function generateTimeOptions() {
             }
 
             const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
-            const option = new Option(displayHour + ':' + pad(minute) + 'pm', time);
-            select.add(option);
+            const optionText = displayHour + ':' + pad(minute) + 'pm';
+            const option = new Option(optionText, optionText); // Set the value same as the text
+            timeSelect.add(option);
           }
         }
     }

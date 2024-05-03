@@ -30,12 +30,15 @@
     }
 }
 
-.reservation__message-content h3 {
+.reservation__message-container header {
+    position: relative;
+}
+
+.reservation__message-container h3 {
     font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
     width: 100%;
     background-color: $yellow-2;
     text-align: center;
-    position: relative;
     border-radius: 5px 5px 0 0;
 }
 
@@ -159,11 +162,11 @@
 .reservation__message__bottom-button--confirm {
     background-color: $brown-1;
     color: $yellow-2;
-    border-radius: 0 0 0 5px;
+    border-radius: 0 0 5px 0;
 }
 
 .reservation__message__bottom-button--cancel {
     background-color: $grey-2;
     color: $black-1;
-    border-radius: 0 0 5px 0;
+    border-radius: 0 0 0 5px;
 }

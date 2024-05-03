@@ -358,7 +358,8 @@
 
             <div class="reservation__form">
               <div class="reservation__form--name">
-                <label for="name">Name<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>
+                <label for="name">Name</label>
+                <span class="mandatory-field" aria-hidden="true">*</span>
                 <input type="text" class="input-control" id="name" placeholder="Enter Name" name="name" required
                   aria-required="true" autocomplete="name" pattern="[A-Za-z ]{2,}"
                   title="Please enter at least two letters">
@@ -366,7 +367,8 @@
               </div>
 
               <div class="reservation__form--phone">
-                <label for="phone">Phone Number<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>
+                <label for="phone">Phone Number</label>
+                <span class="mandatory-field" aria-hidden="true">*</span>
                 <input type="tel" class="input-control" id="phone" placeholder="Enter Phone Number" name="phone"
                   required aria-required="true" autocomplete="tel" pattern="[0-9+]{7,}"
                   title="Please enter a valid phone number">
@@ -374,7 +376,8 @@
               </div>
 
               <div class="reservation__form--email">
-                <label for="email">Email<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>
+                <label for="email">Email</label>
+                <span class="mandatory-field" aria-hidden="true">*</span>
                 <input type="email" class="input-control" id="email" placeholder="Enter Email" name="email" required
                   aria-required="true" autocomplete="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
                   title="Please enter a valid email address">
@@ -382,11 +385,11 @@
               </div>
 
               <div class="reservation__form--guest-number">
-                <label for="ppl">Number of Guest(s)<span class="mandatory-field"
-                    aria-hidden="true">&nbsp;*</span></label>
-                <select class="select-control" id="ppl" name="ppl" required aria-required="true"
+                <label for="guest-number">Number of Guest(s)</label>
+                <span class="mandatory-field" aria-hidden="true">*</span>
+                <select class="select-control" id="guest-number" name="guest-number" required aria-required="true"
                   title="Please select the number of guest(s)">
-                  <option value="" disabled selected>Select number of guests</option>
+                  <option value="" disabled selected>Select number of guest(s)</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -400,20 +403,23 @@
                   <option value="11">11</option>
                   <option value="12">12</option>
                 </select>
+                <p class="error-message" id="guest-number-error" role="alert">Please select number of guest(s)</p>
               </div>
 
               <div class="reservation__form--date">
-                <label for="date">Date<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>
+                <label for="date">Date</label>
+                <span class="mandatory-field" aria-hidden="true">*</span>
                 <input type="date" class="input-control" id="date" name="date" required aria-required="true"
                   title="Please select a valid date">
                 <p class="error-message" id="date-error" role="alert">Please select a valid date</p>
               </div>
 
               <div class="reservation__form--time">
-                <label for="time">Time<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>
+                <label for="time">Time</label>
+                <span class="mandatory-field" aria-hidden="true">*</span>
                 <select class="select-control" id="time" name="time" required aria-required="true"
                   title="Please select a valid time">
-                  <option value="" disabled selected>Select time</option>
+                  <option value="" disabled selected id="time-first-option">Select time</option>
                   <!-- Options will be dynamically generated here -->
                 </select>
                 <p class="error-message" id="time-error" role="alert">Please select a valid time</p>
@@ -435,7 +441,10 @@
           <!-- confirmation message -->
           <div class="reservation__message-container" id="reservation-message">
             <div class="reservation__message-content">
-              <h3>Booking Summary<span class="reservation__message__close-button" tabindex="0">&times;</span></h3>
+              <header>
+                <h3>Booking Summary</h3>
+                <span class="reservation__message__close-button" role="button" tabindex="0">&times;</span>
+              </header>
               <p>Please confirm the following details:</p>
               <ul class="reservation__message-list">
                 <li>Name:</li>
@@ -455,9 +464,9 @@
               </ul>
               <div class="reservation__message__bottom-buttons">
                 <button type="button"
-                  class="reservation__message__bottom-button reservation__message__bottom-button--confirm">Confirm</button>
-                <button type="button"
                   class="reservation__message__bottom-button reservation__message__bottom-button--cancel">Cancel</button>
+                <button type="button"
+                  class="reservation__message__bottom-button reservation__message__bottom-button--confirm">Confirm</button>
               </div>
             </div>
           </div>

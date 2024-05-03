@@ -5,8 +5,6 @@ const confirmButton = document.querySelector(".reservation__message__bottom-butt
 const closeButton = document.querySelector(".reservation__message__close-button");
 const cancelButton = document.querySelector(".reservation__message__bottom-button--cancel");
 
-const guestNumberInput = document.getElementById("ppl");
-const timeInput = document.getElementById("time");
 const messageInput = document.getElementById("message");
 
 let nameValue = document.getElementById("name-value");
@@ -66,4 +64,12 @@ cancelButton.addEventListener("click", closeMessage);
 
 function closeMessage() {
     reservationMessage.style.display = "none";
+}
+
+window.addEventListener('keydown', closeMessageByEsc);
+
+function closeMessageByEsc(event) {
+    if (event.keyCode == 27) { // Check if the key pressed is 'esc'
+        closeMessage();
+    }
 }

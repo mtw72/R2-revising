@@ -8,7 +8,11 @@ const phoneNumberInput = document.getElementById("phone");
 const phoneNumberError = document.getElementById("phone-error");
 const emailInput = document.getElementById("email");
 const emailError = document.getElementById("email-error");
+const guestNumberInput = document.getElementById("guest-number");
+const guestNumberError = document.getElementById("guest-number-error");
 const dateError = document.getElementById("date-error");
+const timeInput = document.getElementById("time");
+const timeError = document.getElementById("time-error");
 
 // first validation on submit
 submitButton.addEventListener('click', (event) => {
@@ -51,6 +55,18 @@ submitButton.addEventListener('click', (event) => {
         emailError.style.display = "none";
     }
 
+    //validate guest number input
+    if (guestNumberInput.value === '') {
+        event.preventDefault(); // Prevent form submission if there are validation errors
+        guestNumberInput.classList.add('error-input');
+        guestNumberInput.setAttribute('aria-describedby', 'guest-number-error');
+        guestNumberInput.setAttribute('aria-invalid', 'true');
+        guestNumberError.style.display = "block";
+    } else {
+        guestNumberInput.classList.remove('error-input');
+        guestNumberError.style.display = "none";
+    }
+
     //validate date input
     // Get the selected date from the date input field
     const selectedDate = new Date(dateInput.value);
@@ -73,11 +89,25 @@ submitButton.addEventListener('click', (event) => {
         alert("Please provide valid input.");
     }
 
+    //validate time input
+    if (timeInput.value === '') {
+        event.preventDefault(); // Prevent form submission if there are validation errors
+        timeInput.classList.add('error-input');
+        timeInput.setAttribute('aria-describedby', 'time-error');
+        timeInput.setAttribute('aria-invalid', 'true');
+        timeError.style.display = "block";
+    } else {
+        timeInput.classList.remove('error-input');
+        timeError.style.display = "none";
+    }
+
     // Add the input event listener after first submission
     nameInput.addEventListener('input', nameInputEvent);
     phoneNumberInput.addEventListener('input', phoneNumberInputEvent);
     emailInput.addEventListener('input', emailInputEvent);
+    guestNumberInput.addEventListener('input', guestNumberInputEvent);
     dateInput.addEventListener('input', dateInputEvent);
+    timeInput.addEventListener('input', timeInputEvent);
 });
 
 function nameInputEvent() {
@@ -129,6 +159,20 @@ function emailInputEvent() {
     }
 }
 
+function guestNumberInputEvent() {
+    if (guestNumberInput.value === '') {
+        guestNumberInput.classList.add('error-input');
+        guestNumberInput.setAttribute('aria-describedby', 'guest-number-error');
+        guestNumberInput.setAttribute('aria-invalid', 'true');
+        guestNumberError.style.display = "block";
+    } else {
+        guestNumberInput.classList.remove('error-input');
+        guestNumberInput.removeAttribute('aria-describedby', 'guest-number-error');
+        guestNumberInput.removeAttribute('aria-invalid', 'true');
+        guestNumberError.style.display = "none";
+    }
+}
+
 function dateInputEvent() {
     // Get the selected date from the date input field
     const selectedDate = new Date(dateInput.value);
@@ -145,5 +189,19 @@ function dateInputEvent() {
         dateInput.setAttribute('aria-describedby', 'date-error');
         dateInput.setAttribute('aria-invalid', 'true');
         dateError.style.display = "block";
+    }
+}
+
+function timeInputEvent() {
+    if (timeInput.value === '') {
+        timeInput.classList.add('error-input');
+        timeInput.setAttribute('aria-describedby', 'time-error');
+        timeInput.setAttribute('aria-invalid', 'true');
+        timeError.style.display = "block";
+    } else {
+        timeInput.classList.remove('error-input');
+        timeInput.removeAttribute('aria-describedby', 'time-error');
+        timeInput.removeAttribute('aria-invalid', 'true');
+        timeError.style.display = "none";
     }
 }
