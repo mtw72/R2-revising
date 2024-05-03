@@ -1,8 +1,8 @@
 /* Caption text */
 .small-menu__image-description {
-  background-color: rgb(163, 90, 0);
+  background-color: rgb(153, 104, 41);
   color: rgb(255, 251, 235);
-  border-top: 1px solid rgb(163, 90, 0);
+  border-top: 1px solid rgb(153, 104, 41);
 }
 
 .small-menu__carousel__button--prev,
@@ -91,18 +91,16 @@ textarea:focus {
 contacts in findus and
 social icons in footer  */
 .g-link {
-  color: rgb(163, 90, 0);
-  -webkit-transition: 0.1s ease-in-out;
-  transition: 0.1s ease-in-out;
+  color: rgb(162, 89, 0);
 }
 
 .g-link:hover {
-  color: rgb(224, 177, 120);
-  border-bottom: 2px solid rgb(224, 177, 120);
+  color: rgba(162, 89, 0, 0.75);
+  border-bottom: 2px solid rgba(162, 89, 0, 0.75);
 }
 
 .g-link:active {
-  color: rgb(233, 205, 171);
+  color: rgb(128, 70, 0);
 }
 
 .small-menu__image-description {

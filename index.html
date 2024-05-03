@@ -44,7 +44,7 @@
     onload="this.onload=null;this.rel='stylesheet'">
 
   <script defer src="./dist/scripts/non-critical-modern-script.js"></script>
-  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.js" type="text/javascript"></script> -->
+  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.js"></script> -->
 
   <!-- No script -->
   <!-- <noscript>
@@ -52,7 +52,7 @@
   </noscript> -->
 
 
-  <link rel="stylesheet" href="./dist/styles/googlefont.css">
+  <!-- <link rel="stylesheet" href="./dist/styles/googlefont.css">
   <link rel="stylesheet" href="./dist/styles/loader.css">
   <script src="./dist/scripts/critical-modern-script.js"></script>
 
@@ -62,13 +62,13 @@
     onload="this.onload=null;this.rel='stylesheet'">
 
   <script defer src="./dist/scripts/non-critical-modern-script.js"></script>
-  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.js" type="text/javascript"></script>
+  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.js"></script> -->
 
 
 
 
 
-  <!-- <link rel="stylesheet" href="./dist/styles/googlefont.min.css">
+  <link rel="stylesheet" href="./dist/styles/googlefont.min.css">
   <link rel="stylesheet" href="./dist/styles/loader.min.css">
   <script src="./dist/scripts/critical-modern-script.min.js"></script>
 
@@ -78,7 +78,7 @@
     onload="this.onload=null;this.rel='stylesheet'">
 
   <script defer src="./dist/scripts/non-critical-modern-script.min.js"></script>
-  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.min.js" type="text/javascript"></script> -->
+  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.min.js"></script>
 
 </head>
 
@@ -104,7 +104,7 @@
       <!-- A horizontal navbar that becomes vertical on small screens -->
       <nav class="navbar" id="navbar">
         <div class="navbar__container">
-          <a class="navbar__brand g-logofont" href="#home" aria-label="Homepage">R2 Place</a>
+          <a class="navbar__brand g-logofont" href="#home" aria-label="R2 Place Homepage">R2 Place</a>
 
           <button class="navbar__toggler" type="button" aria-controls="collapsibleNavbar" aria-haspopup="true"
             aria-label="Open Menu" id="menu-toggler">&#9776;</button>
@@ -385,7 +385,7 @@
                 <label for="guest-number">Number of Guest(s)</label>
                 <span class="mandatory-field" aria-hidden="true">*</span>
                 <select class="select-control" id="guest-number" name="guest-number" required aria-required="true">
-                  <option value="" disabled selected>Select number of guest(s)</option>
+                  <option value="" disabled selected>Select Number of Guest(s)</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -413,7 +413,7 @@
                 <label for="time">Time</label>
                 <span class="mandatory-field" aria-hidden="true">*</span>
                 <select class="select-control" id="time" name="time" required aria-required="true">
-                  <option value="" disabled selected id="time-first-option">Select time</option>
+                  <option value="" disabled selected id="time-first-option">Select Time</option>
                   <!-- Options will be dynamically generated here -->
                 </select>
                 <p class="error-message" id="time-error" role="alert">Please select a valid time</p>

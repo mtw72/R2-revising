@@ -4,9 +4,9 @@
 // carousel
 /* Caption text */
 .small-menu__image-description {
-    background-color: $brown-2;
+    background-color: $brown-7;
     color: $yellow-2;
-    border-top: 1px solid $brown-2;
+    border-top: 1px solid $brown-7;
 }
 
 //Next & previous buttons
@@ -16,7 +16,7 @@
 }
 
 .small-menu__carousel-dot {
-    background-color: $orange-6;
+    background-color: $orange-4;
 }
 
 .small-menu__carousel-dot:hover,
@@ -99,15 +99,14 @@ textarea:focus {
 contacts in findus and
 social icons in footer  */
 .g-link {
-    color: $brown-2;
-    transition: 0.1s ease-in-out;
+    color: $brown-8;
 }
 
 .g-link:hover {
-    color: $orange-4;
-    border-bottom: 2px solid $orange-4;
+    color: $brown-8a;
+    border-bottom: 2px solid $brown-8a;
 }
 
 .g-link:active {
-    color: $orange-5;
+    color: $brown-6;
 }

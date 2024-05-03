@@ -18,12 +18,10 @@ navbarToggler.addEventListener('click', (event) => {
   navList.classList.toggle('is-opened');
   if (navList.style.maxHeight) {
     navList.style.maxHeight = null;
-    navList.setAttribute('inert', 'true');
     navbarToggler.setAttribute('aria-expanded', 'false');
     negativeTabIndex();
   } else {
     navList.style.maxHeight = navList.scrollHeight + "px";
-    navList.setAttribute('inert', 'false');
     navbarToggler.setAttribute('aria-expanded', 'true');
     zeroTabIndex();
   }
@@ -44,7 +42,6 @@ function closeNavbar() {
   if (navList.classList.contains('is-opened')) {
     navList.style.maxHeight = null;
     navList.classList.remove('is-opened');
-    navList.setAttribute('inert', 'true');
     navbarToggler.setAttribute('aria-expanded', 'false');
     negativeTabIndex();
   }
@@ -96,12 +93,10 @@ window.onresize = function () {
 // add or remove aria-attributes values of menu toggler
 function addDefaultAriaAttributes() {
   navbarToggler.setAttribute('aria-expanded', 'false');
-  navList.setAttribute('inert', 'true');
 }
 
 function removeDefaultAriaAttributes() {
   navbarToggler.removeAttribute('aria-expanded', 'false');
-  navList.removeAttribute('inert', 'true');
 }
 
 // tabindex of navlinks
@@ -315,7 +310,7 @@ switch (tdyDay) {
     break;
   case 5:
   case 6: //Friday & Saturday
-    if (tdyHour >= 19) {
+    if (tdyHour >= 19) {    //tdyHour >19 and if the time is 1900
       dateInput.value = tomorrow;
       dateInput.min = tomorrow;
     } else {
@@ -364,6 +359,7 @@ function isWithinOpeningHours(day, hour, minute) {
 function generateTimeOptions() {
   const now = new Date();
   const day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][now.getDay()];
+  const days = now.getDay();
   const currentHour = now.getHours();
   const currentMinute = now.getMinutes();
   const timeSelect = document.getElementById('time');
@@ -376,7 +372,7 @@ function generateTimeOptions() {
   timeSelect.appendChild(timeFirstOption);
 
   if (dateInput.value === today) {
-    switch (day) {
+    switch (days) {
       case 0:
         for (let hour = 12; hour <= 16; hour++) {
           for (let minute = 0; minute < 60; minute += 15) {
