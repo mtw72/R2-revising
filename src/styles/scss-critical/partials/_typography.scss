@@ -65,7 +65,7 @@ body {
 }
 
 // menu description
-.large-food-menu h4 {
+.large-food-menu .large-menu__item-name {
     font-size: clamp(1.35rem, 1.2rem + 1vw, 1.75rem);
     font-weight: bold;
 }

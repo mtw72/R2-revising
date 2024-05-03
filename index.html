@@ -52,7 +52,7 @@
   </noscript> -->
 
 
-  <!-- <link rel="stylesheet" href="./dist/styles/googlefont.css">
+  <link rel="stylesheet" href="./dist/styles/googlefont.css">
   <link rel="stylesheet" href="./dist/styles/loader.css">
   <script src="./dist/scripts/critical-modern-script.js"></script>
 
@@ -62,13 +62,13 @@
     onload="this.onload=null;this.rel='stylesheet'">
 
   <script defer src="./dist/scripts/non-critical-modern-script.js"></script>
-  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.js" type="text/javascript"></script> -->
+  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.js" type="text/javascript"></script>
 
 
 
 
 
-  <link rel="stylesheet" href="./dist/styles/googlefont.min.css">
+  <!-- <link rel="stylesheet" href="./dist/styles/googlefont.min.css">
   <link rel="stylesheet" href="./dist/styles/loader.min.css">
   <script src="./dist/scripts/critical-modern-script.min.js"></script>
 
@@ -78,7 +78,7 @@
     onload="this.onload=null;this.rel='stylesheet'">
 
   <script defer src="./dist/scripts/non-critical-modern-script.min.js"></script>
-  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.min.js" type="text/javascript"></script>
+  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.min.js" type="text/javascript"></script> -->
 
 </head>
 
@@ -198,15 +198,15 @@
 
         <div class="large-menu">
           <div class="large-menu__tabs" role="tablist" aria-label="Menu-tabs">
-            <button onclick="openMenu(event, 'pasta-menu');" class="large-menu__tab large-menu__tab--active" role="tab"
-              aria-controls="pasta-menu" id="pasta-tab">
+            <button type="button" onclick="openMenu(event, 'pasta-menu');"
+              class="large-menu__tab large-menu__tab--active" role="tab" aria-controls="pasta-menu" id="pasta-tab">
               PASTA
             </button>
-            <button onclick="openMenu(event, 'rice-menu');" class="large-menu__tab" role="tab" aria-controls="rice-menu"
-              id="rice-tab">
+            <button type="button" onclick="openMenu(event, 'rice-menu');" class="large-menu__tab" role="tab"
+              aria-controls="rice-menu" id="rice-tab">
               RICE
             </button>
-            <button onclick="openMenu(event, 'sides-menu');" class="large-menu__tab" role="tab"
+            <button type="button" onclick="openMenu(event, 'sides-menu');" class="large-menu__tab" role="tab"
               aria-controls="sides-menu" id="sides-tab">
               SIDES
             </button>
@@ -214,15 +214,17 @@
 
           <div class="large-food-menu" role="tabpanel" id="pasta-menu" aria-labelledby="pasta-tab">
             <div class="large-menu__item large-menu__item--1">
-              <h4>Salmon Spaghetti <span class="large-menu__item-price">£12.50</span></h4>
+              <p class="large-menu__item-name">Salmon Spaghetti <span class="large-menu__item-price">£12.50</span></p>
               <p>Salmon Spaghetti with Mushroom Sauce</p>
             </div>
             <div class="large-menu__item large-menu__item--2">
-              <h4>Baked Seafood Fettuccine <span class="large-menu__item-price">£14.50</span></h4>
+              <p class="large-menu__item-name">Baked Seafood Fettuccine <span
+                  class="large-menu__item-price">£14.50</span></p>
               <p>Prawn and Squid with Fettuccine with White Sauce</p>
             </div>
             <div class="large-menu__item large-menu__item--3">
-              <h4>Mac and Cheese with Ham <span class="large-menu__item-price">£10.50</span></h4>
+              <p class="large-menu__item-name">Mac and Cheese with Ham <span
+                  class="large-menu__item-price">£10.50</span></p>
               <p>Macaroni and Cheese with Parma Ham</p>
             </div>
             <div class="large-menu__image">
@@ -235,15 +237,18 @@
 
           <div class="large-food-menu" role="tabpanel" id="rice-menu" aria-labelledby="rice-tab">
             <div class="large-menu__item large-menu__item--1">
-              <h4>Thai Pineapple Fried Rice <span class="large-menu__item-price">£16.50</span></h4>
+              <p class="large-menu__item-name">Thai Pineapple Fried Rice <span
+                  class="large-menu__item-price">£16.50</span></p>
               <p>Thai-style Fried Rice with Seafood and Pineapple</p>
             </div>
             <div class="large-menu__item large-menu__item--2">
-              <h4>Salmon and Prawn Risotto <span class="large-menu__item-price">£14.50</span></h4>
+              <p class="large-menu__item-name">Salmon and Prawn Risotto <span
+                  class="large-menu__item-price">£14.50</span></p>
               <p>Salmon and Prawn Risotto in Mushroom Sauce</p>
             </div>
             <div class="large-menu__item large-menu__item--3">
-              <h4>Mackerel with Black Rice <span class="large-menu__item-price">£12.50</span></h4>
+              <p class="large-menu__item-name">Mackerel with Black Rice <span
+                  class="large-menu__item-price">£12.50</span></p>
               <p>Grilled Mackerel with Tofu and Black Rice</p>
             </div>
             <div class="large-menu__image">
@@ -256,15 +261,18 @@
 
           <div class="large-food-menu" role="tabpanel" id="sides-menu" aria-labelledby="sides-tab">
             <div class="large-menu__item large-menu__item--1">
-              <h4>Satay Chicken Skewers <span class="large-menu__item-price">£8.00</span></h4>
+              <p class="large-menu__item-name">Satay Chicken Skewers <span class="large-menu__item-price">£8.00</span>
+              </p>
               <p>Grilled Chicken Skewers with Satay Sauce</p>
             </div>
             <div class="large-menu__item large-menu__item--2">
-              <h4>Salmon Avocado Rolls <span class="large-menu__item-price">£9.50</span></h4>
+              <p class="large-menu__item-name">Salmon Avocado Rolls <span class="large-menu__item-price">£9.50</span>
+              </p>
               <p>Salmon, Egg and Avocado in Rice Paper Rolls</p>
             </div>
             <div class="large-menu__item large-menu__item--3">
-              <h4>Petits Pains Curry Prawn <span class="large-menu__item-price">£8.50</span></h4>
+              <p class="large-menu__item-name">Petits Pains Curry Prawn <span
+                  class="large-menu__item-price">£8.50</span></p>
               <p>Curry Prawn in Petits Pains</p>
             </div>
             <div class="large-menu__image">
@@ -345,7 +353,9 @@
           </div>
 
           <!-- reservation form -->
-          <form action="" onsubmit="openModal(event)" method="post" enctype="text/plain">
+          <form action="./index.html" onsubmit="openModal(event)" id="reservation-form">
+            <!-- <form action="" onsubmit="openModal(event)" method="post" enctype="text/plain"> -->
+
             <div class="reservation__form">
               <div class="reservation__form--name">
                 <label for="name">Name<span class="mandatory-field" aria-hidden="true">&nbsp;*</span></label>

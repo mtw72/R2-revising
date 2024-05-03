@@ -711,13 +711,9 @@ function formSubmitted() {
     document.querySelector('form').submit();
     alert("Thanks for choosing our restaurant!\nWe will contact you shortly to confirm your reservation.");
 
-    // closeMessage();
-    // reset the form
-    // nameInput.value = '';
-    // phoneNumberInput.value = '';
-    // emailInput.value = '';
-    // textarea.value = '(e.g. Dietary Restriction, Special Occasions)';
-    // textarea.classList.remove('input');
+    //hide the following 2 lines if php file is ready
+    closeMessage();
+    document.getElementById("myForm").reset();
 }
 
 // Add an event listener to the close button and cancel button to close the message
