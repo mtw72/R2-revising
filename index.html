@@ -147,7 +147,7 @@
       </section>
 
       <!-- Menu Container -->
-      <section id="menu" role="region" aria-label="menu">
+      <section id="menu" aria-label="menu">
         <h2>MENU</h2>
         <div class="small-menu">
           <button type="button" class="small-menu__accordion small-menu__accordion--active" aria-controls="pasta-panel"
@@ -337,7 +337,7 @@
       <hr>
 
       <!-- Reservation -->
-      <section id="reservation" role="region" aria-label="reservation">
+      <section id="reservation" aria-label="reservation">
         <h2>RESERVATION</h2>
         <div class="reservation">
           <!-- reservation photo -->
@@ -361,8 +361,7 @@
                 <label for="name">Name</label>
                 <span class="mandatory-field" aria-hidden="true">*</span>
                 <input type="text" class="input-control" id="name" placeholder="Enter Name" name="name" required
-                  aria-required="true" autocomplete="name" pattern="[A-Za-z ]{2,}"
-                  title="Please enter at least two letters">
+                  aria-required="true" autocomplete="name" pattern="[A-Za-z ]{2,}">
                 <p class="error-message" id="name-error" role="alert">Please enter at least two letters</p>
               </div>
 
@@ -370,8 +369,7 @@
                 <label for="phone">Phone Number</label>
                 <span class="mandatory-field" aria-hidden="true">*</span>
                 <input type="tel" class="input-control" id="phone" placeholder="Enter Phone Number" name="phone"
-                  required aria-required="true" autocomplete="tel" pattern="[0-9+]{7,}"
-                  title="Please enter a valid phone number">
+                  required aria-required="true" autocomplete="tel" pattern="[0-9+]{7,}">
                 <p class="error-message" id="phone-error" role="alert">Please enter a valid phone number</p>
               </div>
 
@@ -379,16 +377,14 @@
                 <label for="email">Email</label>
                 <span class="mandatory-field" aria-hidden="true">*</span>
                 <input type="email" class="input-control" id="email" placeholder="Enter Email" name="email" required
-                  aria-required="true" autocomplete="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-                  title="Please enter a valid email address">
+                  aria-required="true" autocomplete="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
                 <p class="error-message" id="email-error" role="alert">Please enter a valid email address</p>
               </div>
 
               <div class="reservation__form--guest-number">
                 <label for="guest-number">Number of Guest(s)</label>
                 <span class="mandatory-field" aria-hidden="true">*</span>
-                <select class="select-control" id="guest-number" name="guest-number" required aria-required="true"
-                  title="Please select the number of guest(s)">
+                <select class="select-control" id="guest-number" name="guest-number" required aria-required="true">
                   <option value="" disabled selected>Select number of guest(s)</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -409,16 +405,14 @@
               <div class="reservation__form--date">
                 <label for="date">Date</label>
                 <span class="mandatory-field" aria-hidden="true">*</span>
-                <input type="date" class="input-control" id="date" name="date" required aria-required="true"
-                  title="Please select a valid date">
+                <input type="date" class="input-control" id="date" name="date" required aria-required="true">
                 <p class="error-message" id="date-error" role="alert">Please select a valid date</p>
               </div>
 
               <div class="reservation__form--time">
                 <label for="time">Time</label>
                 <span class="mandatory-field" aria-hidden="true">*</span>
-                <select class="select-control" id="time" name="time" required aria-required="true"
-                  title="Please select a valid time">
+                <select class="select-control" id="time" name="time" required aria-required="true">
                   <option value="" disabled selected id="time-first-option">Select time</option>
                   <!-- Options will be dynamically generated here -->
                 </select>
@@ -428,8 +422,7 @@
               <div class="reservation__form--message">
                 <label for="message">Message / Special Request</label>
                 <textarea class="textarea-control" id="message" name="message" aria-required="false"
-                  onfocus="clearPlaceholder()"
-                  title="Please provide any additional information or special requests">(e.g. Dietary Restriction, Special Occasions)</textarea>
+                  onfocus="clearPlaceholder()">(e.g. Dietary Restriction, Special Occasions)</textarea>
               </div>
 
               <div class="reservation__form--bottom-part clearfix">
@@ -476,10 +469,10 @@
       <hr>
 
       <!-- Find us -->
-      <section class="findus" id="findus" role="region" aria-label="find us">
+      <section class="findus" id="findus" aria-label="find us">
         <div class="findus-container">
           <div class="findus__logofont-container">
-            <h2 class="g-logofont" aria-hidden="true">R2 Place</h2>
+            <p class="g-logofont" aria-hidden="true">R2 Place</p>
           </div>
 
           <!-- contact information-->
@@ -489,14 +482,13 @@
               <ul class="findus__grid">
                 <li>
                   <i class="contact__icon contact__icon--location icon icon-solid icon-location" role="img"
-                    aria-label="Address" title="Address"></i>
+                    aria-label="Address"></i>
                 </li>
                 <li>
                   R2&nbsp;Place,<wbr> 2&nbsp;Relax&nbsp;Street,<wbr> R2&nbsp;1ST
                 </li>
                 <li>
-                  <i class="contact__icon icon icon-solid icon-phone" role="img" aria-label="Telephone"
-                    title="Telephone">
+                  <i class="contact__icon icon icon-solid icon-phone" role="img" aria-label="Telephone">
                   </i>
                 </li>
                 <li>
@@ -504,8 +496,7 @@
                     456 7890</a>
                 </li>
                 <li>
-                  <i class="contact__icon icon icon-solid icon-envelope" role="img" aria-label="Email"
-                    title="Email"></i>
+                  <i class="contact__icon icon icon-solid icon-envelope" role="img" aria-label="Email"></i>
                 </li>
                 <li>
                   <a href="mailto:info@r2p.com" class="g-link" aria-label="Email us at info@r2p.com">info@r2p.com</a>
@@ -517,7 +508,7 @@
           <!-- opening hours -->
           <div class="findus__openhour-container">
             <div class="findus__openhour-content">
-              <h2>Opening Hours</h2>
+              <h3>Opening Hours</h3>
               <ul class="openhour-grid--small">
                 <li>Sunday</li>
                 <li>12:00 - 17:00</li>
@@ -555,15 +546,15 @@
       <div class="social-icons">
         <a href="https://en-gb.facebook.com/" target="_blank" type="text/html" hreflang="en"
           aria-label="Visit us on Meta">
-          <i class="g-link icon icon-brand icon-meta" role="img" aria-label="Meta Icon" title="Meta"></i>
+          <i class="g-link icon icon-brand icon-meta" role="img" aria-label="Meta Icon"></i>
         </a>
         <a href="https://twitter.com/?lang=en" target="_blank" type="text/html" hreflang="en"
           aria-label="Visit us on X(Twitter)">
-          <i class="g-link icon icon-brand icon-twitter" role="img" aria-label="X Twitter Icon" title="X (Twitter)"></i>
+          <i class="g-link icon icon-brand icon-twitter" role="img" aria-label="X (Twitter) Icon"></i>
         </a>
         <a href="https://www.instagram.com/" target="_blank" type="text/html" hreflang="en"
           aria-label="Visit us on Instagram">
-          <i class="g-link icon icon-brand icon-instagram" role="img" aria-label="Instagram Icon" title="Instagram"></i>
+          <i class="g-link icon icon-brand icon-instagram" role="img" aria-label="Instagram Icon"></i>
         </a>
       </div>
       <p>© <span id="year"></span> R2&nbsp;Place. All&nbsp;rights&nbsp;reserved</p>
