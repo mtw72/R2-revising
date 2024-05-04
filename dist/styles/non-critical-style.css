@@ -78,10 +78,6 @@ textarea:focus {
   outline: 3px solid rgb(255, 165, 0);
 }
 
-ul:focus {
-  outline: 2px solid rgb(255, 165, 0);
-}
-
 .findus__contact-container h2,
 .findus__openhour-container h3 {
   border-bottom: 4px dotted rgb(206, 212, 218);

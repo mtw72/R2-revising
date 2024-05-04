@@ -450,11 +450,6 @@ hr {
   border: 1px solid rgb(229, 186, 115);
 }
 
-a:focus,
-button:focus {
-  outline: 2px solid rgb(255, 165, 0);
-}
-
 .skip-link {
   background-color: rgb(255, 0, 0);
   color: rgb(255, 255, 255);
