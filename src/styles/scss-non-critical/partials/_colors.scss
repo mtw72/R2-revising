@@ -71,9 +71,9 @@ textarea:focus {
     color: $red-1;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-    outline: 2px solid $orange-2;
-}
+// input[type="date"]::-webkit-calendar-picker-indicator {
+//     outline: 2px solid $orange-2;
+// }
 
 .reservation__form--button {
     background-color: $brown-1;
