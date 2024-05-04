@@ -10,9 +10,8 @@ hr {
 }
 
 a:focus,
-button:focus,
-ul:focus {
-    outline: 1px solid $orange-2;
+button:focus {
+    outline: 2px solid $orange-2;
 }
 
 // skip-link for keyboard users

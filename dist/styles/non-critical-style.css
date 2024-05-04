@@ -65,6 +65,10 @@ textarea:focus {
   color: rgb(255, 0, 0);
 }
 
+input[type=date]::-webkit-calendar-picker-indicator {
+  outline: 2px solid rgb(255, 165, 0);
+}
+
 .reservation__form--button {
   background-color: rgb(174, 96, 0);
   color: rgb(255, 251, 235);
@@ -76,6 +80,10 @@ textarea:focus {
 }
 .reservation__form--button:focus {
   outline: 3px solid rgb(255, 165, 0);
+}
+
+ul:focus {
+  outline: 2px solid rgb(255, 165, 0);
 }
 
 .findus__contact-container h2,
@@ -643,6 +651,9 @@ footer {
 }
 .reservation__message__close-button:hover {
   font-weight: bold;
+}
+.reservation__message__close-button:focus {
+  outline: 2px solid rgb(255, 165, 0);
 }
 
 .reservation__message-content p,

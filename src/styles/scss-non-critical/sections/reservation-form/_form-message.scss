@@ -54,6 +54,10 @@
     &:hover {
         font-weight: bold;
     }
+
+    &:focus {
+        outline: 2px solid $orange-2;
+    }
 }
 
 .reservation__message-content p,
