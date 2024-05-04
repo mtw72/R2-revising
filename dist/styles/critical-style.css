@@ -943,7 +943,6 @@ section:not(:first-of-type) {
 }
 
 #home img {
-  overflow-clip-margin: content-box;
   overflow: clip;
   vertical-align: middle;
   height: auto;
