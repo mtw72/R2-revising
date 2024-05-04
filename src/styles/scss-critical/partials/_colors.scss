@@ -10,7 +10,8 @@ hr {
 }
 
 a:focus,
-button:focus {
+button:focus,
+ul:focus {
     outline: 1px solid $orange-2;
 }
 
