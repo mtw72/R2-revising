@@ -266,6 +266,7 @@ let tdyDate = dateOfToday.getDate();
 let tdyMth = dateOfToday.getMonth() + 1;
 const tdyYear = dateOfToday.getFullYear();
 const tdyHour = dateOfToday.getHours();
+const tdyMinute = dateOfToday.getMinutes();
 
 //make the date and/or month in 2-digit format
 if (tdyDate < 10) {
@@ -299,7 +300,7 @@ const dateInput = document.getElementById('date');
 
 switch (tdyDay) {
   case 0: //Sunday
-    if (tdyHour >= 15) {
+    if ((tdyHour > 15) || (tdyHour === 15 && tdyMinute >= 1)) {
       dateInput.value = tomorrow;
       dateInput.min = tomorrow;
 
@@ -310,7 +311,7 @@ switch (tdyDay) {
     break;
   case 5:
   case 6: //Friday & Saturday
-    if (tdyHour >= 19) {    //tdyHour >19 and if the time is 1900
+    if ((tdyHour > 19) || (tdyHour === 19 && tdyMinute >= 1)) {
       dateInput.value = tomorrow;
       dateInput.min = tomorrow;
     } else {
@@ -319,7 +320,7 @@ switch (tdyDay) {
     }
     break;
   default: //Monday to Thursday
-    if (tdyHour >= 18) {
+    if ((tdyHour > 18) || (tdyHour === 18 && tdyMinute >= 1)) {
       dateInput.value = tomorrow;
       dateInput.min = tomorrow;
     } else {
