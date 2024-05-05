@@ -85,10 +85,6 @@ submitButton.addEventListener('click', (event) => {
         dateError.style.display = "none";
     }
 
-    if (nameError.style.display === "block" || phoneNumberError.style.display === "block" || emailError.style.display === "block" || dateError.style.display === "block") {
-        alert("Please provide valid input.");
-    }
-
     //validate time input
     if (timeInput.value === '') {
         event.preventDefault(); // Prevent form submission if there are validation errors
@@ -99,6 +95,10 @@ submitButton.addEventListener('click', (event) => {
     } else {
         timeInput.classList.remove('error-input');
         timeError.style.display = "none";
+    }
+
+    if (nameError.style.display === "block" || phoneNumberError.style.display === "block" || emailError.style.display === "block" || guestNumberError.style.display === "block" || dateError.style.display === "block" || timeError.style.display === "block") {
+        alert("Please provide valid input.");
     }
 
     // Add the input event listener after first submission

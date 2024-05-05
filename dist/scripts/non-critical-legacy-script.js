@@ -275,41 +275,45 @@ var tomorrow = tmrYear + "-" + tmrMth + "-" + tmrDate;
 
 // date picker - set default date (.value) and prevent choosing invalid dates (.min)
 var dateInput = document.getElementById('date');
-switch (tdyDay) {
-  case 0:
-    //Sunday
-    if (tdyHour > 15 || tdyHour === 15 && tdyMinute >= 1) {
-      dateInput.value = tomorrow;
-      dateInput.min = tomorrow;
-    } else {
-      dateInput.value = today;
-      dateInput.min = today;
-    }
-    break;
-  case 5:
-  case 6:
-    //Friday & Saturday
-    if (tdyHour > 19 || tdyHour === 19 && tdyMinute >= 1) {
-      dateInput.value = tomorrow;
-      dateInput.min = tomorrow;
-    } else {
-      dateInput.value = today;
-      dateInput.min = today;
-    }
-    break;
-  default:
-    //Monday to Thursday
-    if (tdyHour > 18 || tdyHour === 18 && tdyMinute >= 1) {
-      dateInput.value = tomorrow;
-      dateInput.min = tomorrow;
-    } else {
-      dateInput.value = today;
-      dateInput.min = today;
-    }
+function generateDefaultDate() {
+  switch (tdyDay) {
+    case 0:
+      //Sunday
+      if (tdyHour > 15 || tdyHour === 15 && tdyMinute >= 1) {
+        dateInput.value = tomorrow;
+        dateInput.min = tomorrow;
+      } else {
+        dateInput.value = today;
+        dateInput.min = today;
+      }
+      break;
+    case 5:
+    case 6:
+      //Friday & Saturday
+      if (tdyHour > 19 || tdyHour === 19 && tdyMinute >= 1) {
+        dateInput.value = tomorrow;
+        dateInput.min = tomorrow;
+      } else {
+        dateInput.value = today;
+        dateInput.min = today;
+      }
+      break;
+    default:
+      //Monday to Thursday
+      if (tdyHour > 18 || tdyHour === 18 && tdyMinute >= 1) {
+        dateInput.value = tomorrow;
+        dateInput.min = tomorrow;
+      } else {
+        dateInput.value = today;
+        dateInput.min = today;
+      }
+  }
 }
+
+// Generate default date when the page loads
+generateDefaultDate();
 dateInput.addEventListener('input', generateTimeOptions);
 
-// 1801 missing the option
 // time picker - set default time
 // Function to pad single digit numbers with leading zero
 function pad(number) {
@@ -592,9 +596,6 @@ submitButton.addEventListener('click', function (event) {
     dateInput.classList.remove('error-input');
     dateError.style.display = "none";
   }
-  if (nameError.style.display === "block" || phoneNumberError.style.display === "block" || emailError.style.display === "block" || dateError.style.display === "block") {
-    alert("Please provide valid input.");
-  }
 
   //validate time input
   if (timeInput.value === '') {
@@ -606,6 +607,9 @@ submitButton.addEventListener('click', function (event) {
   } else {
     timeInput.classList.remove('error-input');
     timeError.style.display = "none";
+  }
+  if (nameError.style.display === "block" || phoneNumberError.style.display === "block" || emailError.style.display === "block" || guestNumberError.style.display === "block" || dateError.style.display === "block" || timeError.style.display === "block") {
+    alert("Please provide valid input.");
   }
 
   // Add the input event listener after first submission
@@ -745,13 +749,27 @@ function encodeHTML(text) {
 // Submit form upon confirmation of information
 confirmButton.addEventListener("click", formSubmitted);
 function formSubmitted() {
-  // Trigger form submission
-  document.querySelector('form').submit();
-  alert("Thanks for choosing our restaurant!\nWe will contact you shortly to confirm your reservation.");
+  // Parse the selected date and time values from the form
+  var selectedDate = dateValue.value;
+  var selectedTime = timeValue.value.split(':'); // Split time into hour and minute
+  var selectedHour = parseInt(selectedTime[0]);
+  var selectedMinute = parseInt(selectedTime[1]);
+  var now = new Date();
+  var currentHour = now.getHours();
+  var currentMinute = now.getMinutes();
+  if (selectedDate < today || selectedDate === today && selectedHour <= currentHour || selectedDate === today && selectedHour === currentHour + 1 && selectedMinute < currentMinute) {
+    alert("Please select another available day or time slot.");
+    generateDefaultDate();
+    generateTimeOptions();
+  } else {
+    // Trigger form submission
+    document.querySelector('form').submit();
+    alert("Thanks for choosing our restaurant!\nWe will contact you shortly to confirm your reservation.");
 
-  //hide the following 2 lines if php file is ready
-  closeMessage();
-  document.getElementById("myForm").reset();
+    //hide the following 2 lines if php file is ready
+    closeMessage();
+    document.getElementById("myForm").reset();
+  }
 }
 
 // Add an event listener to the close button and cancel button to close the message

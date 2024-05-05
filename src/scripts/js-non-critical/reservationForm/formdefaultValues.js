@@ -40,40 +40,45 @@ const tomorrow = tmrYear + "-" + tmrMth + "-" + tmrDate;
 // date picker - set default date (.value) and prevent choosing invalid dates (.min)
 const dateInput = document.getElementById('date');
 
-switch (tdyDay) {
-  case 0: //Sunday
-    if ((tdyHour > 15) || (tdyHour === 15 && tdyMinute >= 1)) {
-      dateInput.value = tomorrow;
-      dateInput.min = tomorrow;
+function generateDefaultDate() {
+  switch (tdyDay) {
+    case 0: //Sunday
+      if ((tdyHour > 15) || (tdyHour === 15 && tdyMinute >= 1)) {
+        dateInput.value = tomorrow;
+        dateInput.min = tomorrow;
 
-    } else {
-      dateInput.value = today;
-      dateInput.min = today;
-    }
-    break;
-  case 5:
-  case 6: //Friday & Saturday
-    if ((tdyHour > 19) || (tdyHour === 19 && tdyMinute >= 1)) {
-      dateInput.value = tomorrow;
-      dateInput.min = tomorrow;
-    } else {
-      dateInput.value = today;
-      dateInput.min = today;
-    }
-    break;
-  default: //Monday to Thursday
-    if ((tdyHour > 18) || (tdyHour === 18 && tdyMinute >= 1)) {
-      dateInput.value = tomorrow;
-      dateInput.min = tomorrow;
-    } else {
-      dateInput.value = today;
-      dateInput.min = today;
-    }
+      } else {
+        dateInput.value = today;
+        dateInput.min = today;
+      }
+      break;
+    case 5:
+    case 6: //Friday & Saturday
+      if ((tdyHour > 19) || (tdyHour === 19 && tdyMinute >= 1)) {
+        dateInput.value = tomorrow;
+        dateInput.min = tomorrow;
+      } else {
+        dateInput.value = today;
+        dateInput.min = today;
+      }
+      break;
+    default: //Monday to Thursday
+      if ((tdyHour > 18) || (tdyHour === 18 && tdyMinute >= 1)) {
+        dateInput.value = tomorrow;
+        dateInput.min = tomorrow;
+      } else {
+        dateInput.value = today;
+        dateInput.min = today;
+      }
+  }
 }
+
+// Generate default date when the page loads
+generateDefaultDate();
 
 dateInput.addEventListener('input', generateTimeOptions);
 
-// 1801 missing the option
+
 // time picker - set default time
 // Function to pad single digit numbers with leading zero
 function pad(number) {

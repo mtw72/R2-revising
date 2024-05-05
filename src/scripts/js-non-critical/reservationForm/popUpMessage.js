@@ -48,13 +48,29 @@ function encodeHTML(text) {
 confirmButton.addEventListener("click", formSubmitted);
 
 function formSubmitted() {
-    // Trigger form submission
-    document.querySelector('form').submit();
-    alert("Thanks for choosing our restaurant!\nWe will contact you shortly to confirm your reservation.");
+    // Parse the selected date and time values from the form
+    const selectedDate = dateValue.value;
+    const selectedTime = timeValue.value.split(':'); // Split time into hour and minute
+    const selectedHour = parseInt(selectedTime[0]);
+    const selectedMinute = parseInt(selectedTime[1]);
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
 
-    //hide the following 2 lines if php file is ready
-    closeMessage();
-    document.getElementById("myForm").reset();
+    if ((selectedDate < today) || (selectedDate === today && selectedHour <= currentHour) || (selectedDate === today && selectedHour === (currentHour + 1) && selectedMinute < currentMinute)) {
+        alert("Please select another available day or time slot.");
+        generateDefaultDate();
+        generateTimeOptions();
+    }
+    else {
+        // Trigger form submission
+        document.querySelector('form').submit();
+        alert("Thanks for choosing our restaurant!\nWe will contact you shortly to confirm your reservation.");
+
+        //hide the following 2 lines if php file is ready
+        closeMessage();
+        document.getElementById("myForm").reset();
+    }
 }
 
 // Add an event listener to the close button and cancel button to close the message
