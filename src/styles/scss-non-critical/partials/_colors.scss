@@ -62,9 +62,13 @@ textarea:focus {
     background-color: $white-1;
 }
 
-select#guest-number,
-select#time {
+select {
     color: $black-2a;
+}
+
+select.valid,
+select.valid {
+    color: $black-1;
 }
 
 #guest-number option:not(first-of-type),
