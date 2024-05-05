@@ -77,10 +77,7 @@ select#time {
     color: $black-2a;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-    color: $red-1;
-    // background-color: black;
-}
+
 
 input#date {
     -webkit-appearance: none;
@@ -90,7 +87,14 @@ input#date {
 input::-webkit-datetime-edit {
     display: block;
     padding: 0;
-    width: 100%;
+    padding-left: 2px;
+    text-align: left;
+    // width: 100%;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: $red-1;
+    // background-color: black;
 }
 
 .error-input {
