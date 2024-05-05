@@ -71,11 +71,16 @@ select#time {
   color: rgba(33, 37, 41, 0.7);
 }
 
+input#date {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+}
+
 input::-webkit-datetime-edit {
   display: block;
   padding: 0;
   text-align: left;
-  width: 100%;
 }
 
 .error-input {

@@ -77,16 +77,15 @@ select#time {
     color: $black-2a;
 }
 
-// input#date {
-//     -webkit-appearance: none;
-//     appearance: none;
-// }
+input#date {
+    -webkit-appearance: none;
+    appearance: none;
+}
 
 input::-webkit-datetime-edit {
     display: block;
     padding: 0;
     text-align: left;
-    width: 100%;
 }
 
 .error-input {
