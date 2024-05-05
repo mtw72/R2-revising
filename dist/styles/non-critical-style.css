@@ -71,21 +71,10 @@ select#time {
   color: rgba(33, 37, 41, 0.7);
 }
 
-input#date {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
-}
-
 input::-webkit-datetime-edit {
   display: block;
   padding: 0;
-  padding-left: 2px;
   text-align: left;
-}
-
-input[type=date]::-webkit-calendar-picker-indicator {
-  color: rgb(255, 0, 0);
 }
 
 .error-input {

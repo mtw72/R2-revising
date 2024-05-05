@@ -79,22 +79,16 @@ select#time {
 
 
 
-input#date {
-    -webkit-appearance: none;
-    appearance: none;
-}
+// input#date {
+//     -webkit-appearance: none;
+//     appearance: none;
+// }
 
 input::-webkit-datetime-edit {
     display: block;
     padding: 0;
-    padding-left: 2px;
+    // padding-left: 2px;
     text-align: left;
-    // width: 100%;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-    color: $red-1;
-    // background-color: black;
 }
 
 .error-input {
