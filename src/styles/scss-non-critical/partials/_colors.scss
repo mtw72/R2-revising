@@ -77,6 +77,22 @@ select#time {
     color: $black-2a;
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: $red-1;
+    // background-color: black;
+}
+
+input#date {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input::-webkit-datetime-edit {
+    display: block;
+    padding: 0;
+    width: 100%;
+}
+
 .error-input {
     border: 1px solid $red-1;
     outline: 1px solid $red-1;
