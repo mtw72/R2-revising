@@ -56,6 +56,21 @@ textarea:focus {
   background-color: rgb(255, 255, 255);
 }
 
+select#guest-number,
+select#time {
+  color: rgba(33, 37, 41, 0.7);
+}
+
+#guest-number option:not(first-of-type),
+#time option {
+  color: rgb(0, 0, 0);
+}
+
+#guest-number option:first-of-type,
+#time #time-first-option {
+  color: rgba(33, 37, 41, 0.7);
+}
+
 .error-input {
   border: 1px solid rgb(255, 0, 0);
   outline: 1px solid rgb(255, 0, 0);
