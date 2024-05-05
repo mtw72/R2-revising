@@ -575,6 +575,10 @@ footer {
   border-radius: 0.375rem;
 }
 
+input#date {
+  width: 100%;
+}
+
 .textarea-control {
   display: block;
   width: 100%;
