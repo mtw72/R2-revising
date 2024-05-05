@@ -425,7 +425,7 @@ function generateTimeOptions() {
           }
         }
     }
-  } else {
+  } else if (dateInput.value > today) {
     var selectedDate = new Date(dateInput.value);
     var chosenDay = selectedDate.getDay();
     switch (chosenDay) {

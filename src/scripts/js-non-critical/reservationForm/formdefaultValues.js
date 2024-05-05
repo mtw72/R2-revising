@@ -171,7 +171,7 @@ function generateTimeOptions() {
         }
     }
   }
-  else {
+  else if (dateInput.value > today) {
     const selectedDate = new Date(dateInput.value);
     const chosenDay = selectedDate.getDay();
     switch (chosenDay) {

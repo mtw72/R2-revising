@@ -71,18 +71,6 @@ select#time {
   color: rgba(33, 37, 41, 0.7);
 }
 
-input#date {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
-}
-
-input::-webkit-datetime-edit {
-  display: block;
-  padding: 0;
-  text-align: left;
-}
-
 .error-input {
   border: 1px solid rgb(255, 0, 0);
   outline: 1px solid rgb(255, 0, 0);
@@ -588,7 +576,15 @@ footer {
 }
 
 input#date {
-  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+}
+
+input::-webkit-datetime-edit {
+  display: block;
+  padding: 0;
+  text-align: left;
 }
 
 .textarea-control {

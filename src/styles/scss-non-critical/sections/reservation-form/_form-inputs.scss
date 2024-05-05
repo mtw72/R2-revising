@@ -9,5 +9,12 @@
 }
 
 input#date {
-    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input::-webkit-datetime-edit {
+    display: block;
+    padding: 0;
+    text-align: left;
 }
