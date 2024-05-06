@@ -664,7 +664,7 @@ input::-webkit-datetime-edit {
 }
 
 .reservation__message__close-button {
-  color: black;
+  color: rgb(0, 0, 0);
   cursor: pointer;
   padding-inline: 0.5rem;
   font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
@@ -679,83 +679,95 @@ input::-webkit-datetime-edit {
   outline: 2px solid rgb(255, 165, 0);
 }
 
-.reservation__message-content p,
+.reservation__message__timer {
+  color: rgb(255, 0, 0);
+  padding-inline: 0.25rem;
+  text-align: center;
+  font-size: clamp(1rem, 1rem + 1.5vw, 1.3rem);
+  position: absolute;
+  top: -2rem;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(211, 211, 211, 0.85);
+}
+
+.reservation__message__paragraph2,
 .reservation__message-list {
   margin-left: 1rem;
 }
 @media all and (min-width: 18.75em) {
-  .reservation__message-content p,
+  .reservation__message__paragraph2,
   .reservation__message-list {
     margin-left: 1.5rem;
   }
 }
 @media all and (min-width: 28.125em) {
-  .reservation__message-content p,
+  .reservation__message__paragraph2,
   .reservation__message-list {
     margin-left: 2rem;
   }
 }
 @media all and (min-width: 36em) {
-  .reservation__message-content p,
+  .reservation__message__paragraph2,
   .reservation__message-list {
     margin-left: 2.5rem;
   }
 }
 @media all and (min-width: 48em) {
-  .reservation__message-content p,
+  .reservation__message__paragraph2,
   .reservation__message-list {
     margin-left: 3rem;
   }
 }
-@media all and (min-width: 62em) {
-  .reservation__message-content p,
-  .reservation__message-list {
-    margin-left: 3.5rem;
-  }
-}
 
+.reservation__message__paragraph2,
 .reservation__message-list li:nth-of-type(even) {
   margin-right: 1rem;
 }
 @media all and (min-width: 18.75em) {
+  .reservation__message__paragraph2,
   .reservation__message-list li:nth-of-type(even) {
     margin-right: 1.5rem;
   }
 }
 @media all and (min-width: 28.125em) {
+  .reservation__message__paragraph2,
   .reservation__message-list li:nth-of-type(even) {
     margin-right: 2rem;
   }
 }
 @media all and (min-width: 36em) {
+  .reservation__message__paragraph2,
   .reservation__message-list li:nth-of-type(even) {
     margin-right: 2.5rem;
   }
 }
 @media all and (min-width: 48em) {
+  .reservation__message__paragraph2,
   .reservation__message-list li:nth-of-type(even) {
     margin-right: 3rem;
   }
 }
-@media all and (min-width: 62em) {
-  .reservation__message-list li:nth-of-type(even) {
-    margin-right: 3.5rem;
-  }
-}
 
-.reservation__message-content p {
+.reservation__message__paragraph2 {
   padding-top: 1rem;
   padding-bottom: 0.25rem;
-  padding-right: 1.5rem;
 }
 @media all and (min-width: 36em) {
-  .reservation__message-content p {
+  .reservation__message__paragraph2 {
+    padding-top: 1.25rem;
+    padding-bottom: 0.375rem;
+  }
+}
+@media all and (min-width: 48em) {
+  .reservation__message__paragraph2 {
     padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
   }
 }
 
 .reservation__message-list {
-  padding-bottom: 1rem;
+  padding-bottom: 1.25rem;
   overflow: auto;
   height: 40vh;
   height: 40dvh;
@@ -777,12 +789,23 @@ input::-webkit-datetime-edit {
         -ms-flex-align: start;
             align-items: start;
     text-align: left;
+    padding-bottom: 1.75rem;
+    height: auto;
   }
 }
-@media all and (min-width: 36em) {
+@media all and (min-width: 48em) {
   .reservation__message-list {
-    padding-bottom: 1.5rem;
-    height: auto;
+    padding-bottom: 2.25rem;
+  }
+}
+
+.reservation__message-list li:nth-of-type(even) {
+  -webkit-text-decoration: 1px underline sandybrown;
+          text-decoration: 1px underline sandybrown;
+}
+@media all and (min-width: 36em) {
+  .reservation__message-list li:nth-of-type(even) {
+    text-decoration: none;
   }
 }
 

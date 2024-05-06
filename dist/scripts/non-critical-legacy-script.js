@@ -312,6 +312,9 @@ function generateDefaultDate() {
 
 // Generate default date when the page loads
 generateDefaultDate();
+// Set up setInterval to call the function every 15 minutes
+setInterval(generateDefaultDate, 15 * 60 * 1000); // 15 minutes in milliseconds
+
 dateInput.addEventListener('input', generateTimeOptions);
 
 // time picker - set default time
@@ -482,6 +485,8 @@ function generateTimeOptions() {
 
 // Generate time options when the page loads
 generateTimeOptions();
+// Set up setInterval to call the function every 15 minutes
+setInterval(generateTimeOptions, 15 * 60 * 1000 + 100); // 15 minutes in milliseconds
 'use strict';
 
 var selectGuestNumberElement = document.getElementById('guest-number');
@@ -741,11 +746,14 @@ var guestNumberValue = document.getElementById("guest-number-value");
 var dateValue = document.getElementById("date-value");
 var timeValue = document.getElementById("time-value");
 var messageValue = document.getElementById("message-value");
+var messageTimer = document.getElementById("message-timer");
 
 // Open the modal
 function openModal(event) {
   event.preventDefault(); // Prevent default form submission
+  messageTimer.textContent = "15:00";
   reservationMessage.style.display = "flex";
+  startTimer();
   nameValue.textContent = nameInput.value;
   phoneValue.textContent = phoneNumberInput.value;
   emailValue.textContent = emailInput.value;
@@ -768,28 +776,48 @@ function encodeHTML(text) {
 
 // Submit form upon confirmation of information
 confirmButton.addEventListener("click", formSubmitted);
-function formSubmitted() {
-  // Parse the selected date and time values from the form
-  var selectedDate = dateValue.value;
-  var selectedTime = timeValue.value.split(':'); // Split time into hour and minute
-  var selectedHour = parseInt(selectedTime[0]);
-  var selectedMinute = parseInt(selectedTime[1]);
-  var now = new Date();
-  var currentHour = now.getHours();
-  var currentMinute = now.getMinutes();
-  if (selectedDate < today || selectedDate === today && selectedHour <= currentHour || selectedDate === today && selectedHour === currentHour + 1 && selectedMinute < currentMinute) {
-    alert("Please select another available day or time slot.");
-    generateDefaultDate();
-    generateTimeOptions();
-  } else {
-    // Trigger form submission
-    document.querySelector('form').submit();
-    alert("Thanks for choosing our restaurant!\nWe will contact you shortly to confirm your reservation.");
+var timerInterval; // Define the timer interval variable outside the function
 
-    //hide the following 2 lines if php file is ready
-    closeMessage();
-    document.getElementById("myForm").reset();
-  }
+function startTimer() {
+  // Clear any existing timer interval before starting a new one
+  clearInterval(timerInterval);
+  var minutes = 14;
+  var seconds = 59;
+  timerInterval = setInterval(function () {
+    // Format the minutes and seconds to display with leading zeros
+    var formattedMinutes = String(minutes).padStart(2, '0');
+    var formattedSeconds = String(seconds).padStart(2, '0');
+
+    // Update the timer display
+    messageTimer.innerText = formattedMinutes + ":" + formattedSeconds;
+
+    // Decrement seconds
+    seconds--;
+
+    // If seconds reach below 0, decrement minutes and reset seconds to 59
+    if (seconds < 0) {
+      seconds = 59;
+      minutes--;
+
+      // If minutes reach below 0, stop the timer
+      if (minutes < 0) {
+        clearInterval(timerInterval);
+        closeMessage();
+      }
+    }
+  }, 1000); // Update timer every second (1000 milliseconds)
+}
+
+// Start the timer when needed
+
+function formSubmitted() {
+  // Trigger form submission
+  document.querySelector('form').submit();
+  alert("Thanks for choosing our restaurant!\nWe will contact you shortly to confirm your reservation.");
+
+  //hide the following 2 lines if php file is ready
+  closeMessage();
+  document.getElementById("myForm").reset();
 }
 
 // Add an event listener to the close button and cancel button to close the message
@@ -797,6 +825,8 @@ closeButton.addEventListener("click", closeMessage);
 cancelButton.addEventListener("click", closeMessage);
 function closeMessage() {
   reservationMessage.style.display = "none";
+  generateDefaultDate();
+  generateTimeOptions();
 }
 window.addEventListener('keydown', closeMessageByEsc);
 function closeMessageByEsc(event) {
