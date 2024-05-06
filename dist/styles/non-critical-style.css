@@ -802,6 +802,7 @@ input::-webkit-datetime-edit {
 .reservation__message-list li:nth-of-type(even) {
   -webkit-text-decoration: 1px underline sandybrown;
           text-decoration: 1px underline sandybrown;
+  text-underline-position: under;
 }
 @media all and (min-width: 36em) {
   .reservation__message-list li:nth-of-type(even) {
