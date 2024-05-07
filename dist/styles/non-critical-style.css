@@ -800,13 +800,15 @@ input::-webkit-datetime-edit {
 }
 
 .reservation__message-list li:nth-of-type(even) {
-  -webkit-text-decoration: 1px underline sandybrown;
-          text-decoration: 1px underline sandybrown;
+  -webkit-text-decoration: 1px underline lightgrey;
+          text-decoration: 1px underline lightgrey;
   text-underline-position: under;
+  padding-bottom: 0.5rem;
 }
 @media all and (min-width: 36em) {
   .reservation__message-list li:nth-of-type(even) {
     text-decoration: none;
+    padding-bottom: 0;
   }
 }
 

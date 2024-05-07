@@ -333,8 +333,6 @@ function generateDefaultDate() {
 
 // Generate default date when the page loads
 generateDefaultDate();
-// Set up setInterval to call the function every 15 minutes
-setInterval(generateDefaultDate, 15 * 60 * 1000); // 15 minutes in milliseconds
 
 dateInput.addEventListener('input', generateTimeOptions);
 
@@ -491,8 +489,14 @@ function generateTimeOptions() {
 
 // Generate time options when the page loads
 generateTimeOptions();
-// Set up setInterval to call the function every 15 minutes
-setInterval(generateTimeOptions, (15 * 60 * 1000 + 100)); // 15 minutes in milliseconds
+
+function generateDefaultDateAndOptions() {
+  generateDefaultDate();
+  generateTimeOptions();
+}
+
+setInterval(generateDefaultDateAndOptions, 60 * 1000);
+
 'use strict';
 
 let selectGuestNumberElement = document.getElementById('guest-number');
@@ -776,8 +780,8 @@ let messageTimer = document.getElementById("message-timer");
 function openModal(event) {
     event.preventDefault(); // Prevent default form submission
     messageTimer.textContent = "15:00";
-    reservationMessage.style.display = "flex";
     startTimer();
+    reservationMessage.style.display = "flex";
     nameValue.textContent = nameInput.value;
     phoneValue.textContent = phoneNumberInput.value;
     emailValue.textContent = emailInput.value;
@@ -806,42 +810,78 @@ function encodeHTML(text) {
 // Submit form upon confirmation of information
 confirmButton.addEventListener("click", formSubmitted);
 
-let timerInterval; // Define the timer interval variable outside the function
+// let timerInterval; // Define the timer interval variable outside the function
+
+// function startTimer() {
+//     // Clear any existing timer interval before starting a new one
+//     clearInterval(timerInterval);
+
+//     let minutes = 14;
+//     let seconds = 59;
+
+//     timerInterval = setInterval(function () {
+//         // Format the minutes and seconds to display with leading zeros
+//         let formattedMinutes = String(minutes).padStart(2, '0');
+//         let formattedSeconds = String(seconds).padStart(2, '0');
+
+//         // Update the timer display
+//         messageTimer.innerText = formattedMinutes + ":" + formattedSeconds;
+
+//         // Decrement seconds
+//         seconds--;
+
+//         // If seconds reach below 0, decrement minutes and reset seconds to 59
+//         if (seconds < 0) {
+//             seconds = 59;
+//             minutes--;
+
+//             // If minutes reach below 0, stop the timer
+//             if (minutes < 0) {
+//                 clearInterval(timerInterval);
+//                 closeMessage();
+//             }
+//         }
+//     }, 1000); // Update timer every second (1000 milliseconds)
+// }
+
+let timerTimeout; // Define the timer timeout variable outside the function
 
 function startTimer() {
-    // Clear any existing timer interval before starting a new one
-    clearInterval(timerInterval);
+    // Clear any existing timer timeout before starting a new one
+    clearTimeout(timerTimeout);
 
-    let minutes = 14;
-    let seconds = 59;
+    let totalTime = 15 * 60 * 1000; // 15 minutes in milliseconds
 
-    timerInterval = setInterval(function () {
-        // Format the minutes and seconds to display with leading zeros
-        let formattedMinutes = String(minutes).padStart(2, '0');
-        let formattedSeconds = String(seconds).padStart(2, '0');
+    let startTime = Date.now();
 
-        // Update the timer display
-        messageTimer.innerText = formattedMinutes + ":" + formattedSeconds;
+    function updateTimer() {
+        let elapsedTime = Date.now() - startTime;
+        let remainingTime = totalTime - elapsedTime;
 
-        // Decrement seconds
-        seconds--;
+        if (remainingTime <= 0) {
+            // If time is up, close the message
+            closeMessage();
+        } else {
+            // Calculate remaining minutes and seconds
+            let remainingMinutes = Math.floor(remainingTime / (60 * 1000));
+            let remainingSeconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
 
-        // If seconds reach below 0, decrement minutes and reset seconds to 59
-        if (seconds < 0) {
-            seconds = 59;
-            minutes--;
+            // Format the minutes and seconds to display with leading zeros
+            let formattedMinutes = String(remainingMinutes).padStart(2, '0');
+            let formattedSeconds = String(remainingSeconds).padStart(2, '0');
 
-            // If minutes reach below 0, stop the timer
-            if (minutes < 0) {
-                clearInterval(timerInterval);
-                closeMessage();
-            }
+            // Update the timer display
+            messageTimer.innerText = formattedMinutes + ":" + formattedSeconds;
+
+            // Schedule the next update
+            timerTimeout = setTimeout(updateTimer, 1000);
         }
-    }, 1000); // Update timer every second (1000 milliseconds)
+    }
+
+    // Update the timer display immediately
+    updateTimer();
 }
 
-
-// Start the timer when needed
 
 
 
@@ -862,8 +902,6 @@ cancelButton.addEventListener("click", closeMessage);
 
 function closeMessage() {
     reservationMessage.style.display = "none";
-    generateDefaultDate();
-    generateTimeOptions();
 }
 
 window.addEventListener('keydown', closeMessageByEsc);

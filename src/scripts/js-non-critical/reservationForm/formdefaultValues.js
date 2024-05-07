@@ -75,8 +75,6 @@ function generateDefaultDate() {
 
 // Generate default date when the page loads
 generateDefaultDate();
-// Set up setInterval to call the function every 15 minutes
-setInterval(generateDefaultDate, 15 * 60 * 1000); // 15 minutes in milliseconds
 
 dateInput.addEventListener('input', generateTimeOptions);
 
@@ -233,5 +231,10 @@ function generateTimeOptions() {
 
 // Generate time options when the page loads
 generateTimeOptions();
-// Set up setInterval to call the function every 15 minutes
-setInterval(generateTimeOptions, (15 * 60 * 1000 + 100)); // 15 minutes in milliseconds
+
+function generateDefaultDateAndOptions() {
+  generateDefaultDate();
+  generateTimeOptions();
+}
+
+setInterval(generateDefaultDateAndOptions, 60 * 1000);

@@ -157,11 +157,13 @@
 }
 
 .reservation__message-list li:nth-of-type(even) {
-    text-decoration: 1px underline sandybrown;
+    text-decoration: 1px underline lightgrey;
     text-underline-position: under;
+    padding-bottom: 0.5rem;
 
     @include min-mq(sm) {
         text-decoration: none;
+        padding-bottom: 0;
     }
 }
 
