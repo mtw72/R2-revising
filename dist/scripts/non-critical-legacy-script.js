@@ -383,10 +383,8 @@ function generateTimeOptions() {
             if (hour === 16 && (minute === 15 || minute === 30 || minute === 45)) {
               continue;
             }
-            var displayHour = hour > 12 ? hour - 12 : hour; // Convert to 12-hour format
-
             if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || hour === currentHour + 1 && minute >= currentMinute)) {
-              var optionText = displayHour + ':' + pad(minute) + 'pm';
+              var optionText = hour + ':' + pad(minute);
               var option = new Option(optionText, optionText); // Set the value same as the text
               timeSelect.add(option);
             }
@@ -401,10 +399,8 @@ function generateTimeOptions() {
             if (_hour === 20 && (_minute === 15 || _minute === 30 || _minute === 45)) {
               continue;
             }
-            var _displayHour = _hour > 12 ? _hour - 12 : _hour; // Convert to 12-hour format
-
             if (isWithinOpeningHours(day, _hour, _minute) && (_hour > currentHour + 1 || _hour === currentHour + 1 && _minute >= currentMinute)) {
-              var _optionText = _displayHour + ':' + pad(_minute) + 'pm';
+              var _optionText = _hour + ':' + pad(_minute);
               var _option = new Option(_optionText, _optionText); // Set the value same as the text
               timeSelect.add(_option);
             }
@@ -419,10 +415,8 @@ function generateTimeOptions() {
             if (_hour2 === 19 && (_minute2 === 15 || _minute2 === 30 || _minute2 === 45)) {
               continue;
             }
-            var _displayHour2 = _hour2 > 12 ? _hour2 - 12 : _hour2; // Convert to 12-hour format
-
             if (isWithinOpeningHours(day, _hour2, _minute2) && (_hour2 > currentHour + 1 || _hour2 === currentHour + 1 && _minute2 >= currentMinute)) {
-              var _optionText2 = _displayHour2 + ':' + pad(_minute2) + 'pm';
+              var _optionText2 = _hour2 + ':' + pad(_minute2);
               var _option2 = new Option(_optionText2, _optionText2); // Set the value same as the text
               timeSelect.add(_option2);
             }
@@ -440,8 +434,7 @@ function generateTimeOptions() {
             if (_hour3 === 16 && (_minute3 === 15 || _minute3 === 30 || _minute3 === 45)) {
               continue;
             }
-            var _displayHour3 = _hour3 > 12 ? _hour3 - 12 : _hour3; // Convert to 12-hour format
-            var _optionText3 = _displayHour3 + ':' + pad(_minute3) + 'pm';
+            var _optionText3 = _hour3 + ':' + pad(_minute3);
             var _option3 = new Option(_optionText3, _optionText3); // Set the value same as the text
             timeSelect.add(_option3);
           }
@@ -455,8 +448,7 @@ function generateTimeOptions() {
             if (_hour4 === 20 && (_minute4 === 15 || _minute4 === 30 || _minute4 === 45)) {
               continue;
             }
-            var _displayHour4 = _hour4 > 12 ? _hour4 - 12 : _hour4; // Convert to 12-hour format
-            var _optionText4 = _displayHour4 + ':' + pad(_minute4) + 'pm';
+            var _optionText4 = _hour4 + ':' + pad(_minute4);
             var _option4 = new Option(_optionText4, _optionText4); // Set the value same as the text
             timeSelect.add(_option4);
           }
@@ -470,8 +462,7 @@ function generateTimeOptions() {
             if (_hour5 === 19 && (_minute5 === 15 || _minute5 === 30 || _minute5 === 45)) {
               continue;
             }
-            var _displayHour5 = _hour5 > 12 ? _hour5 - 12 : _hour5; // Convert to 12-hour format
-            var _optionText5 = _displayHour5 + ':' + pad(_minute5) + 'pm';
+            var _optionText5 = _hour5 + ':' + pad(_minute5);
             var _option5 = new Option(_optionText5, _optionText5); // Set the value same as the text
             timeSelect.add(_option5);
           }
@@ -482,11 +473,23 @@ function generateTimeOptions() {
 
 // Generate time options when the page loads
 generateTimeOptions();
-function generateDefaultDateAndOptions() {
-  generateDefaultDate();
-  generateTimeOptions();
+
+// update the default date and time at certain interval
+function updateAtSpecificTimes() {
+  var currentTime = new Date();
+  var currentHour = currentTime.getHours();
+  var currentMinute = currentTime.getMinutes();
+
+  // Check if the current time is between 11am and 8pm
+  if (currentHour >= 11 && currentHour < 20) {
+    // Check if the current minute is 01, 16, 31, or 46
+    if (currentMinute === 1 || currentMinute === 16 || currentMinute === 31 || currentMinute === 46) {
+      generateDefaultDate();
+      generateTimeOptions();
+    }
+  }
 }
-setInterval(generateDefaultDateAndOptions, 60 * 1000);
+setInterval(updateAtSpecificTimes, 60 * 1000);
 'use strict';
 
 var selectGuestNumberElement = document.getElementById('guest-number');
@@ -751,8 +754,8 @@ var messageTimer = document.getElementById("message-timer");
 // Open the modal
 function openModal(event) {
   event.preventDefault(); // Prevent default form submission
-  messageTimer.textContent = "15:00";
-  startTimer();
+  // messageTimer.textContent = "15:00";
+  // startTimer();
   reservationMessage.style.display = "flex";
   nameValue.textContent = nameInput.value;
   phoneValue.textContent = phoneNumberInput.value;
@@ -776,83 +779,47 @@ function encodeHTML(text) {
 
 // Submit form upon confirmation of information
 confirmButton.addEventListener("click", formSubmitted);
-
-// let timerInterval; // Define the timer interval variable outside the function
-
-// function startTimer() {
-//     // Clear any existing timer interval before starting a new one
-//     clearInterval(timerInterval);
-
-//     let minutes = 14;
-//     let seconds = 59;
-
-//     timerInterval = setInterval(function () {
-//         // Format the minutes and seconds to display with leading zeros
-//         let formattedMinutes = String(minutes).padStart(2, '0');
-//         let formattedSeconds = String(seconds).padStart(2, '0');
-
-//         // Update the timer display
-//         messageTimer.innerText = formattedMinutes + ":" + formattedSeconds;
-
-//         // Decrement seconds
-//         seconds--;
-
-//         // If seconds reach below 0, decrement minutes and reset seconds to 59
-//         if (seconds < 0) {
-//             seconds = 59;
-//             minutes--;
-
-//             // If minutes reach below 0, stop the timer
-//             if (minutes < 0) {
-//                 clearInterval(timerInterval);
-//                 closeMessage();
-//             }
-//         }
-//     }, 1000); // Update timer every second (1000 milliseconds)
-// }
-
-var timerTimeout; // Define the timer timeout variable outside the function
-
-function startTimer() {
-  // Clear any existing timer timeout before starting a new one
-  clearTimeout(timerTimeout);
-  var totalTime = 15 * 60 * 1000; // 15 minutes in milliseconds
-
-  var startTime = Date.now();
-  function updateTimer() {
-    var elapsedTime = Date.now() - startTime;
-    var remainingTime = totalTime - elapsedTime;
-    if (remainingTime <= 0) {
-      // If time is up, close the message
-      closeMessage();
-    } else {
-      // Calculate remaining minutes and seconds
-      var remainingMinutes = Math.floor(remainingTime / (60 * 1000));
-      var remainingSeconds = Math.floor(remainingTime % (60 * 1000) / 1000);
-
-      // Format the minutes and seconds to display with leading zeros
-      var formattedMinutes = String(remainingMinutes).padStart(2, '0');
-      var formattedSeconds = String(remainingSeconds).padStart(2, '0');
-
-      // Update the timer display
-      messageTimer.innerText = formattedMinutes + ":" + formattedSeconds;
-
-      // Schedule the next update
-      timerTimeout = setTimeout(updateTimer, 1000);
-    }
-  }
-
-  // Update the timer display immediately
-  updateTimer();
-}
 function formSubmitted() {
-  // Trigger form submission
-  document.querySelector('form').submit();
-  alert("Thanks for choosing our restaurant!\nWe will contact you shortly to confirm your reservation.");
+  // Parse the selected date and time values from the form
+  var selectedDateString = dateValue.innerText.trim();
+  var selectedDateComponents = selectedDateString.split('-');
+  var selectedYear = parseInt(selectedDateComponents[0]);
+  var selectedMonth = parseInt(selectedDateComponents[1]);
+  var selectedDate = parseInt(selectedDateComponents[2]);
+  var benchmarkDateComponents = today.split('-');
+  var benchmarkYear = parseInt(benchmarkDateComponents[0]);
+  var benchmarkMonth = parseInt(benchmarkDateComponents[1]);
+  var benchmarkDate = parseInt(benchmarkDateComponents[2]);
+  // console.log("selected date: " + selectedDate);
+  // console.log("benchmark date: " + benchmarkDate);
 
-  //hide the following 2 lines if php file is ready
-  closeMessage();
-  document.getElementById("myForm").reset();
+  var currentTime = new Date();
+  var currentHour = currentTime.getHours();
+  var currentMinute = currentTime.getMinutes();
+  var timeString = timeValue.innerText.trim(); // Get the time string and remove leading/trailing spaces
+  var timeComponents = timeString.split(':');
+  var selectedHour = parseInt(timeComponents[0]);
+  var selectedMinute = parseInt(timeComponents[1]);
+
+  // console.log("selected time: " + timeString);
+  // console.log("current hour: " + currentHour);
+  // console.log("current minute: " + currentMinute);
+
+  // Check if the selected date is before today's date or if it's today but the selected time has passed
+  if (selectedYear < benchmarkYear || selectedMonth < benchmarkMonth || selectedDate < benchmarkDate || selectedDate === benchmarkDate && (selectedHour < currentHour + 1 || selectedHour === currentHour + 1 && selectedMinute < currentMinute)) {
+    alert("Please select another available day or time slot.");
+    closeMessage();
+    generateDefaultDate();
+    generateTimeOptions();
+  } else {
+    // Trigger form submission
+    document.querySelector('form').submit();
+    alert("Thanks for choosing our restaurant!\nWe will contact you shortly to confirm your reservation.");
+
+    // Hide the following 2 lines if the PHP file is ready
+    closeMessage();
+    document.getElementById("myForm").reset();
+  }
 }
 
 // Add an event listener to the close button and cancel button to close the message

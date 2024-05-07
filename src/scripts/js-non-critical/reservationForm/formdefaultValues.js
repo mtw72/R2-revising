@@ -129,10 +129,8 @@ function generateTimeOptions() {
               continue;
             }
 
-            const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
-
             if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || (hour === currentHour + 1 && minute >= currentMinute))) {
-              const optionText = displayHour + ':' + pad(minute) + 'pm';
+              const optionText = hour + ':' + pad(minute);
               const option = new Option(optionText, optionText); // Set the value same as the text
               timeSelect.add(option);
             }
@@ -147,10 +145,9 @@ function generateTimeOptions() {
             if (hour === 20 && (minute === 15 || minute === 30 || minute === 45)) {
               continue;
             }
-            const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
 
             if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || (hour === currentHour + 1 && minute >= currentMinute))) {
-              const optionText = displayHour + ':' + pad(minute) + 'pm';
+              const optionText = hour + ':' + pad(minute);
               const option = new Option(optionText, optionText); // Set the value same as the text
               timeSelect.add(option);
             }
@@ -165,10 +162,8 @@ function generateTimeOptions() {
               continue;
             }
 
-            const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
-
             if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || (hour === currentHour + 1 && minute >= currentMinute))) {
-              const optionText = displayHour + ':' + pad(minute) + 'pm';
+              const optionText = hour + ':' + pad(minute);
               const option = new Option(optionText, optionText); // Set the value same as the text
               timeSelect.add(option);
             }
@@ -188,8 +183,7 @@ function generateTimeOptions() {
               continue;
             }
 
-            const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
-            const optionText = displayHour + ':' + pad(minute) + 'pm';
+            const optionText = hour + ':' + pad(minute);
             const option = new Option(optionText, optionText); // Set the value same as the text
             timeSelect.add(option);
           }
@@ -204,8 +198,7 @@ function generateTimeOptions() {
               continue;
             }
 
-            const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
-            const optionText = displayHour + ':' + pad(minute) + 'pm';
+            const optionText = hour + ':' + pad(minute);
             const option = new Option(optionText, optionText); // Set the value same as the text
             timeSelect.add(option);
           }
@@ -219,8 +212,7 @@ function generateTimeOptions() {
               continue;
             }
 
-            const displayHour = (hour > 12) ? (hour - 12) : hour; // Convert to 12-hour format
-            const optionText = displayHour + ':' + pad(minute) + 'pm';
+            const optionText = hour + ':' + pad(minute);
             const option = new Option(optionText, optionText); // Set the value same as the text
             timeSelect.add(option);
           }
@@ -232,9 +224,20 @@ function generateTimeOptions() {
 // Generate time options when the page loads
 generateTimeOptions();
 
-function generateDefaultDateAndOptions() {
-  generateDefaultDate();
-  generateTimeOptions();
+// update the default date and time at certain interval
+function updateAtSpecificTimes() {
+  let currentTime = new Date();
+  let currentHour = currentTime.getHours();
+  let currentMinute = currentTime.getMinutes();
+
+  // Check if the current time is between 11am and 8pm
+  if (currentHour >= 11 && currentHour < 20) {
+    // Check if the current minute is 01, 16, 31, or 46
+    if (currentMinute === 1 || currentMinute === 16 || currentMinute === 31 || currentMinute === 46) {
+      generateDefaultDate();
+      generateTimeOptions();
+    }
+  }
 }
 
-setInterval(generateDefaultDateAndOptions, 60 * 1000);
+setInterval(updateAtSpecificTimes, 60 * 1000);

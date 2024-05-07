@@ -60,18 +60,6 @@
     }
 }
 
-.reservation__message__timer {
-    color: $red-1;
-    padding-inline: 0.25rem;
-    text-align: center;
-    font-size: clamp(1rem, 1rem + 1.5vw, 1.3rem);
-    position: absolute;
-    top: -2rem;
-    right: 0;
-    z-index: 1000;
-    background-color: rgba(211, 211, 211, 0.85);
-}
-
 .reservation__message__paragraph2,
 .reservation__message-list {
     margin-left: 1rem;
