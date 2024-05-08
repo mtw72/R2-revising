@@ -19,7 +19,7 @@ section.findus {
 }
 
 // for whole page vertical alignment
-.findus-container {
+.findus__container {
     margin-inline: auto;
 
     @include min-mq (xs) {

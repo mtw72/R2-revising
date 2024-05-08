@@ -188,7 +188,7 @@ function openMenu(event, menuName) {
   event.currentTarget.classList.add("large-menu__tab--active");
   event.currentTarget.setAttribute('aria-selected', 'true');
 
-  menus = document.getElementsByClassName("large-food-menu");
+  menus = document.getElementsByClassName("large-menu__panel");
   for (i = 0; i < menus.length; i++) {
     menus[i].style.display = "none";
   }
@@ -198,19 +198,19 @@ function openMenu(event, menuName) {
 document.getElementById("pasta-tab").click();
 'use strict';
 
-const menuAccordion = document.getElementsByClassName("small-menu__accordion");
+const menuAccordion = document.getElementsByClassName("small-menu__accordion__button");
 
 // open the accordion when the website is loaded
 window.addEventListener('load', openMenuPanel)
 
 function openMenuPanel() {
   for (let i = 0; i < menuAccordion.length; i++) {
-    if (menuAccordion[i].classList.contains("small-menu__accordion--active")) {
+    if (menuAccordion[i].classList.contains("small-menu__accordion__button--active")) {
       menuAccordion[i].setAttribute('aria-expanded', 'true');
       let menuPanel = menuAccordion[i].nextElementSibling;
       menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
       menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
-      menuPanel.classList.add("small-menu__panel--open");
+      menuPanel.classList.add("small-menu__accordion__panel--open");
       menuPanel.setAttribute('role', 'region');
     }
   }
@@ -220,7 +220,7 @@ function openMenuPanel() {
 // open or close the accordion through clicks
 for (let i = 0; i < menuAccordion.length; i++) {
   menuAccordion[i].addEventListener("click", function () {
-    this.classList.toggle("small-menu__accordion--active");
+    this.classList.toggle("small-menu__accordion__button--active");
 
     // toggle aria-expanded value
     let expanded = this.getAttribute('aria-expanded');
@@ -232,15 +232,15 @@ for (let i = 0; i < menuAccordion.length; i++) {
 
     // toggle open or close panel, and aria-hidden value
     let menuPanel = this.nextElementSibling;
-    if (menuPanel.classList.contains("small-menu__panel--open")) {
+    if (menuPanel.classList.contains("small-menu__accordion__panel--open")) {
       menuPanel.style.maxHeight = null;
-      menuPanel.classList.remove("small-menu__panel--open");
+      menuPanel.classList.remove("small-menu__accordion__panel--open");
       menuPanel.style.border = "none";
       menuPanel.removeAttribute('role', 'region');
     } else {
       menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
       menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
-      menuPanel.classList.add("small-menu__panel--open");
+      menuPanel.classList.add("small-menu__accordion__panel--open");
       menuPanel.setAttribute('role', 'region');
     }
   });
@@ -666,7 +666,7 @@ submitButton.addEventListener('click', (event) => {
 });
 
 function nameInputEvent() {
-    const letterPattern = /^[A-Za-z ]+$/;
+    const letterPattern = /^[A-Za-z\.' \-]+$/;
     const trimmedValue = nameInput.value.trim(); // Trim the input value
 
     if (trimmedValue.length > 1 && letterPattern.test(trimmedValue)) {
@@ -763,9 +763,9 @@ function timeInputEvent() {
 'use strict';
 
 const reservationMessage = document.getElementById("reservation-message");
-const confirmButton = document.querySelector(".reservation__message__bottom-button--confirm");
-const closeButton = document.querySelector(".reservation__message__close-button");
-const cancelButton = document.querySelector(".reservation__message__bottom-button--cancel");
+const confirmButton = document.querySelector(".reservation__confirmation-message__bottom-button--confirm");
+const closeButton = document.querySelector(".reservation__confirmation-message__close-button");
+const cancelButton = document.querySelector(".reservation__confirmation-message__bottom-button--cancel");
 
 const messageInput = document.getElementById("message");
 

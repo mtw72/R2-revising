@@ -172,7 +172,7 @@ function openMenu(event, menuName) {
   }
   event.currentTarget.classList.add("large-menu__tab--active");
   event.currentTarget.setAttribute('aria-selected', 'true');
-  menus = document.getElementsByClassName("large-food-menu");
+  menus = document.getElementsByClassName("large-menu__panel");
   for (i = 0; i < menus.length; i++) {
     menus[i].style.display = "none";
   }
@@ -181,18 +181,18 @@ function openMenu(event, menuName) {
 document.getElementById("pasta-tab").click();
 'use strict';
 
-var menuAccordion = document.getElementsByClassName("small-menu__accordion");
+var menuAccordion = document.getElementsByClassName("small-menu__accordion__button");
 
 // open the accordion when the website is loaded
 window.addEventListener('load', openMenuPanel);
 function openMenuPanel() {
   for (var i = 0; i < menuAccordion.length; i++) {
-    if (menuAccordion[i].classList.contains("small-menu__accordion--active")) {
+    if (menuAccordion[i].classList.contains("small-menu__accordion__button--active")) {
       menuAccordion[i].setAttribute('aria-expanded', 'true');
       var menuPanel = menuAccordion[i].nextElementSibling;
       menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
       menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
-      menuPanel.classList.add("small-menu__panel--open");
+      menuPanel.classList.add("small-menu__accordion__panel--open");
       menuPanel.setAttribute('role', 'region');
     }
   }
@@ -202,7 +202,7 @@ function openMenuPanel() {
 // open or close the accordion through clicks
 for (var i = 0; i < menuAccordion.length; i++) {
   menuAccordion[i].addEventListener("click", function () {
-    this.classList.toggle("small-menu__accordion--active");
+    this.classList.toggle("small-menu__accordion__button--active");
 
     // toggle aria-expanded value
     var expanded = this.getAttribute('aria-expanded');
@@ -215,15 +215,15 @@ for (var i = 0; i < menuAccordion.length; i++) {
 
     // toggle open or close panel, and aria-hidden value
     var menuPanel = this.nextElementSibling;
-    if (menuPanel.classList.contains("small-menu__panel--open")) {
+    if (menuPanel.classList.contains("small-menu__accordion__panel--open")) {
       menuPanel.style.maxHeight = null;
-      menuPanel.classList.remove("small-menu__panel--open");
+      menuPanel.classList.remove("small-menu__accordion__panel--open");
       menuPanel.style.border = "none";
       menuPanel.removeAttribute('role', 'region');
     } else {
       menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
       menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
-      menuPanel.classList.add("small-menu__panel--open");
+      menuPanel.classList.add("small-menu__accordion__panel--open");
       menuPanel.setAttribute('role', 'region');
     }
   });
@@ -649,7 +649,7 @@ submitButton.addEventListener('click', function (event) {
   timeInput.addEventListener('input', timeInputEvent);
 });
 function nameInputEvent() {
-  var letterPattern = /^[A-Za-z ]+$/;
+  var letterPattern = /^[A-Za-z\.' \-]+$/;
   var trimmedValue = nameInput.value.trim(); // Trim the input value
 
   if (trimmedValue.length > 1 && letterPattern.test(trimmedValue)) {
@@ -738,9 +738,9 @@ function timeInputEvent() {
 'use strict';
 
 var reservationMessage = document.getElementById("reservation-message");
-var confirmButton = document.querySelector(".reservation__message__bottom-button--confirm");
-var closeButton = document.querySelector(".reservation__message__close-button");
-var cancelButton = document.querySelector(".reservation__message__bottom-button--cancel");
+var confirmButton = document.querySelector(".reservation__confirmation-message__bottom-button--confirm");
+var closeButton = document.querySelector(".reservation__confirmation-message__close-button");
+var cancelButton = document.querySelector(".reservation__confirmation-message__bottom-button--cancel");
 var messageInput = document.getElementById("message");
 var nameValue = document.getElementById("name-value");
 var phoneValue = document.getElementById("phone-value");

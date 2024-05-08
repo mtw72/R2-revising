@@ -3,7 +3,7 @@
 @use '../../scss-common-partials/fonts' as *;
 
 // carousel text
-.small-menu__image-description {
+.small-menu__carousel__image-description {
     font-size: 1.3rem;
 }
 
@@ -17,7 +17,7 @@ select {
     font-family: inherit;
 }
 
-.reservation__form--button {
+.reservation__form__submit-button {
 
     &:hover {
         font-weight: bold;
@@ -25,7 +25,7 @@ select {
 }
 
 // findus
-.findus__contact-container h2,
-.findus__openhour-container h3 {
+.findus__contact__container h2,
+.findus__openhour__container h3 {
     font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
 }

@@ -111,7 +111,7 @@ submitButton.addEventListener('click', (event) => {
 });
 
 function nameInputEvent() {
-    const letterPattern = /^[A-Za-z ]+$/;
+    const letterPattern = /^[A-Za-z\.' \-]+$/;
     const trimmedValue = nameInput.value.trim(); // Trim the input value
 
     if (trimmedValue.length > 1 && letterPattern.test(trimmedValue)) {

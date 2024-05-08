@@ -3,7 +3,7 @@
 
 // carousel
 /* Caption text */
-.small-menu__image-description {
+.small-menu__carousel__image-description {
     background-color: $brown-7;
     color: $yellow-2;
     border-top: 1px solid $brown-7;
@@ -90,7 +90,7 @@ select.valid {
     color: $red-1;
 }
 
-.reservation__form--button {
+.reservation__form__submit-button {
     background-color: $brown-1;
     color: $yellow-2;
     box-shadow: 1px 1px 1px $brown-6;
@@ -105,8 +105,8 @@ select.valid {
 }
 
 // findus
-.findus__contact-container h2,
-.findus__openhour-container h3 {
+.findus__contact__container h2,
+.findus__openhour__container h3 {
     border-bottom: 4px dotted $grey-2;
 }
 

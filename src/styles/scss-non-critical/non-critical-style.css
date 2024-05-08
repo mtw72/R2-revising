@@ -63,17 +63,17 @@ textarea:focus {
   color: rgb(255, 0, 0);
 }
 
-.reservation__form--button {
+.reservation__form__submit-button {
   background-color: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
   box-shadow: 1px 1px 1px rgb(102, 102, 102);
 }
 
-.reservation__form--button:hover {
+.reservation__form__submit-button:hover {
   outline: 3px solid rgb(255, 165, 0);
 }
 
-.reservation__form--button:focus {
+.reservation__form__submit-button:focus {
   outline: 3px solid rgb(255, 165, 0);
 }
 
@@ -113,7 +113,7 @@ select {
   font-family: inherit;
 }
 
-.reservation__form--button {
+.reservation__form__submit-button {
   font-size: 1.25rem;
   font-family: inherit;
 }
@@ -221,39 +221,39 @@ section.findus {
   }
 }
 
-.findus-container {
+.findus__container {
   display: flex;
   flex-direction: column;
   margin-inline: auto;
 }
 
 @media all and (min-width: 28.125em) {
-  .findus-container {
+  .findus__container {
     max-width: 26.5625rem;
   }
 }
 
 @media all and (min-width: 36em) {
-  .findus-container {
+  .findus__container {
     max-width: 37.5rem;
     flex-direction: row;
   }
 }
 
 @media all and (min-width: 48em) {
-  .findus-container {
+  .findus__container {
     max-width: 50rem;
   }
 }
 
 @media all and (min-width: 62em) {
-  .findus-container {
+  .findus__container {
     max-width: 62.5rem;
   }
 }
 
 @media all and (min-width: 78.125em) {
-  .findus-container {
+  .findus__container {
     max-width: 93.75rem;
   }
 }
@@ -419,15 +419,15 @@ section.findus {
     grid-area: 3/1/4/2;
   }
 
-  .reservation__form--time {
+  .reservation__form__time {
     grid-area: 3/2/4/3;
   }
 
-  .reservation__form--message {
+  .reservation__form__optional-message {
     grid-area: 4/1/5/3;
   }
 
-  .reservation__form--bottom-part {
+  .reservation__form__bottom-part {
     grid-area: 5/1/6/3;
   }
 }
@@ -445,15 +445,15 @@ section.findus {
     grid-area: 2/2/3/3;
   }
 
-  .reservation__form--time {
+  .reservation__form__time {
     grid-area: 2/3/3/4;
   }
 
-  .reservation__form--message {
+  .reservation__form__optional-message {
     grid-area: 3/1/5/4;
   }
 
-  .reservation__form--bottom-part {
+  .reservation__form__bottom-part {
     grid-area: 5/1/6/4;
   }
 }
@@ -548,7 +548,7 @@ section.findus {
   }
 }
 
-.reservation__form--bottom-part p {
+.reservation__form__bottom-part p {
   margin-bottom: 1rem;
 }
 
@@ -556,7 +556,7 @@ section.findus {
   display: none;
 }
 
-.reservation__form--button {
+.reservation__form__submit-button {
   padding: 0.625rem 1rem;
   border: none;
   border-radius: 10px;
@@ -564,25 +564,25 @@ section.findus {
   cursor: pointer;
 }
 
-.findus__logofont-container {
+.findus__logofont__container {
   display: none;
 }
 
 @media all and (min-width: 62em) {
-  .findus__logofont-container {
+  .findus__logofont__container {
     display: block;
     flex: 1 0 33.33%;
   }
 }
 
 @media all and (min-width: 78.125em) {
-  .findus__logofont-container {
+  .findus__logofont__container {
     flex: 1 0 50%;
   }
 }
 
-.findus__contact-container,
-.findus__openhour-container {
+.findus__contact__container,
+.findus__openhour__container {
   flex: 1 0 100%;
   width: 100%;
   margin: 0.5rem auto;
@@ -592,64 +592,64 @@ section.findus {
 
 @media all and (min-width: 18.75em) {
 
-  .findus__contact-container,
-  .findus__openhour-container {
+  .findus__contact__container,
+  .findus__openhour__container {
     margin: 0 auto;
   }
 }
 
 @media all and (min-width: 36em) {
 
-  .findus__contact-container,
-  .findus__openhour-container {
+  .findus__contact__container,
+  .findus__openhour__container {
     flex: 1 0 47.5%;
   }
 }
 
 @media all and (min-width: 62em) {
 
-  .findus__contact-container,
-  .findus__openhour-container {
+  .findus__contact__container,
+  .findus__openhour__container {
     flex: 1 0 33.33%;
   }
 }
 
 @media all and (min-width: 78.125em) {
 
-  .findus__contact-container,
-  .findus__openhour-container {
+  .findus__contact__container,
+  .findus__openhour__container {
     flex: 1 0 25%;
   }
 }
 
 @media all and (min-width: 62em) {
-  .findus__contact-container {
+  .findus__contact__container {
     justify-content: flex-start;
   }
 }
 
 @media all and (min-width: 18.75em) and (max-width: 35.99875em) {
-  .findus__openhour-container {
+  .findus__openhour__container {
     padding-top: 2rem;
   }
 }
 
 @media all and (min-width: 62em) {
-  .findus__openhour-container {
+  .findus__openhour__container {
     justify-content: flex-end;
   }
 }
 
-.findus__contact-content,
-.findus__openhour-content {
+.findus__contact__content,
+.findus__openhour__content {
   max-width: 16.875rem;
   width: 100%;
 }
 
 @media all and (min-width: 36em) {
 
-  .findus__contact-content,
-  .findus__openhour-content {
+  .findus__contact__content,
+  .findus__openhour__content {
     max-width: 20rem;
     width: 95%;
   }
@@ -662,12 +662,12 @@ section.findus {
   text-align: center;
 }
 
-.findus__grid {
+.findus__contact__grid {
   text-align: center;
 }
 
 @media all and (min-width: 18.75em) {
-  .findus__grid {
+  .findus__contact__grid {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(2, auto);
@@ -684,26 +684,26 @@ section.findus {
   padding-left: 3px;
 }
 
-.openhour-grid--small {
+.findus__openhour__small-grid {
   text-align: center;
 }
 
 @media all and (min-width: 18.75em) {
-  .openhour-grid--small {
+  .findus__openhour__small-grid {
     display: none;
   }
 }
 
-.openhour-grid--small li:nth-of-type(even) {
+.findus__openhour__small-grid li:nth-of-type(even) {
   margin-bottom: 0.4rem;
 }
 
-.openhour-grid--large {
+.findus__openhour__large-grid {
   display: none;
 }
 
 @media all and (min-width: 18.75em) {
-  .openhour-grid--large {
+  .findus__openhour__large-grid {
     display: grid;
     grid-template-rows: repeat(7, 1fr);
     grid-template-columns: repeat(2, auto);

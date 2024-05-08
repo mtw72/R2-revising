@@ -11,7 +11,7 @@ function openMenu(event, menuName) {
   event.currentTarget.classList.add("large-menu__tab--active");
   event.currentTarget.setAttribute('aria-selected', 'true');
 
-  menus = document.getElementsByClassName("large-food-menu");
+  menus = document.getElementsByClassName("large-menu__panel");
   for (i = 0; i < menus.length; i++) {
     menus[i].style.display = "none";
   }

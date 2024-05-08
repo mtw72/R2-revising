@@ -1,9 +1,9 @@
 'use strict';
 
 const reservationMessage = document.getElementById("reservation-message");
-const confirmButton = document.querySelector(".reservation__message__bottom-button--confirm");
-const closeButton = document.querySelector(".reservation__message__close-button");
-const cancelButton = document.querySelector(".reservation__message__bottom-button--cancel");
+const confirmButton = document.querySelector(".reservation__confirmation-message__bottom-button--confirm");
+const closeButton = document.querySelector(".reservation__confirmation-message__close-button");
+const cancelButton = document.querySelector(".reservation__confirmation-message__bottom-button--cancel");
 
 const messageInput = document.getElementById("message");
 

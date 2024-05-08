@@ -2,14 +2,12 @@
 @use '../../../scss-common-partials/functions' as f;
 @use '../../../scss-common-partials/mixins' as *;
 
-// need esc key to close the msg
-
-.reservation__message-container {
+.reservation__confirmation-message__container {
     display: none;
     justify-content: center;
     align-items: center;
     position: fixed;
-    z-index: 400;
+    z-index: 400; ////!!!!!!!!!!!!!!!!!!!
     left: 0;
     top: 0;
     width: 100%;
@@ -17,7 +15,7 @@
     background-color: rgba(211, 211, 211, 0.5);
 }
 
-.reservation__message-content {
+.reservation__confirmation-message__content {
     background-color: #fefefe;
     border: none;
     width: auto;
@@ -30,11 +28,11 @@
     }
 }
 
-.reservation__message-container header {
+.reservation__confirmation-message__container header {
     position: relative;
 }
 
-.reservation__message-container h3 {
+.reservation__confirmation-message__container h3 {
     font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
     width: 100%;
     background-color: $yellow-2;
@@ -42,7 +40,7 @@
     border-radius: 5px 5px 0 0;
 }
 
-.reservation__message__close-button {
+.reservation__confirmation-message__close-button {
     color: $black-1;
     cursor: pointer;
     padding-inline: 0.5rem;
@@ -60,8 +58,8 @@
     }
 }
 
-.reservation__message__paragraph2,
-.reservation__message-list {
+.reservation__confirmation-message__paragraph,
+.reservation__confirmation-message__list {
     margin-left: 1rem;
 
     @include min-mq(xxs) {
@@ -82,8 +80,8 @@
 
 }
 
-.reservation__message__paragraph2,
-.reservation__message-list li:nth-of-type(even) {
+.reservation__confirmation-message__paragraph,
+.reservation__confirmation-message__list li:nth-of-type(even) {
     margin-right: 1rem;
 
     @include min-mq(xxs) {
@@ -104,7 +102,7 @@
 
 }
 
-.reservation__message__paragraph2 {
+.reservation__confirmation-message__paragraph {
     padding-top: 1rem;
     padding-bottom: 0.25rem;
 
@@ -119,7 +117,7 @@
     }
 }
 
-.reservation__message-list {
+.reservation__confirmation-message__list {
     padding-bottom: 1.25rem;
     overflow: auto;
     height: 40vh;
@@ -144,7 +142,7 @@
     }
 }
 
-.reservation__message-list li:nth-of-type(even) {
+.reservation__confirmation-message__list li:nth-of-type(even) {
     text-decoration: 1px underline lightgrey;
     text-underline-position: under;
     padding-bottom: 0.5rem;
@@ -159,12 +157,12 @@
     overflow: auto;
 }
 
-.reservation__message__bottom-buttons {
+.reservation__confirmation-message__bottom-buttons {
     display: flex;
     flex-direction: row;
 }
 
-.reservation__message__bottom-button {
+.reservation__confirmation-message__bottom-button {
     cursor: pointer;
     width: 50%;
     border: none;
@@ -175,13 +173,13 @@
     }
 }
 
-.reservation__message__bottom-button--confirm {
+.reservation__confirmation-message__bottom-button--confirm {
     background-color: $brown-1;
     color: $yellow-2;
     border-radius: 0 0 5px 0;
 }
 
-.reservation__message__bottom-button--cancel {
+.reservation__confirmation-message__bottom-button--cancel {
     background-color: $grey-2;
     color: $black-1;
     border-radius: 0 0 0 5px;

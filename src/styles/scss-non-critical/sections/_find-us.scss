@@ -1,7 +1,7 @@
 @use '../../scss-common-partials/functions' as f;
 @use '../../scss-common-partials/mixins' as *;
 
-.findus-container {
+.findus__container {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -12,7 +12,7 @@
     }
 }
 
-.findus__logofont-container {
+.findus__logofont__container {
     display: none;
 
     @include min-mq (lg) {
@@ -29,8 +29,8 @@
     }
 }
 
-.findus__contact-container,
-.findus__openhour-container {
+.findus__contact__container,
+.findus__openhour__container {
     flex: 1 0 100%;
     width: 100%;
     margin-inline: auto;
@@ -58,22 +58,22 @@
     }
 }
 
-.findus__contact-container {
+.findus__contact__container {
 
     @include min-mq (lg) {
         justify-content: flex-start;
     }
 }
 
-.findus__openhour-container {
+.findus__openhour__container {
 
     @include min-mq (lg) {
         justify-content: flex-end;
     }
 }
 
-.findus__contact-content,
-.findus__openhour-content {
+.findus__contact__content,
+.findus__openhour__content {
     max-width: f.rem(270);
     width: 100%;
 
@@ -83,15 +83,15 @@
     }
 }
 
-.findus__contact-container h2,
-.findus__openhour-container h3 {
+.findus__contact__container h2,
+.findus__openhour__container h3 {
     margin-inline: auto;
     margin-bottom: 0.7rem;
     padding-bottom: 0.7rem;
     text-align: center;
 }
 
-.findus__grid {
+.findus__contact__grid {
     text-align: center;
 
     @include min-mq(xxs) {
@@ -106,11 +106,11 @@
     }
 }
 
-.contact__icon--location {
+.contact__icon:first-of-type {
     padding-left: 3px;
 }
 
-.openhour-grid--small {
+.findus__openhour__small-grid {
     text-align: center;
 
     @include min-mq(xxs) {
@@ -118,11 +118,11 @@
     }
 }
 
-.openhour-grid--small li:nth-of-type(even) {
+.findus__openhour__small-grid li:nth-of-type(even) {
     margin-bottom: 0.4rem;
 }
 
-.openhour-grid--large {
+.findus__openhour__large-grid {
     display: none;
 
     @include min-mq(xxs) {

@@ -1,7 +1,7 @@
 @use '../../../scss-common-partials/functions' as f;
 
 //buttons when the accordion panel is close
-.small-menu__accordion {
+.small-menu__accordion__button {
     padding: 0.8rem;
     width: 100%;
     text-align: left;
@@ -21,22 +21,22 @@
     }
 }
 
-.small-menu__accordion:not(:first-of-type) {
+.small-menu__accordion__button:not(:first-of-type) {
     margin-top: 1rem;
 }
 
 //buttons when the accordion panel is open
 // "minus" sign (-)
-.small-menu__accordion--active:after {
+.small-menu__accordion__button--active:after {
     content: "\2212";
 }
 
-.small-menu__accordion h3 {
+.small-menu__accordion__button h3 {
     display: inline;
 }
 
 /* Style the accordion panel. Note: hidden by default */
-.small-menu__panel {
+.small-menu__accordion__panel {
     padding: 0 0.5rem;
     overflow: hidden;
     max-height: 0;
@@ -44,7 +44,7 @@
     transition: max-height 0.25s ease-out;
 }
 
-.small-menu__content {
+.small-menu__accordion__content {
     display: grid;
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(3, auto);
@@ -77,8 +77,6 @@
     grid-area: 3 / 2 / 4 / 3;
 }
 
-.small-menu__item-price--1,
-.small-menu__item-price--2,
-.small-menu__item-price--3 {
+.small-menu__item-price {
     justify-self: end;
 }

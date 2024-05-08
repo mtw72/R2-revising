@@ -2,7 +2,7 @@
 @use '../../../scss-common-partials/mixins' as *;
 
 /* menu content */
-.large-food-menu {
+.large-menu__panel {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 1fr);
@@ -11,7 +11,7 @@
     border-top: 0px;
 }
 
-.large-food-menu>* {
+.large-menu__panel>* {
     animation: fadeIn 2s;
 }
 
@@ -26,7 +26,7 @@
 }
 
 /* menu description */
-.large-food-menu .large-menu__item-name {
+.large-menu__panel .large-menu__item-name {
     padding: 2%;
     padding-left: calc(0.5rem + 1vw);
     display: inline-block;
@@ -64,7 +64,7 @@
 }
 
 @include min-mq(md) {
-    .large-food-menu {
+    .large-menu__panel {
         display: grid;
         grid-template-columns: 7fr 5fr;
         grid-template-rows: repeat(3, 1fr);
@@ -103,7 +103,7 @@
 }
 
 @include min-mq(lg) {
-    .large-food-menu {
+    .large-menu__panel {
         grid-template-columns: 2fr 1fr;
     }
 }

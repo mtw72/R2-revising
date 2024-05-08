@@ -492,34 +492,34 @@ hr {
   color: rgb(240, 248, 255);
 }
 
-.small-menu__accordion {
+.small-menu__accordion__button {
   background-color: rgb(249, 224, 187);
   color: rgb(0, 0, 0);
 }
-.small-menu__accordion:hover {
+.small-menu__accordion__button:hover {
   background-color: rgb(163, 90, 0);
   color: rgb(255, 251, 235);
 }
-.small-menu__accordion:after {
+.small-menu__accordion__button:after {
   color: rgb(119, 119, 119);
 }
-.small-menu__accordion:focus {
+.small-menu__accordion__button:focus {
   outline: 2px solid rgb(255, 165, 0);
 }
-.small-menu__accordion:focus:after {
+.small-menu__accordion__button:focus:after {
   color: rgb(255, 251, 235);
 }
 
-.small-menu__accordion--active {
+.small-menu__accordion__button--active {
   background-color: rgb(163, 90, 0);
   color: rgb(255, 251, 235);
 }
-.small-menu__accordion--active:after {
+.small-menu__accordion__button--active:after {
   color: rgb(255, 251, 235);
 }
 
 /* Style the accordion panel. Note: hidden by default */
-.small-menu__panel {
+.small-menu__accordion__panel {
   background-color: rgb(255, 255, 255);
 }
 
@@ -540,7 +540,7 @@ hr {
   border: 1px solid rgb(197, 137, 64);
 }
 
-.large-food-menu {
+.large-menu__panel {
   background-color: rgb(255, 255, 255);
   border: 1px solid rgba(226, 186, 137, 0.842);
 }
@@ -598,14 +598,14 @@ body {
   text-shadow: 2px 3px rgb(255, 192, 203);
 }
 
-.small-menu__accordion {
+.small-menu__accordion__button {
   font-size: 1.4rem;
 }
-.small-menu__accordion:after {
+.small-menu__accordion__button:after {
   font-weight: bold;
 }
 
-.small-menu__accordion--active:after {
+.small-menu__accordion__button--active:after {
   font-weight: bold;
 }
 
@@ -613,7 +613,7 @@ body {
   font-size: clamp(1.35rem, 1.2rem + 1vw, 2rem);
 }
 
-.large-food-menu .large-menu__item-name {
+.large-menu__panel .large-menu__item-name {
   font-size: clamp(1.35rem, 1.2rem + 1vw, 1.75rem);
   font-weight: bold;
 }
@@ -1004,7 +1004,7 @@ section:not(:first-of-type) {
   .large-menu__tab {
     border-radius: 25px 25px 0 0;
   }
-  .large-food-menu {
+  .large-menu__panel {
     border-radius: 0 0 15px 15px;
   }
 }
@@ -1038,7 +1038,7 @@ section:not(:first-of-type) {
   }
 }
 
-.small-menu__accordion {
+.small-menu__accordion__button {
   padding: 0.8rem;
   width: 100%;
   text-align: left;
@@ -1048,29 +1048,29 @@ section:not(:first-of-type) {
   transition: 0.4s;
   cursor: pointer;
 }
-.small-menu__accordion:after {
+.small-menu__accordion__button:after {
   content: "+";
   float: right;
 }
-.small-menu__accordion:focus {
+.small-menu__accordion__button:focus {
   -webkit-transition: 0s;
   transition: 0s;
 }
 
-.small-menu__accordion:not(:first-of-type) {
+.small-menu__accordion__button:not(:first-of-type) {
   margin-top: 1rem;
 }
 
-.small-menu__accordion--active:after {
+.small-menu__accordion__button--active:after {
   content: "−";
 }
 
-.small-menu__accordion h3 {
+.small-menu__accordion__button h3 {
   display: inline;
 }
 
 /* Style the accordion panel. Note: hidden by default */
-.small-menu__panel {
+.small-menu__accordion__panel {
   padding: 0 0.5rem;
   overflow: hidden;
   max-height: 0;
@@ -1079,7 +1079,7 @@ section:not(:first-of-type) {
   transition: max-height 0.25s ease-out;
 }
 
-.small-menu__content {
+.small-menu__accordion__content {
   display: grid;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: repeat(3, auto);
@@ -1114,9 +1114,7 @@ section:not(:first-of-type) {
   grid-area: 3/2/4/3;
 }
 
-.small-menu__item-price--1,
-.small-menu__item-price--2,
-.small-menu__item-price--3 {
+.small-menu__item-price {
   justify-self: end;
 }
 
@@ -1145,7 +1143,7 @@ section:not(:first-of-type) {
 }
 
 /* menu content */
-.large-food-menu {
+.large-menu__panel {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(3, 1fr);
@@ -1156,7 +1154,7 @@ section:not(:first-of-type) {
   border-top: 0px;
 }
 
-.large-food-menu > * {
+.large-menu__panel > * {
   -webkit-animation: fadeIn 2s;
           animation: fadeIn 2s;
 }
@@ -1179,7 +1177,7 @@ section:not(:first-of-type) {
   }
 }
 /* menu description */
-.large-food-menu .large-menu__item-name {
+.large-menu__panel .large-menu__item-name {
   padding: 2%;
   padding-left: calc(0.5rem + 1vw);
   display: inline-block;
@@ -1218,7 +1216,7 @@ section:not(:first-of-type) {
 }
 
 @media all and (min-width: 48em) {
-  .large-food-menu {
+  .large-menu__panel {
     display: grid;
     grid-template-columns: 7fr 5fr;
     grid-template-rows: repeat(3, 1fr);
@@ -1261,7 +1259,7 @@ section:not(:first-of-type) {
   }
 }
 @media all and (min-width: 62em) {
-  .large-food-menu {
+  .large-menu__panel {
     grid-template-columns: 2fr 1fr;
   }
 }

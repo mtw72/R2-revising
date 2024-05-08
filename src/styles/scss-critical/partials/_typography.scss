@@ -45,7 +45,7 @@ body {
 
 // small menu
 //buttons when the accordion panel is close
-.small-menu__accordion {
+.small-menu__accordion__button {
     font-size: 1.4rem;
 
     //"plus" sign (+) 
@@ -55,7 +55,7 @@ body {
 }
 
 // "minus" sign (-)
-.small-menu__accordion--active:after {
+.small-menu__accordion__button--active:after {
     font-weight: bold;
 }
 
@@ -66,7 +66,7 @@ body {
 }
 
 // menu description
-.large-food-menu .large-menu__item-name {
+.large-menu__panel .large-menu__item-name {
     font-size: clamp(1.35rem, 1.2rem + 1vw, 1.75rem);
     font-weight: bold;
 }

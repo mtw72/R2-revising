@@ -1,5 +1,5 @@
 /* Caption text */
-.small-menu__image-description {
+.small-menu__carousel__image-description {
   background-color: rgb(153, 104, 41);
   color: rgb(255, 251, 235);
   border-top: 1px solid rgb(153, 104, 41);
@@ -84,21 +84,21 @@ select.valid {
   color: rgb(255, 0, 0);
 }
 
-.reservation__form--button {
+.reservation__form__submit-button {
   background-color: rgb(174, 96, 0);
   color: rgb(255, 251, 235);
   -webkit-box-shadow: 1px 1px 1px rgb(128, 70, 0);
           box-shadow: 1px 1px 1px rgb(128, 70, 0);
 }
-.reservation__form--button:hover {
+.reservation__form__submit-button:hover {
   outline: 3px solid rgb(255, 165, 0);
 }
-.reservation__form--button:focus {
+.reservation__form__submit-button:focus {
   outline: 3px solid rgb(255, 165, 0);
 }
 
-.findus__contact-container h2,
-.findus__openhour-container h3 {
+.findus__contact__container h2,
+.findus__openhour__container h3 {
   border-bottom: 4px dotted rgb(206, 212, 218);
 }
 
@@ -122,7 +122,7 @@ social icons in footer  */
   color: rgb(128, 70, 0);
 }
 
-.small-menu__image-description {
+.small-menu__carousel__image-description {
   font-size: 1.3rem;
 }
 
@@ -135,12 +135,12 @@ select {
   font-family: inherit;
 }
 
-.reservation__form--button:hover {
+.reservation__form__submit-button:hover {
   font-weight: bold;
 }
 
-.findus__contact-container h2,
-.findus__openhour-container h3 {
+.findus__contact__container h2,
+.findus__openhour__container h3 {
   font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
 }
 
@@ -245,31 +245,31 @@ section.findus {
   }
 }
 
-.findus-container {
+.findus__container {
   margin-inline: auto;
 }
 @media all and (min-width: 28.125em) {
-  .findus-container {
+  .findus__container {
     max-width: 26.5625rem;
   }
 }
 @media all and (min-width: 36em) {
-  .findus-container {
+  .findus__container {
     max-width: 37.5rem;
   }
 }
 @media all and (min-width: 48em) {
-  .findus-container {
+  .findus__container {
     max-width: 50rem;
   }
 }
 @media all and (min-width: 62em) {
-  .findus-container {
+  .findus__container {
     max-width: 62.5rem;
   }
 }
 @media all and (min-width: 76.25em) {
-  .findus-container {
+  .findus__container {
     max-width: 93.75rem;
   }
 }
@@ -340,7 +340,7 @@ footer {
   border-radius: 5px 5px 0 0;
 }
 
-.small-menu__image-description {
+.small-menu__carousel__image-description {
   margin-inline: auto;
   padding: 0.375rem 0.75rem;
   width: 85%;
@@ -453,48 +453,48 @@ footer {
 }
 
 @media all and (min-width: 36em) {
-  .reservation__form--name {
+  .reservation__form__name {
     grid-area: 1/1/2/2;
   }
-  .reservation__form--phone {
+  .reservation__form__phone {
     grid-area: 1/2/2/3;
   }
-  .reservation__form--email {
+  .reservation__form__email {
     grid-area: 2/1/3/2;
   }
-  .reservation__form--guest-number {
+  .reservation__form__guest-number {
     grid-area: 2/2/3/3;
   }
-  .reservation__form--date {
+  .reservation__form__date {
     grid-area: 3/1/4/2;
   }
-  .reservation__form--time {
+  .reservation__form__time {
     grid-area: 3/2/4/3;
   }
-  .reservation__form--message {
+  .reservation__form__optional-message {
     grid-area: 4/1/5/3;
   }
-  .reservation__form--bottom-part {
+  .reservation__form__bottom-part {
     grid-area: 5/1/6/3;
   }
 }
 @media all and (min-width: 62em) and (max-width: 76.24875em) {
-  .reservation__form--email {
+  .reservation__form__email {
     grid-area: 1/3/2/4;
   }
-  .reservation__form--guest-number {
+  .reservation__form__guest-number {
     grid-area: 2/1/3/2;
   }
-  .reservation__form--date {
+  .reservation__form__date {
     grid-area: 2/2/3/3;
   }
-  .reservation__form--time {
+  .reservation__form__time {
     grid-area: 2/3/3/4;
   }
-  .reservation__form--message {
+  .reservation__form__optional-message {
     grid-area: 3/1/5/4;
   }
-  .reservation__form--bottom-part {
+  .reservation__form__bottom-part {
     grid-area: 5/1/6/4;
   }
 }
@@ -609,7 +609,7 @@ input::-webkit-datetime-edit {
   display: none;
 }
 
-.reservation__form--button {
+.reservation__form__submit-button {
   margin-top: 0.75rem;
   padding: 0.625rem 1rem;
   border: none;
@@ -619,7 +619,7 @@ input::-webkit-datetime-edit {
   cursor: pointer;
 }
 
-.reservation__message-container {
+.reservation__confirmation-message__container {
   display: none;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -636,7 +636,7 @@ input::-webkit-datetime-edit {
   background-color: rgba(211, 211, 211, 0.5);
 }
 
-.reservation__message-content {
+.reservation__confirmation-message__content {
   background-color: #fefefe;
   border: none;
   width: auto;
@@ -646,16 +646,16 @@ input::-webkit-datetime-edit {
   border-radius: 5px;
 }
 @media all and (min-width: 36em) {
-  .reservation__message-content {
+  .reservation__confirmation-message__content {
     max-width: auto;
   }
 }
 
-.reservation__message-container header {
+.reservation__confirmation-message__container header {
   position: relative;
 }
 
-.reservation__message-container h3 {
+.reservation__confirmation-message__container h3 {
   font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
   width: 100%;
   background-color: rgb(255, 251, 235);
@@ -663,7 +663,7 @@ input::-webkit-datetime-edit {
   border-radius: 5px 5px 0 0;
 }
 
-.reservation__message__close-button {
+.reservation__confirmation-message__close-button {
   color: rgb(0, 0, 0);
   cursor: pointer;
   padding-inline: 0.5rem;
@@ -672,89 +672,89 @@ input::-webkit-datetime-edit {
   top: 0;
   right: 0;
 }
-.reservation__message__close-button:hover {
+.reservation__confirmation-message__close-button:hover {
   font-weight: bold;
 }
-.reservation__message__close-button:focus {
+.reservation__confirmation-message__close-button:focus {
   outline: 2px solid rgb(255, 165, 0);
 }
 
-.reservation__message__paragraph2,
-.reservation__message-list {
+.reservation__confirmation-message__paragraph,
+.reservation__confirmation-message__list {
   margin-left: 1rem;
 }
 @media all and (min-width: 18.75em) {
-  .reservation__message__paragraph2,
-  .reservation__message-list {
+  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__list {
     margin-left: 1.5rem;
   }
 }
 @media all and (min-width: 28.125em) {
-  .reservation__message__paragraph2,
-  .reservation__message-list {
+  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__list {
     margin-left: 2rem;
   }
 }
 @media all and (min-width: 36em) {
-  .reservation__message__paragraph2,
-  .reservation__message-list {
+  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__list {
     margin-left: 2.5rem;
   }
 }
 @media all and (min-width: 48em) {
-  .reservation__message__paragraph2,
-  .reservation__message-list {
+  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__list {
     margin-left: 3rem;
   }
 }
 
-.reservation__message__paragraph2,
-.reservation__message-list li:nth-of-type(even) {
+.reservation__confirmation-message__paragraph,
+.reservation__confirmation-message__list li:nth-of-type(even) {
   margin-right: 1rem;
 }
 @media all and (min-width: 18.75em) {
-  .reservation__message__paragraph2,
-  .reservation__message-list li:nth-of-type(even) {
+  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__list li:nth-of-type(even) {
     margin-right: 1.5rem;
   }
 }
 @media all and (min-width: 28.125em) {
-  .reservation__message__paragraph2,
-  .reservation__message-list li:nth-of-type(even) {
+  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__list li:nth-of-type(even) {
     margin-right: 2rem;
   }
 }
 @media all and (min-width: 36em) {
-  .reservation__message__paragraph2,
-  .reservation__message-list li:nth-of-type(even) {
+  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__list li:nth-of-type(even) {
     margin-right: 2.5rem;
   }
 }
 @media all and (min-width: 48em) {
-  .reservation__message__paragraph2,
-  .reservation__message-list li:nth-of-type(even) {
+  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__list li:nth-of-type(even) {
     margin-right: 3rem;
   }
 }
 
-.reservation__message__paragraph2 {
+.reservation__confirmation-message__paragraph {
   padding-top: 1rem;
   padding-bottom: 0.25rem;
 }
 @media all and (min-width: 36em) {
-  .reservation__message__paragraph2 {
+  .reservation__confirmation-message__paragraph {
     padding-top: 1.25rem;
     padding-bottom: 0.375rem;
   }
 }
 @media all and (min-width: 48em) {
-  .reservation__message__paragraph2 {
+  .reservation__confirmation-message__paragraph {
     padding-top: 1.5rem;
     padding-bottom: 0.5rem;
   }
 }
 
-.reservation__message-list {
+.reservation__confirmation-message__list {
   padding-bottom: 1.25rem;
   overflow: auto;
   height: 40vh;
@@ -762,7 +762,7 @@ input::-webkit-datetime-edit {
   height: 40svh;
 }
 @media all and (min-width: 36em) {
-  .reservation__message-list {
+  .reservation__confirmation-message__list {
     display: grid;
     grid-template-rows: repeat(7, auto);
     grid-template-columns: repeat(2, auto);
@@ -782,19 +782,19 @@ input::-webkit-datetime-edit {
   }
 }
 @media all and (min-width: 48em) {
-  .reservation__message-list {
+  .reservation__confirmation-message__list {
     padding-bottom: 2.25rem;
   }
 }
 
-.reservation__message-list li:nth-of-type(even) {
+.reservation__confirmation-message__list li:nth-of-type(even) {
   -webkit-text-decoration: 1px underline lightgrey;
           text-decoration: 1px underline lightgrey;
   text-underline-position: under;
   padding-bottom: 0.5rem;
 }
 @media all and (min-width: 36em) {
-  .reservation__message-list li:nth-of-type(even) {
+  .reservation__confirmation-message__list li:nth-of-type(even) {
     text-decoration: none;
     padding-bottom: 0;
   }
@@ -804,7 +804,7 @@ input::-webkit-datetime-edit {
   overflow: auto;
 }
 
-.reservation__message__bottom-buttons {
+.reservation__confirmation-message__bottom-buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -814,29 +814,29 @@ input::-webkit-datetime-edit {
           flex-direction: row;
 }
 
-.reservation__message__bottom-button {
+.reservation__confirmation-message__bottom-button {
   cursor: pointer;
   width: 50%;
   border: none;
   padding-block: 0.5rem;
 }
-.reservation__message__bottom-button:hover {
+.reservation__confirmation-message__bottom-button:hover {
   font-weight: bold;
 }
 
-.reservation__message__bottom-button--confirm {
+.reservation__confirmation-message__bottom-button--confirm {
   background-color: rgb(174, 96, 0);
   color: rgb(255, 251, 235);
   border-radius: 0 0 5px 0;
 }
 
-.reservation__message__bottom-button--cancel {
+.reservation__confirmation-message__bottom-button--cancel {
   background-color: rgb(206, 212, 218);
   color: rgb(0, 0, 0);
   border-radius: 0 0 0 5px;
 }
 
-.findus-container {
+.findus__container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -847,7 +847,7 @@ input::-webkit-datetime-edit {
   gap: 1.5rem;
 }
 @media all and (min-width: 36em) {
-  .findus-container {
+  .findus__container {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -856,11 +856,11 @@ input::-webkit-datetime-edit {
   }
 }
 
-.findus__logofont-container {
+.findus__logofont__container {
   display: none;
 }
 @media all and (min-width: 62em) {
-  .findus__logofont-container {
+  .findus__logofont__container {
     display: block;
     -webkit-box-flex: 1;
         -ms-flex: 1 0 33.33%;
@@ -868,22 +868,22 @@ input::-webkit-datetime-edit {
   }
 }
 @media all and (min-width: 76.25em) {
-  .findus__logofont-container {
+  .findus__logofont__container {
     -webkit-box-flex: 1;
         -ms-flex: 1 0 46%;
             flex: 1 0 46%;
   }
 }
 @media all and (min-width: 87.5em) {
-  .findus__logofont-container {
+  .findus__logofont__container {
     -webkit-box-flex: 1;
         -ms-flex: 1 0 50%;
             flex: 1 0 50%;
   }
 }
 
-.findus__contact-container,
-.findus__openhour-container {
+.findus__contact__container,
+.findus__openhour__container {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 100%;
           flex: 1 0 100%;
@@ -897,38 +897,38 @@ input::-webkit-datetime-edit {
           justify-content: center;
 }
 @media all and (min-width: 18.75em) {
-  .findus__contact-container,
-  .findus__openhour-container {
+  .findus__contact__container,
+  .findus__openhour__container {
     margin: 0 auto;
   }
 }
 @media all and (min-width: 36em) {
-  .findus__contact-container,
-  .findus__openhour-container {
+  .findus__contact__container,
+  .findus__openhour__container {
     -webkit-box-flex: 1;
         -ms-flex: 1 0 47.5%;
             flex: 1 0 47.5%;
   }
 }
 @media all and (min-width: 62em) {
-  .findus__contact-container,
-  .findus__openhour-container {
+  .findus__contact__container,
+  .findus__openhour__container {
     -webkit-box-flex: 1;
         -ms-flex: 1 0 33.33%;
             flex: 1 0 33.33%;
   }
 }
 @media all and (min-width: 76.25em) {
-  .findus__contact-container,
-  .findus__openhour-container {
+  .findus__contact__container,
+  .findus__openhour__container {
     -webkit-box-flex: 1;
         -ms-flex: 1 0 27%;
             flex: 1 0 27%;
   }
 }
 @media all and (min-width: 87.5em) {
-  .findus__contact-container,
-  .findus__openhour-container {
+  .findus__contact__container,
+  .findus__openhour__container {
     -webkit-box-flex: 1;
         -ms-flex: 1 0 25%;
             flex: 1 0 25%;
@@ -936,7 +936,7 @@ input::-webkit-datetime-edit {
 }
 
 @media all and (min-width: 62em) {
-  .findus__contact-container {
+  .findus__contact__container {
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
@@ -944,39 +944,39 @@ input::-webkit-datetime-edit {
 }
 
 @media all and (min-width: 62em) {
-  .findus__openhour-container {
+  .findus__openhour__container {
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end;
   }
 }
 
-.findus__contact-content,
-.findus__openhour-content {
+.findus__contact__content,
+.findus__openhour__content {
   max-width: 16.875rem;
   width: 100%;
 }
 @media all and (min-width: 36em) {
-  .findus__contact-content,
-  .findus__openhour-content {
+  .findus__contact__content,
+  .findus__openhour__content {
     max-width: 20rem;
     width: 95%;
   }
 }
 
-.findus__contact-container h2,
-.findus__openhour-container h3 {
+.findus__contact__container h2,
+.findus__openhour__container h3 {
   margin-inline: auto;
   margin-bottom: 0.7rem;
   padding-bottom: 0.7rem;
   text-align: center;
 }
 
-.findus__grid {
+.findus__contact__grid {
   text-align: center;
 }
 @media all and (min-width: 18.75em) {
-  .findus__grid {
+  .findus__contact__grid {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(2, auto);
@@ -994,28 +994,28 @@ input::-webkit-datetime-edit {
   }
 }
 
-.contact__icon--location {
+.contact__icon:first-of-type {
   padding-left: 3px;
 }
 
-.openhour-grid--small {
+.findus__openhour__small-grid {
   text-align: center;
 }
 @media all and (min-width: 18.75em) {
-  .openhour-grid--small {
+  .findus__openhour__small-grid {
     display: none;
   }
 }
 
-.openhour-grid--small li:nth-of-type(even) {
+.findus__openhour__small-grid li:nth-of-type(even) {
   margin-bottom: 0.4rem;
 }
 
-.openhour-grid--large {
+.findus__openhour__large-grid {
   display: none;
 }
 @media all and (min-width: 18.75em) {
-  .openhour-grid--large {
+  .findus__openhour__large-grid {
     display: grid;
     grid-template-rows: repeat(7, 1fr);
     grid-template-columns: repeat(2, auto);

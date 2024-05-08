@@ -3,13 +3,13 @@
     display: none;
 }
 
-.loader__container--without-javascript {
+.no-script {
     z-index: 1000;
     display: flex;
     justify-content: center;
 }
 
-.loader__container--without-javascript p {
+.no-script p {
     display: block;
     width: auto;
     background-color: whitesmoke;
