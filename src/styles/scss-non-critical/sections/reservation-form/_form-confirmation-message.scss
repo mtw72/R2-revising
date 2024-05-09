@@ -102,9 +102,10 @@
 }
 
 .reservation__confirmation-message__list {
-    height: 40vh;
-    height: 40dvh;
-    height: 40svh;
+    height: auto;
+    max-height: 40vh;
+    max-height: 40dvh;
+    max-height: 40svh;
     overflow: auto;
     padding-bottom: 1.25rem;
 
@@ -118,6 +119,7 @@
         align-items: start;
         text-align: left;
         height: auto;
+        max-height: 90%;
         padding-bottom: 1.75rem;
     }
 
@@ -135,7 +137,8 @@
 }
 
 #optional-message-value {
-    height: f.rem(200);
+    height: auto;
+    max-height: f.rem(200);
     overflow: auto;
 }
 

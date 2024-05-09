@@ -800,9 +800,10 @@ input::-webkit-datetime-edit {
 }
 
 .reservation__confirmation-message__list {
-  height: 40vh;
-  height: 40dvh;
-  height: 40svh;
+  height: auto;
+  max-height: 40vh;
+  max-height: 40dvh;
+  max-height: 40svh;
   overflow: auto;
   padding-bottom: 1.25rem;
 }
@@ -823,6 +824,7 @@ input::-webkit-datetime-edit {
             align-items: start;
     text-align: left;
     height: auto;
+    max-height: 90%;
     padding-bottom: 1.75rem;
   }
 }
@@ -842,7 +844,8 @@ input::-webkit-datetime-edit {
 }
 
 #optional-message-value {
-  height: 12.5rem;
+  height: auto;
+  max-height: 12.5rem;
   overflow: auto;
 }
 

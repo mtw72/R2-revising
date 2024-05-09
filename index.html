@@ -52,7 +52,7 @@
   </noscript> -->
 
 
-  <link rel="stylesheet" href="./dist/styles/googlefont.css">
+  <!-- <link rel="stylesheet" href="./dist/styles/googlefont.css">
   <link rel="stylesheet" href="./dist/styles/loader.css">
   <script src="./dist/scripts/critical-modern-script.js"></script>
 
@@ -62,13 +62,13 @@
     onload="this.onload=null;this.rel='stylesheet'">
 
   <script defer src="./dist/scripts/non-critical-modern-script.js"></script>
-  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.js"></script>
+  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.js"></script> -->
 
 
 
 
 
-  <!-- <link rel="stylesheet" href="./dist/styles/googlefont.min.css">
+  <link rel="stylesheet" href="./dist/styles/googlefont.min.css">
   <link rel="stylesheet" href="./dist/styles/loader.min.css">
   <script src="./dist/scripts/critical-modern-script.min.js"></script>
 
@@ -78,7 +78,7 @@
     onload="this.onload=null;this.rel='stylesheet'">
 
   <script defer src="./dist/scripts/non-critical-modern-script.min.js"></script>
-  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.min.js"></script> -->
+  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.min.js"></script>
 
 </head>
 
@@ -443,11 +443,13 @@
           </form>
 
           <!-- confirmation message -->
-          <div class="reservation__confirmation-message__container" id="reservation-message">
+          <div class="reservation__confirmation-message__container" id="confirmation-message" role="dialog"
+            aria-labelledby="confirmation-message-label">
             <div class="reservation__confirmation-message__content">
               <header>
-                <h3>Booking Summary</h3>
-                <span class="reservation__confirmation-message__close-button" role="button" tabindex="0">&times;</span>
+                <h3 id="confirmation-message-label">Booking Summary</h3>
+                <span class="reservation__confirmation-message__close-button" role="button" tabindex="0"
+                  aria-label="Close this message box">&times;</span>
               </header>
               <p>Please confirm the following details:</p>
               <ul class="reservation__confirmation-message__list" tabindex="0">
@@ -490,28 +492,30 @@
           <div class="findus__contact__container">
             <div class="findus__contact__content">
               <h2>Find Us</h2>
-              <ul class="findus__contact__grid">
-                <li>
-                  <i class="contact__icon icon icon-solid icon-location" role="img" aria-label="Address"></i>
-                </li>
-                <li>
-                  R2&nbsp;Place,<wbr> 2&nbsp;Relax&nbsp;Street,<wbr> R2&nbsp;1ST
-                </li>
-                <li>
-                  <i class="contact__icon icon icon-solid icon-phone" role="img" aria-label="Telephone">
-                  </i>
-                </li>
-                <li>
-                  <a href="tel:+441234567890" class="g-link" aria-label="Call us at 0123 456 7890">0123
-                    456 7890</a>
-                </li>
-                <li>
-                  <i class="contact__icon icon icon-solid icon-envelope" role="img" aria-label="Email"></i>
-                </li>
-                <li>
-                  <a href="mailto:info@r2p.com" class="g-link" aria-label="Email us at info@r2p.com">info@r2p.com</a>
-                </li>
-              </ul>
+              <address>
+                <ul class="findus__contact__grid">
+                  <li>
+                    <i class="contact__icon icon icon-solid icon-location" role="img" aria-label="Address"></i>
+                  </li>
+                  <li>
+                    R2&nbsp;Place,<wbr> 2&nbsp;Relax&nbsp;Street,<wbr> R2&nbsp;1ST
+                  </li>
+                  <li>
+                    <i class="contact__icon icon icon-solid icon-phone" role="img" aria-label="Telephone">
+                    </i>
+                  </li>
+                  <li>
+                    <a href="tel:+441234567890" class="g-link" aria-label="Call us at 0123 456 7890">0123
+                      456 7890</a>
+                  </li>
+                  <li>
+                    <i class="contact__icon icon icon-solid icon-envelope" role="img" aria-label="Email"></i>
+                  </li>
+                  <li>
+                    <a href="mailto:info@r2p.com" class="g-link" aria-label="Email us at info@r2p.com">info@r2p.com</a>
+                  </li>
+                </ul>
+              </address>
             </div>
           </div>
 
@@ -521,27 +525,27 @@
               <h3>Opening Hours</h3>
               <ul class="findus__openhour__small-grid">
                 <li>Sunday</li>
-                <li>12:00 - 17:00</li>
+                <li><time>12:00</time> - <time>17:00</time></li>
                 <li>Monday to Thursday</li>
-                <li>12:00 - 20:00</li>
+                <li><time>12:00</time> - <time>20:00</time></li>
                 <li>Friday & Saturday</li>
-                <li>12:00 - 21:00</li>
+                <li><time>12:00</time> - <time>21:00</time></li>
               </ul>
               <ul class="findus__openhour__large-grid">
                 <li>Sunday:</li>
-                <li>12:00 - 17:00</li>
+                <li><time>12:00</time> - <time>17:00</time></li>
                 <li>Monday:</li>
-                <li>12:00 - 20:00</li>
+                <li><time>12:00</time> - <time>20:00</time></li>
                 <li>Tuesday:</li>
-                <li>12:00 - 20:00</li>
+                <li><time>12:00</time> - <time>20:00</time></li>
                 <li>Wednesday:</li>
-                <li>12:00 - 20:00</li>
+                <li><time>12:00</time> - <time>20:00</time></li>
                 <li>Thursday:</li>
-                <li>12:00 - 20:00</li>
+                <li><time>12:00</time> - <time>20:00</time></li>
                 <li>Friday:</li>
-                <li>12:00 - 21:00</li>
+                <li><time>12:00</time> - <time>21:00</time></li>
                 <li>Saturday:</li>
-                <li>12:00 - 21:00</li>
+                <li><time>12:00</time> - <time>21:00</time></li>
               </ul>
             </div>
           </div>

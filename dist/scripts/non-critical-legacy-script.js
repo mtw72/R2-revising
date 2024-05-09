@@ -737,7 +737,7 @@ function timeInputEvent() {
 }
 'use strict';
 
-var reservationMessage = document.getElementById("reservation-message");
+var confirmationMessage = document.getElementById("confirmation-message");
 var confirmButton = document.querySelector(".reservation__confirmation-message__bottom-button--confirm");
 var closeButton = document.querySelector(".reservation__confirmation-message__close-button");
 var cancelButton = document.querySelector(".reservation__confirmation-message__bottom-button--cancel");
@@ -754,9 +754,8 @@ var messageTimer = document.getElementById("message-timer");
 // Open the modal
 function openModal(event) {
   event.preventDefault(); // Prevent default form submission
-  // messageTimer.textContent = "15:00";
-  // startTimer();
-  reservationMessage.style.display = "flex";
+  confirmationMessage.style.display = "flex";
+  confirmationMessage.setAttribute('aria-modal', 'true');
   nameValue.textContent = nameInput.value;
   phoneValue.textContent = phoneNumberInput.value;
   emailValue.textContent = emailInput.value;
@@ -826,7 +825,8 @@ function formSubmitted() {
 closeButton.addEventListener("click", closeMessage);
 cancelButton.addEventListener("click", closeMessage);
 function closeMessage() {
-  reservationMessage.style.display = "none";
+  confirmationMessage.style.display = "none";
+  confirmationMessage.setAttribute('aria-modal', 'false');
 }
 window.addEventListener('keydown', closeMessageByEsc);
 function closeMessageByEsc(event) {
