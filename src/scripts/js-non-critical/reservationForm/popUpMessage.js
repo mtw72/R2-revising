@@ -13,7 +13,7 @@ let emailValue = document.getElementById("email-value");
 let guestNumberValue = document.getElementById("guest-number-value");
 let dateValue = document.getElementById("date-value");
 let timeValue = document.getElementById("time-value");
-let messageValue = document.getElementById("message-value");
+let messageValue = document.getElementById("optional-message-value");
 let messageTimer = document.getElementById("message-timer");
 
 // Open the modal

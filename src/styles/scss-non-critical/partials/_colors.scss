@@ -104,6 +104,38 @@ select.valid {
     }
 }
 
+// confirmation message
+.reservation__confirmation-message__container {
+    background-color: $grey-6a;
+}
+
+.reservation__confirmation-message__content {
+    background-color: $white-1;
+    box-shadow: 0px 0px 3px $grey-5;
+}
+
+.reservation__confirmation-message__container header {
+    background-color: $yellow-2;
+    color: $black-1;
+}
+
+.reservation__confirmation-message__close-button {
+
+    &:focus {
+        outline: 2px solid $orange-2;
+    }
+}
+
+.reservation__confirmation-message__bottom-button--confirm {
+    background-color: $brown-1;
+    color: $yellow-2;
+}
+
+.reservation__confirmation-message__bottom-button--cancel {
+    background-color: $grey-2;
+    color: $black-1;
+}
+
 // findus
 .findus__contact__container h2,
 .findus__openhour__container h3 {

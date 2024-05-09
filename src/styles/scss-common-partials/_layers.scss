@@ -8,9 +8,13 @@ $layers: (
   navbar: 100,
   //   dropdown: 200,
   //   overlay: 300,
-  //   modal: 400,
+  modal: 400,
   skip-link:1000,
 );
+
+.skip-link:focus {
+  z-index: map-get($layers, 'skip-link');
+}
 
 .navbar {
   z-index: map-get($layers, 'navbar');
@@ -20,10 +24,10 @@ $layers: (
   z-index: map-get($layers, 'hero-text');
 }
 
-// .large-menu__tab-link::after {
-//   z-index: map-get($layers, 'default');
-// }
+.large-menu__tab-link::after {
+  z-index: map-get($layers, 'default');
+}
 
-.skip-link:focus {
-  z-index: map-get($layers, 'skip-link');
+.reservation__confirmation-message__container {
+  z-index: map-get($layers, 'modal');
 }

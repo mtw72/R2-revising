@@ -1,6 +1,7 @@
 @use '../../scss-common-partials/variables' as *;
-@use './colors' as *;
 @use '../../scss-common-partials/fonts' as *;
+@use '../../scss-common-partials/mixins' as *;
+@use './colors' as *;
 
 // carousel text
 .small-menu__carousel__image-description {
@@ -18,6 +19,34 @@ select {
 }
 
 .reservation__form__submit-button {
+
+    &:hover {
+        font-weight: bold;
+    }
+}
+
+// confirmation message
+.reservation__confirmation-message__container header {
+    font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+}
+
+.reservation__confirmation-message__close-button {
+
+    &:hover {
+        font-weight: bold;
+    }
+}
+
+.reservation__confirmation-message__list li:nth-of-type(even) {
+    text-decoration: 1px underline $grey-6;
+    text-underline-position: under;
+
+    @include min-mq(sm) {
+        text-decoration: none;
+    }
+}
+
+.reservation__confirmation-message__bottom-button {
 
     &:hover {
         font-weight: bold;

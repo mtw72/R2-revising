@@ -666,6 +666,10 @@ body {
   height: auto;
 }
 
+.skip-link:focus {
+  z-index: 1000;
+}
+
 .navbar {
   z-index: 100;
 }
@@ -674,8 +678,12 @@ body {
   z-index: 10;
 }
 
-.skip-link:focus {
-  z-index: 1000;
+.large-menu__tab-link::after {
+  z-index: 1;
+}
+
+.reservation__confirmation-message__container {
+  z-index: 400;
 }
 
 .navbar {

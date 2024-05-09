@@ -748,7 +748,7 @@ var emailValue = document.getElementById("email-value");
 var guestNumberValue = document.getElementById("guest-number-value");
 var dateValue = document.getElementById("date-value");
 var timeValue = document.getElementById("time-value");
-var messageValue = document.getElementById("message-value");
+var messageValue = document.getElementById("optional-message-value");
 var messageTimer = document.getElementById("message-timer");
 
 // Open the modal

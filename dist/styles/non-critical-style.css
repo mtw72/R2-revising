@@ -97,6 +97,35 @@ select.valid {
   outline: 3px solid rgb(255, 165, 0);
 }
 
+.reservation__confirmation-message__container {
+  background-color: rgba(211, 211, 211, 0.5);
+}
+
+.reservation__confirmation-message__content {
+  background-color: rgb(255, 255, 255);
+  -webkit-box-shadow: 0px 0px 3px rgb(128, 128, 128);
+          box-shadow: 0px 0px 3px rgb(128, 128, 128);
+}
+
+.reservation__confirmation-message__container header {
+  background-color: rgb(255, 251, 235);
+  color: rgb(0, 0, 0);
+}
+
+.reservation__confirmation-message__close-button:focus {
+  outline: 2px solid rgb(255, 165, 0);
+}
+
+.reservation__confirmation-message__bottom-button--confirm {
+  background-color: rgb(174, 96, 0);
+  color: rgb(255, 251, 235);
+}
+
+.reservation__confirmation-message__bottom-button--cancel {
+  background-color: rgb(206, 212, 218);
+  color: rgb(0, 0, 0);
+}
+
 .findus__contact__container h2,
 .findus__openhour__container h3 {
   border-bottom: 4px dotted rgb(206, 212, 218);
@@ -139,6 +168,29 @@ select {
   font-weight: bold;
 }
 
+.reservation__confirmation-message__container header {
+  font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+}
+
+.reservation__confirmation-message__close-button:hover {
+  font-weight: bold;
+}
+
+.reservation__confirmation-message__list li:nth-of-type(even) {
+  -webkit-text-decoration: 1px underline rgb(211, 211, 211);
+          text-decoration: 1px underline rgb(211, 211, 211);
+  text-underline-position: under;
+}
+@media all and (min-width: 36em) {
+  .reservation__confirmation-message__list li:nth-of-type(even) {
+    text-decoration: none;
+  }
+}
+
+.reservation__confirmation-message__bottom-button:hover {
+  font-weight: bold;
+}
+
 .findus__contact__container h2,
 .findus__openhour__container h3 {
   font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
@@ -175,6 +227,10 @@ select {
   height: auto;
 }
 
+.skip-link:focus {
+  z-index: 1000;
+}
+
 .navbar {
   z-index: 100;
 }
@@ -183,8 +239,12 @@ select {
   z-index: 10;
 }
 
-.skip-link:focus {
-  z-index: 1000;
+.large-menu__tab-link::after {
+  z-index: 1;
+}
+
+.reservation__confirmation-message__container {
+  z-index: 400;
 }
 
 .reservation__form {
@@ -628,21 +688,16 @@ input::-webkit-datetime-edit {
       -ms-flex-align: center;
           align-items: center;
   position: fixed;
-  z-index: 400;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(211, 211, 211, 0.5);
 }
 
 .reservation__confirmation-message__content {
-  background-color: #fefefe;
   border: none;
   width: auto;
   max-width: 90%;
-  -webkit-box-shadow: 0px 0px 3px grey;
-          box-shadow: 0px 0px 3px grey;
   border-radius: 5px;
 }
 @media all and (min-width: 36em) {
@@ -653,113 +708,103 @@ input::-webkit-datetime-edit {
 
 .reservation__confirmation-message__container header {
   position: relative;
-}
-
-.reservation__confirmation-message__container h3 {
-  font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
-  width: 100%;
-  background-color: rgb(255, 251, 235);
-  text-align: center;
   border-radius: 5px 5px 0 0;
 }
 
+.reservation__confirmation-message__container h3 {
+  width: 100%;
+  text-align: center;
+}
+
 .reservation__confirmation-message__close-button {
-  color: rgb(0, 0, 0);
-  cursor: pointer;
-  padding-inline: 0.5rem;
-  font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
   position: absolute;
   top: 0;
   right: 0;
-}
-.reservation__confirmation-message__close-button:hover {
-  font-weight: bold;
-}
-.reservation__confirmation-message__close-button:focus {
-  outline: 2px solid rgb(255, 165, 0);
+  padding-inline: 0.5rem;
+  cursor: pointer;
 }
 
-.reservation__confirmation-message__paragraph,
+.reservation__confirmation-message__container p,
 .reservation__confirmation-message__list {
   margin-left: 1rem;
 }
 @media all and (min-width: 18.75em) {
-  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__container p,
   .reservation__confirmation-message__list {
     margin-left: 1.5rem;
   }
 }
 @media all and (min-width: 28.125em) {
-  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__container p,
   .reservation__confirmation-message__list {
     margin-left: 2rem;
   }
 }
 @media all and (min-width: 36em) {
-  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__container p,
   .reservation__confirmation-message__list {
     margin-left: 2.5rem;
   }
 }
 @media all and (min-width: 48em) {
-  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__container p,
   .reservation__confirmation-message__list {
     margin-left: 3rem;
   }
 }
 
-.reservation__confirmation-message__paragraph,
+.reservation__confirmation-message__container p,
 .reservation__confirmation-message__list li:nth-of-type(even) {
   margin-right: 1rem;
 }
 @media all and (min-width: 18.75em) {
-  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__container p,
   .reservation__confirmation-message__list li:nth-of-type(even) {
     margin-right: 1.5rem;
   }
 }
 @media all and (min-width: 28.125em) {
-  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__container p,
   .reservation__confirmation-message__list li:nth-of-type(even) {
     margin-right: 2rem;
   }
 }
 @media all and (min-width: 36em) {
-  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__container p,
   .reservation__confirmation-message__list li:nth-of-type(even) {
     margin-right: 2.5rem;
   }
 }
 @media all and (min-width: 48em) {
-  .reservation__confirmation-message__paragraph,
+  .reservation__confirmation-message__container p,
   .reservation__confirmation-message__list li:nth-of-type(even) {
     margin-right: 3rem;
   }
 }
 
-.reservation__confirmation-message__paragraph {
+.reservation__confirmation-message__container p {
   padding-top: 1rem;
   padding-bottom: 0.25rem;
 }
 @media all and (min-width: 36em) {
-  .reservation__confirmation-message__paragraph {
+  .reservation__confirmation-message__container p {
     padding-top: 1.25rem;
     padding-bottom: 0.375rem;
   }
 }
 @media all and (min-width: 48em) {
-  .reservation__confirmation-message__paragraph {
+  .reservation__confirmation-message__container p {
     padding-top: 1.5rem;
     padding-bottom: 0.5rem;
   }
 }
 
 .reservation__confirmation-message__list {
-  padding-bottom: 1.25rem;
-  overflow: auto;
   height: 40vh;
   height: 40dvh;
   height: 40svh;
+  overflow: auto;
+  padding-bottom: 1.25rem;
 }
 @media all and (min-width: 36em) {
   .reservation__confirmation-message__list {
@@ -777,30 +822,27 @@ input::-webkit-datetime-edit {
         -ms-flex-align: start;
             align-items: start;
     text-align: left;
-    padding-bottom: 1.75rem;
     height: auto;
+    padding-bottom: 1.75rem;
   }
 }
 @media all and (min-width: 48em) {
   .reservation__confirmation-message__list {
-    padding-bottom: 2.25rem;
+    padding-bottom: 2rem;
   }
 }
 
 .reservation__confirmation-message__list li:nth-of-type(even) {
-  -webkit-text-decoration: 1px underline lightgrey;
-          text-decoration: 1px underline lightgrey;
-  text-underline-position: under;
   padding-bottom: 0.5rem;
 }
 @media all and (min-width: 36em) {
   .reservation__confirmation-message__list li:nth-of-type(even) {
-    text-decoration: none;
     padding-bottom: 0;
   }
 }
 
-#message-value {
+#optional-message-value {
+  height: 12.5rem;
   overflow: auto;
 }
 
@@ -815,24 +857,17 @@ input::-webkit-datetime-edit {
 }
 
 .reservation__confirmation-message__bottom-button {
-  cursor: pointer;
   width: 50%;
   border: none;
   padding-block: 0.5rem;
-}
-.reservation__confirmation-message__bottom-button:hover {
-  font-weight: bold;
+  cursor: pointer;
 }
 
 .reservation__confirmation-message__bottom-button--confirm {
-  background-color: rgb(174, 96, 0);
-  color: rgb(255, 251, 235);
   border-radius: 0 0 5px 0;
 }
 
 .reservation__confirmation-message__bottom-button--cancel {
-  background-color: rgb(206, 212, 218);
-  color: rgb(0, 0, 0);
   border-radius: 0 0 0 5px;
 }
 
