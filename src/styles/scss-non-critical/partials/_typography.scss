@@ -4,7 +4,7 @@
 @use './colors' as *;
 
 // carousel text
-.small-menu__carousel__image-description {
+.carousel__image-description {
     font-size: 1.3rem;
 }
 
@@ -18,7 +18,7 @@ select {
     font-family: inherit;
 }
 
-.reservation__form__submit-button {
+.reservation__submit-button {
 
     &:hover {
         font-weight: bold;
@@ -26,18 +26,18 @@ select {
 }
 
 // confirmation message
-.reservation__confirmation-message__container header {
+.confirmation-message__container header {
     font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
 }
 
-.reservation__confirmation-message__close-button {
+.confirmation-message__close-button {
 
     &:hover {
         font-weight: bold;
     }
 }
 
-.reservation__confirmation-message__list li:nth-of-type(even) {
+.confirmation-message__list li:nth-of-type(even) {
     text-decoration: 1px underline $grey-6;
     text-underline-position: under;
 
@@ -46,7 +46,7 @@ select {
     }
 }
 
-.reservation__confirmation-message__bottom-button {
+.confirmation-message__bottom-button {
 
     &:hover {
         font-weight: bold;
@@ -54,7 +54,7 @@ select {
 }
 
 // findus
-.findus__contact__container h2,
-.findus__openhour__container h3 {
+.contact__container h2,
+.openhour__container h3 {
     font-size: clamp(1.5rem, 1rem + 1.5vw, 2rem);
 }

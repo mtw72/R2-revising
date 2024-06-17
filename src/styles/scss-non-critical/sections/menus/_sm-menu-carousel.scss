@@ -2,7 +2,7 @@
 @use '../../../scss-common-partials/mixins' as *;
 
 /* Slideshow container */
-.small-menu__carousel__track-container {
+.carousel__track-container {
     position: relative;
     margin: auto;
     margin-top: f.rem(25);
@@ -14,12 +14,12 @@
 }
 
 /* Hide the images by default */
-.small-menu__carousel__slide {
+.carousel__slide {
     display: none;
 }
 
 /* Fading animation */
-.small-menu__carousel__slide.current-slide {
+.carousel__slide.current-slide {
     display: block;
     animation-name: fade;
     animation-duration: 0.5s;
@@ -35,7 +35,7 @@
     }
 }
 
-.small-menu__carousel__image {
+.carousel__image {
     display: block;
     margin-inline: auto;
     width: 85%;
@@ -44,7 +44,7 @@
 }
 
 // carousel text
-.small-menu__carousel__image-description {
+.carousel__image-description {
     margin-inline: auto;
     padding: f.rem(6) f.rem(12);
     width: 85%;
@@ -54,8 +54,8 @@
 }
 
 //Next & previous buttons
-.small-menu__carousel__button,
-.small-menu__carousel__button {
+.carousel__button,
+.carousel__button {
     cursor: pointer;
     position: absolute;
     top: 45%;
@@ -68,40 +68,40 @@
     background-color: transparent;
 }
 
-.small-menu__carousel__button--prev {
+.carousel__button--prev {
     left: -4px;
 }
 
-.small-menu__carousel__button--next {
+.carousel__button--next {
     right: -4px;
 }
 
 @include min-mq (xs) {
 
-    .small-menu__carousel__button,
-    .small-menu__carousel__button {
+    .carousel__button,
+    .carousel__button {
         top: 42%;
         font-size: 1.25rem;
         transition: 0.6s ease;
         padding: 1rem;
     }
 
-    .small-menu__carousel__button--prev {
+    .carousel__button--prev {
         left: -30px;
     }
 
-    .small-menu__carousel__button--next {
+    .carousel__button--next {
         right: -30px;
     }
 }
 
 /* The dots indicators */
-.small-menu__carousel-dots {
+.carousel__dots {
     text-align: center;
     margin-top: 0.5rem;
 }
 
-.small-menu__carousel-dot {
+.carousel__dot {
     cursor: pointer;
     height: 0.5rem;
     width: 0.5rem;

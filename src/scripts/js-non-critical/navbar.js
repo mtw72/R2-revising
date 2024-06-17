@@ -9,29 +9,6 @@ const findusLink = document.getElementById('findus-link');
 const home = document.getElementById("home");
 
 
-// Show or hide the collapsible navbar when toggler is clicked
-navbarToggler.addEventListener('click', (event) => {
-  // Toggle the visibility of navList
-  navList.classList.toggle('is-opened');
-  if (navList.style.maxHeight) {
-    // If navList is open, close it
-    navList.style.maxHeight = null;
-    // Set the toggler NOT to be aria-expanded
-    togglerAriaNotExpanded();
-    // Set the navlinks to be aria-hidden and tab-index = -1
-    navlinkAriaHidden();
-  } else {
-    // If navList is closed, open it
-    navList.style.maxHeight = navList.scrollHeight + "px";
-    // Set the toggler to be aria-expanded
-    togglerAriaExpanded();
-    // Set the navlinks NOT to be aria-hidden and tab-index = 0
-    navlinkAriaNotHidden();
-  }
-  event.stopPropagation();
-});
-
-
 // Functions to set / remove the aria attribute(s) of toggler (aria-expanded)
 function togglerAriaExpanded() {
   navbarToggler.setAttribute('aria-expanded', 'true');
@@ -83,6 +60,29 @@ function closeNavbar() {
 }
 
 
+// Show or hide the collapsible navbar when toggler is clicked
+navbarToggler.addEventListener('click', (event) => {
+  // Toggle the visibility of navList
+  navList.classList.toggle('is-opened');
+  if (navList.style.maxHeight) {
+    // If navList is open, close it
+    navList.style.maxHeight = null;
+    // Set the toggler NOT to be aria-expanded
+    togglerAriaNotExpanded();
+    // Set the navlinks to be aria-hidden and tab-index = -1
+    navlinkAriaHidden();
+  } else {
+    // If navList is closed, open it
+    navList.style.maxHeight = navList.scrollHeight + "px";
+    // Set the toggler to be aria-expanded
+    togglerAriaExpanded();
+    // Set the navlinks NOT to be aria-hidden and tab-index = 0
+    navlinkAriaNotHidden();
+  }
+  event.stopPropagation();
+});
+
+
 // Hide the collapsible navbar when the nav link is clicked 
 // or when the user clicks anywhere outside of the navbar
 document.addEventListener('click', () => {
@@ -92,8 +92,6 @@ document.addEventListener('click', () => {
 
 // For keyboard user, close the navbar if the key "TAB" is pressed
 // let the navbar stay open if the key "SHIFT" + "TAB" are pressed
-findusLink.addEventListener('keydown', closeNavbarByTab);
-
 function closeNavbarByTab(event) {
   const keyCode = event.keyCode || event.which;
   // Check if the key pressed is 'tab'
@@ -103,6 +101,8 @@ function closeNavbarByTab(event) {
     closeNavbar();
   }
 }
+
+findusLink.addEventListener('keydown', closeNavbarByTab);
 
 
 // On Scroll

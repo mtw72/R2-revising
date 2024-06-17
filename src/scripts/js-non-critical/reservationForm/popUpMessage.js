@@ -1,9 +1,9 @@
 'use strict';
 
 const confirmationMessage = document.getElementById("confirmation-message");
-const confirmButton = document.querySelector(".reservation__confirmation-message__bottom-button--confirm");
-const closeButton = document.querySelector(".reservation__confirmation-message__close-button");
-const cancelButton = document.querySelector(".reservation__confirmation-message__bottom-button--cancel");
+const confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
+const closeButton = document.querySelector(".confirmation-message__close-button");
+const cancelButton = document.querySelector(".confirmation-message__bottom-button--cancel");
 
 const messageInput = document.getElementById("message");
 
@@ -21,12 +21,17 @@ function openModal(event) {
     event.preventDefault(); // Prevent default form submission
     confirmationMessage.style.display = "flex";
     confirmationMessage.setAttribute('aria-modal', 'true');
+
+    // Copy the input value or options of the form to the confirmation message
     nameValue.textContent = nameInput.value;
     phoneValue.textContent = phoneNumberInput.value;
     emailValue.textContent = emailInput.value;
     guestNumberValue.textContent = guestNumberInput.value;
     dateValue.textContent = dateInput.value;
     timeValue.textContent = timeInput.options[timeInput.selectedIndex].text
+
+    // If the message input value is blank or default value,
+    // the corresponding text in the confirmation message will be N/A
     if (messageInput.value === '' || messageInput.value === '(e.g. Dietary Restriction, Special Occasions)') {
         messageValue.textContent = "N/A";
     } else {
@@ -101,13 +106,16 @@ closeButton.addEventListener("click", closeMessage);
 
 cancelButton.addEventListener("click", closeMessage);
 
+// Function to close the message
 function closeMessage() {
     confirmationMessage.style.display = "none";
     confirmationMessage.setAttribute('aria-modal', 'false');
 }
 
+// Add an event listener to the window to close the message
 window.addEventListener('keydown', closeMessageByEsc);
 
+// Function to close the message by hitting the "ESC" key
 function closeMessageByEsc(event) {
     if (event.keyCode == 27) { // Check if the key pressed is 'esc'
         closeMessage();

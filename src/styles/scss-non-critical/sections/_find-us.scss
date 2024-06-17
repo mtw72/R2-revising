@@ -12,7 +12,7 @@
     }
 }
 
-.findus__logofont__container {
+.logofont__container {
     display: none;
 
     @include min-mq (lg) {
@@ -29,8 +29,8 @@
     }
 }
 
-.findus__contact__container,
-.findus__openhour__container {
+.contact__container,
+.openhour__container {
     flex: 1 0 100%;
     width: 100%;
     margin-inline: auto;
@@ -58,22 +58,22 @@
     }
 }
 
-.findus__contact__container {
+.contact__container {
 
     @include min-mq (lg) {
         justify-content: flex-start;
     }
 }
 
-.findus__openhour__container {
+.openhour__container {
 
     @include min-mq (lg) {
         justify-content: flex-end;
     }
 }
 
-.findus__contact__content,
-.findus__openhour__content {
+.contact__content,
+.openhour__content {
     max-width: f.rem(270);
     width: 100%;
 
@@ -83,15 +83,15 @@
     }
 }
 
-.findus__contact__container h2,
-.findus__openhour__container h3 {
+.contact__container h2,
+.openhour__container h3 {
     margin-inline: auto;
     margin-bottom: 0.7rem;
     padding-bottom: 0.7rem;
     text-align: center;
 }
 
-.findus__contact__grid {
+.contact__grid {
     text-align: center;
 
     @include min-mq(xxs) {
@@ -110,7 +110,7 @@
     padding-left: 3px;
 }
 
-.findus__openhour__small-grid {
+.openhour__small-grid {
     text-align: center;
 
     @include min-mq(xxs) {
@@ -118,11 +118,11 @@
     }
 }
 
-.findus__openhour__small-grid li:nth-of-type(even) {
+.openhour__small-grid li:nth-of-type(even) {
     margin-bottom: 0.4rem;
 }
 
-.findus__openhour__large-grid {
+.openhour__large-grid {
     display: none;
 
     @include min-mq(xxs) {

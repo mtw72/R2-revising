@@ -492,69 +492,69 @@ hr {
   color: rgb(240, 248, 255);
 }
 
-.small-menu__accordion__button {
+.accordion__button {
   background-color: rgb(249, 224, 187);
   color: rgb(0, 0, 0);
 }
-.small-menu__accordion__button:hover {
+.accordion__button:hover {
   background-color: rgb(163, 90, 0);
   color: rgb(255, 251, 235);
 }
-.small-menu__accordion__button:after {
+.accordion__button:after {
   color: rgb(119, 119, 119);
 }
-.small-menu__accordion__button:focus {
+.accordion__button:focus {
   outline: 2px solid rgb(255, 165, 0);
 }
-.small-menu__accordion__button:focus:after {
+.accordion__button:focus:after {
   color: rgb(255, 251, 235);
 }
 
-.small-menu__accordion__button--active {
+.accordion__button--active {
   background-color: rgb(163, 90, 0);
   color: rgb(255, 251, 235);
 }
-.small-menu__accordion__button--active:after {
+.accordion__button--active:after {
   color: rgb(255, 251, 235);
 }
 
 /* Style the accordion panel. Note: hidden by default */
-.small-menu__accordion__panel {
+.accordion__panel {
   background-color: rgb(255, 255, 255);
 }
 
-.large-menu__tab {
+.menu__tab {
   background-color: rgba(255, 246, 215, 0.808);
   color: rgb(163, 90, 0);
   border: 1px solid rgb(255, 222, 103);
 }
-.large-menu__tab:hover {
+.menu__tab:hover {
   font-weight: bold;
   background-color: rgb(197, 137, 64);
   color: rgb(240, 248, 255);
   border: 1px solid rgb(197, 137, 64);
 }
-.large-menu__tab--active {
+.menu__tab--active {
   background-color: rgb(163, 90, 0);
   color: rgb(255, 240, 184);
   border: 1px solid rgb(197, 137, 64);
 }
 
-.large-menu__panel {
+.menu__panel {
   background-color: rgb(255, 255, 255);
   border: 1px solid rgba(226, 186, 137, 0.842);
 }
 
-.large-menu__item {
+.menu__item {
   border-bottom: 1px solid rgba(226, 186, 137, 0.842);
 }
 @media all and (min-width: 48em) {
-  .large-menu__item {
+  .menu__item {
     border-right: 1px solid rgba(226, 186, 137, 0.842);
   }
 }
 
-.large-menu__item-price {
+.menu__item-price {
   background-color: rgba(255, 246, 215, 0.808);
   color: rgb(163, 90, 0);
   -webkit-box-shadow: 1px 1px 2px rgb(197, 137, 64);
@@ -566,7 +566,7 @@ body {
   font-size: clamp(1.25rem, 0.9rem + 1vw, 1.5rem);
 }
 
-.g-logofont {
+.logofont {
   font-family: "Dancing Script", cursive;
   font-size: clamp(2rem, 1.5rem + 1vw, 2.5rem);
 }
@@ -598,38 +598,38 @@ body {
   text-shadow: 2px 3px rgb(255, 192, 203);
 }
 
-.small-menu__accordion__button {
+.accordion__button {
   font-size: 1.4rem;
 }
-.small-menu__accordion__button:after {
+.accordion__button:after {
   font-weight: bold;
 }
 
-.small-menu__accordion__button--active:after {
+.accordion__button--active:after {
   font-weight: bold;
 }
 
-.large-menu__tab {
+.menu__tab {
   font-size: clamp(1.35rem, 1.2rem + 1vw, 2rem);
 }
 
-.large-menu__panel .large-menu__item-name {
+.menu__panel .menu__item-name {
   font-size: clamp(1.35rem, 1.2rem + 1vw, 1.75rem);
   font-weight: bold;
 }
 
-.large-menu__item p {
+.menu__item p {
   font-size: clamp(1.3rem, 0.9rem + 1vw, 1.5rem);
   font-weight: 400;
 }
 
-.large-menu__item-price {
+.menu__item-price {
   font-size: clamp(1.2rem, 1rem + 1vw, 1.4rem);
   font-weight: 400;
   line-height: 0.75rem;
 }
 
-.large-menu__image-description {
+.menu__image-description {
   font-size: clamp(1.3rem, 0.9rem + 1vw, 1.5rem);
   text-shadow: 1px 1px rgb(255, 239, 213);
   font-weight: 400;
@@ -678,11 +678,11 @@ body {
   z-index: 10;
 }
 
-.large-menu__tab-link::after {
+.menu__tab-link::after {
   z-index: 1;
 }
 
-.reservation__confirmation-message__container {
+.confirmation-message__container {
   z-index: 400;
 }
 
@@ -893,37 +893,37 @@ section:not(:first-of-type) {
   }
 }
 
-.small-menu {
+.accordion {
   max-width: 100%;
   margin-inline: auto;
 }
 @media all and (min-width: 18.75em) {
-  .small-menu {
+  .accordion {
     max-width: 18.75rem;
   }
 }
 
-.large-menu {
+.menu {
   max-width: 26.5625rem;
   margin-inline: auto;
 }
 @media all and (min-width: 36em) {
-  .large-menu {
+  .menu {
     max-width: 37.5rem;
   }
 }
 @media all and (min-width: 48em) {
-  .large-menu {
+  .menu {
     max-width: 50rem;
   }
 }
 @media all and (min-width: 62em) {
-  .large-menu {
+  .menu {
     max-width: 62.5rem;
   }
 }
 @media all and (min-width: 87.5em) {
-  .large-menu {
+  .menu {
     max-width: 78.125rem;
   }
 }
@@ -984,35 +984,35 @@ section:not(:first-of-type) {
   }
 }
 
-.small-menu__carousel {
+.carousel {
   display: block;
 }
 @media all and (min-width: 48em) {
-  .small-menu__carousel {
+  .carousel {
     display: none;
   }
 }
 
-.large-menu {
+.menu {
   display: none;
 }
 
 @media all and (min-width: 28.125em) {
   /* hide the small menu, show the large menu */
-  .large-menu__item:nth-of-type(3) {
+  .menu__item:nth-of-type(3) {
     border-bottom: 0;
   }
-  .small-menu {
+  .accordion {
     display: none;
   }
-  .large-menu {
+  .menu {
     display: block;
   }
   /* rounded border menu on wider screen */
-  .large-menu__tab {
+  .menu__tab {
     border-radius: 25px 25px 0 0;
   }
-  .large-menu__panel {
+  .menu__panel {
     border-radius: 0 0 15px 15px;
   }
 }
@@ -1046,7 +1046,7 @@ section:not(:first-of-type) {
   }
 }
 
-.small-menu__accordion__button {
+.accordion__button {
   padding: 0.8rem;
   width: 100%;
   text-align: left;
@@ -1056,29 +1056,29 @@ section:not(:first-of-type) {
   transition: 0.4s;
   cursor: pointer;
 }
-.small-menu__accordion__button:after {
+.accordion__button:after {
   content: "+";
   float: right;
 }
-.small-menu__accordion__button:focus {
+.accordion__button:focus {
   -webkit-transition: 0s;
   transition: 0s;
 }
 
-.small-menu__accordion__button:not(:first-of-type) {
+.accordion__button:not(:first-of-type) {
   margin-top: 1rem;
 }
 
-.small-menu__accordion__button--active:after {
+.accordion__button--active:after {
   content: "−";
 }
 
-.small-menu__accordion__button h3 {
+.accordion__button h3 {
   display: inline;
 }
 
 /* Style the accordion panel. Note: hidden by default */
-.small-menu__accordion__panel {
+.accordion__panel {
   padding: 0 0.5rem;
   overflow: hidden;
   max-height: 0;
@@ -1087,7 +1087,7 @@ section:not(:first-of-type) {
   transition: max-height 0.25s ease-out;
 }
 
-.small-menu__accordion__content {
+.accordion__content {
   display: grid;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: repeat(3, auto);
@@ -1098,35 +1098,35 @@ section:not(:first-of-type) {
   padding-block: 0.5rem;
 }
 
-.small-menu__item--1 {
+.accordion__item--1 {
   grid-area: 1/1/2/2;
 }
 
-.small-menu__item-price--1 {
+.accordion__item-price--1 {
   grid-area: 1/2/2/3;
 }
 
-.small-menu__item--2 {
+.accordion__item--2 {
   grid-area: 2/1/3/2;
 }
 
-.small-menu__item-price--2 {
+.accordion__item-price--2 {
   grid-area: 2/2/3/3;
 }
 
-.small-menu__item--3 {
+.accordion__item--3 {
   grid-area: 3/1/4/2;
 }
 
-.small-menu__item-price--3 {
+.accordion__item-price--3 {
   grid-area: 3/2/4/3;
 }
 
-.small-menu__item-price {
+.accordion__item-price {
   justify-self: end;
 }
 
-.large-menu__tabs {
+.menu__tabs {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1138,7 +1138,7 @@ section:not(:first-of-type) {
       flex-wrap: nowrap;
 }
 
-.large-menu__tab {
+.menu__tab {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 33.33%;
           flex: 1 0 33.33%;
@@ -1151,7 +1151,7 @@ section:not(:first-of-type) {
 }
 
 /* menu content */
-.large-menu__panel {
+.menu__panel {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(3, 1fr);
@@ -1162,7 +1162,7 @@ section:not(:first-of-type) {
   border-top: 0px;
 }
 
-.large-menu__panel > * {
+.menu__panel > * {
   -webkit-animation: fadeIn 2s;
           animation: fadeIn 2s;
 }
@@ -1185,26 +1185,26 @@ section:not(:first-of-type) {
   }
 }
 /* menu description */
-.large-menu__panel .large-menu__item-name {
+.menu__panel .menu__item-name {
   padding: 2%;
   padding-left: calc(0.5rem + 1vw);
   display: inline-block;
 }
 
-.large-menu__item {
+.menu__item {
   display: grid;
   -ms-flex-line-pack: center;
       align-content: center;
   min-height: 7.8125rem;
 }
 
-.large-menu__item p {
+.menu__item p {
   margin: 0;
   padding: 2%;
   padding-left: calc(0.5rem + 1vw);
 }
 
-.large-menu__item-price {
+.menu__item-price {
   display: inline-block;
   border-radius: 10px;
   width: 4.6875rem;
@@ -1215,16 +1215,16 @@ section:not(:first-of-type) {
 }
 
 /* menu photos */
-.large-menu__image > * {
+.menu__image > * {
   display: none;
 }
 
-.large-menu__image-description {
+.menu__image-description {
   margin-top: 0.65rem;
 }
 
 @media all and (min-width: 48em) {
-  .large-menu__panel {
+  .menu__panel {
     display: grid;
     grid-template-columns: 7fr 5fr;
     grid-template-rows: repeat(3, 1fr);
@@ -1233,16 +1233,16 @@ section:not(:first-of-type) {
             column-gap: 0px;
     row-gap: 0px;
   }
-  .large-menu__item--1 {
+  .menu__item--1 {
     grid-area: 1/1/2/2;
   }
-  .large-menu__item--2 {
+  .menu__item--2 {
     grid-area: 2/1/3/2;
   }
-  .large-menu__item--3 {
+  .menu__item--3 {
     grid-area: 3/1/4/2;
   }
-  .large-menu__image {
+  .menu__image {
     grid-area: 1/2/4/3;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1259,15 +1259,15 @@ section:not(:first-of-type) {
             align-items: center;
     margin: 1.25rem;
   }
-  .large-menu__image img {
+  .menu__image img {
     max-width: 100%;
   }
-  .large-menu__image > * {
+  .menu__image > * {
     display: block;
   }
 }
 @media all and (min-width: 62em) {
-  .large-menu__panel {
+  .menu__panel {
     grid-template-columns: 2fr 1fr;
   }
 }

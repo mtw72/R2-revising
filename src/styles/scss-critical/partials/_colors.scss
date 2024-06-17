@@ -59,7 +59,7 @@ hr {
 
 // small menu
 //buttons when the accordion panel is close
-.small-menu__accordion__button {
+.accordion__button {
     background-color: $orange-3;
     color: $black-1;
 
@@ -83,7 +83,7 @@ hr {
 }
 
 //buttons when the accordion panel is open
-.small-menu__accordion__button--active {
+.accordion__button--active {
     background-color: $brown-2;
     color: $yellow-2;
 
@@ -94,13 +94,13 @@ hr {
 }
 
 /* Style the accordion panel. Note: hidden by default */
-.small-menu__accordion__panel {
+.accordion__panel {
     background-color: $white-1;
     // border color change in the small-menu.js
 }
 
 // large menu
-.large-menu__tab {
+.menu__tab {
     background-color: $yellow-6a;
     color: $brown-2;
     border: 1px solid $yellow-4;
@@ -120,12 +120,12 @@ hr {
 }
 
 // menu content
-.large-menu__panel {
+.menu__panel {
     background-color: $white-1;
     border: 1px solid $brown-5;
 }
 
-.large-menu__item {
+.menu__item {
     border-bottom: 1px solid $brown-5;
 
     @include min-mq(md) {
@@ -133,7 +133,7 @@ hr {
     }
 }
 
-.large-menu__item-price {
+.menu__item-price {
     background-color: $yellow-6a;
     color: $brown-2;
     box-shadow: 1px 1px 2px $brown-3;

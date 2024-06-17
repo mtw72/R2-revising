@@ -2,7 +2,7 @@
 @use '../../../scss-common-partials/functions' as f;
 @use '../../../scss-common-partials/mixins' as *;
 
-.reservation__confirmation-message__container {
+.confirmation-message__container {
     display: none;
     justify-content: center;
     align-items: center;
@@ -13,7 +13,7 @@
     height: 100%;
 }
 
-.reservation__confirmation-message__content {
+.confirmation-message__content {
     border: none;
     width: auto;
     max-width: 90%;
@@ -24,17 +24,17 @@
     }
 }
 
-.reservation__confirmation-message__container header {
+.confirmation-message__container header {
     position: relative;
     border-radius: 5px 5px 0 0;
 }
 
-.reservation__confirmation-message__container h3 {
+.confirmation-message__container h3 {
     width: 100%;
     text-align: center;
 }
 
-.reservation__confirmation-message__close-button {
+.confirmation-message__close-button {
     position: absolute;
     top: 0;
     right: 0;
@@ -42,8 +42,8 @@
     cursor: pointer;
 }
 
-.reservation__confirmation-message__container p,
-.reservation__confirmation-message__list {
+.confirmation-message__container p,
+.confirmation-message__list {
     margin-left: 1rem;
 
     @include min-mq(xxs) {
@@ -64,8 +64,8 @@
 
 }
 
-.reservation__confirmation-message__container p,
-.reservation__confirmation-message__list li:nth-of-type(even) {
+.confirmation-message__container p,
+.confirmation-message__list li:nth-of-type(even) {
     margin-right: 1rem;
 
     @include min-mq(xxs) {
@@ -86,7 +86,7 @@
 
 }
 
-.reservation__confirmation-message__container p {
+.confirmation-message__container p {
     padding-top: 1rem;
     padding-bottom: 0.25rem;
 
@@ -101,7 +101,7 @@
     }
 }
 
-.reservation__confirmation-message__list {
+.confirmation-message__list {
     height: auto;
     max-height: 40vh;
     max-height: 40dvh;
@@ -128,7 +128,7 @@
     }
 }
 
-.reservation__confirmation-message__list li:nth-of-type(even) {
+.confirmation-message__list li:nth-of-type(even) {
     padding-bottom: 0.5rem;
 
     @include min-mq(sm) {
@@ -142,22 +142,22 @@
     overflow: auto;
 }
 
-.reservation__confirmation-message__bottom-buttons {
+.confirmation-message__bottom-buttons {
     display: flex;
     flex-direction: row;
 }
 
-.reservation__confirmation-message__bottom-button {
+.confirmation-message__bottom-button {
     width: 50%;
     border: none;
     padding-block: 0.5rem;
     cursor: pointer;
 }
 
-.reservation__confirmation-message__bottom-button--confirm {
+.confirmation-message__bottom-button--confirm {
     border-radius: 0 0 5px 0;
 }
 
-.reservation__confirmation-message__bottom-button--cancel {
+.confirmation-message__bottom-button--cancel {
     border-radius: 0 0 0 5px;
 }

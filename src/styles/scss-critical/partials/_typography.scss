@@ -8,7 +8,7 @@ body {
 }
 
 // logo font in navbar and findus
-.g-logofont {
+.logofont {
     font-family: $logofont;
     font-size: clamp(2rem, 1.5rem + 1vw, 2.5rem);
 }
@@ -45,7 +45,7 @@ body {
 
 // small menu
 //buttons when the accordion panel is close
-.small-menu__accordion__button {
+.accordion__button {
     font-size: 1.4rem;
 
     //"plus" sign (+) 
@@ -55,34 +55,34 @@ body {
 }
 
 // "minus" sign (-)
-.small-menu__accordion__button--active:after {
+.accordion__button--active:after {
     font-weight: bold;
 }
 
 // large menu
 // menu tab
-.large-menu__tab {
+.menu__tab {
     font-size: clamp(1.35rem, 1.2rem + 1vw, 2rem);
 }
 
 // menu description
-.large-menu__panel .large-menu__item-name {
+.menu__panel .menu__item-name {
     font-size: clamp(1.35rem, 1.2rem + 1vw, 1.75rem);
     font-weight: bold;
 }
 
-.large-menu__item p {
+.menu__item p {
     font-size: clamp(1.3rem, 0.9rem + 1vw, 1.5rem);
     font-weight: 400;
 }
 
-.large-menu__item-price {
+.menu__item-price {
     font-size: clamp(1.2rem, 1rem + 1vw, 1.4rem);
     font-weight: 400;
     line-height: 0.75rem;
 }
 
-.large-menu__image-description {
+.menu__image-description {
     font-size: clamp(1.3rem, 0.9rem + 1vw, 1.5rem);
     text-shadow: 1px 1px $yellow-3;
     font-weight: 400;

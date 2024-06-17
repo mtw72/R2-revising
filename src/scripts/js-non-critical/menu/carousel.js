@@ -6,8 +6,8 @@ showSlides(slideIndex);
 
 function showSlides(n) {
   let i;
-  let slides = document.getElementsByClassName("small-menu__carousel__slide");
-  let dots = document.getElementsByClassName("small-menu__carousel-dot");
+  let slides = document.getElementsByClassName("carousel__slide");
+  let dots = document.getElementsByClassName("carousel__dot");
   if (n > slides.length || slideIndex > slides.length) { slideIndex = 1 }
   if (n < 1) { slideIndex = slides.length }
   for (i = 0; i < slides.length; i++) {

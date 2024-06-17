@@ -1,18 +1,18 @@
 'use strict';
 
-const menuAccordion = document.getElementsByClassName("small-menu__accordion__button");
+const menuAccordion = document.getElementsByClassName("accordion__button");
 
 // open the accordion when the website is loaded
 window.addEventListener('load', openMenuPanel)
 
 function openMenuPanel() {
   for (let i = 0; i < menuAccordion.length; i++) {
-    if (menuAccordion[i].classList.contains("small-menu__accordion__button--active")) {
+    if (menuAccordion[i].classList.contains("accordion__button--active")) {
       menuAccordion[i].setAttribute('aria-expanded', 'true');
       let menuPanel = menuAccordion[i].nextElementSibling;
       menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
       menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
-      menuPanel.classList.add("small-menu__accordion__panel--open");
+      menuPanel.classList.add("accordion__panel--open");
       menuPanel.setAttribute('role', 'region');
     }
   }
@@ -22,7 +22,7 @@ function openMenuPanel() {
 // open or close the accordion through clicks
 for (let i = 0; i < menuAccordion.length; i++) {
   menuAccordion[i].addEventListener("click", function () {
-    this.classList.toggle("small-menu__accordion__button--active");
+    this.classList.toggle("accordion__button--active");
 
     // toggle aria-expanded value
     let expanded = this.getAttribute('aria-expanded');
@@ -34,15 +34,15 @@ for (let i = 0; i < menuAccordion.length; i++) {
 
     // toggle open or close panel, and aria-hidden value
     let menuPanel = this.nextElementSibling;
-    if (menuPanel.classList.contains("small-menu__accordion__panel--open")) {
+    if (menuPanel.classList.contains("accordion__panel--open")) {
       menuPanel.style.maxHeight = null;
-      menuPanel.classList.remove("small-menu__accordion__panel--open");
+      menuPanel.classList.remove("accordion__panel--open");
       menuPanel.style.border = "none";
       menuPanel.removeAttribute('role', 'region');
     } else {
       menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
       menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
-      menuPanel.classList.add("small-menu__accordion__panel--open");
+      menuPanel.classList.add("accordion__panel--open");
       menuPanel.setAttribute('role', 'region');
     }
   });

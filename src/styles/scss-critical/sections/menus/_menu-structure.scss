@@ -5,7 +5,7 @@
 // menu on medium screen (xs to md): menu tab & content, w/o photos, + carousel
 // menu on large screen (md to xl): menu tab & content, w/ photos
 
-.small-menu__carousel {
+.carousel {
     display: block;
 
     @include min-mq(md) {
@@ -13,31 +13,31 @@
     }
 }
 
-.large-menu {
+.menu {
     display: none;
 }
 
 @include min-mq (xs) {
 
     /* hide the small menu, show the large menu */
-    .large-menu__item:nth-of-type(3) {
+    .menu__item:nth-of-type(3) {
         border-bottom: 0;
     }
 
-    .small-menu {
+    .accordion {
         display: none;
     }
 
-    .large-menu {
+    .menu {
         display: block;
     }
 
     /* rounded border menu on wider screen */
-    .large-menu__tab {
+    .menu__tab {
         border-radius: 25px 25px 0 0;
     }
 
-    .large-menu__panel {
+    .menu__panel {
         border-radius: 0 0 15px 15px;
     }
 }

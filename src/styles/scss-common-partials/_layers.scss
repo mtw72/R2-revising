@@ -24,10 +24,10 @@ $layers: (
   z-index: map-get($layers, 'hero-text');
 }
 
-.large-menu__tab-link::after {
+.menu__tab-link::after {
   z-index: map-get($layers, 'default');
 }
 
-.reservation__confirmation-message__container {
+.confirmation-message__container {
   z-index: map-get($layers, 'modal');
 }

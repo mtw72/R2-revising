@@ -1,46 +1,45 @@
 'use strict';
 
-// year for the copyright in footer
+// automatically update the year for the copyright in footer
 var copyrightDate = new Date();
 var copyrightYear = copyrightDate.getFullYear();
 document.getElementById("year").textContent = copyrightYear;
 'use strict';
 
+// Get the elements inside the navbar and the home section
 var navBar = document.getElementById("navbar");
 var navbarToggler = document.querySelector('.navbar__toggler');
 var navList = document.querySelector('.navbar__collapse');
 var navLinks = document.querySelectorAll('.navbar__nav-link');
+var findusLink = document.getElementById('findus-link');
 var home = document.getElementById("home");
 
-// Show or hide the collapsible navbar when toggler is clicked
-navbarToggler.addEventListener('click', function (event) {
-  navList.classList.toggle('is-opened');
-  if (navList.style.maxHeight) {
-    navList.style.maxHeight = null;
-    navbarToggler.setAttribute('aria-expanded', 'false');
-    negativeTabIndex(); //set the navlinks to be aria-hidden and tab-index = -1
-  } else {
-    navList.style.maxHeight = navList.scrollHeight + "px";
-    navbarToggler.setAttribute('aria-expanded', 'true');
-    zeroTabIndex(); //set the navlinks NOT to be aria-hidden and tab-index = 0
-  }
-  event.stopPropagation();
-});
+// Functions to set / remove the aria attribute(s) of toggler (aria-expanded)
+function togglerAriaExpanded() {
+  navbarToggler.setAttribute('aria-expanded', 'true');
+}
+function togglerAriaNotExpanded() {
+  navbarToggler.setAttribute('aria-expanded', 'false');
+}
+function togglerAriaRemoved() {
+  navbarToggler.removeAttribute('aria-expanded', 'true');
+  navbarToggler.removeAttribute('aria-expanded', 'false');
+}
 
-// Functions to change the tabindex and aria-hidden attribute of navlinks
-function negativeTabIndex() {
+// Functions to set / remove the aria attributes of navlinks (tabindex and aria-hidden)
+function navlinkAriaHidden() {
   for (var i = 0; i < navLinks.length; i++) {
     navLinks[i].setAttribute('tabindex', '-1');
     navLinks[i].setAttribute('aria-hidden', 'true');
   }
 }
-function zeroTabIndex() {
+function navlinkAriaNotHidden() {
   for (var i = 0; i < navLinks.length; i++) {
     navLinks[i].setAttribute('tabindex', '0');
     navLinks[i].setAttribute('aria-hidden', 'false');
   }
 }
-function removeTabIndex() {
+function navlinkAriaRemoved() {
   for (var i = 0; i < navLinks.length; i++) {
     navLinks[i].removeAttribute('tabindex', '0');
     navLinks[i].removeAttribute('tabindex', '-1');
@@ -54,10 +53,32 @@ function closeNavbar() {
   if (navList.classList.contains('is-opened')) {
     navList.style.maxHeight = null;
     navList.classList.remove('is-opened');
-    navbarToggler.setAttribute('aria-expanded', 'false');
-    negativeTabIndex();
+    togglerAriaNotExpanded();
+    navlinkAriaHidden();
   }
 }
+
+// Show or hide the collapsible navbar when toggler is clicked
+navbarToggler.addEventListener('click', function (event) {
+  // Toggle the visibility of navList
+  navList.classList.toggle('is-opened');
+  if (navList.style.maxHeight) {
+    // If navList is open, close it
+    navList.style.maxHeight = null;
+    // Set the toggler NOT to be aria-expanded
+    togglerAriaNotExpanded();
+    // Set the navlinks to be aria-hidden and tab-index = -1
+    navlinkAriaHidden();
+  } else {
+    // If navList is closed, open it
+    navList.style.maxHeight = navList.scrollHeight + "px";
+    // Set the toggler to be aria-expanded
+    togglerAriaExpanded();
+    // Set the navlinks NOT to be aria-hidden and tab-index = 0
+    navlinkAriaNotHidden();
+  }
+  event.stopPropagation();
+});
 
 // Hide the collapsible navbar when the nav link is clicked 
 // or when the user clicks anywhere outside of the navbar
@@ -67,56 +88,20 @@ document.addEventListener('click', function () {
 
 // For keyboard user, close the navbar if the key "TAB" is pressed
 // let the navbar stay open if the key "SHIFT" + "TAB" are pressed
-var findusLink = document.getElementById('findus-link');
-findusLink.addEventListener('keydown', closeNavbarByTab);
 function closeNavbarByTab(event) {
   var keyCode = event.keyCode || event.which;
-  if (event.shiftKey && event.keyCode == 9) {// Check if the key pressed is 'tab'
+  // Check if the key pressed is 'tab'
+  if (event.shiftKey && event.keyCode == 9) {
     // act normally if pressing "shift" + "tab" (going backwards)
   } else if (keyCode === 9) {
     closeNavbar();
   }
 }
+findusLink.addEventListener('keydown', closeNavbarByTab);
 
-// ** On Screen resize
-// Close the navbar when the page is loaded or the screen is re-sized
-// On small screen, set the aria-expanded attribute of the toggler, set the navlinks to be aria-hidden and tab-index = -1
-// On large screen, remove the aria-expanded attribute of the toggler, remove aria-hidden and tab-index attributes of navlinks
-window.addEventListener('load', checkScreenSize);
-window.addEventListener('resize', checkScreenSize);
-function checkScreenSize() {
-  closeNavbar();
-  var screenWidth = window.innerWidth;
-  if (screenWidth <= 576) {
-    addAriaExpandedAttributes();
-    negativeTabIndex();
-  } else {
-    removeAriaExpandedAttributes();
-    removeTabIndex();
-  }
-}
-function addAriaExpandedAttributes() {
-  navbarToggler.setAttribute('aria-expanded', 'false');
-}
-function removeAriaExpandedAttributes() {
-  navbarToggler.removeAttribute('aria-expanded', 'false');
-}
-
-// Adjust the padding top of the hero image according to the screen size
-window.onresize = function () {
-  // Update the screenWidth variable with the current window width
-  var screenWidth = window.innerWidth;
-
-  // Check the screenWidth and adjust value of paddingTop accordingly
-  if (screenWidth <= 350 || screenWidth <= 600 && screenWidth > 450) {
-    home.style.paddingTop = "70px";
-  } else {
-    home.style.paddingTop = "0px";
-  }
-};
-
-// ** On Scroll
-// On screen wider than 900px, when the user scrolls down, hide the navbar. When the user scrolls up, show the navbar 
+// On Scroll
+// On screen wider than 900px, when the user scrolls down, hide the navbar. 
+// When the user scrolls up, show the navbar 
 var prevScrollPos = window.scrollY;
 window.onscroll = function () {
   var currentScrollPos = window.scrollY;
@@ -130,6 +115,50 @@ window.onscroll = function () {
   }
   prevScrollPos = currentScrollPos;
 };
+
+// Function to adjust the padding top of the hero image according to the screen size
+function adjustHeroImagePadding() {
+  // Update the screenWidth variable with the current window width
+  var screenWidth = window.innerWidth;
+
+  // Check the screenWidth and adjust value of paddingTop accordingly
+  if (screenWidth <= 350 || screenWidth <= 600 && screenWidth > 450) {
+    home.style.paddingTop = "70px";
+  } else {
+    home.style.paddingTop = "0px";
+  }
+}
+
+// Function to check the screen size and assign aria attributes to HTML elements
+// For use when onload and onresize
+function checkScreenSize() {
+  var screenWidth = window.innerWidth;
+  // On small screen, set the toggler to be aria-expanded,
+  // set the navlinks to be aria-hidden and tab-index = -1
+  if (screenWidth <= 576) {
+    togglerAriaNotExpanded();
+    navlinkAriaHidden();
+  }
+  // On large screen, remove the aria-expanded attribute of the toggler,
+  // remove aria-hidden and tab-index attributes of navlinks
+  else {
+    togglerAriaRemoved();
+    navlinkAriaRemoved();
+  }
+}
+
+// On Screen resize
+// 1. Close the navbar
+// 2. Check the screen size and assign appropriate aria attributes to HTML elements
+// 3. Check if needed to adjust the padding-top value of hero-image
+window.addEventListener('resize', function () {
+  closeNavbar();
+  checkScreenSize();
+  adjustHeroImagePadding();
+});
+
+//Check the screen size onload and assign appropriate aria attributes to HTML elements
+window.addEventListener('load', checkScreenSize);
 'use strict';
 
 //carousel for small & medium menu
@@ -137,8 +166,8 @@ var slideIndex = 1;
 showSlides(slideIndex);
 function showSlides(n) {
   var i;
-  var slides = document.getElementsByClassName("small-menu__carousel__slide");
-  var dots = document.getElementsByClassName("small-menu__carousel-dot");
+  var slides = document.getElementsByClassName("carousel__slide");
+  var dots = document.getElementsByClassName("carousel__dot");
   if (n > slides.length || slideIndex > slides.length) {
     slideIndex = 1;
   }
@@ -177,14 +206,14 @@ function currentSlide(n) {
 
 function openMenu(event, menuName) {
   var i, menutabs, menus;
-  menutabs = document.getElementsByClassName("large-menu__tab");
+  menutabs = document.getElementsByClassName("menu__tab");
   for (i = 0; i < menutabs.length; i++) {
-    menutabs[i].classList.remove("large-menu__tab--active");
+    menutabs[i].classList.remove("menu__tab--active");
     menutabs[i].setAttribute('aria-selected', 'false');
   }
-  event.currentTarget.classList.add("large-menu__tab--active");
+  event.currentTarget.classList.add("menu__tab--active");
   event.currentTarget.setAttribute('aria-selected', 'true');
-  menus = document.getElementsByClassName("large-menu__panel");
+  menus = document.getElementsByClassName("menu__panel");
   for (i = 0; i < menus.length; i++) {
     menus[i].style.display = "none";
   }
@@ -193,18 +222,18 @@ function openMenu(event, menuName) {
 document.getElementById("pasta-tab").click();
 'use strict';
 
-var menuAccordion = document.getElementsByClassName("small-menu__accordion__button");
+var menuAccordion = document.getElementsByClassName("accordion__button");
 
 // open the accordion when the website is loaded
 window.addEventListener('load', openMenuPanel);
 function openMenuPanel() {
   for (var i = 0; i < menuAccordion.length; i++) {
-    if (menuAccordion[i].classList.contains("small-menu__accordion__button--active")) {
+    if (menuAccordion[i].classList.contains("accordion__button--active")) {
       menuAccordion[i].setAttribute('aria-expanded', 'true');
       var menuPanel = menuAccordion[i].nextElementSibling;
       menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
       menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
-      menuPanel.classList.add("small-menu__accordion__panel--open");
+      menuPanel.classList.add("accordion__panel--open");
       menuPanel.setAttribute('role', 'region');
     }
   }
@@ -214,7 +243,7 @@ function openMenuPanel() {
 // open or close the accordion through clicks
 for (var i = 0; i < menuAccordion.length; i++) {
   menuAccordion[i].addEventListener("click", function () {
-    this.classList.toggle("small-menu__accordion__button--active");
+    this.classList.toggle("accordion__button--active");
 
     // toggle aria-expanded value
     var expanded = this.getAttribute('aria-expanded');
@@ -227,15 +256,15 @@ for (var i = 0; i < menuAccordion.length; i++) {
 
     // toggle open or close panel, and aria-hidden value
     var menuPanel = this.nextElementSibling;
-    if (menuPanel.classList.contains("small-menu__accordion__panel--open")) {
+    if (menuPanel.classList.contains("accordion__panel--open")) {
       menuPanel.style.maxHeight = null;
-      menuPanel.classList.remove("small-menu__accordion__panel--open");
+      menuPanel.classList.remove("accordion__panel--open");
       menuPanel.style.border = "none";
       menuPanel.removeAttribute('role', 'region');
     } else {
       menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
       menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
-      menuPanel.classList.add("small-menu__accordion__panel--open");
+      menuPanel.classList.add("accordion__panel--open");
       menuPanel.setAttribute('role', 'region');
     }
   });
@@ -750,9 +779,9 @@ function timeInputEvent() {
 'use strict';
 
 var confirmationMessage = document.getElementById("confirmation-message");
-var confirmButton = document.querySelector(".reservation__confirmation-message__bottom-button--confirm");
-var closeButton = document.querySelector(".reservation__confirmation-message__close-button");
-var cancelButton = document.querySelector(".reservation__confirmation-message__bottom-button--cancel");
+var confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
+var closeButton = document.querySelector(".confirmation-message__close-button");
+var cancelButton = document.querySelector(".confirmation-message__bottom-button--cancel");
 var messageInput = document.getElementById("message");
 var nameValue = document.getElementById("name-value");
 var phoneValue = document.getElementById("phone-value");
@@ -768,12 +797,17 @@ function openModal(event) {
   event.preventDefault(); // Prevent default form submission
   confirmationMessage.style.display = "flex";
   confirmationMessage.setAttribute('aria-modal', 'true');
+
+  // Copy the input value or options of the form to the confirmation message
   nameValue.textContent = nameInput.value;
   phoneValue.textContent = phoneNumberInput.value;
   emailValue.textContent = emailInput.value;
   guestNumberValue.textContent = guestNumberInput.value;
   dateValue.textContent = dateInput.value;
   timeValue.textContent = timeInput.options[timeInput.selectedIndex].text;
+
+  // If the message input value is blank or default value,
+  // the corresponding text in the confirmation message will be N/A
   if (messageInput.value === '' || messageInput.value === '(e.g. Dietary Restriction, Special Occasions)') {
     messageValue.textContent = "N/A";
   } else {
@@ -836,11 +870,17 @@ function formSubmitted() {
 // Add an event listener to the close button and cancel button to close the message
 closeButton.addEventListener("click", closeMessage);
 cancelButton.addEventListener("click", closeMessage);
+
+// Function to close the message
 function closeMessage() {
   confirmationMessage.style.display = "none";
   confirmationMessage.setAttribute('aria-modal', 'false');
 }
+
+// Add an event listener to the window to close the message
 window.addEventListener('keydown', closeMessageByEsc);
+
+// Function to close the message by hitting the "ESC" key
 function closeMessageByEsc(event) {
   if (event.keyCode == 27) {
     // Check if the key pressed is 'esc'
