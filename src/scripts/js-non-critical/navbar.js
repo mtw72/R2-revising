@@ -48,18 +48,6 @@ function navLinkAriaRemoved() {
   }
 }
 
-
-// Function to close the collapsible navbar
-function closeNavbar() {
-  if (navList.classList.contains('is-opened')) {
-    navList.style.maxHeight = null;
-    navList.classList.remove('is-opened');
-    togglerAriaNotExpanded();
-    navLinkAriaHidden();
-  }
-}
-
-
 // Show or hide the collapsible navbar when toggler is clicked
 navbarToggler.addEventListener('click', (event) => {
   // Toggle the visibility of navList
@@ -82,6 +70,16 @@ navbarToggler.addEventListener('click', (event) => {
   event.stopPropagation();
 });
 
+
+// Function to close the collapsible navbar
+function closeNavbar() {
+  if (navList.classList.contains('is-opened')) {
+    navList.style.maxHeight = null;
+    navList.classList.remove('is-opened');
+    togglerAriaNotExpanded();
+    navLinkAriaHidden();
+  }
+}
 
 // Hide the collapsible navbar when the nav link is clicked 
 // or when the user clicks anywhere outside of the navbar

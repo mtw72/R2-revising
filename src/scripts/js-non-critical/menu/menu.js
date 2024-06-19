@@ -10,7 +10,7 @@ function openMenu(event, menuName) {
     menutabs[i].classList.remove("menu__tab--active");
     menutabs[i].setAttribute('aria-selected', 'false');
   }
-  // Activate the clicked tab by adding the active class
+  // Activate the clicked tab
   event.currentTarget.classList.add("menu__tab--active");
   event.currentTarget.setAttribute('aria-selected', 'true');
 
@@ -19,7 +19,7 @@ function openMenu(event, menuName) {
   for (i = 0; i < menus.length; i++) {
     menus[i].style.display = "none";
   }
-  // Display the selected menu panel by setting its display style to grid
+  // Display the selected menu panel
   document.getElementById(menuName).style.display = "grid";
 }
 

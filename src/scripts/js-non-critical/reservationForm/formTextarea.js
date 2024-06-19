@@ -1,6 +1,6 @@
 'use strict';
 
-// textarea in reservation form
+// Textarea in reservation form
 const textarea = document.getElementById('message');
 
 function clearPlaceholder() {
@@ -21,7 +21,7 @@ textarea.addEventListener('blur', function () {
   }
 });
 
-// change color of textarea when user inputs
+// Change color of textarea when user inputs
 textarea.addEventListener('input', function () {
   if (textarea.value.trim() !== '') {
     textarea.classList.add('input');

@@ -60,7 +60,6 @@ select {
   color: rgba(33, 37, 41, 0.7);
 }
 
-select.valid,
 select.valid {
   color: rgb(0, 0, 0);
 }

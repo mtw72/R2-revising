@@ -3,13 +3,14 @@
 let selectGuestNumberElement = document.getElementById('guest-number');
 let selectTimeElement = document.getElementById('time');
 
+// Function to change the selected option to solid black color
 function optionSelected(selectedElement) {
     // Check if a valid option (not the disabled one) is selected
     if (selectedElement.value !== "") {
         // If a valid option is selected, add the 'valid' class to change its color
         selectedElement.classList.add('valid');
     } else {
-        // If the disabled option is selected, remove the 'valid' class to revert to the default color
+        // If a valid option is yet to be selected, remove the 'valid' class to revert to its default color
         selectedElement.classList.remove('valid');
     }
 }

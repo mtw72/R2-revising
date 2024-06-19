@@ -1,7 +1,7 @@
 'use strict';
 
-// default date and time values in reservation form
-// get date of today
+// Set default date and time values in reservation form
+// Get date of today
 const dateOfToday = new Date();
 const tdyDay = dateOfToday.getDay();
 let tdyDate = dateOfToday.getDate();
@@ -10,7 +10,7 @@ const tdyYear = dateOfToday.getFullYear();
 const tdyHour = dateOfToday.getHours();
 const tdyMinute = dateOfToday.getMinutes();
 
-//make the date and/or month in 2-digit format
+// Make the date and/or month in 2-digit format
 if (tdyDate < 10) {
   tdyDate = "0" + tdyDate;
 }
@@ -20,13 +20,13 @@ if (tdyMth < 10) {
 
 const today = tdyYear + "-" + tdyMth + "-" + tdyDate;
 
-// get date of tomorrow
+// Get date of tomorrow
 const dateOfTmr = new Date(new Date().setDate(dateOfToday.getDate() + 1));
 let tmrDate = dateOfTmr.getDate();
 let tmrMth = dateOfTmr.getMonth() + 1;
 const tmrYear = dateOfTmr.getFullYear();
 
-//make the date and/or month in 2-digit format
+// Make the date and/or month in 2-digit format
 if (tmrDate < 10) {
   tmrDate = "0" + tmrDate;
 }
@@ -37,23 +37,25 @@ if (tmrMth < 10) {
 const tomorrow = tmrYear + "-" + tmrMth + "-" + tmrDate;
 
 
-// date picker - set default date (.value) and prevent choosing invalid dates (.min)
+// Date picker
+// Set default date (.value) and prevent choosing invalid dates (.min)
 const dateInput = document.getElementById('date');
 
 function generateDefaultDate() {
   switch (tdyDay) {
-    case 0: //Sunday
+    case 0:
+      //Sunday
       if ((tdyHour > 15) || (tdyHour === 15 && tdyMinute >= 1)) {
         dateInput.value = tomorrow;
         dateInput.min = tomorrow;
-
       } else {
         dateInput.value = today;
         dateInput.min = today;
       }
       break;
     case 5:
-    case 6: //Friday & Saturday
+    case 6:
+      //Friday & Saturday
       if ((tdyHour > 19) || (tdyHour === 19 && tdyMinute >= 1)) {
         dateInput.value = tomorrow;
         dateInput.min = tomorrow;
@@ -62,7 +64,8 @@ function generateDefaultDate() {
         dateInput.min = today;
       }
       break;
-    default: //Monday to Thursday
+    default:
+      //Monday to Thursday
       if ((tdyHour > 18) || (tdyHour === 18 && tdyMinute >= 1)) {
         dateInput.value = tomorrow;
         dateInput.min = tomorrow;
@@ -79,7 +82,9 @@ generateDefaultDate();
 dateInput.addEventListener('input', generateTimeOptions);
 
 
-// time picker - set default time
+// Time picker
+// Set default time
+
 // Function to pad single digit numbers with leading zero
 function pad(number) {
   return (number < 10 ? '0' : '') + number;
@@ -106,7 +111,6 @@ function isWithinOpeningHours(day, hour, minute) {
 // Function to generate time options based on current day and time
 function generateTimeOptions() {
   const now = new Date();
-  const day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][now.getDay()];
   const days = now.getDay();
   const currentHour = now.getHours();
   const currentMinute = now.getMinutes();
@@ -116,12 +120,14 @@ function generateTimeOptions() {
   // Clear existing options (if any)
   timeSelect.innerHTML = '';
 
-  // Add initial option
+  // Add initial option for time
   timeSelect.appendChild(timeFirstOption);
 
   if (dateInput.value === today) {
+    // If the chosen day is today
     switch (days) {
       case 0:
+        // Sunday
         for (let hour = 12; hour <= 16; hour++) {
           for (let minute = 0; minute < 60; minute += 15) {
             // Skip generating options for 4:15pm, 4:30pm, and 4:45pm
@@ -139,6 +145,7 @@ function generateTimeOptions() {
         break;
       case 5:
       case 6:
+        // Friday & Saturday
         for (let hour = 12; hour <= 20; hour++) {
           for (let minute = 0; minute < 60; minute += 15) {
             // Skip generating options for 8:15pm, 8:30pm, and 8:45pm
@@ -154,7 +161,8 @@ function generateTimeOptions() {
           }
         }
         break;
-      default: //Monday to Thursday
+      default:
+        //Monday to Thursday
         for (let hour = 12; hour <= 19; hour++) {
           for (let minute = 0; minute < 60; minute += 15) {
             // Skip generating options for 7:15pm, 7:30pm, and 7:45pm
@@ -172,10 +180,12 @@ function generateTimeOptions() {
     }
   }
   else if (dateInput.value > today) {
+    // If the chosen day is not today
     const selectedDate = new Date(dateInput.value);
     const chosenDay = selectedDate.getDay();
     switch (chosenDay) {
       case 0:
+        // Sunday
         for (let hour = 12; hour <= 16; hour++) {
           for (let minute = 0; minute < 60; minute += 15) {
             // Skip generating options for 4:15pm, 4:30pm, and 4:45pm
@@ -191,6 +201,7 @@ function generateTimeOptions() {
         break;
       case 5:
       case 6:
+        // Friday & Saturday
         for (let hour = 12; hour <= 20; hour++) {
           for (let minute = 0; minute < 60; minute += 15) {
             // Skip generating options for 8:15pm, 8:30pm, and 8:45pm
@@ -224,7 +235,9 @@ function generateTimeOptions() {
 // Generate time options when the page loads
 generateTimeOptions();
 
-// update the default date and time at certain interval
+
+// Update default date and time every minute
+// to ensure the booking time is not outdated
 function updateAtSpecificTimes() {
   let currentTime = new Date();
   let currentHour = currentTime.getHours();
