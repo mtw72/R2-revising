@@ -27,19 +27,19 @@ function togglerAriaRemoved() {
 }
 
 // Functions to set / remove the aria attributes of navlinks (tabindex and aria-hidden)
-function navlinkAriaHidden() {
+function navLinkAriaHidden() {
   for (var i = 0; i < navLinks.length; i++) {
     navLinks[i].setAttribute('tabindex', '-1');
     navLinks[i].setAttribute('aria-hidden', 'true');
   }
 }
-function navlinkAriaNotHidden() {
+function navLinkAriaNotHidden() {
   for (var i = 0; i < navLinks.length; i++) {
     navLinks[i].setAttribute('tabindex', '0');
     navLinks[i].setAttribute('aria-hidden', 'false');
   }
 }
-function navlinkAriaRemoved() {
+function navLinkAriaRemoved() {
   for (var i = 0; i < navLinks.length; i++) {
     navLinks[i].removeAttribute('tabindex', '0');
     navLinks[i].removeAttribute('tabindex', '-1');
@@ -54,7 +54,7 @@ function closeNavbar() {
     navList.style.maxHeight = null;
     navList.classList.remove('is-opened');
     togglerAriaNotExpanded();
-    navlinkAriaHidden();
+    navLinkAriaHidden();
   }
 }
 
@@ -68,14 +68,14 @@ navbarToggler.addEventListener('click', function (event) {
     // Set the toggler NOT to be aria-expanded
     togglerAriaNotExpanded();
     // Set the navlinks to be aria-hidden and tab-index = -1
-    navlinkAriaHidden();
+    navLinkAriaHidden();
   } else {
     // If navList is closed, open it
     navList.style.maxHeight = navList.scrollHeight + "px";
     // Set the toggler to be aria-expanded
     togglerAriaExpanded();
     // Set the navlinks NOT to be aria-hidden and tab-index = 0
-    navlinkAriaNotHidden();
+    navLinkAriaNotHidden();
   }
   event.stopPropagation();
 });
@@ -101,7 +101,7 @@ findusLink.addEventListener('keydown', closeNavbarByTab);
 
 // On Scroll
 // On screen wider than 900px, when the user scrolls down, hide the navbar. 
-// When the user scrolls up, show the navbar 
+// Show the navbar when the user scrolls up
 var prevScrollPos = window.scrollY;
 window.onscroll = function () {
   var currentScrollPos = window.scrollY;
@@ -137,17 +137,17 @@ function checkScreenSize() {
   // set the navlinks to be aria-hidden and tab-index = -1
   if (screenWidth <= 576) {
     togglerAriaNotExpanded();
-    navlinkAriaHidden();
+    navLinkAriaHidden();
   }
   // On large screen, remove the aria-expanded attribute of the toggler,
   // remove aria-hidden and tab-index attributes of navlinks
   else {
     togglerAriaRemoved();
-    navlinkAriaRemoved();
+    navLinkAriaRemoved();
   }
 }
 
-// On Screen resize
+// On screen resize,
 // 1. Close the navbar
 // 2. Check the screen size and assign appropriate aria attributes to HTML elements
 // 3. Check if needed to adjust the padding-top value of hero-image
@@ -161,123 +161,152 @@ window.addEventListener('resize', function () {
 window.addEventListener('load', checkScreenSize);
 'use strict';
 
-//carousel for small & medium menu
+// Get all elements with the class "accordion__button"
+var menuAccordion = document.getElementsByClassName("accordion__button");
+
+// Add event listener for window load to open active panels
+window.addEventListener('load', openOrClosePanels);
+
+// Add event listener for window resize to open active panels or remove aria attributes
+window.addEventListener('resize', openOrClosePanels);
+
+// Function to handle panel state based on button and screen size
+function handlePanelState(button, isActive, isSmallScreen) {
+  var menuPanel = button.nextElementSibling;
+
+  // Set aria-expanded attribute
+  button.setAttribute('aria-expanded', isActive && isSmallScreen);
+  if (isActive && isSmallScreen) {
+    // Open the panel
+    menuPanel.classList.add("accordion__panel--open");
+    menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
+    menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
+    menuPanel.setAttribute('role', 'region');
+  } else {
+    // Close the panel
+    menuPanel.classList.remove("accordion__panel--open");
+    menuPanel.style.maxHeight = null;
+    menuPanel.style.border = "none";
+    menuPanel.removeAttribute('role', 'region');
+  }
+}
+
+// Function to open active panels when window width is <= 450px
+function openOrClosePanels() {
+  var isSmallScreen = window.innerWidth <= 450;
+  for (var i = 0; i < menuAccordion.length; i++) {
+    var button = menuAccordion[i];
+    var isActive = button.classList.contains("accordion__button--active");
+    handlePanelState(button, isActive, isSmallScreen);
+  }
+}
+
+// Toggle panel open or close on click
+for (var i = 0; i < menuAccordion.length; i++) {
+  menuAccordion[i].addEventListener("click", function () {
+    this.classList.toggle("accordion__button--active");
+    var isActive = this.classList.contains("accordion__button--active");
+    handlePanelState(this, isActive, true); // Always handle click events as small screen actions
+  });
+}
+'use strict';
+
+//Carousel for small & medium menu
+
+// Initialize the slide index to the first slide
 var slideIndex = 1;
 showSlides(slideIndex);
+
+// Function to display the slide corresponding to the given index 'n'
 function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("carousel__slide");
   var dots = document.getElementsByClassName("carousel__dot");
+
+  // If 'n' is greater than the number of slides or the current slide index is greater than the number of slides, reset to the first slide
   if (n > slides.length || slideIndex > slides.length) {
     slideIndex = 1;
   }
+  // If 'n' is less than 1, set the slide index to the last slide
   if (n < 1) {
     slideIndex = slides.length;
   }
+
+  // Hide all the slides by removing the 'current-slide' class
   for (i = 0; i < slides.length; i++) {
     slides[i].className = slides[i].className.replace(" current-slide", "");
   }
+
+  // Remove the 'current-dot' class and 'aria-current' attribute from all dots
   for (i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" current-dot", "");
     dots[i].setAttribute('aria-current', 'false');
   }
+
+  // Show the current slide by adding the 'current-slide' class
   slides[slideIndex - 1].className += " current-slide";
+  // Highlight the current dot by adding the 'current-dot' class and setting 'aria-current' attribute to true
   dots[slideIndex - 1].className += " current-dot";
   dots[slideIndex - 1].setAttribute('aria-current', 'true');
 }
+
+// Function to automatically advance to the next slide
 function autoplay() {
-  slideIndex++;
-  showSlides();
+  showSlides(slideIndex);
 }
+
+// Set an interval to automatically advance the slides every 3500 milliseconds (3.5 seconds)
 var timer = setInterval(autoplay, 3500);
+
+// Function to reset the automatic slide advance timer
 function resetTimer() {
+  // Clear the current interval
   clearInterval(timer);
+  // Restart the interval with the same delay
   timer = setInterval(autoplay, 3500);
 }
+
+// Function to advance the slide by a given number 'n' (positive or negative)
 function plusSlides(n) {
+  // Change the slide index and display the corresponding slide
   showSlides(slideIndex += n);
+  // Reset the timer
   resetTimer();
 }
+
+// Function to display the slide corresponding to a given dot
 function currentSlide(n) {
+  // Set the slide index to 'n' and display the corresponding slide
   showSlides(slideIndex = n);
+  // Reset the timer
   resetTimer();
 }
 'use strict';
 
+// Function to open a menu based on a tab click event
 function openMenu(event, menuName) {
   var i, menutabs, menus;
   menutabs = document.getElementsByClassName("menu__tab");
+
+  // Loop through each menu tab to deactivate it
   for (i = 0; i < menutabs.length; i++) {
     menutabs[i].classList.remove("menu__tab--active");
     menutabs[i].setAttribute('aria-selected', 'false');
   }
+  // Activate the clicked tab by adding the active class
   event.currentTarget.classList.add("menu__tab--active");
   event.currentTarget.setAttribute('aria-selected', 'true');
   menus = document.getElementsByClassName("menu__panel");
+  // Loop through each menu panel to hide it
   for (i = 0; i < menus.length; i++) {
     menus[i].style.display = "none";
   }
+  // Display the selected menu panel by setting its display style to grid
   document.getElementById(menuName).style.display = "grid";
 }
+
+// Automatically click the tab with the ID "pasta-tab" to initialize the menu on page load
 document.getElementById("pasta-tab").click();
-'use strict';
-
-var menuAccordion = document.getElementsByClassName("accordion__button");
-
-// open the accordion when the website is loaded
-window.addEventListener('load', openMenuPanel);
-function openMenuPanel() {
-  for (var i = 0; i < menuAccordion.length; i++) {
-    if (menuAccordion[i].classList.contains("accordion__button--active")) {
-      menuAccordion[i].setAttribute('aria-expanded', 'true');
-      var menuPanel = menuAccordion[i].nextElementSibling;
-      menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
-      menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
-      menuPanel.classList.add("accordion__panel--open");
-      menuPanel.setAttribute('role', 'region');
-    }
-  }
-}
-;
-
-// open or close the accordion through clicks
-for (var i = 0; i < menuAccordion.length; i++) {
-  menuAccordion[i].addEventListener("click", function () {
-    this.classList.toggle("accordion__button--active");
-
-    // toggle aria-expanded value
-    var expanded = this.getAttribute('aria-expanded');
-    if (expanded === 'true') {
-      this.setAttribute('aria-expanded', 'false');
-    } else {
-      this.setAttribute('aria-expanded', 'true');
-    }
-    ;
-
-    // toggle open or close panel, and aria-hidden value
-    var menuPanel = this.nextElementSibling;
-    if (menuPanel.classList.contains("accordion__panel--open")) {
-      menuPanel.style.maxHeight = null;
-      menuPanel.classList.remove("accordion__panel--open");
-      menuPanel.style.border = "none";
-      menuPanel.removeAttribute('role', 'region');
-    } else {
-      menuPanel.style.maxHeight = menuPanel.scrollHeight + "px";
-      menuPanel.style.border = "1px solid rgba(226, 186, 137, 0.842)";
-      menuPanel.classList.add("accordion__panel--open");
-      menuPanel.setAttribute('role', 'region');
-    }
-  });
-}
-
-// when the screen re-sizes, open the accordion
-window.addEventListener('resize', handleResize);
-function handleResize() {
-  var screenWidth = window.innerWidth;
-  if (screenWidth <= 450) {
-    openMenuPanel();
-  }
-}
 'use strict';
 
 // default date and time values in reservation form

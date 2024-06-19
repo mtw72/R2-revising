@@ -25,21 +25,21 @@ function togglerAriaRemoved() {
 
 
 // Functions to set / remove the aria attributes of navlinks (tabindex and aria-hidden)
-function navlinkAriaHidden() {
+function navLinkAriaHidden() {
   for (let i = 0; i < navLinks.length; i++) {
     navLinks[i].setAttribute('tabindex', '-1');
     navLinks[i].setAttribute('aria-hidden', 'true');
   }
 }
 
-function navlinkAriaNotHidden() {
+function navLinkAriaNotHidden() {
   for (let i = 0; i < navLinks.length; i++) {
     navLinks[i].setAttribute('tabindex', '0');
     navLinks[i].setAttribute('aria-hidden', 'false');
   }
 }
 
-function navlinkAriaRemoved() {
+function navLinkAriaRemoved() {
   for (let i = 0; i < navLinks.length; i++) {
     navLinks[i].removeAttribute('tabindex', '0');
     navLinks[i].removeAttribute('tabindex', '-1');
@@ -55,7 +55,7 @@ function closeNavbar() {
     navList.style.maxHeight = null;
     navList.classList.remove('is-opened');
     togglerAriaNotExpanded();
-    navlinkAriaHidden();
+    navLinkAriaHidden();
   }
 }
 
@@ -70,14 +70,14 @@ navbarToggler.addEventListener('click', (event) => {
     // Set the toggler NOT to be aria-expanded
     togglerAriaNotExpanded();
     // Set the navlinks to be aria-hidden and tab-index = -1
-    navlinkAriaHidden();
+    navLinkAriaHidden();
   } else {
     // If navList is closed, open it
     navList.style.maxHeight = navList.scrollHeight + "px";
     // Set the toggler to be aria-expanded
     togglerAriaExpanded();
     // Set the navlinks NOT to be aria-hidden and tab-index = 0
-    navlinkAriaNotHidden();
+    navLinkAriaNotHidden();
   }
   event.stopPropagation();
 });
@@ -107,7 +107,7 @@ findusLink.addEventListener('keydown', closeNavbarByTab);
 
 // On Scroll
 // On screen wider than 900px, when the user scrolls down, hide the navbar. 
-// When the user scrolls up, show the navbar 
+// Show the navbar when the user scrolls up
 let prevScrollPos = window.scrollY;
 
 window.onscroll = function () {
@@ -148,18 +148,18 @@ function checkScreenSize() {
   // set the navlinks to be aria-hidden and tab-index = -1
   if (screenWidth <= 576) {
     togglerAriaNotExpanded();
-    navlinkAriaHidden();
+    navLinkAriaHidden();
   }
   // On large screen, remove the aria-expanded attribute of the toggler,
   // remove aria-hidden and tab-index attributes of navlinks
   else {
     togglerAriaRemoved();
-    navlinkAriaRemoved();
+    navLinkAriaRemoved();
   }
 }
 
 
-// On Screen resize
+// On screen resize,
 // 1. Close the navbar
 // 2. Check the screen size and assign appropriate aria attributes to HTML elements
 // 3. Check if needed to adjust the padding-top value of hero-image
