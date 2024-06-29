@@ -6,6 +6,9 @@
 let slideIndex = 1;
 showSlides(slideIndex);
 
+// Set the carousel autoplay every 3.5 seconds
+let timer = setInterval(autoplay, 3500);
+
 // Function to display the slide corresponding to the given index 'n'
 function showSlides(n) {
   let i;
@@ -37,18 +40,8 @@ function showSlides(n) {
 
 // Function to automatically advance to the next slide
 function autoplay() {
-  showSlides(slideIndex);
-}
-
-// Set an interval to automatically advance the slides every 3500 milliseconds (3.5 seconds)
-let timer = setInterval(autoplay, 3500);
-
-// Function to reset the automatic slide advance timer
-function resetTimer() {
-  // Clear the current interval
-  clearInterval(timer);
-  // Restart the interval with the same delay
-  timer = setInterval(autoplay, 3500);
+  slideIndex++;
+  showSlides();
 }
 
 // Function to advance the slide by a given number 'n' (positive or negative)
@@ -65,4 +58,12 @@ function currentSlide(n) {
   showSlides(slideIndex = n);
   // Reset the timer
   resetTimer();
+}
+
+// Function to reset the automatic slide advance timer
+function resetTimer() {
+  // Clear the current interval
+  clearInterval(timer);
+  // Restart the interval with the same delay
+  timer = setInterval(autoplay, 3500);
 }

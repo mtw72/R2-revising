@@ -305,24 +305,24 @@
           <div class="carousel__track-container">
             <div id="carousel__track">
               <!-- images with caption text -->
-              <div class="carousel__slide carousel__slide--fade" id="slide1" role="tabpanel"
-                aria-roledescription="slide" aria-label="Slide 1 of 3">
+              <div class="carousel__slide" id="slide1" role="tabpanel" aria-roledescription="slide"
+                aria-label="Slide 1 of 3">
                 <img class="carousel__image" src="./dist/assets/images/salmon-spaghetti.webp"
                   onerror="this.onerror=null; this.src='./dist/assets/images/salmon-spaghetti.jpeg';"
                   alt="Salmon Spaghetti" loading="lazy">
                 <div class="carousel__image-description">Salmon Spaghetti</div>
               </div>
 
-              <div class="carousel__slide carousel__slide--fade" id="slide2" role="tabpanel"
-                aria-roledescription="slide" aria-label="Slide 2 of 3">
+              <div class="carousel__slide" id="slide2" role="tabpanel" aria-roledescription="slide"
+                aria-label="Slide 2 of 3">
                 <img class="carousel__image" src="./dist/assets/images/thai-pineapple-fried-rice.webp"
                   onerror="this.onerror=null; this.src='./dist/assets/images/thai-pineapple-fried-rice.jpeg';"
                   alt="Thai Pineapple Fried Rice" loading="lazy">
                 <div class="carousel__image-description">Thai Pineapple Fried Rice</div>
               </div>
 
-              <div class="carousel__slide carousel__slide--fade" id="slide3" role="tabpanel"
-                aria-roledescription="slide" aria-label="Slide 3 of 3">
+              <div class="carousel__slide" id="slide3" role="tabpanel" aria-roledescription="slide"
+                aria-label="Slide 3 of 3">
                 <img class="carousel__image" src="./dist/assets/images/satay-chicken-skewers.webp"
                   onerror="this.onerror=null; this.src='./dist/assets/images/satay-chicken-skewers.jpeg';"
                   alt="Satay Chicken Skewers" loading="lazy">
@@ -339,6 +339,15 @@
 
           <!-- The dots/circles -->
           <div class="carousel__dots" role="tablist" aria-label="Slides">
+            <button class="carousel__dot" onclick="currentSlide(1)" type="button" role="tab" aria-label="Slide 1"
+              aria-controls="slide1"></button>
+            <button class="carousel__dot" onclick="currentSlide(2)" type="button" role="tab" aria-label="Slide 2"
+              aria-controls="slide2"></button>
+            <button class="carousel__dot" onclick="currentSlide(3)" type="button" role="tab" aria-label="Slide 3"
+              aria-controls="slide3"></button>
+          </div>
+
+          <!-- <div class="carousel__dots" role="tablist" aria-label="Slides">
             <div class="Controller-module_playPauseButtonContainer__NeFRm">
               <button type="button" aria-label="Slider control - Pause">
                 <div
@@ -375,17 +384,7 @@
               aria-controls="slide3">
               <div class="ProgressItem-module_curtainFeature__qe6oj" style="transform: translateX(0%);">&nbsp;</div>
             </button>
-          </div>
-
-          <!-- <div class="carousel__dots" role="tablist" aria-label="Slides">
-            <button class="carousel__dot" onclick="currentSlide(1)" type="button" role="tab" aria-label="Slide 1"
-              aria-controls="slide1"></button>
-            <button class="carousel__dot" onclick="currentSlide(2)" type="button" role="tab" aria-label="Slide 2"
-              aria-controls="slide2"></button>
-            <button class="carousel__dot" onclick="currentSlide(3)" type="button" role="tab" aria-label="Slide 3"
-              aria-controls="slide3"></button>
           </div> -->
-
         </div>
       </section>
 

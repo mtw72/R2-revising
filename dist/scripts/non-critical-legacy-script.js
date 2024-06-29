@@ -210,6 +210,11 @@ for (var i = 0; i < menuAccordion.length; i++) {
 var slideIndex = 1;
 showSlides(slideIndex);
 
+// Start the carousel autoplay every 3500 milliseconds (3.5 seconds) when the document is fully loaded
+// document.addEventListener("load", function () {
+//   timer = setInterval(autoplay, 3500);
+// });
+
 // Function to display the slide corresponding to the given index 'n'
 function showSlides(n) {
   var i;
@@ -245,19 +250,10 @@ function showSlides(n) {
 
 // Function to automatically advance to the next slide
 function autoplay() {
-  showSlides(slideIndex);
+  slideIndex++;
+  showSlides();
 }
-
-// Set an interval to automatically advance the slides every 3500 milliseconds (3.5 seconds)
 var timer = setInterval(autoplay, 3500);
-
-// Function to reset the automatic slide advance timer
-function resetTimer() {
-  // Clear the current interval
-  clearInterval(timer);
-  // Restart the interval with the same delay
-  timer = setInterval(autoplay, 3500);
-}
 
 // Function to advance the slide by a given number 'n' (positive or negative)
 function plusSlides(n) {
@@ -273,6 +269,14 @@ function currentSlide(n) {
   showSlides(slideIndex = n);
   // Reset the timer
   resetTimer();
+}
+
+// Function to reset the automatic slide advance timer
+function resetTimer() {
+  // Clear the current interval
+  clearInterval(timer);
+  // Restart the interval with the same delay
+  timer = setInterval(autoplay, 3500);
 }
 'use strict';
 
