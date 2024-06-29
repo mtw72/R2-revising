@@ -1,18 +1,86 @@
 'use strict';
 
-// automatically update the year for the copyright in footer
-var copyrightDate = new Date();
-var copyrightYear = copyrightDate.getFullYear();
-document.getElementById("year").textContent = copyrightYear;
-'use strict';
-
 // Get the elements inside the navbar and the home section
-var navBar = document.getElementById("navbar");
+var navbar = document.getElementById("navbar");
 var navbarToggler = document.querySelector('.navbar__toggler');
 var navList = document.querySelector('.navbar__collapse');
 var navLinks = document.querySelectorAll('.navbar__nav-link');
 var findusLink = document.getElementById('findus-link');
 var home = document.getElementById("home");
+
+// Show or hide the collapsible navbar when toggler is clicked
+navbarToggler.addEventListener('click', function (event) {
+  // Toggle the visibility of navList
+  navList.classList.toggle('is-opened');
+  if (navList.style.maxHeight) {
+    // If navList is open, close it
+    navList.style.maxHeight = null;
+    // Set the toggler NOT to be aria-expanded
+    togglerAriaNotExpanded();
+    // Set the navlinks to be aria-hidden and tab-index = -1
+    navLinkAriaHidden();
+  } else {
+    // If navList is closed, open it
+    navList.style.maxHeight = navList.scrollHeight + "px";
+    // Set the toggler to be aria-expanded
+    togglerAriaExpanded();
+    // Set the navlinks NOT to be aria-hidden and tab-index = 0
+    navLinkAriaNotHidden();
+  }
+  event.stopPropagation();
+});
+
+// Hide the collapsible navbar when the nav link is clicked or when the user clicks anywhere outside of the navbar
+document.addEventListener('click', closeNavbar);
+
+// For keyboard user, close the navbar if the key "TAB" is pressed
+// let the navbar stay open if the key "SHIFT" + "TAB" are pressed
+// Close the navbar on "TAB" key press
+findusLink.addEventListener('keydown', function (event) {
+  if (!event.shiftKey && event.key === 'Tab') {
+    closeNavbar();
+  }
+});
+
+//Check the screen size onload and assign appropriate aria attributes to HTML elements
+window.addEventListener('load', checkScreenSize);
+
+// Handle resize event with debounce
+// 1. Close the navbar
+// 2. Check the screen size and assign appropriate aria attributes to HTML elements
+// 3. Check if needed to adjust the padding-top value of hero-image
+window.addEventListener('resize', debounce(function () {
+  closeNavbar();
+  checkScreenSize();
+  adjustHeroImagePadding();
+}, 50));
+
+// Handle scroll event with debounce
+// On screen wider than 900px, when the user scrolls down, hide the navbar.
+// Show the navbar when the user scrolls up
+var prevScrollPos = window.scrollY;
+window.addEventListener('scroll', debounce(function () {
+  var currentScrollPos = window.scrollY;
+  if (window.innerWidth > 900) {
+    navbar.style.top = prevScrollPos > currentScrollPos ? "0" : "-500px";
+  }
+  prevScrollPos = currentScrollPos;
+}, 50));
+
+// Debounce function
+function debounce(func, wait) {
+  var timeout;
+  return function () {
+    var _this = this;
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      return func.apply(_this, args);
+    }, wait);
+  };
+}
 
 // Functions to set / remove the aria attribute(s) of toggler (aria-expanded)
 function togglerAriaExpanded() {
@@ -48,28 +116,6 @@ function navLinkAriaRemoved() {
   }
 }
 
-// Show or hide the collapsible navbar when toggler is clicked
-navbarToggler.addEventListener('click', function (event) {
-  // Toggle the visibility of navList
-  navList.classList.toggle('is-opened');
-  if (navList.style.maxHeight) {
-    // If navList is open, close it
-    navList.style.maxHeight = null;
-    // Set the toggler NOT to be aria-expanded
-    togglerAriaNotExpanded();
-    // Set the navlinks to be aria-hidden and tab-index = -1
-    navLinkAriaHidden();
-  } else {
-    // If navList is closed, open it
-    navList.style.maxHeight = navList.scrollHeight + "px";
-    // Set the toggler to be aria-expanded
-    togglerAriaExpanded();
-    // Set the navlinks NOT to be aria-hidden and tab-index = 0
-    navLinkAriaNotHidden();
-  }
-  event.stopPropagation();
-});
-
 // Function to close the collapsible navbar
 function closeNavbar() {
   if (navList.classList.contains('is-opened')) {
@@ -80,53 +126,13 @@ function closeNavbar() {
   }
 }
 
-// Hide the collapsible navbar when the nav link is clicked 
-// or when the user clicks anywhere outside of the navbar
-document.addEventListener('click', function () {
-  closeNavbar();
-});
-
-// For keyboard user, close the navbar if the key "TAB" is pressed
-// let the navbar stay open if the key "SHIFT" + "TAB" are pressed
-function closeNavbarByTab(event) {
-  var keyCode = event.keyCode || event.which;
-  // Check if the key pressed is 'tab'
-  if (event.shiftKey && event.keyCode == 9) {
-    // act normally if pressing "shift" + "tab" (going backwards)
-  } else if (keyCode === 9) {
-    closeNavbar();
-  }
-}
-findusLink.addEventListener('keydown', closeNavbarByTab);
-
-// On Scroll
-// On screen wider than 900px, when the user scrolls down, hide the navbar. 
-// Show the navbar when the user scrolls up
-var prevScrollPos = window.scrollY;
-window.onscroll = function () {
-  var currentScrollPos = window.scrollY;
-  var screenWidth = window.innerWidth;
-  if (screenWidth > 900) {
-    if (prevScrollPos > currentScrollPos) {
-      navbar.style.top = "0";
-    } else {
-      navbar.style.top = "-500px";
-    }
-  }
-  prevScrollPos = currentScrollPos;
-};
-
 // Function to adjust the padding top of the hero image according to the screen size
 function adjustHeroImagePadding() {
   // Update the screenWidth variable with the current window width
   var screenWidth = window.innerWidth;
 
   // Check the screenWidth and adjust value of paddingTop accordingly
-  if (screenWidth <= 350 || screenWidth <= 600 && screenWidth > 450) {
-    home.style.paddingTop = "70px";
-  } else {
-    home.style.paddingTop = "0px";
-  }
+  home.style.paddingTop = screenWidth <= 350 || screenWidth <= 600 && screenWidth > 450 ? "70px" : "0px";
 }
 
 // Function to check the screen size and assign aria attributes to HTML elements
@@ -146,19 +152,6 @@ function checkScreenSize() {
     navLinkAriaRemoved();
   }
 }
-
-// On screen resize,
-// 1. Close the navbar
-// 2. Check the screen size and assign appropriate aria attributes to HTML elements
-// 3. Check if needed to adjust the padding-top value of hero-image
-window.addEventListener('resize', function () {
-  closeNavbar();
-  checkScreenSize();
-  adjustHeroImagePadding();
-});
-
-//Check the screen size onload and assign appropriate aria attributes to HTML elements
-window.addEventListener('load', checkScreenSize);
 'use strict';
 
 // Get all elements with the class "accordion__button"
@@ -309,194 +302,161 @@ function openMenu(event, menuName) {
 document.getElementById("pasta-tab").click();
 'use strict';
 
-// Set default date and time values in reservation form
+// Get the form elements
+var reservationForm = document.getElementById("reservation-form");
+var submitButton = document.getElementById('formSumbitButton');
+var confirmationMessage = document.getElementById("confirmation-message");
+var closeButton = document.querySelector(".confirmation-message__close-button");
+var confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
+var cancelButton = document.querySelector(".confirmation-message__bottom-button--cancel");
+
+// Get the form input elements
+var nameInput = document.getElementById("name");
+var phoneNumberInput = document.getElementById("phone");
+var emailInput = document.getElementById("email");
+var guestNumberInput = document.getElementById('guest-number');
+var dateInput = document.getElementById('date');
+var timeInput = document.getElementById('time');
+var timeFirstOption = document.getElementById('time-first-option');
+var messageInput = document.getElementById("optional-message");
+var placeholderText = '(e.g. Dietary Restriction, Special Occasions)';
+
+// Get the form error message of input elements
+var nameError = document.getElementById("name-error");
+var phoneNumberError = document.getElementById("phone-error");
+var emailError = document.getElementById("email-error");
+var guestNumberError = document.getElementById("guest-number-error");
+var dateError = document.getElementById("date-error");
+var timeError = document.getElementById("time-error");
+
+// Get the form output elements
+var nameValue = document.getElementById("name-value");
+var phoneValue = document.getElementById("phone-value");
+var emailValue = document.getElementById("email-value");
+var guestNumberValue = document.getElementById("guest-number-value");
+var dateValue = document.getElementById("date-value");
+var timeValue = document.getElementById("time-value");
+var messageValue = document.getElementById("optional-message-value");
+'use strict';
+
+// Set default date for date picker
+// If the cutoff time has yet to be reached, set today as default date
+// If the cutoff time has been reached, set tomorrow as default date
+
 // Get date of today
 var dateOfToday = new Date();
-var tdyDay = dateOfToday.getDay();
-var tdyDate = dateOfToday.getDate();
-var tdyMth = dateOfToday.getMonth() + 1;
-var tdyYear = dateOfToday.getFullYear();
-var tdyHour = dateOfToday.getHours();
-var tdyMinute = dateOfToday.getMinutes();
-
-// Make the date and/or month in 2-digit format
-if (tdyDate < 10) {
-  tdyDate = "0" + tdyDate;
-}
-if (tdyMth < 10) {
-  tdyMth = "0" + tdyMth;
-}
-var today = tdyYear + "-" + tdyMth + "-" + tdyDate;
+var today = getFormattedDate(dateOfToday);
 
 // Get date of tomorrow
 var dateOfTmr = new Date(new Date().setDate(dateOfToday.getDate() + 1));
-var tmrDate = dateOfTmr.getDate();
-var tmrMth = dateOfTmr.getMonth() + 1;
-var tmrYear = dateOfTmr.getFullYear();
+var tomorrow = getFormattedDate(dateOfTmr);
 
-// Make the date and/or month in 2-digit format
-if (tmrDate < 10) {
-  tmrDate = "0" + tmrDate;
-}
-if (tmrMth < 10) {
-  tmrMth = "0" + tmrMth;
-}
-var tomorrow = tmrYear + "-" + tmrMth + "-" + tmrDate;
-
-// Date picker
-// Set default date (.value) and prevent choosing invalid dates (.min)
-var dateInput = document.getElementById('date');
-function generateDefaultDate() {
-  switch (tdyDay) {
-    case 0:
-      //Sunday
-      if (tdyHour > 15 || tdyHour === 15 && tdyMinute >= 1) {
-        dateInput.value = tomorrow;
-        dateInput.min = tomorrow;
-      } else {
-        dateInput.value = today;
-        dateInput.min = today;
-      }
-      break;
-    case 5:
-    case 6:
-      //Friday & Saturday
-      if (tdyHour > 19 || tdyHour === 19 && tdyMinute >= 1) {
-        dateInput.value = tomorrow;
-        dateInput.min = tomorrow;
-      } else {
-        dateInput.value = today;
-        dateInput.min = today;
-      }
-      break;
-    default:
-      //Monday to Thursday
-      if (tdyHour > 18 || tdyHour === 18 && tdyMinute >= 1) {
-        dateInput.value = tomorrow;
-        dateInput.min = tomorrow;
-      } else {
-        dateInput.value = today;
-        dateInput.min = today;
-      }
-  }
-}
-
-// Generate default date when the page loads
-generateDefaultDate();
-dateInput.addEventListener('input', generateTimeOptions);
-
-// Time picker
-// Set default time
-
-// Function to pad single digit numbers with leading zero
+// Helper function to pad single digit numbers with leading zero
 function pad(number) {
   return (number < 10 ? '0' : '') + number;
 }
 
-// Function to check if current time is within restaurant opening hours
-function isWithinOpeningHours(day, hour, minute) {
-  var openingHours = {
-    Sunday: {
-      start: 1200,
-      end: 1700
-    },
-    Monday: {
-      start: 1200,
-      end: 2000
-    },
-    Tuesday: {
-      start: 1200,
-      end: 2000
-    },
-    Wednesday: {
-      start: 1200,
-      end: 2000
-    },
-    Thursday: {
-      start: 1200,
-      end: 2000
-    },
-    Friday: {
-      start: 1200,
-      end: 2100
-    },
-    Saturday: {
-      start: 1200,
-      end: 2100
-    }
+// Function to get the formatted date string (yyyy-mm-dd)
+function getFormattedDate(date) {
+  var dd = date.getDate();
+  var mm = date.getMonth() + 1;
+  var yyyy = date.getFullYear();
+  return yyyy + "-" + pad(mm) + "-" + pad(dd);
+}
+
+// Generate default date when the page loads
+generateDefaultDate();
+
+// Set default date (.value) and prevent choosing invalid dates (.min)
+function generateDefaultDate() {
+  var tdyDay = dateOfToday.getDay();
+  var tdyHour = dateOfToday.getHours();
+  var tdyMinute = dateOfToday.getMinutes();
+  var isAfterCutoff = function isAfterCutoff(cutoffHour) {
+    return tdyHour > cutoffHour || tdyHour === cutoffHour && tdyMinute >= 1;
   };
-  var currentTime = hour * 100 + minute;
-  var _openingHours$day = openingHours[day],
-    start = _openingHours$day.start,
-    end = _openingHours$day.end;
-  return currentTime >= start && currentTime <= end;
+  switch (tdyDay) {
+    case 0:
+      // Sunday
+      setDefaultDate(isAfterCutoff(15));
+      break;
+    case 5: // Friday
+    case 6:
+      // Saturday
+      setDefaultDate(isAfterCutoff(19));
+      break;
+    default:
+      // Monday to Thursday
+      setDefaultDate(isAfterCutoff(18));
+  }
+
+  // Helper function to set the default date and min date
+  function setDefaultDate(isAfterCutoff) {
+    if (isAfterCutoff) {
+      dateInput.value = tomorrow;
+      dateInput.min = tomorrow;
+    } else {
+      dateInput.value = today;
+      dateInput.min = today;
+    }
+  }
+}
+'use strict';
+
+// Set default time for time picker
+
+// Generate time options when the page loads
+generateTimeOptions();
+
+// Add event listener to date input to generate time options
+dateInput.addEventListener('input', generateTimeOptions);
+
+// Update default date and time every minute
+// to ensure the booking time is not outdated
+setInterval(updateAtSpecificTimes, 60 * 1000);
+
+// Helper function to generate time options for a specific range
+function generateOptionsForRange(endHour, currentHour, currentMinute) {
+  for (var hour = 12; hour <= endHour; hour++) {
+    for (var minute = 0; minute < 60; minute += 15) {
+      if (hour === endHour && (minute === 15 || minute === 30 || minute === 45)) {
+        continue;
+      }
+      if (hour > currentHour + 1 || hour === currentHour + 1 && minute >= currentMinute) {
+        var optionText = hour + ':' + pad(minute);
+        var option = new Option(optionText, optionText); // Set the value same as the text
+        timeInput.add(option);
+      }
+    }
+  }
 }
 
 // Function to generate time options based on current day and time
 function generateTimeOptions() {
   var now = new Date();
-  var days = now.getDay();
+  var dayIndex = now.getDay();
   var currentHour = now.getHours();
   var currentMinute = now.getMinutes();
-  var timeSelect = document.getElementById('time');
-  var timeFirstOption = document.getElementById('time-first-option');
 
   // Clear existing options (if any)
-  timeSelect.innerHTML = '';
+  timeInput.innerHTML = '';
 
-  // Add initial option for time
-  timeSelect.appendChild(timeFirstOption);
+  // Add initial option for time (placeholder: Select Time)
+  timeInput.appendChild(timeFirstOption);
   if (dateInput.value === today) {
-    // If the chosen day is today
-    switch (days) {
+    switch (dayIndex) {
       case 0:
         // Sunday
-        for (var hour = 12; hour <= 16; hour++) {
-          for (var minute = 0; minute < 60; minute += 15) {
-            // Skip generating options for 4:15pm, 4:30pm, and 4:45pm
-            if (hour === 16 && (minute === 15 || minute === 30 || minute === 45)) {
-              continue;
-            }
-            if (isWithinOpeningHours(day, hour, minute) && (hour > currentHour + 1 || hour === currentHour + 1 && minute >= currentMinute)) {
-              var optionText = hour + ':' + pad(minute);
-              var option = new Option(optionText, optionText); // Set the value same as the text
-              timeSelect.add(option);
-            }
-          }
-        }
+        generateOptionsForRange(16, currentHour, currentMinute);
         break;
       case 5:
       case 6:
         // Friday & Saturday
-        for (var _hour = 12; _hour <= 20; _hour++) {
-          for (var _minute = 0; _minute < 60; _minute += 15) {
-            // Skip generating options for 8:15pm, 8:30pm, and 8:45pm
-            if (_hour === 20 && (_minute === 15 || _minute === 30 || _minute === 45)) {
-              continue;
-            }
-            if (isWithinOpeningHours(day, _hour, _minute) && (_hour > currentHour + 1 || _hour === currentHour + 1 && _minute >= currentMinute)) {
-              var _optionText = _hour + ':' + pad(_minute);
-              var _option = new Option(_optionText, _optionText); // Set the value same as the text
-              timeSelect.add(_option);
-            }
-          }
-        }
+        generateOptionsForRange(20, currentHour, currentMinute);
         break;
       default:
-        //Monday to Thursday
-        for (var _hour2 = 12; _hour2 <= 19; _hour2++) {
-          for (var _minute2 = 0; _minute2 < 60; _minute2 += 15) {
-            // Skip generating options for 7:15pm, 7:30pm, and 7:45pm
-            if (_hour2 === 19 && (_minute2 === 15 || _minute2 === 30 || _minute2 === 45)) {
-              continue;
-            }
-            if (isWithinOpeningHours(day, _hour2, _minute2) && (_hour2 > currentHour + 1 || _hour2 === currentHour + 1 && _minute2 >= currentMinute)) {
-              var _optionText2 = _hour2 + ':' + pad(_minute2);
-              var _option2 = new Option(_optionText2, _optionText2); // Set the value same as the text
-              timeSelect.add(_option2);
-            }
-          }
-        }
+        // Monday to Thursday
+        generateOptionsForRange(19, currentHour, currentMinute);
     }
   } else if (dateInput.value > today) {
     // If the chosen day is not today
@@ -505,55 +465,19 @@ function generateTimeOptions() {
     switch (chosenDay) {
       case 0:
         // Sunday
-        for (var _hour3 = 12; _hour3 <= 16; _hour3++) {
-          for (var _minute3 = 0; _minute3 < 60; _minute3 += 15) {
-            // Skip generating options for 4:15pm, 4:30pm, and 4:45pm
-            if (_hour3 === 16 && (_minute3 === 15 || _minute3 === 30 || _minute3 === 45)) {
-              continue;
-            }
-            var _optionText3 = _hour3 + ':' + pad(_minute3);
-            var _option3 = new Option(_optionText3, _optionText3); // Set the value same as the text
-            timeSelect.add(_option3);
-          }
-        }
+        generateOptionsForRange(16, -1, -1);
         break;
       case 5:
       case 6:
         // Friday & Saturday
-        for (var _hour4 = 12; _hour4 <= 20; _hour4++) {
-          for (var _minute4 = 0; _minute4 < 60; _minute4 += 15) {
-            // Skip generating options for 8:15pm, 8:30pm, and 8:45pm
-            if (_hour4 === 20 && (_minute4 === 15 || _minute4 === 30 || _minute4 === 45)) {
-              continue;
-            }
-            var _optionText4 = _hour4 + ':' + pad(_minute4);
-            var _option4 = new Option(_optionText4, _optionText4); // Set the value same as the text
-            timeSelect.add(_option4);
-          }
-        }
+        generateOptionsForRange(20, -1, -1);
         break;
       default:
-        //Monday to Thursday
-        for (var _hour5 = 12; _hour5 <= 19; _hour5++) {
-          for (var _minute5 = 0; _minute5 < 60; _minute5 += 15) {
-            // Skip generating options for 7:15pm, 7:30pm, and 7:45pm
-            if (_hour5 === 19 && (_minute5 === 15 || _minute5 === 30 || _minute5 === 45)) {
-              continue;
-            }
-            var _optionText5 = _hour5 + ':' + pad(_minute5);
-            var _option5 = new Option(_optionText5, _optionText5); // Set the value same as the text
-            timeSelect.add(_option5);
-          }
-        }
+        // Monday to Thursday
+        generateOptionsForRange(19, -1, -1);
     }
   }
 }
-
-// Generate time options when the page loads
-generateTimeOptions();
-
-// Update default date and time every minute
-// to ensure the booking time is not outdated
 function updateAtSpecificTimes() {
   var currentTime = new Date();
   var currentHour = currentTime.getHours();
@@ -568,14 +492,18 @@ function updateAtSpecificTimes() {
     }
   }
 }
-setInterval(updateAtSpecificTimes, 60 * 1000);
 'use strict';
 
-var selectGuestNumberElement = document.getElementById('guest-number');
-var selectTimeElement = document.getElementById('time');
+// Add event listeners to option elements to change the text color to solid black color
+guestNumberInput.addEventListener('change', function () {
+  selectOption(guestNumberInput);
+});
+timeInput.addEventListener('change', function () {
+  selectOption(timeInput);
+});
 
-// Function to change the selected option to solid black color
-function optionSelected(selectedElement) {
+// Function to change the text color of selected option
+function selectOption(selectedElement) {
   // Check if a valid option (not the disabled one) is selected
   if (selectedElement.value !== "") {
     // If a valid option is selected, add the 'valid' class to change its color
@@ -585,60 +513,40 @@ function optionSelected(selectedElement) {
     selectedElement.classList.remove('valid');
   }
 }
-selectGuestNumberElement.addEventListener('change', function () {
-  optionSelected(selectGuestNumberElement);
-});
-selectTimeElement.addEventListener('change', function () {
-  optionSelected(selectTimeElement);
-});
 'use strict';
 
 // Textarea in reservation form
-var textarea = document.getElementById('message');
-function clearPlaceholder() {
-  // Check if the current value is equal to the placeholder text
-  if (textarea.value.trim() === '(e.g. Dietary Restriction, Special Occasions)') {
-    textarea.value = ''; // Clear the text
-  }
+// 1. When on focus, clear placeholder 
+// 2. When input is detected, change the text to solid color
+// 3. When it is empty and loses focus, reset the placeholder
 
-  // Remove the onfocus event to prevent further clearing
-  textarea.removeEventListener('focus', clearPlaceholder);
-}
-
-// Add an event listener to reset the placeholder if the textarea is empty when it loses focus
-textarea.addEventListener('blur', function () {
-  if (textarea.value.trim() === '') {
-    textarea.value = '(e.g. Dietary Restriction, Special Occasions)';
-    textarea.addEventListener('focus', clearPlaceholder);
+// Add an event listener to clear placeholder when on focus
+messageInput.addEventListener('focus', function () {
+  if (messageInput.value.trim() === placeholderText) {
+    messageInput.value = ''; // Clear the text
   }
 });
 
-// Change color of textarea when user inputs
-textarea.addEventListener('input', function () {
-  if (textarea.value.trim() !== '') {
-    textarea.classList.add('input');
-  } else {
-    textarea.classList.remove('input');
+// Add an event listener to change color of messageInput when user inputs
+messageInput.addEventListener('input', function () {
+  messageInput.classList.toggle('input', messageInput.value.trim() !== '');
+});
+
+// Add an event listener to reset the placeholder if the messageInput is empty when it loses focus
+messageInput.addEventListener('blur', function () {
+  if (messageInput.value.trim() === '') {
+    messageInput.value = placeholderText;
+    messageInput.classList.remove('input');
   }
 });
 'use strict';
 
-var submitButton = document.getElementById('formSumbitButton');
-var nameInput = document.getElementById("name");
-var nameError = document.getElementById("name-error");
-var phoneNumberInput = document.getElementById("phone");
-var phoneNumberError = document.getElementById("phone-error");
-var emailInput = document.getElementById("email");
-var emailError = document.getElementById("email-error");
-var guestNumberInput = document.getElementById("guest-number");
-var guestNumberError = document.getElementById("guest-number-error");
-var dateError = document.getElementById("date-error");
-var timeInput = document.getElementById("time");
-var timeError = document.getElementById("time-error");
-
-// first validation on submit
+// First form validation on clicking the submit button
 submitButton.addEventListener('click', function (event) {
-  //validate name input
+  // If the input is incorrect or empty, 
+  // show the error message and attach relevant class (styling) and aria-attributes to the elements
+
+  //Validate name input
   var trimmedValue = nameInput.value.trim(); // Trim the input value
 
   if (nameInput.validity.patternMismatch || trimmedValue.length < 2 || nameInput.value === '') {
@@ -652,7 +560,7 @@ submitButton.addEventListener('click', function (event) {
     nameError.style.display = "none";
   }
 
-  //validate phone number input
+  //Validate phone number input
   if (phoneNumberInput.validity.patternMismatch || phoneNumberInput.value === '') {
     event.preventDefault(); // Prevent form submission if there are validation errors
     phoneNumberInput.classList.add('error-input');
@@ -664,7 +572,7 @@ submitButton.addEventListener('click', function (event) {
     phoneNumberError.style.display = "none";
   }
 
-  //validate email input
+  //Validate email input
   if (emailInput.validity.patternMismatch || emailInput.value === '') {
     event.preventDefault(); // Prevent form submission if there are validation errors
     emailInput.classList.add('error-input');
@@ -676,7 +584,7 @@ submitButton.addEventListener('click', function (event) {
     emailError.style.display = "none";
   }
 
-  //validate guest number input
+  //Validate guest number input
   if (guestNumberInput.value === '') {
     event.preventDefault(); // Prevent form submission if there are validation errors
     guestNumberInput.classList.add('error-input');
@@ -688,15 +596,13 @@ submitButton.addEventListener('click', function (event) {
     guestNumberError.style.display = "none";
   }
 
-  //validate date input
+  //Validate date input
   // Get the selected date from the date input field
   var selectedDate = new Date(dateInput.value);
   // Get the minimum allowed date from the min attribute of the date input field
   var minDate = new Date(dateInput.min);
-
-  // Check if the selected date
   if (selectedDate < minDate || selectedDate === '') {
-    event.preventDefault();
+    event.preventDefault(); // Prevent form submission if there are validation errors
     dateInput.classList.add('error-input');
     dateInput.setAttribute('aria-describedby', 'date-error');
     dateInput.setAttribute('aria-invalid', 'true');
@@ -706,7 +612,7 @@ submitButton.addEventListener('click', function (event) {
     dateError.style.display = "none";
   }
 
-  //validate time input
+  //Validate time input
   if (timeInput.value === '') {
     event.preventDefault(); // Prevent form submission if there are validation errors
     timeInput.classList.add('error-input');
@@ -717,11 +623,14 @@ submitButton.addEventListener('click', function (event) {
     timeInput.classList.remove('error-input');
     timeError.style.display = "none";
   }
+
+  // Alert the user about the erroneous input
   if (nameError.style.display === "block" || phoneNumberError.style.display === "block" || emailError.style.display === "block" || guestNumberError.style.display === "block" || dateError.style.display === "block" || timeError.style.display === "block") {
     alert("Please provide valid input.");
   }
 
-  // Add the input event listener after first submission
+  // Add event listeners to form elements after the first submission of form,
+  // for ongoing validation of inputs
   nameInput.addEventListener('input', nameInputEvent);
   phoneNumberInput.addEventListener('input', phoneNumberInputEvent);
   emailInput.addEventListener('input', emailInputEvent);
@@ -729,6 +638,8 @@ submitButton.addEventListener('click', function (event) {
   dateInput.addEventListener('input', dateInputEvent);
   timeInput.addEventListener('input', timeInputEvent);
 });
+
+// Function to continuously validate name input after first submission
 function nameInputEvent() {
   var letterPattern = /^[A-Za-z\.' \-]+$/;
   var trimmedValue = nameInput.value.trim(); // Trim the input value
@@ -745,6 +656,8 @@ function nameInputEvent() {
     nameError.style.display = "block";
   }
 }
+
+// Function to continuously validate phone number input after first submission
 function phoneNumberInputEvent() {
   var numberPattern = /[0-9+]/g;
   if (phoneNumberInput.value.length > 6 && numberPattern.test(phoneNumberInput.value)) {
@@ -759,6 +672,8 @@ function phoneNumberInputEvent() {
     phoneNumberError.style.display = "block";
   }
 }
+
+// Function to continuously validate email input after first submission
 function emailInputEvent() {
   var emailPattern = /^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/;
   if (emailPattern.test(emailInput.value)) {
@@ -773,6 +688,8 @@ function emailInputEvent() {
     emailError.style.display = "block";
   }
 }
+
+// Function to continuously validate guest number input after first submission
 function guestNumberInputEvent() {
   if (guestNumberInput.value === '') {
     guestNumberInput.classList.add('error-input');
@@ -786,6 +703,8 @@ function guestNumberInputEvent() {
     guestNumberError.style.display = "none";
   }
 }
+
+// Function to continuously validate date input after first submission
 function dateInputEvent() {
   // Get the selected date from the date input field
   var selectedDate = new Date(dateInput.value);
@@ -803,6 +722,8 @@ function dateInputEvent() {
     dateError.style.display = "block";
   }
 }
+
+// Function to continuously validate time input after first submission
 function timeInputEvent() {
   if (timeInput.value === '') {
     timeInput.classList.add('error-input');
@@ -818,27 +739,23 @@ function timeInputEvent() {
 }
 'use strict';
 
-var confirmationMessage = document.getElementById("confirmation-message");
-var confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
-var closeButton = document.querySelector(".confirmation-message__close-button");
-var cancelButton = document.querySelector(".confirmation-message__bottom-button--cancel");
-var messageInput = document.getElementById("message");
-var nameValue = document.getElementById("name-value");
-var phoneValue = document.getElementById("phone-value");
-var emailValue = document.getElementById("email-value");
-var guestNumberValue = document.getElementById("guest-number-value");
-var dateValue = document.getElementById("date-value");
-var timeValue = document.getElementById("time-value");
-var messageValue = document.getElementById("optional-message-value");
-var messageTimer = document.getElementById("message-timer");
+// Submit form upon confirmation of information
+confirmButton.addEventListener("click", submitForm);
 
-// Open the modal
+// Add an event listener to the close button and cancel button to close the message
+closeButton.addEventListener("click", closeMessage);
+cancelButton.addEventListener("click", closeMessage);
+
+// Add an event listener to the window to close the message
+window.addEventListener('keydown', closeMessageByEsc);
+
+// Function to open the modal when the user clicks the form submit button
 function openModal(event) {
   event.preventDefault(); // Prevent default form submission
   confirmationMessage.style.display = "flex";
   confirmationMessage.setAttribute('aria-modal', 'true');
 
-  // Copy the input value or options of the form to the confirmation message
+  // Copy the value of inputs or options in the form to confirmation message
   nameValue.textContent = nameInput.value;
   phoneValue.textContent = phoneNumberInput.value;
   emailValue.textContent = emailInput.value;
@@ -862,29 +779,32 @@ function encodeHTML(text) {
   return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/(\r\n|\n|\r)/g, '<br>'); // Preserve line breaks
 }
 
-// Submit form upon confirmation of information
-confirmButton.addEventListener("click", formSubmitted);
-function formSubmitted() {
-  // Parse the selected date and time values from the form
-  var selectedDateString = dateValue.innerText.trim();
+// Function to submit form
+function submitForm() {
+  // Parse the selected date value from the form
+  var selectedDateString = dateValue.innerText.trim(); // Get the date string and remove leading/trailing spaces
   var selectedDateComponents = selectedDateString.split('-');
   var selectedYear = parseInt(selectedDateComponents[0]);
   var selectedMonth = parseInt(selectedDateComponents[1]);
   var selectedDate = parseInt(selectedDateComponents[2]);
+
+  // Set date of today as a benchmark date to do comparison
   var benchmarkDateComponents = today.split('-');
   var benchmarkYear = parseInt(benchmarkDateComponents[0]);
   var benchmarkMonth = parseInt(benchmarkDateComponents[1]);
   var benchmarkDate = parseInt(benchmarkDateComponents[2]);
+
   // console.log("selected date: " + selectedDate);
   // console.log("benchmark date: " + benchmarkDate);
 
-  var currentTime = new Date();
-  var currentHour = currentTime.getHours();
-  var currentMinute = currentTime.getMinutes();
+  // Parse the selected time value from the form
   var timeString = timeValue.innerText.trim(); // Get the time string and remove leading/trailing spaces
   var timeComponents = timeString.split(':');
   var selectedHour = parseInt(timeComponents[0]);
   var selectedMinute = parseInt(timeComponents[1]);
+  var currentTime = new Date();
+  var currentHour = currentTime.getHours();
+  var currentMinute = currentTime.getMinutes();
 
   // console.log("selected time: " + timeString);
   // console.log("current hour: " + currentHour);
@@ -898,27 +818,20 @@ function formSubmitted() {
     generateTimeOptions();
   } else {
     // Trigger form submission
-    document.querySelector('form').submit();
+    reservationForm.submit();
     alert("Thanks for choosing our restaurant!\nWe will contact you shortly to confirm your reservation.");
 
     // Hide the following 2 lines if the PHP file is ready
     closeMessage();
-    document.getElementById("myForm").reset();
+    reservationForm.reset();
   }
 }
-
-// Add an event listener to the close button and cancel button to close the message
-closeButton.addEventListener("click", closeMessage);
-cancelButton.addEventListener("click", closeMessage);
 
 // Function to close the message
 function closeMessage() {
   confirmationMessage.style.display = "none";
   confirmationMessage.setAttribute('aria-modal', 'false');
 }
-
-// Add an event listener to the window to close the message
-window.addEventListener('keydown', closeMessageByEsc);
 
 // Function to close the message by hitting the "ESC" key
 function closeMessageByEsc(event) {
@@ -927,4 +840,8 @@ function closeMessageByEsc(event) {
     closeMessage();
   }
 }
+'use strict';
+
+// Automatically update the year for the copyright in footer
+document.getElementById("year").textContent = dateOfToday.getFullYear();
 //# sourceMappingURL=non-critical-legacy-script.js.map

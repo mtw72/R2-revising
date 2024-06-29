@@ -1,10 +1,16 @@
 'use strict';
 
-let selectGuestNumberElement = document.getElementById('guest-number');
-let selectTimeElement = document.getElementById('time');
+// Add event listeners to option elements to change the text color to solid black color
+guestNumberInput.addEventListener('change', function () {
+    selectOption(guestNumberInput);
+});
 
-// Function to change the selected option to solid black color
-function optionSelected(selectedElement) {
+timeInput.addEventListener('change', function () {
+    selectOption(timeInput);
+});
+
+// Function to change the text color of selected option
+function selectOption(selectedElement) {
     // Check if a valid option (not the disabled one) is selected
     if (selectedElement.value !== "") {
         // If a valid option is selected, add the 'valid' class to change its color
@@ -14,11 +20,3 @@ function optionSelected(selectedElement) {
         selectedElement.classList.remove('valid');
     }
 }
-
-selectGuestNumberElement.addEventListener('change', function () {
-    optionSelected(selectGuestNumberElement);
-});
-
-selectTimeElement.addEventListener('change', function () {
-    optionSelected(selectTimeElement);
-});

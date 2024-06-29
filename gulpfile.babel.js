@@ -492,7 +492,8 @@ gulp.task('jsCRModernProdTask', () => {
  */
 gulp.task('jsNCLegacyDevTask', () => {
     return gulp
-        .src(config.jsNCSRC, { since: lastRun('jsNCLegacyDevTask') }) // Only run on changed files.
+        .src(config.jsNCSRC)
+        // .src(config.jsNCSRC, { since: lastRun('jsNCLegacyDevTask') }) // Only run on changed files.
         .pipe(plumber(errorHandler))
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(
@@ -507,7 +508,7 @@ gulp.task('jsNCLegacyDevTask', () => {
                 ]
             })
         )
-        .pipe(remember(config.jsNCSRC)) // Bring all files back to stream.
+        // .pipe(remember(config.jsNCSRC)) // Bring all files back to stream.
         .pipe(concat(config.jsNCLegacyFileName + '.js')) // Concatenate and rename file
         .pipe(sourcemaps.write('./')) // Output sourcemap for non-critical-legacy-script.js.
         .pipe(lineec()) // Consistent Line Endings for non UNIX systems.

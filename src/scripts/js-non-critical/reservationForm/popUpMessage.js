@@ -1,28 +1,22 @@
 'use strict';
 
-const confirmationMessage = document.getElementById("confirmation-message");
-const confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
-const closeButton = document.querySelector(".confirmation-message__close-button");
-const cancelButton = document.querySelector(".confirmation-message__bottom-button--cancel");
+// Submit form upon confirmation of information
+confirmButton.addEventListener("click", submitForm);
 
-const messageInput = document.getElementById("message");
+// Add an event listener to the close button and cancel button to close the message
+closeButton.addEventListener("click", closeMessage);
+cancelButton.addEventListener("click", closeMessage);
 
-let nameValue = document.getElementById("name-value");
-let phoneValue = document.getElementById("phone-value");
-let emailValue = document.getElementById("email-value");
-let guestNumberValue = document.getElementById("guest-number-value");
-let dateValue = document.getElementById("date-value");
-let timeValue = document.getElementById("time-value");
-let messageValue = document.getElementById("optional-message-value");
-let messageTimer = document.getElementById("message-timer");
+// Add an event listener to the window to close the message
+window.addEventListener('keydown', closeMessageByEsc);
 
-// Open the modal
+// Function to open the modal when the user clicks the form submit button
 function openModal(event) {
     event.preventDefault(); // Prevent default form submission
     confirmationMessage.style.display = "flex";
     confirmationMessage.setAttribute('aria-modal', 'true');
 
-    // Copy the input value or options of the form to the confirmation message
+    // Copy the value of inputs or options in the form to confirmation message
     nameValue.textContent = nameInput.value;
     phoneValue.textContent = phoneNumberInput.value;
     emailValue.textContent = emailInput.value;
@@ -51,33 +45,33 @@ function encodeHTML(text) {
         .replace(/(\r\n|\n|\r)/g, '<br>'); // Preserve line breaks
 }
 
-// Submit form upon confirmation of information
-confirmButton.addEventListener("click", formSubmitted);
-
-function formSubmitted() {
-    // Parse the selected date and time values from the form
-    const selectedDateString = dateValue.innerText.trim();
+// Function to submit form
+function submitForm() {
+    // Parse the selected date value from the form
+    const selectedDateString = dateValue.innerText.trim(); // Get the date string and remove leading/trailing spaces
     const selectedDateComponents = selectedDateString.split('-');
     const selectedYear = parseInt(selectedDateComponents[0]);
     const selectedMonth = parseInt(selectedDateComponents[1]);
     const selectedDate = parseInt(selectedDateComponents[2]);
 
+    // Set date of today as a benchmark date to do comparison
     const benchmarkDateComponents = today.split('-');
     const benchmarkYear = parseInt(benchmarkDateComponents[0]);
     const benchmarkMonth = parseInt(benchmarkDateComponents[1]);
     const benchmarkDate = parseInt(benchmarkDateComponents[2]);
+
     // console.log("selected date: " + selectedDate);
     // console.log("benchmark date: " + benchmarkDate);
 
-    let currentTime = new Date();
-    let currentHour = currentTime.getHours();
-    let currentMinute = currentTime.getMinutes();
-
-
+    // Parse the selected time value from the form
     const timeString = timeValue.innerText.trim(); // Get the time string and remove leading/trailing spaces
     const timeComponents = timeString.split(':');
     const selectedHour = parseInt(timeComponents[0]);
     const selectedMinute = parseInt(timeComponents[1]);
+
+    let currentTime = new Date();
+    let currentHour = currentTime.getHours();
+    let currentMinute = currentTime.getMinutes();
 
     // console.log("selected time: " + timeString);
     // console.log("current hour: " + currentHour);
@@ -91,29 +85,20 @@ function formSubmitted() {
         generateTimeOptions();
     } else {
         // Trigger form submission
-        document.querySelector('form').submit();
+        reservationForm.submit();
         alert("Thanks for choosing our restaurant!\nWe will contact you shortly to confirm your reservation.");
 
         // Hide the following 2 lines if the PHP file is ready
         closeMessage();
-        document.getElementById("myForm").reset();
+        reservationForm.reset();
     }
 }
-
-
-// Add an event listener to the close button and cancel button to close the message
-closeButton.addEventListener("click", closeMessage);
-
-cancelButton.addEventListener("click", closeMessage);
 
 // Function to close the message
 function closeMessage() {
     confirmationMessage.style.display = "none";
     confirmationMessage.setAttribute('aria-modal', 'false');
 }
-
-// Add an event listener to the window to close the message
-window.addEventListener('keydown', closeMessageByEsc);
 
 // Function to close the message by hitting the "ESC" key
 function closeMessageByEsc(event) {

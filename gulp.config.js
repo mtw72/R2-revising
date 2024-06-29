@@ -46,7 +46,24 @@ const outputStyle = 'expanded';
 
 // Path to all .js files.
 const jsCRSRC = './src/scripts/js-critical/**/*.js';
-const jsNCSRC = './src/scripts/js-non-critical/**/*.js';
+// const jsNCSRC = './src/scripts/js-non-critical/**/*.js';
+
+const jsnc = './src/scripts/js-non-critical/';
+const jsNCSRC = [
+    jsnc + 'navbar.js',
+    jsnc + 'menu/accordion.js',
+    jsnc + 'menu/carousel.js',
+    jsnc + 'menu/menu.js',
+    jsnc + 'reservationForm/formVariables.js',
+    jsnc + 'reservationForm/formDefaultDate.js',
+    jsnc + 'reservationForm/formDefaultTime.js',
+    jsnc + 'reservationForm/formSelect.js',
+    jsnc + 'reservationForm/formTextarea.js',
+    jsnc + 'reservationForm/formValidation.js',
+    jsnc + 'reservationForm/popUpMessage.js',
+    jsnc + 'footer.js',
+];
+
 
 // Path to place the compiled JS file.
 const jsProdDestination = './dist/scripts/';
