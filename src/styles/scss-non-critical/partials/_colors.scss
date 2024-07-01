@@ -10,17 +10,17 @@
 }
 
 //Next & previous buttons
-.carousel__button--prev,
-.carousel__button--next {
+.carousel__prev-button,
+.carousel__next-button {
     color: $brown-2;
 }
 
-.carousel__dot {
+.carousel__progress-bar {
     background-color: $orange-4;
 }
 
-.carousel__dot:hover,
-.carousel__dot.current-dot {
+.carousel__progress-bar :hover,
+.carousel__progress-bar .current-dot {
     background-color: $brown-4;
 }
 

@@ -206,20 +206,81 @@ for (var i = 0; i < menuAccordion.length; i++) {
 
 //Carousel for small & medium menu
 
+// Get the elements in carousel
+var slides = document.getElementsByClassName("carousel__slide");
+var playButton = document.querySelector(".carousel__play-button");
+var pauseButton = document.querySelector(".carousel__pause-button");
+var progressContainers = document.getElementsByClassName("carousel__progress-container");
+var currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
+var progressBars = document.getElementsByClassName("carousel__progress-bar");
+var currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+
+// Add event listener to pause button
+pauseButton.addEventListener("click", function () {
+  // Add the "hidden" class to the pause button
+  pauseButton.classList.add("hidden");
+  pauseButton.setAttribute('aria-hidden', 'true');
+  // Remove the "hidden" class from the play button
+  playButton.classList.remove("hidden");
+  playButton.setAttribute('aria-hidden', 'false');
+});
+
+// Add event listener to play button
+playButton.addEventListener("click", function () {
+  // Add the "hidden" class to the pause button
+  playButton.classList.add("hidden");
+  playButton.setAttribute('aria-hidden', 'true');
+  // Remove the "hidden" class from the play button
+  pauseButton.classList.remove("hidden");
+  pauseButton.setAttribute('aria-hidden', 'false');
+});
+
 // Initialize the slide index to the first slide
 var slideIndex = 1;
 showSlides(slideIndex);
+progressStart();
 
-// Start the carousel autoplay every 3500 milliseconds (3.5 seconds) when the document is fully loaded
-// document.addEventListener("load", function () {
-//   timer = setInterval(autoplay, 3500);
-// });
+// Set the carousel autoplay every 3.5 seconds
+var timer = setInterval(autoplay, 3500);
+function progressStart() {
+  var i = 0;
+  if (i == 0) {
+    var frame = function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        currentProgressBar.style.width = width + "%";
+      }
+    };
+    i = 1;
+    var width = 1;
+    var id = setInterval(frame, 35);
+  }
+}
+function progressStart1() {
+  var i = 0;
+  if (i == 0) {
+    var frame = function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        currentProgressBar.style.width = width + "%";
+      }
+    };
+    i = 1;
+    var width = 1;
+    var id = setInterval(frame, 35);
+    clearInterval(id);
+  }
+}
 
 // Function to display the slide corresponding to the given index 'n'
 function showSlides(n) {
   var i;
-  var slides = document.getElementsByClassName("carousel__slide");
-  var dots = document.getElementsByClassName("carousel__dot");
 
   // If 'n' is greater than the number of slides or the current slide index is greater than the number of slides, reset to the first slide
   if (n > slides.length || slideIndex > slides.length) {
@@ -235,25 +296,29 @@ function showSlides(n) {
     slides[i].className = slides[i].className.replace(" current-slide", "");
   }
 
-  // Remove the 'current-dot' class and 'aria-current' attribute from all dots
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" current-dot", "");
-    dots[i].setAttribute('aria-current', 'false');
+  // Remove the 'current-dot' class and 'aria-current' attribute from all progressBars
+  for (i = 0; i < progressBars.length; i++) {
+    progressContainers[i].className = progressContainers[i].className.replace(" current-container", "");
+    progressBars[i].className = progressBars[i].className.replace(" current-bar", "");
+    progressContainers[i].setAttribute('aria-current', 'false');
+    progressBars[i].setAttribute('aria-current', 'false');
   }
 
   // Show the current slide by adding the 'current-slide' class
   slides[slideIndex - 1].className += " current-slide";
   // Highlight the current dot by adding the 'current-dot' class and setting 'aria-current' attribute to true
-  dots[slideIndex - 1].className += " current-dot";
-  dots[slideIndex - 1].setAttribute('aria-current', 'true');
+  progressContainers[slideIndex - 1].className += " current-container";
+  progressBars[slideIndex - 1].className += " current-bar";
+  progressContainers[slideIndex - 1].setAttribute('aria-current', 'true');
+  progressBars[slideIndex - 1].setAttribute('aria-current', 'true');
 }
 
 // Function to automatically advance to the next slide
 function autoplay() {
   slideIndex++;
   showSlides();
+  progressStart1();
 }
-var timer = setInterval(autoplay, 3500);
 
 // Function to advance the slide by a given number 'n' (positive or negative)
 function plusSlides(n) {

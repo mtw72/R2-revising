@@ -54,8 +54,8 @@
 }
 
 //Next & previous buttons
-.carousel__button,
-.carousel__button {
+.carousel__prev-button,
+.carousel__next-button {
     cursor: pointer;
     position: absolute;
     top: 45%;
@@ -68,47 +68,100 @@
     background-color: transparent;
 }
 
-.carousel__button--prev {
+.carousel__prev-button {
     left: -4px;
 }
 
-.carousel__button--next {
+.carousel__next-button {
     right: -4px;
 }
 
 @include min-mq (xs) {
 
-    .carousel__button,
-    .carousel__button {
+    .carousel__prev-button,
+    .carousel__next-button {
         top: 42%;
         font-size: 1.25rem;
         transition: 0.6s ease;
         padding: 1rem;
     }
 
-    .carousel__button--prev {
+    .carousel__prev-button {
         left: -30px;
     }
 
-    .carousel__button--next {
+    .carousel__next-button {
         right: -30px;
     }
 }
 
 /* The dots indicators */
-.carousel__dots {
-    text-align: center;
+.carousel__bottom-control {
     margin-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-.carousel__dot {
-    cursor: pointer;
-    height: 0.5rem;
-    width: 0.5rem;
-    margin: 0 3px;
-    padding: 1px;
-    border-radius: 100%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
+.carousel__pause-button,
+.carousel__play-button {
     border: none;
+    background-color: transparent;
+    display: block;
+}
+
+.carousel__pause-button.hidden,
+.carousel__play-button.hidden {
+    display: none;
+}
+
+.carousel__progress-container {
+    cursor: pointer;
+    height: 0.75rem;
+    display: block;
+    border: none;
+    background-color: transparent;
+    margin: 0 5px;
+    padding: 0;
+    // padding-top: 1rem;
+    // width: 0.75rem;
+    // transition: background-color 0.6s ease;
+}
+
+.carousel__progress-container.current-container {
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+    max-width: 3.5rem;
+    height: 0.75rem;
+    width: 100%;
+    display: block;
+    border: none;
+    border-radius: 5px solid lightgreen;
+    background-color: lightgreen;
+    // transition: background-color 0.6s ease;
+}
+
+.carousel__progress-bar {
+    display: block;
+    margin: 0;
+    padding: 0;
+    height: 0.75rem;
+    width: 0.75rem;
+    // width: 3.5rem;
+    // transition: background-color 0.6s ease;
+    border-radius: 100%;
+    border: none;
+}
+
+.carousel__progress-bar.current-bar {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 1%;
+    // width:100%;
+    padding: 0;
+    border-radius: 5px solid red;
+    background-color: red;
 }

@@ -10,11 +10,11 @@
   color: rgb(229, 186, 115);
 }
 
-.carousel__dot {
+.carousel__progress {
   background-color: rgb(255, 231, 204);
 }
 
-.carousel__dot:hover,
+.carousel__progress:hover,
 .slideshow-dot--active {
   background-color: rgb(248, 203, 166);
 }
