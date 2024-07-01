@@ -214,9 +214,14 @@ var progressContainers = document.getElementsByClassName("carousel__progress-con
 var currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
 var progressBars = document.getElementsByClassName("carousel__progress-bar");
 var currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+var finishedProgressBars = document.getElementsByClassName("finished-bar");
+var width = 1;
+var id;
+var memo;
 
 // Add event listener to pause button
 pauseButton.addEventListener("click", function () {
+  progressPause();
   // Add the "hidden" class to the pause button
   pauseButton.classList.add("hidden");
   pauseButton.setAttribute('aria-hidden', 'true');
@@ -227,6 +232,7 @@ pauseButton.addEventListener("click", function () {
 
 // Add event listener to play button
 playButton.addEventListener("click", function () {
+  progressResume();
   // Add the "hidden" class to the pause button
   playButton.classList.add("hidden");
   playButton.setAttribute('aria-hidden', 'true');
@@ -235,48 +241,53 @@ playButton.addEventListener("click", function () {
   pauseButton.setAttribute('aria-hidden', 'false');
 });
 
+// Set the carousel autoplay every 3.5 seconds
+var timer = setInterval(autoplay, 3500);
+var timer2 = setInterval(progressStart, 3500);
+function frame() {
+  var currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+  if (width >= 100) {
+    clearInterval(id);
+    width = 0; // Reset width
+    currentProgressBar.style.width = "0.75rem";
+  } else {
+    width++;
+    currentProgressBar.style.width = width + "%";
+    memo = width;
+  }
+  // memo = width;
+}
+function progressStart() {
+  id = setInterval(frame, 35);
+}
+function progressPause() {
+  console.log(memo);
+  currentProgressBar.style.width = memo + "%";
+  clearInterval(id);
+  // clearInterval(timer);
+  clearInterval(timer2);
+}
+
+// Ensure to reset the progress bar width when you resume
+function progressResume() {
+  width = memo; // Restore the width from memo
+  currentProgressBar.style.width = width + "%";
+  setTimeout(progressStart, 3500 - width * 100);
+  // setTimeout(autoplay, (3500 - width * 100));
+  // timer = setInterval(autoplay, 3500);
+  timer2 = setInterval(progressStart, 3500);
+}
+
+// Ensure to reset the progress bar width when you restart
+function progressRestart() {
+  width = 1;
+  currentProgressBar.style.width = width + "%";
+}
+
 // Initialize the slide index to the first slide
 var slideIndex = 1;
 showSlides(slideIndex);
 progressStart();
-
-// Set the carousel autoplay every 3.5 seconds
-var timer = setInterval(autoplay, 3500);
-function progressStart() {
-  var i = 0;
-  if (i == 0) {
-    var frame = function frame() {
-      if (width >= 100) {
-        clearInterval(id);
-        i = 0;
-      } else {
-        width++;
-        currentProgressBar.style.width = width + "%";
-      }
-    };
-    i = 1;
-    var width = 1;
-    var id = setInterval(frame, 35);
-  }
-}
-function progressStart1() {
-  var i = 0;
-  if (i == 0) {
-    var frame = function frame() {
-      if (width >= 100) {
-        clearInterval(id);
-        i = 0;
-      } else {
-        width++;
-        currentProgressBar.style.width = width + "%";
-      }
-    };
-    i = 1;
-    var width = 1;
-    var id = setInterval(frame, 35);
-    clearInterval(id);
-  }
-}
 
 // Function to display the slide corresponding to the given index 'n'
 function showSlides(n) {
@@ -300,6 +311,7 @@ function showSlides(n) {
   for (i = 0; i < progressBars.length; i++) {
     progressContainers[i].className = progressContainers[i].className.replace(" current-container", "");
     progressBars[i].className = progressBars[i].className.replace(" current-bar", "");
+    // progressBars[i].style.width = "0.75rem";
     progressContainers[i].setAttribute('aria-current', 'false');
     progressBars[i].setAttribute('aria-current', 'false');
   }
@@ -311,21 +323,35 @@ function showSlides(n) {
   progressBars[slideIndex - 1].className += " current-bar";
   progressContainers[slideIndex - 1].setAttribute('aria-current', 'true');
   progressBars[slideIndex - 1].setAttribute('aria-current', 'true');
+  // progressStart();
+  progressBars[slideIndex - 1].className += " finished-bar";
+  if (slideIndex == 3) {
+    setTimeout(removeFinishedColor, 3500);
+  }
+}
+function removeFinishedColor() {
+  for (var i = 0; i < progressBars.length; i++) {
+    progressBars[i].className = progressBars[i].className.replace(" finished-bar", "");
+  }
 }
 
 // Function to automatically advance to the next slide
 function autoplay() {
   slideIndex++;
   showSlides();
-  progressStart1();
 }
 
 // Function to advance the slide by a given number 'n' (positive or negative)
 function plusSlides(n) {
+  // for (let i = 0; i < progressBars.length; i++) {
+  //   progressBars[i].style.width = "0.75rem";
+  //   progressBars[i].style.backgroundColor = "rgb(195, 129, 84)";
+  // }
   // Change the slide index and display the corresponding slide
   showSlides(slideIndex += n);
   // Reset the timer
   resetTimer();
+  resetTimer2();
 }
 
 // Function to display the slide corresponding to a given dot
@@ -334,6 +360,7 @@ function currentSlide(n) {
   showSlides(slideIndex = n);
   // Reset the timer
   resetTimer();
+  resetTimer2();
 }
 
 // Function to reset the automatic slide advance timer
@@ -342,6 +369,14 @@ function resetTimer() {
   clearInterval(timer);
   // Restart the interval with the same delay
   timer = setInterval(autoplay, 3500);
+}
+
+// Function to reset the automatic slide advance timer
+function resetTimer2() {
+  // Clear the current interval
+  clearInterval(timer2);
+  // Restart the interval with the same delay
+  timer2 = setInterval(progressStart, 3500);
 }
 'use strict';
 

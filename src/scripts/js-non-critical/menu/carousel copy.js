@@ -9,18 +9,10 @@ const pauseButton = document.querySelector(".carousel__pause-button");
 let progressContainers = document.getElementsByClassName("carousel__progress-container");
 let currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
 let progressBars = document.getElementsByClassName("carousel__progress-bar");
-let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-
 let finishedProgressBars = document.getElementsByClassName("finished-bar");
-
-
-let width = 1;
-let id;
-let memo;
 
 // Add event listener to pause button
 pauseButton.addEventListener("click", function () {
-  progressPause();
   // Add the "hidden" class to the pause button
   pauseButton.classList.add("hidden");
   pauseButton.setAttribute('aria-hidden', 'true');
@@ -31,66 +23,43 @@ pauseButton.addEventListener("click", function () {
 
 // Add event listener to play button
 playButton.addEventListener("click", function () {
-  progressResume();
   // Add the "hidden" class to the pause button
   playButton.classList.add("hidden");
   playButton.setAttribute('aria-hidden', 'true');
   // Remove the "hidden" class from the play button
   pauseButton.classList.remove("hidden");
   pauseButton.setAttribute('aria-hidden', 'false');
-
 });
 
-// Set the carousel autoplay every 3.5 seconds
-let timer = setInterval(autoplay, 3500);
-let timer2 = setInterval(progressStart, 3500);
-
-function frame() {
-  let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-  if (width >= 100) {
-    clearInterval(id);
-    width = 0; // Reset width
-    currentProgressBar.style.width = "0.75rem";
-  } else {
-    width++;
-    currentProgressBar.style.width = width + "%";
-    memo = width;
-  }
-  // memo = width;
-}
-
-function progressStart() {
-  id = setInterval(frame, 35);
-}
-
-function progressPause() {
-  console.log(memo);
-  currentProgressBar.style.width = memo + "%";
-  clearInterval(id);
-  // clearInterval(timer);
-  clearInterval(timer2);
-}
-
-// Ensure to reset the progress bar width when you resume
-function progressResume() {
-  width = memo; // Restore the width from memo
-  currentProgressBar.style.width = width + "%";
-  setTimeout(progressStart, (3500 - width * 100));
-  // setTimeout(autoplay, (3500 - width * 100));
-  // timer = setInterval(autoplay, 3500);
-  timer2 = setInterval(progressStart, 3500);
-}
-
-// Ensure to reset the progress bar width when you restart
-function progressRestart() {
-  width = 1;
-  currentProgressBar.style.width = width + "%";
-}
 
 // Initialize the slide index to the first slide
 let slideIndex = 1;
 showSlides(slideIndex);
 progressStart();
+
+// Set the carousel autoplay every 3.5 seconds
+let timer = setInterval(autoplay, 3500);
+let timer2 = setInterval(progressStart, 3500);
+
+function progressStart() {
+  let i = 0;
+  if (i == 0) {
+    i = 1;
+    let width = 1;
+    let id = setInterval(frame, 35);
+    let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+        currentProgressBar.style.width = "0.75rem";
+      } else {
+        width++;
+        currentProgressBar.style.width = width + "%";
+      }
+    }
+  }
+}
 
 // Function to display the slide corresponding to the given index 'n'
 function showSlides(n) {
