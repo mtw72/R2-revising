@@ -219,6 +219,9 @@ let finishedProgressBars = document.getElementsByClassName("finished-bar");
 let width = 1;
 let dynamicFrame;
 let memo;
+let memo2;
+let resumeTimeout;
+let timer3;
 
 // Initialize the slide index to the first slide
 let slideIndex = 1;
@@ -228,11 +231,13 @@ progressStart();
 // Set the carousel autoplay every 3.5 seconds
 let timer2 = setInterval(progressInterval, 3500);
 
+// start the progress initially
 function progressStart() {
   frame();
   dynamicFrame = setInterval(frame, 35);
 }
 
+// for next slide
 function progressInterval() {
   clearInterval(dynamicFrame);
   progressStart();
@@ -309,13 +314,15 @@ function plusSlides(n) {
   //   progressBars[i].style.width = "0.75rem";
   //   progressBars[i].style.backgroundColor = "rgb(195, 129, 84)";
   // }
+
+  clearInterval(dynamicFrame);
+  clearInterval(timer2);
+  width = 1;
   // Change the slide index and display the corresponding slide
   showSlides(slideIndex += n);
+  progressStart();
   // Reset the timer
-  // resetTimer();
-  // resetTimer2();
-
-
+  timer2 = setInterval(progressInterval, 3500);
 }
 
 // Function to display the slide corresponding to a given dot
@@ -326,70 +333,55 @@ function currentSlide(n) {
   width = 1;
   showSlides(slideIndex = n);
   progressStart();
-
   // Reset the timer
   timer2 = setInterval(progressInterval, 3500);
-
-
-
 }
 
 function progressPause() {
   console.log(memo);
+  memo2 = memo; // Create another memory storage for calculating the remaining time
   currentProgressBar.style.width = memo + "%";
+  clearTimeout(resumeTimeout);
+  clearTimeout(timer3);
   clearInterval(dynamicFrame);
-  clearInterval(timer);
   clearInterval(timer2);
-  clearTimeout(progressStart);
-  clearTimeout(reset2Timers);
 }
 
 // Ensure to reset the progress bar width when you resume
 function progressResume() {
+  width = memo; // Restore the width from memo
   if (width < 100) {
-    width = memo; // Restore the width from memo
     currentProgressBar.style.width = width + "%";
-    let memo2 = width;
-    set2Timeout(memo2);
+    progressStart(); //resume the play process
+    timer3 = setTimeout(() => {
+      progressInterval();
+      timer2 = setInterval(progressInterval, 3500);
+    }, (3500 - (memo2 * 35)))
+    // resumeTimeout = setTimeout(resetResumeTimer(), ); //add back the progress interval after the remaining time is gone
+
+  } else if (width >= 100) { //very good work!!
+    width = 1;
+    slideIndex++; // Advance to the next slide
+    showSlides();
+    progressStart();
+    // Reset the timer
+    timer2 = setInterval(progressInterval, 3500);
+
+    // frame();
+    // resumeTimeout100 = setTimeout(resetResumeTimer(), 35); //add back the progress interval after the remaining time is gone
   }
-  // else if (width >= 100) {
-  //   width = 0;
-  //   autoplay();
-  //   progressStart();
-  //   timer = setInterval(autoplay, 3500);
-  //   timer2 = setInterval(progressStart, 3500);
-  // }
-  // setTimeout(progressStart, (3500 - width * 100));
-  // setTimeout(autoplay, (3500 - width * 100));
-  // setTimeout(reset2Timers, (3500 - width * 100));
-  // timer = setInterval(autoplay, 3500);
-  // timer2 = setInterval(progressStart, 3500);
 }
 
-function set2Timeout(width) {
-  setTimeout(progressStart, (3500 - width * 100));
-  // setTimeout(autoplay, (3500 - width * 100));
-  setTimeout(reset2Timers, (3500 - width * 100));
-}
+// function resetResumeTimer() {
 
-function reset2Timers() {
-  timer = setInterval(autoplay, 3500);
-  timer2 = setInterval(progressStart, 3500);
-}
+//   timer2 = setInterval(progressInterval, 3500);
+// }
 
 // Ensure to reset the progress bar width when you restart
-function progressRestart() {
-  width = 1;
-  currentProgressBar.style.width = width + "%";
-}
-
-// Function to reset the automatic slide advance timer
-function resetTimer() {
-  // Clear the current interval
-  clearInterval(timer);
-  // Restart the interval with the same delay
-  timer = setInterval(autoplay, 3500);
-}
+// function progressRestart() {
+//   width = 1;
+//   currentProgressBar.style.width = width + "%";
+// }
 
 // Function to reset the automatic slide advance timer
 function resetTimer2() {
