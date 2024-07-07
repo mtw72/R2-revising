@@ -19,7 +19,6 @@ let memo;
 let memo2;
 let resumeTimeout;
 let timer3;
-let j = 1, k;
 
 // Initialize the slide index to the first slide
 let slideIndex = 1;
@@ -43,19 +42,16 @@ function progressInterval() {
 
 function frame() {
   let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-  if (j < 100) {
-    width++;
-    j++;
-    currentProgressBar.style.width = width + "%";
-    memo = width;
-  } else {
-    console.log(memo);
+  if (width >= 100) {
     clearInterval(dynamicFrame); // Clear the next round
-    currentProgressBar.style.width = "0.75rem";
+    // currentProgressBar.style.width = "0.75rem";
     width = 1; // Reset width
     slideIndex++; // Advance to the next slide
     showSlides();
-    j = 1; // Reset count
+  } else {
+    width++;
+    currentProgressBar.style.width = width + "%";
+    memo = width;
   }
   // memo = width;
 }
@@ -96,7 +92,27 @@ function showSlides(n) {
   progressBars[slideIndex - 1].setAttribute('aria-current', 'true');
 }
 
+// function autoplay() {
+//   slideIndex++;
+//   showSlides();
+// }
 
+// let timer = setInterval(autoplay, 3500);
+
+// function resetTimer() {
+//   clearInterval(timer);
+//   timer = setInterval(autoplay, 3500);
+// }
+
+// function plusSlides(n) {
+//   showSlides(slideIndex += n);
+//   resetTimer();
+// }
+
+// function currentSlide(n) {
+//   showSlides(slideIndex = n);
+//   resetTimer();
+// }
 
 function removeProgressColor(slideIndex) {
   if (slideIndex == 3) {
@@ -117,14 +133,12 @@ function plusSlides(n) {
     clearInterval(dynamicFrame);
     clearInterval(timer2);
     width = 1;
-    j = 1;
     memo = 1;
   }
   else {
     clearInterval(dynamicFrame);
     clearInterval(timer2);
     width = 1;
-    j = 1;
     // Change the slide index and display the corresponding slide
     showSlides(slideIndex += n);
     progressStart();
@@ -140,14 +154,12 @@ function currentSlide(n) {
     clearInterval(timer2);
     width = 1;
     memo = 1;
-    j = 1;
   }
   else {
     // Set the slide index to 'n' and display the corresponding slide
     clearInterval(dynamicFrame);
     clearInterval(timer2);
     width = 1;
-    j = 1;
     showSlides(slideIndex = n);
     progressStart();
     // Reset the timer
@@ -156,8 +168,6 @@ function currentSlide(n) {
 }
 
 function progressPause() {
-  let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-
   console.log(memo);
   memo2 = memo; // Create another memory storage for calculating the remaining time
   currentProgressBar.style.width = memo + "%";
@@ -169,8 +179,6 @@ function progressPause() {
 
 // Ensure to reset the progress bar width when you resume
 function progressResume() {
-  let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-
   width = memo; // Restore the width from memo
   if (width < 100) {
     currentProgressBar.style.width = width + "%";

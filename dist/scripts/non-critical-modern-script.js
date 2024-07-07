@@ -215,6 +215,7 @@ let currentProgressContainer = document.querySelector(".carousel__progress-conta
 let progressBars = document.getElementsByClassName("carousel__progress-bar");
 let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
 let finishedProgressBars = document.getElementsByClassName("finished-bar");
+let isPaused = false;
 
 let width = 1;
 let dynamicFrame;
@@ -222,6 +223,7 @@ let memo;
 let memo2;
 let resumeTimeout;
 let timer3;
+let j = 1, k;
 
 // Initialize the slide index to the first slide
 let slideIndex = 1;
@@ -245,16 +247,19 @@ function progressInterval() {
 
 function frame() {
   let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-  if (width >= 100) {
+  if (j < 100) {
+    width++;
+    j++;
+    currentProgressBar.style.width = width + "%";
+    memo = width;
+  } else {
+    console.log(memo);
     clearInterval(dynamicFrame); // Clear the next round
-    // currentProgressBar.style.width = "0.75rem";
+    currentProgressBar.style.width = "0.75rem";
     width = 1; // Reset width
     slideIndex++; // Advance to the next slide
     showSlides();
-  } else {
-    width++;
-    currentProgressBar.style.width = width + "%";
-    memo = width;
+    j = 1; // Reset count
   }
   // memo = width;
 }
@@ -273,10 +278,11 @@ function showSlides(n) {
   // Hide all the slides by removing the 'current-slide' class
   for (i = 0; i < slides.length; i++) {
     slides[i].className = slides[i].className.replace(" current-slide", "");
-  }
+    slides[i].setAttribute('aria-current', 'false');
+    // }
 
-  // Remove the 'current-dot' class and 'aria-current' attribute from all progressBars
-  for (i = 0; i < progressBars.length; i++) {
+    // // Remove the 'current-dot' class and 'aria-current' attribute from all progressBars
+    // for (i = 0; i < progressBars.length; i++) {
     progressContainers[i].className = progressContainers[i].className.replace(" current-container", "");
     progressBars[i].className = progressBars[i].className.replace(" current-bar", "");
     // progressBars[i].style.width = "0.75rem";
@@ -289,12 +295,9 @@ function showSlides(n) {
   // Highlight the current dot by adding the 'current-dot' class and setting 'aria-current' attribute to true
   progressContainers[slideIndex - 1].className += " current-container";
   progressBars[slideIndex - 1].className += " current-bar";
+  slides[slideIndex - 1].setAttribute('aria-current', 'true');
   progressContainers[slideIndex - 1].setAttribute('aria-current', 'true');
   progressBars[slideIndex - 1].setAttribute('aria-current', 'true');
-  // progressBars[slideIndex - 1].className += " finished-bar";
-  // if (slideIndex == 3) {
-  //   setTimeout(removeFinishedColor, 3500);
-  // }
 }
 
 
@@ -314,30 +317,51 @@ function plusSlides(n) {
   //   progressBars[i].style.width = "0.75rem";
   //   progressBars[i].style.backgroundColor = "rgb(195, 129, 84)";
   // }
-
-  clearInterval(dynamicFrame);
-  clearInterval(timer2);
-  width = 1;
-  // Change the slide index and display the corresponding slide
-  showSlides(slideIndex += n);
-  progressStart();
-  // Reset the timer
-  timer2 = setInterval(progressInterval, 3500);
+  if (isPaused) {
+    clearInterval(dynamicFrame);
+    clearInterval(timer2);
+    width = 1;
+    j = 1;
+    memo = 1;
+  }
+  else {
+    clearInterval(dynamicFrame);
+    clearInterval(timer2);
+    width = 1;
+    j = 1;
+    // Change the slide index and display the corresponding slide
+    showSlides(slideIndex += n);
+    progressStart();
+    // Reset the timer
+    timer2 = setInterval(progressInterval, 3500);
+  }
 }
 
 // Function to display the slide corresponding to a given dot
 function currentSlide(n) {
-  // Set the slide index to 'n' and display the corresponding slide
-  clearInterval(dynamicFrame);
-  clearInterval(timer2);
-  width = 1;
-  showSlides(slideIndex = n);
-  progressStart();
-  // Reset the timer
-  timer2 = setInterval(progressInterval, 3500);
+  if (isPaused) {
+    clearInterval(dynamicFrame);
+    clearInterval(timer2);
+    width = 1;
+    memo = 1;
+    j = 1;
+  }
+  else {
+    // Set the slide index to 'n' and display the corresponding slide
+    clearInterval(dynamicFrame);
+    clearInterval(timer2);
+    width = 1;
+    j = 1;
+    showSlides(slideIndex = n);
+    progressStart();
+    // Reset the timer
+    timer2 = setInterval(progressInterval, 3500);
+  }
 }
 
 function progressPause() {
+  let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+
   console.log(memo);
   memo2 = memo; // Create another memory storage for calculating the remaining time
   currentProgressBar.style.width = memo + "%";
@@ -349,6 +373,8 @@ function progressPause() {
 
 // Ensure to reset the progress bar width when you resume
 function progressResume() {
+  let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+
   width = memo; // Restore the width from memo
   if (width < 100) {
     currentProgressBar.style.width = width + "%";
@@ -357,8 +383,6 @@ function progressResume() {
       progressInterval();
       timer2 = setInterval(progressInterval, 3500);
     }, (3500 - (memo2 * 35)))
-    // resumeTimeout = setTimeout(resetResumeTimer(), ); //add back the progress interval after the remaining time is gone
-
   } else if (width >= 100) { //very good work!!
     width = 1;
     slideIndex++; // Advance to the next slide
@@ -366,9 +390,6 @@ function progressResume() {
     progressStart();
     // Reset the timer
     timer2 = setInterval(progressInterval, 3500);
-
-    // frame();
-    // resumeTimeout100 = setTimeout(resetResumeTimer(), 35); //add back the progress interval after the remaining time is gone
   }
 }
 
@@ -394,6 +415,7 @@ function resetTimer2() {
 // Add event listener to pause button
 pauseButton.addEventListener("click", function () {
   progressPause();
+  // isPaused = true;
   // Add the "hidden" class to the pause button
   pauseButton.classList.add("hidden");
   pauseButton.setAttribute('aria-hidden', 'true');
@@ -405,13 +427,13 @@ pauseButton.addEventListener("click", function () {
 // Add event listener to play button
 playButton.addEventListener("click", function () {
   progressResume();
+  // isPaused = false;
   // Add the "hidden" class to the pause button
   playButton.classList.add("hidden");
   playButton.setAttribute('aria-hidden', 'true');
   // Remove the "hidden" class from the play button
   pauseButton.classList.remove("hidden");
   pauseButton.setAttribute('aria-hidden', 'false');
-
 });
 'use strict';
 
