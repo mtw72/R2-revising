@@ -44,21 +44,29 @@ function progressInterval() {
 
 function frame() {
   let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-  if (j <= 99) {
+  if (j < 99) {
     width++;
     j++;
     currentProgressBar.style.width = width + "%";
     memo = width;
   } else {
+    width++;
+    currentProgressBar.style.width = width + "%";
+    memo = width;
     console.log(memo);
     clearInterval(dynamicFrame); // Clear the next round
     currentProgressBar.style.width = "0.75rem";
-    width = 1; // Reset width
     j = 1; // Reset count
     slideIndex++; // Advance to the next slide
     showSlides();
+    currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+
+    width = 1; // Reset width
+    currentProgressBar.style.width = width + "%";
+    memo = width;
     frame();
     dynamicFrame = setInterval(frame, 35);
+    memo = width;
   }
   // memo = width;
 }
