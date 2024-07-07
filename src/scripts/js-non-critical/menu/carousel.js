@@ -13,13 +13,13 @@ let currentProgressBar = document.querySelector(".carousel__progress-bar.current
 let finishedProgressBars = document.getElementsByClassName("finished-bar");
 let isPaused = false;
 
-let width = 1;
+// let width = 1, j = 1;
 let dynamicFrame;
 let memo;
 let memo2;
 let resumeTimeout;
 let timer3;
-let j = 1, k;
+let width = 0, j = 0;
 
 // Initialize the slide index to the first slide
 let slideIndex = 1;
@@ -44,24 +44,24 @@ function progressInterval() {
 
 function frame() {
   let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-  if (j < 99) {
+  if (j < 100) {
     width++;
     j++;
     currentProgressBar.style.width = width + "%";
     memo = width;
   } else {
-    width++;
-    currentProgressBar.style.width = width + "%";
-    memo = width;
+    // width++; //99 + 1 = 100
+    // currentProgressBar.style.width = width + "%";
+    // memo = width;
     console.log(memo);
     clearInterval(dynamicFrame); // Clear the next round
     currentProgressBar.style.width = "0.75rem";
-    j = 1; // Reset count
+    j = 0; // Reset count
     slideIndex++; // Advance to the next slide
     showSlides();
     currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
 
-    width = 1; // Reset width
+    width = 0; // Reset width
     currentProgressBar.style.width = width + "%";
     memo = width;
     frame();
@@ -70,6 +70,35 @@ function frame() {
   }
   // memo = width;
 }
+
+// function frame() {
+//   let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+//   if (j < 99) {
+//     width++;
+//     j++;
+//     currentProgressBar.style.width = width + "%";
+//     memo = width;
+//   } else {
+//     width++; //99 + 1 = 100
+//     currentProgressBar.style.width = width + "%";
+//     memo = width;
+//     console.log(memo);
+//     clearInterval(dynamicFrame); // Clear the next round
+//     currentProgressBar.style.width = "0.75rem";
+//     j = 1; // Reset count
+//     slideIndex++; // Advance to the next slide
+//     showSlides();
+//     currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+
+//     width = 1; // Reset width
+//     currentProgressBar.style.width = width + "%";
+//     memo = width;
+//     frame();
+//     dynamicFrame = setInterval(frame, 35);
+//     memo = width;
+//   }
+//   // memo = width;
+// }
 
 
 
