@@ -223,7 +223,7 @@ let memo;
 let memo2;
 let resumeTimeout;
 let timer3;
-let j = 1, k;
+// let j = 1, k;
 
 // Initialize the slide index to the first slide
 let slideIndex = 1;
@@ -247,9 +247,9 @@ function progressInterval() {
 
 function frame() {
   let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-  if (j < 100) {
+  if (width <= 99) {
     width++;
-    j++;
+    // j++;
     currentProgressBar.style.width = width + "%";
     memo = width;
   } else {
@@ -259,7 +259,7 @@ function frame() {
     width = 1; // Reset width
     slideIndex++; // Advance to the next slide
     showSlides();
-    j = 1; // Reset count
+    // j = 1; // Reset count
   }
   // memo = width;
 }

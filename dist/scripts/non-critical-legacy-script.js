@@ -222,8 +222,7 @@ var memo;
 var memo2;
 var resumeTimeout;
 var timer3;
-var j = 1,
-  k;
+// let j = 1, k;
 
 // Initialize the slide index to the first slide
 var slideIndex = 1;
@@ -246,9 +245,9 @@ function progressInterval() {
 }
 function frame() {
   var currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-  if (j < 100) {
+  if (width <= 99) {
     width++;
-    j++;
+    // j++;
     currentProgressBar.style.width = width + "%";
     memo = width;
   } else {
@@ -258,7 +257,7 @@ function frame() {
     width = 1; // Reset width
     slideIndex++; // Advance to the next slide
     showSlides();
-    j = 1; // Reset count
+    // j = 1; // Reset count
   }
   // memo = width;
 }

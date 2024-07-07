@@ -27,7 +27,7 @@ showSlides(slideIndex);
 progressStart();
 
 // Set the carousel autoplay every 3.5 seconds
-let timer2 = setInterval(progressInterval, 3500);
+// let timer2 = setInterval(progressInterval, 3500);
 
 // start the progress initially
 function progressStart() {
@@ -38,12 +38,13 @@ function progressStart() {
 // for next slide
 function progressInterval() {
   clearInterval(dynamicFrame);
-  progressStart();
+  // progressStart();
+  dynamicFrame = setInterval(frame, 35);
 }
 
 function frame() {
   let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-  if (j < 100) {
+  if (j <= 99) {
     width++;
     j++;
     currentProgressBar.style.width = width + "%";
@@ -53,9 +54,11 @@ function frame() {
     clearInterval(dynamicFrame); // Clear the next round
     currentProgressBar.style.width = "0.75rem";
     width = 1; // Reset width
+    j = 1; // Reset count
     slideIndex++; // Advance to the next slide
     showSlides();
-    j = 1; // Reset count
+    frame();
+    dynamicFrame = setInterval(frame, 35);
   }
   // memo = width;
 }
