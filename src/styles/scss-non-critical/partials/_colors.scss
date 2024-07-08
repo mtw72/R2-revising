@@ -15,12 +15,21 @@
     color: $brown-2;
 }
 
+.carousel__progress-container {
+    background-color: transparent;
+}
+
+.current-container,
 .carousel__progress-bar {
     background-color: $orange-4;
 }
 
-.carousel__progress-bar :hover,
-.carousel__progress-bar .current-dot {
+.current-container:focus {
+    outline: 2px solid $orange-2;
+}
+
+.current-bar,
+.finished-bar {
     background-color: $brown-4;
 }
 

@@ -1,5 +1,7 @@
 'use strict';
 
+// ******** FORM VARIABLES ******** //
+
 // Get the form elements
 const reservationForm = document.getElementById("reservation-form");
 const submitButton = document.getElementById('formSumbitButton');

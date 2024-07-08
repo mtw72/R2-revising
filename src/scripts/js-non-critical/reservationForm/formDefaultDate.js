@@ -4,6 +4,9 @@
 // If the cutoff time has yet to be reached, set today as default date
 // If the cutoff time has been reached, set tomorrow as default date
 
+
+// ******** VARIABLES ******** //
+
 // Get date of today
 const dateOfToday = new Date();
 const today = getFormattedDate(dateOfToday);
@@ -11,6 +14,15 @@ const today = getFormattedDate(dateOfToday);
 // Get date of tomorrow
 const dateOfTmr = new Date(new Date().setDate(dateOfToday.getDate() + 1));
 const tomorrow = getFormattedDate(dateOfTmr);
+
+
+// ******** INITIALIZATION ******** //
+
+// Generate default date when the page loads
+generateDefaultDate();
+
+
+// ******** FUNCTIONS ******** //
 
 // Helper function to pad single digit numbers with leading zero
 function pad(number) {
@@ -25,10 +37,7 @@ function getFormattedDate(date) {
   return yyyy + "-" + pad(mm) + "-" + pad(dd);
 }
 
-// Generate default date when the page loads
-generateDefaultDate();
-
-// Set default date (.value) and prevent choosing invalid dates (.min)
+// Function to set default date (.value) and prevent choosing invalid dates (.min)
 function generateDefaultDate() {
   const tdyDay = dateOfToday.getDay();
   const tdyHour = dateOfToday.getHours();

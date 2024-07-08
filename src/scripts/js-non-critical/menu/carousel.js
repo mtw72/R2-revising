@@ -1,55 +1,104 @@
 'use strict';
 
-//Carousel for small & medium menu
+// Carousel for small & medium menu
 
-// Get the elements in carousel
-let slides = document.getElementsByClassName("carousel__slide");
-const playButton = document.querySelector(".carousel__play-button");
-const pauseButton = document.querySelector(".carousel__pause-button");
-let progressContainers = document.getElementsByClassName("carousel__progress-container");
-let currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
-let progressBars = document.getElementsByClassName("carousel__progress-bar");
-let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-let finishedProgressBars = document.getElementsByClassName("finished-bar");
-let bar1 = document.getElementById("bar1");
-let bar2 = document.getElementById("bar2");
-let bar3 = document.getElementById("bar3");
-const time = 3.5;
+// ******** VARIABLES ******** //
+
+// Set the time for autoplay
+const time = 3.5; //3.5 seconds
 const timeInterval = time * 1000 / 100;
 
+// Get the elements in carousel
+const carouselTrack = document.getElementById("carousel__track");
+const slides = document.getElementsByClassName("carousel__slide");
+const prevButton = document.querySelector(".carousel__prev-button");
+const nextButton = document.querySelector(".carousel__next-button");
+const playButton = document.querySelector(".carousel__play-button");
+const pauseButton = document.querySelector(".carousel__pause-button");
+const progressList = document.querySelector(".carousel__progress-list");
+const progressContainers = document.getElementsByClassName("carousel__progress-container");
+const progressBars = document.getElementsByClassName("carousel__progress-bar");
+const bar1 = document.getElementById("bar1");
+const bar2 = document.getElementById("bar2");
+const bar3 = document.getElementById("bar3");
+
+// Create variables for progress bar
+let currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
+let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
 let width = 0, memo, dynamicFrame;
-let isPaused = false;
+let isPlay = true;
+
+
+// ******** INITIALIZATION ******** //
 
 // Initialize the slide index to the first slide
 let slideIndex = 1;
 showSlides(slideIndex);
 progressStart();
 
-// start the progress initially
-function progressStart() {
-  frame();
-  dynamicFrame = setInterval(frame, timeInterval);
+
+// ******** EVENT LISTENERS ******** //
+
+// Add event listeners to previous and next buttons
+prevButton.addEventListener("click", () => {
+  plusSlides(-1);
+});
+
+nextButton.addEventListener("click", () => {
+  plusSlides(1);
+});
+
+// Add event listeners to play and pause buttons
+pauseButton.addEventListener("click", () => {
+  progressPause();
+  togglePlayPauseButtons();
+});
+
+playButton.addEventListener("click", () => {
+  progressResume();
+  togglePlayPauseButtons();
+});
+
+// Add event listeners to progress list
+progressList.addEventListener('keydown', (event) => {
+  switch (event.key) {
+    case 'ArrowLeft':
+      plusSlides(-1);
+      currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
+      currentProgressContainer.focus();
+      break;
+    case 'ArrowRight':
+      plusSlides(1);
+      currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
+      currentProgressContainer.focus();
+      break;
+    case 'Tab':
+      event.preventDefault(); // Prevent default Tab behavior
+      if (event.shiftKey) {
+        // Handle Shift + Tab
+        if (playButton.classList.contains("hidden")) {
+          pauseButton.focus();
+        } else {
+          playButton.focus();
+        }
+      } else {
+        // Handle regular Tab
+        let nameInput = document.getElementById("name");
+        nameInput.focus();
+      }
+      break;
+  }
+});
+
+// Add event listeners to each progress container
+for (let i = 0; i < progressContainers.length; i++) {
+  progressContainers[i].addEventListener("click", () => {
+    currentSlide(1 + i);
+  });
 }
 
-function frame() {
-  let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-  if (width < 100) {
-    width++;
-    currentProgressBar.style.width = width + "%";
-    memo = width;
-  } else {
-    clearInterval(dynamicFrame); // Clear the next round
-    currentProgressBar.style.width = "0.75rem";
-    slideIndex++; // Advance to the next slide
-    showSlides();
-    checkDotColor(slideIndex);
-    currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-    width = 0; // Reset width
-    currentProgressBar.style.width = width + "%";
-    memo = width;
-    progressStart();
-  }
-}
+
+// ******** FUNCTIONS ******** //
 
 // Function to display the slide corresponding to the given index 'n'
 function showSlides(n) {
@@ -64,104 +113,44 @@ function showSlides(n) {
     slides[i].classList.remove("current-slide");
     progressContainers[i].classList.remove("current-container");
     progressBars[i].classList.remove("current-bar");
-    slides[i].setAttribute('aria-current', 'false');
-    progressContainers[i].setAttribute('aria-current', 'false');
-    progressBars[i].setAttribute('aria-current', 'false');
+    progressContainers[i].setAttribute("aria-selected", "false");
+    progressContainers[i].setAttribute("tab-index", "-1");
   }
 
   // Show the current slide by adding the 'current-slide' class, and setting 'aria-current' attribute to true
   slides[slideIndex - 1].classList.add("current-slide");
   progressContainers[slideIndex - 1].classList.add("current-container");
   progressBars[slideIndex - 1].classList.add("current-bar");
-  slides[slideIndex - 1].setAttribute('aria-current', 'true');
-  progressContainers[slideIndex - 1].setAttribute('aria-current', 'true');
-  progressBars[slideIndex - 1].setAttribute('aria-current', 'true');
+  progressContainers[slideIndex - 1].setAttribute("aria-selected", "true");
+  progressContainers[slideIndex - 1].removeAttribute("tab-index", "-1");
 }
 
-function progressPause() {
-  isPaused = true;
-  clearInterval(dynamicFrame);
+// Function to start the progress initially
+function progressStart() {
+  frame();
+  dynamicFrame = setInterval(frame, timeInterval);
 }
 
-// Ensure to reset the progress bar width when you resume
-function progressResume() {
-  let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-  isPaused = false;
-  width = memo; // Restore the width from memo
+// Function for the progress bar to advance
+function frame() {
+  currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
   if (width < 100) {
+    width++;
     currentProgressBar.style.width = width + "%";
-    progressStart();
+    memo = width;
   } else {
+    clearInterval(dynamicFrame); // Clear the coming round
     currentProgressBar.style.width = "0.75rem";
     slideIndex++; // Advance to the next slide
-    showSlides();
-    currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-    width = 0; // Reset width
-    currentProgressBar.style.width = width + "%";
-    memo = width;
+    showSlides(slideIndex);
+    checkDotColor(slideIndex);
+    resetProgressBar();
     progressStart();
+    carouselTrack.setAttribute("aria-live", "off");
   }
 }
 
-// Function to advance the slide by a given number 'n' (positive or negative)
-function plusSlides(n) {
-  let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-
-  if (isPaused) {
-    clearInterval(dynamicFrame);
-    currentProgressBar.style.width = "0.75rem";
-    // Change the slide index and display the corresponding slide
-    showSlides(slideIndex += n);
-    checkDotColor(slideIndex);
-    currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-    width = 0; // Reset width
-    currentProgressBar.style.width = width + "%";
-    memo = width;
-  }
-  else {
-    clearInterval(dynamicFrame);
-    currentProgressBar.style.width = "0.75rem";
-    // Change the slide index and display the corresponding slide
-    showSlides(slideIndex += n);
-    checkDotColor(slideIndex);
-    currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-    width = 0; // Reset width
-    currentProgressBar.style.width = width + "%";
-    memo = width;
-    progressStart();
-  }
-}
-
-// Function to display the slide corresponding to a given dot
-function currentSlide(n) {
-  let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-
-  if (isPaused) {
-    clearInterval(dynamicFrame);
-    currentProgressBar.style.width = "0.75rem";
-    showSlides(slideIndex = n);
-    checkDotColor(slideIndex);
-    currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-    width = 0; // Reset width
-    currentProgressBar.style.width = width + "%";
-    memo = width;
-  }
-  else {
-    // Set the slide index to 'n' and display the corresponding slide
-    clearInterval(dynamicFrame);
-    currentProgressBar.style.width = "0.75rem";
-    // Change the slide index and display the corresponding slide
-    showSlides(slideIndex = n);
-    checkDotColor(slideIndex);
-    currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-    width = 0; // Reset width
-    currentProgressBar.style.width = width + "%";
-    memo = width;
-    progressStart();
-  }
-}
-
-// Change the dot color according to the slide position
+// Function to change the dot color according to the slide position
 function checkDotColor(slideIndex) {
   for (let i = 0; i < progressBars.length; i++) {
     progressBars[i].classList.remove("finished-bar");
@@ -175,24 +164,76 @@ function checkDotColor(slideIndex) {
   }
 }
 
-// Add event listener to pause button
-pauseButton.addEventListener("click", function () {
-  progressPause();
-  // Add the "hidden" class to the pause button
-  pauseButton.classList.add("hidden");
-  pauseButton.setAttribute('aria-hidden', 'true');
-  // Remove the "hidden" class from the play button
-  playButton.classList.remove("hidden");
-  playButton.setAttribute('aria-hidden', 'false');
-});
+// Helper function to reset the progress bar
+function resetProgressBar() {
+  currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+  width = 0; // Reset width
+  currentProgressBar.style.width = width + "%";
+  memo = width;
+}
 
-// Add event listener to play button
-playButton.addEventListener("click", function () {
-  progressResume();
-  // Add the "hidden" class to the pause button
-  playButton.classList.add("hidden");
-  playButton.setAttribute('aria-hidden', 'true');
-  // Remove the "hidden" class from the play button
-  pauseButton.classList.remove("hidden");
-  pauseButton.setAttribute('aria-hidden', 'false');
-});
+// Function to pause the progress bar running
+function progressPause() {
+  carouselTrack.setAttribute("aria-live", "polite");
+  isPlay = false;
+  clearInterval(dynamicFrame);
+}
+
+// Function to resume the progress bar running
+function progressResume() {
+  carouselTrack.setAttribute("aria-live", "off");
+  isPlay = true;
+  currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+  width = memo; // Restore the width from memo
+  if (width < 100) {
+    currentProgressBar.style.width = width + "%";
+    progressStart();
+  } else {
+    currentProgressBar.style.width = "0.75rem";
+    slideIndex++; // Advance to the next slide
+    showSlides(slideIndex);
+    resetProgressBar();
+    progressStart();
+  }
+}
+
+// Helper function to pre-update the carousel initiated by user
+function preUpdateByUser() {
+  clearInterval(dynamicFrame);
+  carouselTrack.setAttribute("aria-live", "polite");
+  currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+  currentProgressBar.style.width = "0.75rem";
+}
+
+// Function to advance the slide by a given number 'n' (positive or negative)
+function plusSlides(n) {
+  preUpdateByUser();
+  slideIndex += n;
+  showSlides(slideIndex);
+  postUpdateByUser();
+}
+
+// Function to display the slide corresponding to a given dot
+function currentSlide(n) {
+  preUpdateByUser();
+  slideIndex = n;
+  showSlides(slideIndex);
+  postUpdateByUser();
+}
+
+// Helper function to post-update the carousel initiated by user
+function postUpdateByUser() {
+  checkDotColor(slideIndex);
+  resetProgressBar();
+  if (isPlay) {
+    progressStart();
+  }
+}
+
+// Function to toggle play/pause button visibility and aria-hidden attribute
+function togglePlayPauseButtons() {
+  playButton.classList.toggle("hidden");
+  pauseButton.classList.toggle("hidden");
+  playButton.setAttribute('aria-hidden', playButton.classList.contains("hidden"));
+  pauseButton.setAttribute('aria-hidden', pauseButton.classList.contains("hidden"));
+}

@@ -1,5 +1,7 @@
 'use strict';
 
+// ******** EVENT LISTENERS ******** //
+
 // Add event listeners to option elements to change the text color to solid black color
 guestNumberInput.addEventListener('change', function () {
     selectOption(guestNumberInput);
@@ -8,6 +10,9 @@ guestNumberInput.addEventListener('change', function () {
 timeInput.addEventListener('change', function () {
     selectOption(timeInput);
 });
+
+
+// ******** FUNCTIONS ******** //
 
 // Function to change the text color of selected option
 function selectOption(selectedElement) {

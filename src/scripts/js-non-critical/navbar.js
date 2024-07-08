@@ -1,12 +1,16 @@
 'use strict';
 
+// ******** VARIABLES ******** //
+
 // Get the elements inside the navbar and the home section
 const navbar = document.getElementById("navbar");
 const navbarToggler = document.querySelector('.navbar__toggler');
 const navList = document.querySelector('.navbar__collapse');
 const navLinks = document.querySelectorAll('.navbar__nav-link');
-const findusLink = document.getElementById('findus-link');
 const home = document.getElementById("home");
+
+
+// ******** EVENT LISTENERS ******** //
 
 // Show or hide the collapsible navbar when toggler is clicked
 navbarToggler.addEventListener('click', (event) => {
@@ -36,7 +40,7 @@ document.addEventListener('click', closeNavbar);
 // For keyboard user, close the navbar if the key "TAB" is pressed
 // let the navbar stay open if the key "SHIFT" + "TAB" are pressed
 // Close the navbar on "TAB" key press
-findusLink.addEventListener('keydown', (event) => {
+navLinks[navLinks.length - 1].addEventListener('keydown', (event) => {
   if (!event.shiftKey && event.key === 'Tab') {
     closeNavbar();
   }
@@ -66,6 +70,9 @@ window.addEventListener('scroll', debounce(() => {
   }
   prevScrollPos = currentScrollPos;
 }, 50));
+
+
+// ******** FUNCTIONS ******** //
 
 // Debounce function
 function debounce(func, wait) {

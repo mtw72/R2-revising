@@ -74,7 +74,7 @@
 
 // between lg and xl, showing 3 columns
 @include between-mq (lg, xl) {
-    .r-form__email {
+    .reservation__email {
         grid-area: 1 / 3 / 2 / 4;
     }
 

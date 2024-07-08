@@ -1,13 +1,30 @@
 'use strict';
 
+// ******** VARIABLES ******** //
+
 // Get all elements with the class "accordion__button"
 const menuAccordion = document.getElementsByClassName("accordion__button");
+
+
+// ******** EVENT LISTENERS ******** //
 
 // Add event listener for window load to open active panels
 window.addEventListener('load', openOrClosePanels);
 
 // Add event listener for window resize to open active panels or remove aria attributes
 window.addEventListener('resize', openOrClosePanels);
+
+// Add event listener to the menu accordion to toggle panel open or close
+for (let i = 0; i < menuAccordion.length; i++) {
+  menuAccordion[i].addEventListener("click", function () {
+    this.classList.toggle("accordion__button--active");
+    const isActive = this.classList.contains("accordion__button--active");
+    handlePanelState(this, isActive, true); // Always handle click events as small screen actions
+  });
+}
+
+
+// ******** FUNCTIONS ******** //
 
 // Function to handle panel state based on button and screen size
 function handlePanelState(button, isActive, isSmallScreen) {
@@ -40,13 +57,4 @@ function openOrClosePanels() {
     const isActive = button.classList.contains("accordion__button--active");
     handlePanelState(button, isActive, isSmallScreen);
   }
-}
-
-// Toggle panel open or close on click
-for (let i = 0; i < menuAccordion.length; i++) {
-  menuAccordion[i].addEventListener("click", function () {
-    this.classList.toggle("accordion__button--active");
-    const isActive = this.classList.contains("accordion__button--active");
-    handlePanelState(this, isActive, true); // Always handle click events as small screen actions
-  });
 }

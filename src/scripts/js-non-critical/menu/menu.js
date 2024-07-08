@@ -1,5 +1,35 @@
 'use strict';
 
+// ******** VARIABLES ******** //
+
+const pastaTab = document.getElementById("pasta-tab");
+const riceTab = document.getElementById("rice-tab");
+const sidesTab = document.getElementById("sides-tab");
+
+
+// ******** EVENT LISTENERS ******** //
+
+pastaTab.addEventListener("click", (event) => {
+  openMenu(event, "pasta-menu");
+});
+
+riceTab.addEventListener("click", (event) => {
+  openMenu(event, "rice-menu");
+});
+
+sidesTab.addEventListener("click", (event) => {
+  openMenu(event, "sides-menu");
+});
+
+
+// ******** INITIALIZATION ******** //
+
+// Automatically click the tab with the ID "pasta-tab" to initialize the menu on page load
+pastaTab.click();
+
+
+// ******** FUNCTIONS ******** //
+
 // Function to open a menu based on a tab click event
 function openMenu(event, menuName) {
   let i, menutabs, menus;
@@ -22,6 +52,3 @@ function openMenu(event, menuName) {
   // Display the selected menu panel
   document.getElementById(menuName).style.display = "grid";
 }
-
-// Automatically click the tab with the ID "pasta-tab" to initialize the menu on page load
-document.getElementById("pasta-tab").click();

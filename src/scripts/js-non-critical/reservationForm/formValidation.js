@@ -1,5 +1,7 @@
 'use strict';
 
+// ******** EVENT LISTENERS ******** //
+
 // First form validation on clicking the submit button
 submitButton.addEventListener('click', (event) => {
 
@@ -99,6 +101,9 @@ submitButton.addEventListener('click', (event) => {
     dateInput.addEventListener('input', dateInputEvent);
     timeInput.addEventListener('input', timeInputEvent);
 });
+
+
+// ******** FUNCTIONS ******** //
 
 // Function to continuously validate name input after first submission
 function nameInputEvent() {

@@ -2,15 +2,23 @@
 
 // Set default time for time picker
 
+// ******** INITIALIZATION ******** //
+
 // Generate time options when the page loads
 generateTimeOptions();
-
-// Add event listener to date input to generate time options
-dateInput.addEventListener('input', generateTimeOptions);
 
 // Update default date and time every minute
 // to ensure the booking time is not outdated
 setInterval(updateAtSpecificTimes, 60 * 1000);
+
+
+// ******** EVENT LISTENERS ******** //
+
+// Add event listener to date input to generate time options
+dateInput.addEventListener('input', generateTimeOptions);
+
+
+// ******** FUNCTIONS ******** //
 
 // Helper function to generate time options for a specific range
 function generateOptionsForRange(endHour, currentHour, currentMinute) {

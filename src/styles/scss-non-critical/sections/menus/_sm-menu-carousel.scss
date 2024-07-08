@@ -1,8 +1,12 @@
 @use '../../../scss-common-partials/functions' as f;
 @use '../../../scss-common-partials/mixins' as *;
 
+// variable solely for carousel use
+$size-of-dot: 0.75rem;
+
 /* Slideshow container */
-.carousel__track-container {
+.carousel {
+    // .carousel__track-container {
     position: relative;
     margin: auto;
     margin-top: f.rem(25);
@@ -104,6 +108,12 @@
     align-items: center;
 }
 
+.carousel__progress-list {
+    display: flex;
+    flex-direction: row;
+    min-width: f.rem(110);
+}
+
 .carousel__pause-button,
 .carousel__play-button {
     border: none;
@@ -116,53 +126,34 @@
     display: none;
 }
 
-.carousel__progress-container {
-    cursor: pointer;
-    height: 0.75rem;
-    display: block;
+.carousel__progress-list>* {
     border: none;
-    background-color: transparent;
-    margin: 0 5px;
-    padding: 0;
-    // padding-top: 1rem;
-    // width: 0.75rem;
+    display: block;
 }
 
-.carousel__progress-container.current-container {
+.carousel__progress-container {
+    cursor: pointer;
     margin: 0 5px;
     padding: 0;
-    cursor: pointer;
-    max-width: 3.5rem;
-    height: 0.75rem;
-    width: 100%;
-    display: block;
-    border: none;
-    border-radius: 0.75rem;
-    background-color: rgb(252, 222, 185);
     overflow: hidden;
 }
 
 .carousel__progress-bar {
-    display: block;
     margin: 0;
     padding: 0;
-    height: 0.75rem;
-    width: 0.75rem;
-    background-color: rgb(252, 222, 185);
+    height: $size-of-dot;
+    width: $size-of-dot;
     border-radius: 100%;
-    border: none;
 }
 
-.carousel__progress-bar.current-bar {
-    display: block;
-    margin: 0;
-    padding: 0;
-    width: 1%;
-    padding: 0;
-    border-radius: 0.75px;
-    background-color: rgb(195, 129, 84);
+.current-container {
+    max-width: 3.5rem; // 3.5 seconds
+    width: 100%;
+    height: $size-of-dot;
+    border-radius: $size-of-dot;
 }
 
-.carousel__progress-bar.finished-bar {
-    background-color: rgb(195, 129, 84);
+.current-bar {
+    width: 0%;
+    border-radius: $size-of-dot;
 }

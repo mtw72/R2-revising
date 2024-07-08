@@ -1,12 +1,15 @@
 'use strict';
 
+// ******** VARIABLES ******** //
+
 // Get the elements inside the navbar and the home section
 var navbar = document.getElementById("navbar");
 var navbarToggler = document.querySelector('.navbar__toggler');
 var navList = document.querySelector('.navbar__collapse');
 var navLinks = document.querySelectorAll('.navbar__nav-link');
-var findusLink = document.getElementById('findus-link');
 var home = document.getElementById("home");
+
+// ******** EVENT LISTENERS ******** //
 
 // Show or hide the collapsible navbar when toggler is clicked
 navbarToggler.addEventListener('click', function (event) {
@@ -36,7 +39,7 @@ document.addEventListener('click', closeNavbar);
 // For keyboard user, close the navbar if the key "TAB" is pressed
 // let the navbar stay open if the key "SHIFT" + "TAB" are pressed
 // Close the navbar on "TAB" key press
-findusLink.addEventListener('keydown', function (event) {
+navLinks[navLinks.length - 1].addEventListener('keydown', function (event) {
   if (!event.shiftKey && event.key === 'Tab') {
     closeNavbar();
   }
@@ -66,6 +69,8 @@ window.addEventListener('scroll', debounce(function () {
   }
   prevScrollPos = currentScrollPos;
 }, 50));
+
+// ******** FUNCTIONS ******** //
 
 // Debounce function
 function debounce(func, wait) {
@@ -154,14 +159,29 @@ function checkScreenSize() {
 }
 'use strict';
 
+// ******** VARIABLES ******** //
+
 // Get all elements with the class "accordion__button"
 var menuAccordion = document.getElementsByClassName("accordion__button");
+
+// ******** EVENT LISTENERS ******** //
 
 // Add event listener for window load to open active panels
 window.addEventListener('load', openOrClosePanels);
 
 // Add event listener for window resize to open active panels or remove aria attributes
 window.addEventListener('resize', openOrClosePanels);
+
+// Add event listener to the menu accordion to toggle panel open or close
+for (var i = 0; i < menuAccordion.length; i++) {
+  menuAccordion[i].addEventListener("click", function () {
+    this.classList.toggle("accordion__button--active");
+    var isActive = this.classList.contains("accordion__button--active");
+    handlePanelState(this, isActive, true); // Always handle click events as small screen actions
+  });
+}
+
+// ******** FUNCTIONS ******** //
 
 // Function to handle panel state based on button and screen size
 function handlePanelState(button, isActive, isSmallScreen) {
@@ -187,73 +207,113 @@ function handlePanelState(button, isActive, isSmallScreen) {
 // Function to open active panels when window width is <= 450px
 function openOrClosePanels() {
   var isSmallScreen = window.innerWidth <= 450;
-  for (var i = 0; i < menuAccordion.length; i++) {
-    var button = menuAccordion[i];
+  for (var _i = 0; _i < menuAccordion.length; _i++) {
+    var button = menuAccordion[_i];
     var isActive = button.classList.contains("accordion__button--active");
     handlePanelState(button, isActive, isSmallScreen);
   }
 }
-
-// Toggle panel open or close on click
-for (var i = 0; i < menuAccordion.length; i++) {
-  menuAccordion[i].addEventListener("click", function () {
-    this.classList.toggle("accordion__button--active");
-    var isActive = this.classList.contains("accordion__button--active");
-    handlePanelState(this, isActive, true); // Always handle click events as small screen actions
-  });
-}
 'use strict';
 
-//Carousel for small & medium menu
+// Carousel for small & medium menu
+
+// ******** VARIABLES ******** //
+
+// Set the time for autoplay
+var time = 3.5; //3.5 seconds
+var timeInterval = time * 1000 / 100;
 
 // Get the elements in carousel
+var carouselTrack = document.getElementById("carousel__track");
 var slides = document.getElementsByClassName("carousel__slide");
+var prevButton = document.querySelector(".carousel__prev-button");
+var nextButton = document.querySelector(".carousel__next-button");
 var playButton = document.querySelector(".carousel__play-button");
 var pauseButton = document.querySelector(".carousel__pause-button");
+var progressList = document.querySelector(".carousel__progress-list");
 var progressContainers = document.getElementsByClassName("carousel__progress-container");
-var currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
 var progressBars = document.getElementsByClassName("carousel__progress-bar");
-var currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-var finishedProgressBars = document.getElementsByClassName("finished-bar");
 var bar1 = document.getElementById("bar1");
 var bar2 = document.getElementById("bar2");
 var bar3 = document.getElementById("bar3");
-var time = 3.5;
-var timeInterval = time * 1000 / 100;
+
+// Create variables for progress bar
+var currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
+var currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
 var width = 0,
   memo,
   dynamicFrame;
-var isPaused = false;
+var isPlay = true;
+
+// ******** INITIALIZATION ******** //
 
 // Initialize the slide index to the first slide
 var slideIndex = 1;
 showSlides(slideIndex);
 progressStart();
 
-// start the progress initially
-function progressStart() {
-  frame();
-  dynamicFrame = setInterval(frame, timeInterval);
-}
-function frame() {
-  var currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-  if (width < 100) {
-    width++;
-    currentProgressBar.style.width = width + "%";
-    memo = width;
-  } else {
-    clearInterval(dynamicFrame); // Clear the next round
-    currentProgressBar.style.width = "0.75rem";
-    slideIndex++; // Advance to the next slide
-    showSlides();
-    checkDotColor(slideIndex);
-    currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-    width = 0; // Reset width
-    currentProgressBar.style.width = width + "%";
-    memo = width;
-    progressStart();
+// ******** EVENT LISTENERS ******** //
+
+// Add event listeners to previous and next buttons
+prevButton.addEventListener("click", function () {
+  plusSlides(-1);
+});
+nextButton.addEventListener("click", function () {
+  plusSlides(1);
+});
+
+// Add event listeners to play and pause buttons
+pauseButton.addEventListener("click", function () {
+  progressPause();
+  togglePlayPauseButtons();
+});
+playButton.addEventListener("click", function () {
+  progressResume();
+  togglePlayPauseButtons();
+});
+
+// Add event listeners to progress list
+progressList.addEventListener('keydown', function (event) {
+  switch (event.key) {
+    case 'ArrowLeft':
+      plusSlides(-1);
+      currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
+      currentProgressContainer.focus();
+      break;
+    case 'ArrowRight':
+      plusSlides(1);
+      currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
+      currentProgressContainer.focus();
+      break;
+    case 'Tab':
+      event.preventDefault(); // Prevent default Tab behavior
+      if (event.shiftKey) {
+        // Handle Shift + Tab
+        if (playButton.classList.contains("hidden")) {
+          pauseButton.focus();
+        } else {
+          playButton.focus();
+        }
+      } else {
+        // Handle regular Tab
+        var nameInput = document.getElementById("name");
+        nameInput.focus();
+      }
+      break;
   }
+});
+
+// Add event listeners to each progress container
+var _loop = function _loop(i) {
+  progressContainers[i].addEventListener("click", function () {
+    currentSlide(1 + i);
+  });
+};
+for (var i = 0; i < progressContainers.length; i++) {
+  _loop(i);
 }
+
+// ******** FUNCTIONS ******** //
 
 // Function to display the slide corresponding to the given index 'n'
 function showSlides(n) {
@@ -267,106 +327,51 @@ function showSlides(n) {
   }
 
   // Hide all the slides by removing the 'current-slide' class
-  for (var i = 0; i < slides.length; i++) {
-    slides[i].classList.remove("current-slide");
-    progressContainers[i].classList.remove("current-container");
-    progressBars[i].classList.remove("current-bar");
-    slides[i].setAttribute('aria-current', 'false');
-    progressContainers[i].setAttribute('aria-current', 'false');
-    progressBars[i].setAttribute('aria-current', 'false');
+  for (var _i = 0; _i < slides.length; _i++) {
+    slides[_i].classList.remove("current-slide");
+    progressContainers[_i].classList.remove("current-container");
+    progressBars[_i].classList.remove("current-bar");
+    progressContainers[_i].setAttribute("aria-selected", "false");
+    progressContainers[_i].setAttribute("tab-index", "-1");
   }
 
   // Show the current slide by adding the 'current-slide' class, and setting 'aria-current' attribute to true
   slides[slideIndex - 1].classList.add("current-slide");
   progressContainers[slideIndex - 1].classList.add("current-container");
   progressBars[slideIndex - 1].classList.add("current-bar");
-  slides[slideIndex - 1].setAttribute('aria-current', 'true');
-  progressContainers[slideIndex - 1].setAttribute('aria-current', 'true');
-  progressBars[slideIndex - 1].setAttribute('aria-current', 'true');
-}
-function progressPause() {
-  isPaused = true;
-  clearInterval(dynamicFrame);
+  progressContainers[slideIndex - 1].setAttribute("aria-selected", "true");
+  progressContainers[slideIndex - 1].removeAttribute("tab-index", "-1");
 }
 
-// Ensure to reset the progress bar width when you resume
-function progressResume() {
-  var currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-  isPaused = false;
-  width = memo; // Restore the width from memo
+// Function to start the progress initially
+function progressStart() {
+  frame();
+  dynamicFrame = setInterval(frame, timeInterval);
+}
+
+// Function for the progress bar to advance
+function frame() {
+  currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
   if (width < 100) {
+    width++;
     currentProgressBar.style.width = width + "%";
-    progressStart();
+    memo = width;
   } else {
+    clearInterval(dynamicFrame); // Clear the coming round
     currentProgressBar.style.width = "0.75rem";
     slideIndex++; // Advance to the next slide
-    showSlides();
-    currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-    width = 0; // Reset width
-    currentProgressBar.style.width = width + "%";
-    memo = width;
+    showSlides(slideIndex);
+    checkDotColor(slideIndex);
+    resetProgressBar();
     progressStart();
+    carouselTrack.setAttribute("aria-live", "off");
   }
 }
 
-// Function to advance the slide by a given number 'n' (positive or negative)
-function plusSlides(n) {
-  var currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-  if (isPaused) {
-    clearInterval(dynamicFrame);
-    currentProgressBar.style.width = "0.75rem";
-    // Change the slide index and display the corresponding slide
-    showSlides(slideIndex += n);
-    checkDotColor(slideIndex);
-    currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-    width = 0; // Reset width
-    currentProgressBar.style.width = width + "%";
-    memo = width;
-  } else {
-    clearInterval(dynamicFrame);
-    currentProgressBar.style.width = "0.75rem";
-    // Change the slide index and display the corresponding slide
-    showSlides(slideIndex += n);
-    checkDotColor(slideIndex);
-    currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-    width = 0; // Reset width
-    currentProgressBar.style.width = width + "%";
-    memo = width;
-    progressStart();
-  }
-}
-
-// Function to display the slide corresponding to a given dot
-function currentSlide(n) {
-  var currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-  if (isPaused) {
-    clearInterval(dynamicFrame);
-    currentProgressBar.style.width = "0.75rem";
-    showSlides(slideIndex = n);
-    checkDotColor(slideIndex);
-    currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-    width = 0; // Reset width
-    currentProgressBar.style.width = width + "%";
-    memo = width;
-  } else {
-    // Set the slide index to 'n' and display the corresponding slide
-    clearInterval(dynamicFrame);
-    currentProgressBar.style.width = "0.75rem";
-    // Change the slide index and display the corresponding slide
-    showSlides(slideIndex = n);
-    checkDotColor(slideIndex);
-    currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
-    width = 0; // Reset width
-    currentProgressBar.style.width = width + "%";
-    memo = width;
-    progressStart();
-  }
-}
-
-// Change the dot color according to the slide position
+// Function to change the dot color according to the slide position
 function checkDotColor(slideIndex) {
-  for (var i = 0; i < progressBars.length; i++) {
-    progressBars[i].classList.remove("finished-bar");
+  for (var _i2 = 0; _i2 < progressBars.length; _i2++) {
+    progressBars[_i2].classList.remove("finished-bar");
   }
   if (slideIndex === 2) {
     bar1.classList.add("finished-bar");
@@ -377,28 +382,104 @@ function checkDotColor(slideIndex) {
   }
 }
 
-// Add event listener to pause button
-pauseButton.addEventListener("click", function () {
-  progressPause();
-  // Add the "hidden" class to the pause button
-  pauseButton.classList.add("hidden");
-  pauseButton.setAttribute('aria-hidden', 'true');
-  // Remove the "hidden" class from the play button
-  playButton.classList.remove("hidden");
-  playButton.setAttribute('aria-hidden', 'false');
+// Helper function to reset the progress bar
+function resetProgressBar() {
+  currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+  width = 0; // Reset width
+  currentProgressBar.style.width = width + "%";
+  memo = width;
+}
+
+// Function to pause the progress bar running
+function progressPause() {
+  carouselTrack.setAttribute("aria-live", "polite");
+  isPlay = false;
+  clearInterval(dynamicFrame);
+}
+
+// Function to resume the progress bar running
+function progressResume() {
+  carouselTrack.setAttribute("aria-live", "off");
+  isPlay = true;
+  currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+  width = memo; // Restore the width from memo
+  if (width < 100) {
+    currentProgressBar.style.width = width + "%";
+    progressStart();
+  } else {
+    currentProgressBar.style.width = "0.75rem";
+    slideIndex++; // Advance to the next slide
+    showSlides(slideIndex);
+    resetProgressBar();
+    progressStart();
+  }
+}
+
+// Helper function to pre-update the carousel initiated by user
+function preUpdateByUser() {
+  clearInterval(dynamicFrame);
+  carouselTrack.setAttribute("aria-live", "polite");
+  currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+  currentProgressBar.style.width = "0.75rem";
+}
+
+// Function to advance the slide by a given number 'n' (positive or negative)
+function plusSlides(n) {
+  preUpdateByUser();
+  slideIndex += n;
+  showSlides(slideIndex);
+  postUpdateByUser();
+}
+
+// Function to display the slide corresponding to a given dot
+function currentSlide(n) {
+  preUpdateByUser();
+  slideIndex = n;
+  showSlides(slideIndex);
+  postUpdateByUser();
+}
+
+// Helper function to post-update the carousel initiated by user
+function postUpdateByUser() {
+  checkDotColor(slideIndex);
+  resetProgressBar();
+  if (isPlay) {
+    progressStart();
+  }
+}
+
+// Function to toggle play/pause button visibility and aria-hidden attribute
+function togglePlayPauseButtons() {
+  playButton.classList.toggle("hidden");
+  pauseButton.classList.toggle("hidden");
+  playButton.setAttribute('aria-hidden', playButton.classList.contains("hidden"));
+  pauseButton.setAttribute('aria-hidden', pauseButton.classList.contains("hidden"));
+}
+'use strict';
+
+// ******** VARIABLES ******** //
+var pastaTab = document.getElementById("pasta-tab");
+var riceTab = document.getElementById("rice-tab");
+var sidesTab = document.getElementById("sides-tab");
+
+// ******** EVENT LISTENERS ******** //
+
+pastaTab.addEventListener("click", function (event) {
+  openMenu(event, "pasta-menu");
+});
+riceTab.addEventListener("click", function (event) {
+  openMenu(event, "rice-menu");
+});
+sidesTab.addEventListener("click", function (event) {
+  openMenu(event, "sides-menu");
 });
 
-// Add event listener to play button
-playButton.addEventListener("click", function () {
-  progressResume();
-  // Add the "hidden" class to the pause button
-  playButton.classList.add("hidden");
-  playButton.setAttribute('aria-hidden', 'true');
-  // Remove the "hidden" class from the play button
-  pauseButton.classList.remove("hidden");
-  pauseButton.setAttribute('aria-hidden', 'false');
-});
-'use strict';
+// ******** INITIALIZATION ******** //
+
+// Automatically click the tab with the ID "pasta-tab" to initialize the menu on page load
+pastaTab.click();
+
+// ******** FUNCTIONS ******** //
 
 // Function to open a menu based on a tab click event
 function openMenu(event, menuName) {
@@ -421,10 +502,9 @@ function openMenu(event, menuName) {
   // Display the selected menu panel
   document.getElementById(menuName).style.display = "grid";
 }
-
-// Automatically click the tab with the ID "pasta-tab" to initialize the menu on page load
-document.getElementById("pasta-tab").click();
 'use strict';
+
+// ******** FORM VARIABLES ******** //
 
 // Get the form elements
 var reservationForm = document.getElementById("reservation-form");
@@ -467,6 +547,8 @@ var messageValue = document.getElementById("optional-message-value");
 // If the cutoff time has yet to be reached, set today as default date
 // If the cutoff time has been reached, set tomorrow as default date
 
+// ******** VARIABLES ******** //
+
 // Get date of today
 var dateOfToday = new Date();
 var today = getFormattedDate(dateOfToday);
@@ -474,6 +556,13 @@ var today = getFormattedDate(dateOfToday);
 // Get date of tomorrow
 var dateOfTmr = new Date(new Date().setDate(dateOfToday.getDate() + 1));
 var tomorrow = getFormattedDate(dateOfTmr);
+
+// ******** INITIALIZATION ******** //
+
+// Generate default date when the page loads
+generateDefaultDate();
+
+// ******** FUNCTIONS ******** //
 
 // Helper function to pad single digit numbers with leading zero
 function pad(number) {
@@ -488,10 +577,7 @@ function getFormattedDate(date) {
   return yyyy + "-" + pad(mm) + "-" + pad(dd);
 }
 
-// Generate default date when the page loads
-generateDefaultDate();
-
-// Set default date (.value) and prevent choosing invalid dates (.min)
+// Function to set default date (.value) and prevent choosing invalid dates (.min)
 function generateDefaultDate() {
   var tdyDay = dateOfToday.getDay();
   var tdyHour = dateOfToday.getHours();
@@ -529,15 +615,21 @@ function generateDefaultDate() {
 
 // Set default time for time picker
 
+// ******** INITIALIZATION ******** //
+
 // Generate time options when the page loads
 generateTimeOptions();
-
-// Add event listener to date input to generate time options
-dateInput.addEventListener('input', generateTimeOptions);
 
 // Update default date and time every minute
 // to ensure the booking time is not outdated
 setInterval(updateAtSpecificTimes, 60 * 1000);
+
+// ******** EVENT LISTENERS ******** //
+
+// Add event listener to date input to generate time options
+dateInput.addEventListener('input', generateTimeOptions);
+
+// ******** FUNCTIONS ******** //
 
 // Helper function to generate time options for a specific range
 function generateOptionsForRange(endHour, currentHour, currentMinute) {
@@ -618,6 +710,8 @@ function updateAtSpecificTimes() {
 }
 'use strict';
 
+// ******** EVENT LISTENERS ******** //
+
 // Add event listeners to option elements to change the text color to solid black color
 guestNumberInput.addEventListener('change', function () {
   selectOption(guestNumberInput);
@@ -625,6 +719,8 @@ guestNumberInput.addEventListener('change', function () {
 timeInput.addEventListener('change', function () {
   selectOption(timeInput);
 });
+
+// ******** FUNCTIONS ******** //
 
 // Function to change the text color of selected option
 function selectOption(selectedElement) {
@@ -644,19 +740,21 @@ function selectOption(selectedElement) {
 // 2. When input is detected, change the text to solid color
 // 3. When it is empty and loses focus, reset the placeholder
 
-// Add an event listener to clear placeholder when on focus
+// ******** EVENT LISTENERS ******** //
+
+// Clear placeholder when on focus
 messageInput.addEventListener('focus', function () {
   if (messageInput.value.trim() === placeholderText) {
     messageInput.value = ''; // Clear the text
   }
 });
 
-// Add an event listener to change color of messageInput when user inputs
+// Change color of messageInput when user inputs
 messageInput.addEventListener('input', function () {
   messageInput.classList.toggle('input', messageInput.value.trim() !== '');
 });
 
-// Add an event listener to reset the placeholder if the messageInput is empty when it loses focus
+// Reset the placeholder if the messageInput is empty when it loses focus
 messageInput.addEventListener('blur', function () {
   if (messageInput.value.trim() === '') {
     messageInput.value = placeholderText;
@@ -664,6 +762,8 @@ messageInput.addEventListener('blur', function () {
   }
 });
 'use strict';
+
+// ******** EVENT LISTENERS ******** //
 
 // First form validation on clicking the submit button
 submitButton.addEventListener('click', function (event) {
@@ -762,6 +862,8 @@ submitButton.addEventListener('click', function (event) {
   dateInput.addEventListener('input', dateInputEvent);
   timeInput.addEventListener('input', timeInputEvent);
 });
+
+// ******** FUNCTIONS ******** //
 
 // Function to continuously validate name input after first submission
 function nameInputEvent() {
@@ -863,6 +965,11 @@ function timeInputEvent() {
 }
 'use strict';
 
+// ******** EVENT LISTENERS ******** //
+
+// Open the modal when the user clicks the form submit button
+submitButton.addEventListener("click", openModal);
+
 // Submit form upon confirmation of information
 confirmButton.addEventListener("click", submitForm);
 
@@ -872,6 +979,8 @@ cancelButton.addEventListener("click", closeMessage);
 
 // Add an event listener to the window to close the message
 window.addEventListener('keydown', closeMessageByEsc);
+
+// ******** FUNCTIONS ******** //
 
 // Function to open the modal when the user clicks the form submit button
 function openModal(event) {

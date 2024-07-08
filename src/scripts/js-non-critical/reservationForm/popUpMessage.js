@@ -1,5 +1,10 @@
 'use strict';
 
+// ******** EVENT LISTENERS ******** //
+
+// Open the modal when the user clicks the form submit button
+submitButton.addEventListener("click", openModal);
+
 // Submit form upon confirmation of information
 confirmButton.addEventListener("click", submitForm);
 
@@ -9,6 +14,9 @@ cancelButton.addEventListener("click", closeMessage);
 
 // Add an event listener to the window to close the message
 window.addEventListener('keydown', closeMessageByEsc);
+
+
+// ******** FUNCTIONS ******** //
 
 // Function to open the modal when the user clicks the form submit button
 function openModal(event) {

@@ -52,7 +52,7 @@
   </noscript> -->
 
 
-  <!-- <link rel="stylesheet" href="./dist/styles/googlefont.css">
+  <link rel="stylesheet" href="./dist/styles/googlefont.css">
   <link rel="stylesheet" href="./dist/styles/loader.css">
   <script src="./dist/scripts/critical-modern-script.js"></script>
 
@@ -62,13 +62,13 @@
     onload="this.onload=null;this.rel='stylesheet'">
 
   <script defer src="./dist/scripts/non-critical-modern-script.js"></script>
-  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.js"></script> -->
+  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.js"></script>
 
 
 
 
 
-  <link rel="stylesheet" href="./dist/styles/googlefont.min.css">
+  <!-- <link rel="stylesheet" href="./dist/styles/googlefont.min.css">
   <link rel="stylesheet" href="./dist/styles/loader.min.css">
   <script src="./dist/scripts/critical-modern-script.min.js"></script>
 
@@ -78,7 +78,7 @@
     onload="this.onload=null;this.rel='stylesheet'">
 
   <script defer src="./dist/scripts/non-critical-modern-script.min.js"></script>
-  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.min.js"></script>
+  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.min.js"></script> -->
 
 </head>
 
@@ -118,8 +118,7 @@
                 <a class="navbar__nav-link" href="#reservation" role="menuitem">Reservation</a>
               </li>
               <li class="navbar__nav-item" role="presentation">
-                <a class="navbar__nav-link" href="#findus" role="menuitem" id="findus-link">Find
-                  Us</a>
+                <a class="navbar__nav-link" href="#findus" role="menuitem">Find Us</a>
             </ul>
           </div>
         </div>
@@ -155,7 +154,7 @@
         <h2>MENU</h2>
         <div class="accordion">
           <!-- accordion content for small menu -->
-          <button type="button" class="accordion__button accordion__button--active" aria-controls="pasta-panel"
+          <button class="accordion__button accordion__button--active" type="button" aria-controls="pasta-panel"
             id="pasta-button">
             PASTA
           </button>
@@ -170,7 +169,7 @@
             </div>
           </div>
 
-          <button type="button" class="accordion__button accordion__button--active" aria-controls="rice-panel"
+          <button class="accordion__button accordion__button--active" type="button" aria-controls="rice-panel"
             id="rice-button">
             RICE
           </button>
@@ -185,7 +184,7 @@
             </div>
           </div>
 
-          <button type="button" class="accordion__button accordion__button--active" aria-controls="sides-panel"
+          <button class="accordion__button accordion__button--active" type="button" aria-controls="sides-panel"
             id="sides-button">
             SIDES
           </button>
@@ -204,16 +203,14 @@
         <div class="menu">
           <!-- menu content for medium to large menu -->
           <div class="menu__tabs" role="tablist" aria-label="Menu-tabs">
-            <button type="button" onclick="openMenu(event, 'pasta-menu');" class="menu__tab menu__tab--active"
-              role="tab" aria-controls="pasta-menu" id="pasta-tab">
+            <button class="menu__tab menu__tab--active" type="button" role="tab" aria-controls="pasta-menu"
+              id="pasta-tab">
               PASTA
             </button>
-            <button type="button" onclick="openMenu(event, 'rice-menu');" class="menu__tab" role="tab"
-              aria-controls="rice-menu" id="rice-tab">
+            <button class="menu__tab" type="button" role="tab" aria-controls="rice-menu" id="rice-tab">
               RICE
             </button>
-            <button type="button" onclick="openMenu(event, 'sides-menu');" class="menu__tab" role="tab"
-              aria-controls="sides-menu" id="sides-tab">
+            <button class="menu__tab" type="button" role="tab" aria-controls="sides-menu" id="sides-tab">
               SIDES
             </button>
           </div>
@@ -300,46 +297,44 @@
           </div>
         </div>
 
+        <!-- carousel content for small to medium menu -->
         <div class="carousel" aria-roledescription="carousel">
-          <!-- carousel content for small to medium menu -->
-          <div class="carousel__track-container">
-            <div id="carousel__track">
-              <!-- images with caption text -->
-              <div class="carousel__slide" id="slide1" role="tabpanel" aria-roledescription="slide"
-                aria-label="Slide 1 of 3">
-                <img class="carousel__image" src="./dist/assets/images/salmon-spaghetti.webp"
-                  onerror="this.onerror=null; this.src='./dist/assets/images/salmon-spaghetti.jpeg';"
-                  alt="Salmon Spaghetti" loading="lazy">
-                <div class="carousel__image-description">Salmon Spaghetti</div>
-              </div>
-
-              <div class="carousel__slide" id="slide2" role="tabpanel" aria-roledescription="slide"
-                aria-label="Slide 2 of 3">
-                <img class="carousel__image" src="./dist/assets/images/thai-pineapple-fried-rice.webp"
-                  onerror="this.onerror=null; this.src='./dist/assets/images/thai-pineapple-fried-rice.jpeg';"
-                  alt="Thai Pineapple Fried Rice" loading="lazy">
-                <div class="carousel__image-description">Thai Pineapple Fried Rice</div>
-              </div>
-
-              <div class="carousel__slide" id="slide3" role="tabpanel" aria-roledescription="slide"
-                aria-label="Slide 3 of 3">
-                <img class="carousel__image" src="./dist/assets/images/satay-chicken-skewers.webp"
-                  onerror="this.onerror=null; this.src='./dist/assets/images/satay-chicken-skewers.jpeg';"
-                  alt="Satay Chicken Skewers" loading="lazy">
-                <div class="carousel__image-description">Satay Chicken Skewers</div>
-              </div>
+          <div id="carousel__track" aria-live="off">
+            <!-- images with caption text -->
+            <div class="carousel__slide" id="carousel-slide1" role="tabpanel" aria-roledescription="slide"
+              aria-label="Slide 1 of 3">
+              <img class="carousel__image" src="./dist/assets/images/salmon-spaghetti.webp"
+                onerror="this.onerror=null; this.src='./dist/assets/images/salmon-spaghetti.jpeg';"
+                alt="Salmon Spaghetti" loading="lazy">
+              <div class="carousel__image-description">Salmon Spaghetti</div>
             </div>
 
-            <!-- Next and previous buttons -->
-            <button class="carousel__prev-button" onclick="plusSlides(-1)" type="button" aria-label="previous slide"
-              aria-controls="carousel__track">&#10094;</button>
-            <button class="carousel__next-button" onclick="plusSlides(1)" type="button" aria-label="next slide"
-              aria-controls="carousel__track">&#10095;</button>
+            <div class="carousel__slide" id="carousel-slide2" role="tabpanel" aria-roledescription="slide"
+              aria-label="Slide 2 of 3">
+              <img class="carousel__image" src="./dist/assets/images/thai-pineapple-fried-rice.webp"
+                onerror="this.onerror=null; this.src='./dist/assets/images/thai-pineapple-fried-rice.jpeg';"
+                alt="Thai Pineapple Fried Rice" loading="lazy">
+              <div class="carousel__image-description">Thai Pineapple Fried Rice</div>
+            </div>
+
+            <div class="carousel__slide" id="carousel-slide3" role="tabpanel" aria-roledescription="slide"
+              aria-label="Slide 3 of 3">
+              <img class="carousel__image" src="./dist/assets/images/satay-chicken-skewers.webp"
+                onerror="this.onerror=null; this.src='./dist/assets/images/satay-chicken-skewers.jpeg';"
+                alt="Satay Chicken Skewers" loading="lazy">
+              <div class="carousel__image-description">Satay Chicken Skewers</div>
+            </div>
           </div>
+
+          <!-- Next and previous buttons -->
+          <button class="carousel__prev-button" type="button" aria-label="Go to the previous slide"
+            aria-controls="carousel__track">&#10094;</button>
+          <button class="carousel__next-button" type="button" aria-label="Go to the next slide"
+            aria-controls="carousel__track">&#10095;</button>
 
           <div class="carousel__bottom-control">
             <!-- Play and pause buttons -->
-            <button type="button" class="carousel__pause-button" aria-label="Slider control - Pause"
+            <button class="carousel__pause-button" type="button" aria-label="Stop Automatic Slide Show"
               aria-hidden="false">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -348,7 +343,7 @@
                 </path>
               </svg>
             </button>
-            <button type="button" class="carousel__play-button hidden" aria-label="Slider control - Play"
+            <button class="carousel__play-button hidden" type="button" aria-label="Start Automatic Slide Show"
               aria-hidden="true">
               <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -357,31 +352,24 @@
                 </path>
               </svg>
             </button>
-            <!-- Dynamic progress bar -->
-            <button class="carousel__progress-container current-container" onclick="currentSlide(1)" type="button"
-              role="tab" aria-label="Slide 1" aria-controls="slide1">
-              <div class="carousel__progress-bar" id="bar1" current-bar>&nbsp;</div>
-            </button>
-            <button class="carousel__progress-container" onclick="currentSlide(2)" type="button" role="tab"
-              aria-label="Slide 2" aria-controls="slide2">
-              <div class="carousel__progress-bar" id="bar2">&nbsp;</div>
-            </button>
-            <button class="carousel__progress-container" onclick="currentSlide(3)" type="button" role="tab"
-              aria-label="Slide 3" aria-controls="slide3">
-              <div class="carousel__progress-bar" id="bar3">&nbsp;</div>
-            </button>
-          </div>
 
-          <!-- The dots/circles -->
-          <!-- <div class="carousel__progress-group" role="tablist" aria-label="Slides">
-            <button class="carousel__progress" onclick="currentSlide(1)" type="button" role="tab" aria-label="Slide 1"
-              aria-controls="slide1"></button>
-            <button class="carousel__progress" onclick="currentSlide(2)" type="button" role="tab" aria-label="Slide 2"
-              aria-controls="slide2"></button>
-            <button class="carousel__progress" onclick="currentSlide(3)" type="button" role="tab" aria-label="Slide 3"
-              aria-controls="slide3"></button>
-          </div> -->
-          <!-- </div> -->
+            <!-- Dynamic progress bar -->
+            <div class="carousel__progress-list" role="tablist" aria-label="Slides" tabindex="0">
+              <button class="carousel__progress-container" type="button" role="tab" aria-label="Slide 1"
+                aria-controls="carousel-slide1">
+                <div class="carousel__progress-bar" id="bar1">&nbsp;</div>
+              </button>
+              <button class="carousel__progress-container" type="button" role="tab" aria-label="Slide 2"
+                aria-controls="carousel-slide2">
+                <div class="carousel__progress-bar" id="bar2">&nbsp;</div>
+              </button>
+              <button class="carousel__progress-container" type="button" role="tab" aria-label="Slide 3"
+                aria-controls="carousel-slide3">
+                <div class="carousel__progress-bar" id="bar3">&nbsp;</div>
+              </button>
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -404,7 +392,7 @@
           </div>
 
           <!-- reservation form -->
-          <form action="./index.html" onsubmit="openModal(event)" id="reservation-form">
+          <form action="./index.html" id="reservation-form">
             <!-- <form action="form.php" onsubmit="openModal(event)" method="post"> -->
 
             <div class="reservation__form">
@@ -510,10 +498,10 @@
                 <li id="optional-message-value"></li>
               </ul>
               <div class="confirmation-message__bottom-buttons">
-                <button type="button"
-                  class="confirmation-message__bottom-button confirmation-message__bottom-button--cancel">Cancel</button>
-                <button type="button"
-                  class="confirmation-message__bottom-button confirmation-message__bottom-button--confirm">Confirm</button>
+                <button class="confirmation-message__bottom-button confirmation-message__bottom-button--cancel"
+                  type="button">Cancel</button>
+                <button class="confirmation-message__bottom-button confirmation-message__bottom-button--confirm"
+                  type="button">Confirm</button>
               </div>
             </div>
           </div>
