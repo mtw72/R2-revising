@@ -72,6 +72,18 @@ progressList.addEventListener('keydown', (event) => {
       currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
       currentProgressContainer.focus();
       break;
+    case 'Home':
+      event.preventDefault();
+      currentSlide(1);
+      currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
+      currentProgressContainer.focus();
+      break;
+    case 'End':
+      event.preventDefault();
+      currentSlide(3);
+      currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
+      currentProgressContainer.focus();
+      break;
     case 'Tab':
       event.preventDefault(); // Prevent default Tab behavior
       if (event.shiftKey) {

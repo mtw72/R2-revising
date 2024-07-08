@@ -1,5 +1,7 @@
 'use strict';
 
+// the navbar is gone when the user scroll down and the screen is re - sized
+
 // ******** VARIABLES ******** //
 
 // Get the elements inside the navbar and the home section

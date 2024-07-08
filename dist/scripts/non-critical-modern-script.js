@@ -1,5 +1,7 @@
 'use strict';
 
+// the navbar is gone when the user scroll down and the screen is re - sized
+
 // ******** VARIABLES ******** //
 
 // Get the elements inside the navbar and the home section
@@ -288,6 +290,18 @@ progressList.addEventListener('keydown', (event) => {
       break;
     case 'ArrowRight':
       plusSlides(1);
+      currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
+      currentProgressContainer.focus();
+      break;
+    case 'Home':
+      event.preventDefault();
+      currentSlide(1);
+      currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
+      currentProgressContainer.focus();
+      break;
+    case 'End':
+      event.preventDefault();
+      currentSlide(3);
       currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
       currentProgressContainer.focus();
       break;
