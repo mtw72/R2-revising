@@ -53,7 +53,6 @@ function frame() {
 
 // Function to display the slide corresponding to the given index 'n'
 function showSlides(n) {
-  let i;
 
   // If 'n' is greater than the number of slides or the current slide index is greater than the number of slides, reset to the first slide
   if (n > slides.length || slideIndex > slides.length) { slideIndex = 1 }
@@ -61,7 +60,7 @@ function showSlides(n) {
   if (n < 1) { slideIndex = slides.length }
 
   // Hide all the slides by removing the 'current-slide' class
-  for (i = 0; i < slides.length; i++) {
+  for (let i = 0; i < slides.length; i++) {
     slides[i].classList.remove("current-slide");
     progressContainers[i].classList.remove("current-container");
     progressBars[i].classList.remove("current-bar");
@@ -80,9 +79,7 @@ function showSlides(n) {
 }
 
 function progressPause() {
-  console.log(memo);
   isPaused = true;
-  console.log("paused:" + isPaused);
   clearInterval(dynamicFrame);
 }
 
@@ -90,7 +87,6 @@ function progressPause() {
 function progressResume() {
   let currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
   isPaused = false;
-  console.log("paused:" + isPaused);
   width = memo; // Restore the width from memo
   if (width < 100) {
     currentProgressBar.style.width = width + "%";
@@ -165,6 +161,7 @@ function currentSlide(n) {
   }
 }
 
+// Change the dot color according to the slide position
 function checkDotColor(slideIndex) {
   for (let i = 0; i < progressBars.length; i++) {
     progressBars[i].classList.remove("finished-bar");
