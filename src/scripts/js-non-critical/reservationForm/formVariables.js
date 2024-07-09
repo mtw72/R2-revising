@@ -7,7 +7,7 @@ const reservationForm = document.getElementById("reservation-form");
 let submitButton = document.getElementById('formSumbitButton');
 let confirmationMessage = document.getElementById("confirmation-message");
 const closeButton = document.querySelector(".confirmation-message__close-button");
-const confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
+let confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
 const cancelButton = document.querySelector(".confirmation-message__bottom-button--cancel");
 let modalTitle = document.getElementById("modalTitle");
 

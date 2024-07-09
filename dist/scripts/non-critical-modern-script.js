@@ -535,7 +535,7 @@ const reservationForm = document.getElementById("reservation-form");
 let submitButton = document.getElementById('formSumbitButton');
 let confirmationMessage = document.getElementById("confirmation-message");
 const closeButton = document.querySelector(".confirmation-message__close-button");
-const confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
+let confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
 const cancelButton = document.querySelector(".confirmation-message__bottom-button--cancel");
 let modalTitle = document.getElementById("modalTitle");
 
@@ -995,10 +995,11 @@ function timeInputEvent() {
 
 // ******** EVENT LISTENERS ******** //
 
-// Verify the inputs before the confirmation message pops up
+// Submit form upon confirmation of information
+confirmButton.addEventListener("click", submitForm);
+
+// Add an event listeners to the submit button to verify the inputs before the confirmation message pops up
 submitButton.addEventListener('click', verifyInputs);
-
-
 
 submitButton.addEventListener('keydown', (event) => {
     switch (event.key) {
@@ -1011,10 +1012,7 @@ submitButton.addEventListener('keydown', (event) => {
     }
 })
 
-// Submit form upon confirmation of information
-confirmButton.addEventListener("click", submitForm);
-
-// Add an event listener to the close button to close the message
+// Add an event listeners to the close button to close the message
 closeButton.addEventListener("click", closeMessage);
 
 closeButton.addEventListener('keydown', (event) => {
@@ -1023,13 +1021,11 @@ closeButton.addEventListener('keydown', (event) => {
         case 'Enter':
             event.preventDefault();
             closeMessage();
-            submitButton = document.getElementById('formSumbitButton');
-            submitButton.focus();
             break;
     }
 })
 
-// Add an event listener to the cancel button to close the message
+// Add an event listeners to the cancel button to close the message
 cancelButton.addEventListener("click", closeMessage);
 
 cancelButton.addEventListener('keydown', (event) => {
@@ -1038,15 +1034,52 @@ cancelButton.addEventListener('keydown', (event) => {
         case 'Enter':
             event.preventDefault();
             closeMessage();
-            submitButton = document.getElementById('formSumbitButton');
-            submitButton.focus();
             break;
     }
 })
 
+// Keep the focus within the confirmation message when navigating by keyboard
+// modalTitle is the first focusable element
+// confirmButton is the last focusable element
+modalTitle.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case 'Tab':
+            if (event.shiftKey) {
+                // Handle Shift + Tab
+                event.preventDefault(); // Prevent default Tab behavior
+                confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
+                confirmButton.focus();
+            }
+            break;
+    }
+});
+
+confirmButton.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case 'Tab':
+            if (event.shiftKey) {
+                // Handle Shift + Tab
+                // Default setting
+            } else {
+                event.preventDefault(); // Prevent default Tab behavior
+                modalTitle = document.getElementById("modalTitle");
+                modalTitle.focus();
+            }
+            break;
+    }
+});
+
 // Add an event listener to the window to close the message
-window.addEventListener('keydown', closeMessageByEsc);
-//  close the message if shift+tab is pressed
+// If the confirmation message is popped up
+window.addEventListener('keydown', (event) => {
+    if (confirmationMessage.style.display === "flex") {
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            closeMessage();
+        }
+    }
+});
+
 
 // ******** FUNCTIONS ******** //
 
@@ -1147,15 +1180,10 @@ function submitForm() {
 // Function to close the message
 function closeMessage() {
     confirmationMessage = document.getElementById("confirmation-message");
+    submitButton = document.getElementById('formSumbitButton');
     confirmationMessage.style.display = "none";
     confirmationMessage.setAttribute('aria-modal', 'false');
-}
-
-// Function to close the message by hitting the "ESC" key
-function closeMessageByEsc(event) {
-    if (event.keyCode == 27) { // Check if the key pressed is 'esc'
-        closeMessage();
-    }
+    submitButton.focus();
 }
 'use strict';
 
