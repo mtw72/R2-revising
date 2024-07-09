@@ -1,18 +1,20 @@
 'use strict';
 
 // ******** EVENT LISTENERS ******** //
+// the event listener for the form validation is in the popUpMessage.js
 
-// First form validation on clicking the submit button
-submitButton.addEventListener('click', (event) => {
 
-    // If the input is incorrect or empty, 
-    // show the error message and attach relevant class (styling) and aria-attributes to the elements
+// ******** FUNCTIONS ******** //
+
+// Form validation on clicking or pressing the submit button
+// If the input is incorrect or empty, 
+// show the error message and attach relevant class (styling) and aria-attributes to the elements
+function validateUserImput() {
 
     //Validate name input
     const trimmedValue = nameInput.value.trim(); // Trim the input value
 
     if (nameInput.validity.patternMismatch || trimmedValue.length < 2 || nameInput.value === '') {
-        event.preventDefault(); // Prevent form submission if there are validation errors
         nameInput.classList.add('error-input');
         nameInput.setAttribute('aria-describedby', 'name-error');
         nameInput.setAttribute('aria-invalid', 'true');
@@ -24,7 +26,6 @@ submitButton.addEventListener('click', (event) => {
 
     //Validate phone number input
     if (phoneNumberInput.validity.patternMismatch || phoneNumberInput.value === '') {
-        event.preventDefault(); // Prevent form submission if there are validation errors
         phoneNumberInput.classList.add('error-input');
         phoneNumberInput.setAttribute('aria-describedby', 'phone-error');
         phoneNumberInput.setAttribute('aria-invalid', 'true');
@@ -36,7 +37,6 @@ submitButton.addEventListener('click', (event) => {
 
     //Validate email input
     if (emailInput.validity.patternMismatch || emailInput.value === '') {
-        event.preventDefault(); // Prevent form submission if there are validation errors
         emailInput.classList.add('error-input');
         emailInput.setAttribute('aria-describedby', 'email-error');
         emailInput.setAttribute('aria-invalid', 'true');
@@ -48,7 +48,6 @@ submitButton.addEventListener('click', (event) => {
 
     //Validate guest number input
     if (guestNumberInput.value === '') {
-        event.preventDefault(); // Prevent form submission if there are validation errors
         guestNumberInput.classList.add('error-input');
         guestNumberInput.setAttribute('aria-describedby', 'guest-number-error');
         guestNumberInput.setAttribute('aria-invalid', 'true');
@@ -65,7 +64,6 @@ submitButton.addEventListener('click', (event) => {
     const minDate = new Date(dateInput.min);
 
     if (selectedDate < minDate || selectedDate === '') {
-        event.preventDefault(); // Prevent form submission if there are validation errors
         dateInput.classList.add('error-input');
         dateInput.setAttribute('aria-describedby', 'date-error');
         dateInput.setAttribute('aria-invalid', 'true');
@@ -77,7 +75,6 @@ submitButton.addEventListener('click', (event) => {
 
     //Validate time input
     if (timeInput.value === '') {
-        event.preventDefault(); // Prevent form submission if there are validation errors
         timeInput.classList.add('error-input');
         timeInput.setAttribute('aria-describedby', 'time-error');
         timeInput.setAttribute('aria-invalid', 'true');
@@ -100,12 +97,9 @@ submitButton.addEventListener('click', (event) => {
     guestNumberInput.addEventListener('input', guestNumberInputEvent);
     dateInput.addEventListener('input', dateInputEvent);
     timeInput.addEventListener('input', timeInputEvent);
-});
+};
 
-
-// ******** FUNCTIONS ******** //
-
-// Function to continuously validate name input after first submission
+// Helper function to continuously validate name input after first submission
 function nameInputEvent() {
     const letterPattern = /^[A-Za-z\.' \-]+$/;
     const trimmedValue = nameInput.value.trim(); // Trim the input value
@@ -123,7 +117,7 @@ function nameInputEvent() {
     }
 }
 
-// Function to continuously validate phone number input after first submission
+// Helper function to continuously validate phone number input after first submission
 function phoneNumberInputEvent() {
     const numberPattern = /[0-9+]/g;
 
@@ -140,7 +134,7 @@ function phoneNumberInputEvent() {
     }
 }
 
-// Function to continuously validate email input after first submission
+// Helper function to continuously validate email input after first submission
 function emailInputEvent() {
     const emailPattern = /^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/;
 
@@ -157,7 +151,7 @@ function emailInputEvent() {
     }
 }
 
-// Function to continuously validate guest number input after first submission
+// Helper function to continuously validate guest number input after first submission
 function guestNumberInputEvent() {
     if (guestNumberInput.value === '') {
         guestNumberInput.classList.add('error-input');
@@ -172,7 +166,7 @@ function guestNumberInputEvent() {
     }
 }
 
-// Function to continuously validate date input after first submission
+// Helper function to continuously validate date input after first submission
 function dateInputEvent() {
     // Get the selected date from the date input field
     const selectedDate = new Date(dateInput.value);
@@ -192,7 +186,7 @@ function dateInputEvent() {
     }
 }
 
-// Function to continuously validate time input after first submission
+// Helper function to continuously validate time input after first submission
 function timeInputEvent() {
     if (timeInput.value === '') {
         timeInput.classList.add('error-input');

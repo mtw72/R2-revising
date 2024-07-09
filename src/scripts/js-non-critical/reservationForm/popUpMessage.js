@@ -2,25 +2,74 @@
 
 // ******** EVENT LISTENERS ******** //
 
-// Open the modal when the user clicks the form submit button
-submitButton.addEventListener("click", openModal);
+// Verify the inputs before the confirmation message pops up
+submitButton.addEventListener('click', verifyInputs);
+
+
+
+submitButton.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case ' ':
+        case 'Enter':
+            verifyInputs(event);
+            modalTitle = document.getElementById("modalTitle");
+            modalTitle.focus();
+            break;
+    }
+})
 
 // Submit form upon confirmation of information
 confirmButton.addEventListener("click", submitForm);
 
-// Add an event listener to the close button and cancel button to close the message
+// Add an event listener to the close button to close the message
 closeButton.addEventListener("click", closeMessage);
+
+closeButton.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case ' ':
+        case 'Enter':
+            event.preventDefault();
+            closeMessage();
+            submitButton = document.getElementById('formSumbitButton');
+            submitButton.focus();
+            break;
+    }
+})
+
+// Add an event listener to the cancel button to close the message
 cancelButton.addEventListener("click", closeMessage);
+
+cancelButton.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case ' ':
+        case 'Enter':
+            event.preventDefault();
+            closeMessage();
+            submitButton = document.getElementById('formSumbitButton');
+            submitButton.focus();
+            break;
+    }
+})
 
 // Add an event listener to the window to close the message
 window.addEventListener('keydown', closeMessageByEsc);
-
+//  close the message if shift+tab is pressed
 
 // ******** FUNCTIONS ******** //
 
+// Function to verify the inputs before the confirmation message pops up
+function verifyInputs(event) {
+    event.preventDefault();
+    validateUserImput();
+    if (nameError.style.display === "block" || phoneNumberError.style.display === "block" || emailError.style.display === "block" || guestNumberError.style.display === "block" || dateError.style.display === "block" || timeError.style.display === "block") {
+
+    } else {
+        openModal();
+    }
+}
+
 // Function to open the modal when the user clicks the form submit button
-function openModal(event) {
-    event.preventDefault(); // Prevent default form submission
+function openModal() {
     confirmationMessage.style.display = "flex";
     confirmationMessage.setAttribute('aria-modal', 'true');
 
@@ -104,6 +153,7 @@ function submitForm() {
 
 // Function to close the message
 function closeMessage() {
+    confirmationMessage = document.getElementById("confirmation-message");
     confirmationMessage.style.display = "none";
     confirmationMessage.setAttribute('aria-modal', 'false');
 }

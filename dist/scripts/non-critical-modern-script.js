@@ -530,11 +530,12 @@ function openMenu(event, menuName) {
 
 // Get the form elements
 const reservationForm = document.getElementById("reservation-form");
-const submitButton = document.getElementById('formSumbitButton');
-const confirmationMessage = document.getElementById("confirmation-message");
+let submitButton = document.getElementById('formSumbitButton');
+let confirmationMessage = document.getElementById("confirmation-message");
 const closeButton = document.querySelector(".confirmation-message__close-button");
 const confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
 const cancelButton = document.querySelector(".confirmation-message__bottom-button--cancel");
+let modalTitle = document.getElementById("modalTitle");
 
 // Get the form input elements
 let nameInput = document.getElementById("name");
@@ -789,18 +790,20 @@ messageInput.addEventListener('blur', () => {
 'use strict';
 
 // ******** EVENT LISTENERS ******** //
+// the event listener for the form validation is in the popUpMessage.js
 
-// First form validation on clicking the submit button
-submitButton.addEventListener('click', (event) => {
 
-    // If the input is incorrect or empty, 
-    // show the error message and attach relevant class (styling) and aria-attributes to the elements
+// ******** FUNCTIONS ******** //
+
+// Form validation on clicking or pressing the submit button
+// If the input is incorrect or empty, 
+// show the error message and attach relevant class (styling) and aria-attributes to the elements
+function validateUserImput() {
 
     //Validate name input
     const trimmedValue = nameInput.value.trim(); // Trim the input value
 
     if (nameInput.validity.patternMismatch || trimmedValue.length < 2 || nameInput.value === '') {
-        event.preventDefault(); // Prevent form submission if there are validation errors
         nameInput.classList.add('error-input');
         nameInput.setAttribute('aria-describedby', 'name-error');
         nameInput.setAttribute('aria-invalid', 'true');
@@ -812,7 +815,6 @@ submitButton.addEventListener('click', (event) => {
 
     //Validate phone number input
     if (phoneNumberInput.validity.patternMismatch || phoneNumberInput.value === '') {
-        event.preventDefault(); // Prevent form submission if there are validation errors
         phoneNumberInput.classList.add('error-input');
         phoneNumberInput.setAttribute('aria-describedby', 'phone-error');
         phoneNumberInput.setAttribute('aria-invalid', 'true');
@@ -824,7 +826,6 @@ submitButton.addEventListener('click', (event) => {
 
     //Validate email input
     if (emailInput.validity.patternMismatch || emailInput.value === '') {
-        event.preventDefault(); // Prevent form submission if there are validation errors
         emailInput.classList.add('error-input');
         emailInput.setAttribute('aria-describedby', 'email-error');
         emailInput.setAttribute('aria-invalid', 'true');
@@ -836,7 +837,6 @@ submitButton.addEventListener('click', (event) => {
 
     //Validate guest number input
     if (guestNumberInput.value === '') {
-        event.preventDefault(); // Prevent form submission if there are validation errors
         guestNumberInput.classList.add('error-input');
         guestNumberInput.setAttribute('aria-describedby', 'guest-number-error');
         guestNumberInput.setAttribute('aria-invalid', 'true');
@@ -853,7 +853,6 @@ submitButton.addEventListener('click', (event) => {
     const minDate = new Date(dateInput.min);
 
     if (selectedDate < minDate || selectedDate === '') {
-        event.preventDefault(); // Prevent form submission if there are validation errors
         dateInput.classList.add('error-input');
         dateInput.setAttribute('aria-describedby', 'date-error');
         dateInput.setAttribute('aria-invalid', 'true');
@@ -865,7 +864,6 @@ submitButton.addEventListener('click', (event) => {
 
     //Validate time input
     if (timeInput.value === '') {
-        event.preventDefault(); // Prevent form submission if there are validation errors
         timeInput.classList.add('error-input');
         timeInput.setAttribute('aria-describedby', 'time-error');
         timeInput.setAttribute('aria-invalid', 'true');
@@ -888,12 +886,9 @@ submitButton.addEventListener('click', (event) => {
     guestNumberInput.addEventListener('input', guestNumberInputEvent);
     dateInput.addEventListener('input', dateInputEvent);
     timeInput.addEventListener('input', timeInputEvent);
-});
+};
 
-
-// ******** FUNCTIONS ******** //
-
-// Function to continuously validate name input after first submission
+// Helper function to continuously validate name input after first submission
 function nameInputEvent() {
     const letterPattern = /^[A-Za-z\.' \-]+$/;
     const trimmedValue = nameInput.value.trim(); // Trim the input value
@@ -911,7 +906,7 @@ function nameInputEvent() {
     }
 }
 
-// Function to continuously validate phone number input after first submission
+// Helper function to continuously validate phone number input after first submission
 function phoneNumberInputEvent() {
     const numberPattern = /[0-9+]/g;
 
@@ -928,7 +923,7 @@ function phoneNumberInputEvent() {
     }
 }
 
-// Function to continuously validate email input after first submission
+// Helper function to continuously validate email input after first submission
 function emailInputEvent() {
     const emailPattern = /^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/;
 
@@ -945,7 +940,7 @@ function emailInputEvent() {
     }
 }
 
-// Function to continuously validate guest number input after first submission
+// Helper function to continuously validate guest number input after first submission
 function guestNumberInputEvent() {
     if (guestNumberInput.value === '') {
         guestNumberInput.classList.add('error-input');
@@ -960,7 +955,7 @@ function guestNumberInputEvent() {
     }
 }
 
-// Function to continuously validate date input after first submission
+// Helper function to continuously validate date input after first submission
 function dateInputEvent() {
     // Get the selected date from the date input field
     const selectedDate = new Date(dateInput.value);
@@ -980,7 +975,7 @@ function dateInputEvent() {
     }
 }
 
-// Function to continuously validate time input after first submission
+// Helper function to continuously validate time input after first submission
 function timeInputEvent() {
     if (timeInput.value === '') {
         timeInput.classList.add('error-input');
@@ -998,25 +993,74 @@ function timeInputEvent() {
 
 // ******** EVENT LISTENERS ******** //
 
-// Open the modal when the user clicks the form submit button
-submitButton.addEventListener("click", openModal);
+// Verify the inputs before the confirmation message pops up
+submitButton.addEventListener('click', verifyInputs);
+
+
+
+submitButton.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case ' ':
+        case 'Enter':
+            verifyInputs(event);
+            modalTitle = document.getElementById("modalTitle");
+            modalTitle.focus();
+            break;
+    }
+})
 
 // Submit form upon confirmation of information
 confirmButton.addEventListener("click", submitForm);
 
-// Add an event listener to the close button and cancel button to close the message
+// Add an event listener to the close button to close the message
 closeButton.addEventListener("click", closeMessage);
+
+closeButton.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case ' ':
+        case 'Enter':
+            event.preventDefault();
+            closeMessage();
+            submitButton = document.getElementById('formSumbitButton');
+            submitButton.focus();
+            break;
+    }
+})
+
+// Add an event listener to the cancel button to close the message
 cancelButton.addEventListener("click", closeMessage);
+
+cancelButton.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case ' ':
+        case 'Enter':
+            event.preventDefault();
+            closeMessage();
+            submitButton = document.getElementById('formSumbitButton');
+            submitButton.focus();
+            break;
+    }
+})
 
 // Add an event listener to the window to close the message
 window.addEventListener('keydown', closeMessageByEsc);
-
+//  close the message if shift+tab is pressed
 
 // ******** FUNCTIONS ******** //
 
+// Function to verify the inputs before the confirmation message pops up
+function verifyInputs(event) {
+    event.preventDefault();
+    validateUserImput();
+    if (nameError.style.display === "block" || phoneNumberError.style.display === "block" || emailError.style.display === "block" || guestNumberError.style.display === "block" || dateError.style.display === "block" || timeError.style.display === "block") {
+
+    } else {
+        openModal();
+    }
+}
+
 // Function to open the modal when the user clicks the form submit button
-function openModal(event) {
-    event.preventDefault(); // Prevent default form submission
+function openModal() {
     confirmationMessage.style.display = "flex";
     confirmationMessage.setAttribute('aria-modal', 'true');
 
@@ -1100,6 +1144,7 @@ function submitForm() {
 
 // Function to close the message
 function closeMessage() {
+    confirmationMessage = document.getElementById("confirmation-message");
     confirmationMessage.style.display = "none";
     confirmationMessage.setAttribute('aria-modal', 'false');
 }
