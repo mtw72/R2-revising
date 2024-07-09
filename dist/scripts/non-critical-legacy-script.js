@@ -279,25 +279,21 @@ progressList.addEventListener('keydown', function (event) {
   switch (event.key) {
     case 'ArrowLeft':
       plusSlides(-1);
-      currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
-      currentProgressContainer.focus();
+      focusProgress();
       break;
     case 'ArrowRight':
       plusSlides(1);
-      currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
-      currentProgressContainer.focus();
+      focusProgress();
       break;
     case 'Home':
       event.preventDefault();
       currentSlide(1);
-      currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
-      currentProgressContainer.focus();
+      focusProgress();
       break;
     case 'End':
       event.preventDefault();
       currentSlide(3);
-      currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
-      currentProgressContainer.focus();
+      focusProgress();
       break;
     case 'Tab':
       event.preventDefault(); // Prevent default Tab behavior
@@ -468,6 +464,12 @@ function togglePlayPauseButtons() {
   pauseButton.classList.toggle("hidden");
   playButton.setAttribute('aria-hidden', playButton.classList.contains("hidden"));
   pauseButton.setAttribute('aria-hidden', pauseButton.classList.contains("hidden"));
+}
+
+// Function to focus the progress container
+function focusProgress() {
+  currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
+  currentProgressContainer.focus();
 }
 'use strict';
 
