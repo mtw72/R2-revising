@@ -202,7 +202,7 @@
 
         <div class="menu">
           <!-- menu content for medium to large menu -->
-          <div class="menu__tabs" role="tablist" aria-label="Menu-tabs">
+          <div class="menu__tabs" role="tablist" aria-labelledby="menu">
             <button class="menu__tab menu__tab--active" type="button" role="tab" aria-controls="pasta-menu"
               id="pasta-tab">
               PASTA
@@ -354,7 +354,7 @@
             </button>
 
             <!-- Dynamic progress bar -->
-            <div class="carousel__progress-list" role="tablist" aria-label="Slides" tabindex="0">
+            <div class="carousel__progress-list" role="tablist" aria-label="Slides">
               <button class="carousel__progress-container" type="button" role="tab" aria-label="Slide 1"
                 aria-controls="carousel-slide1">
                 <div class="carousel__progress-bar" id="bar1">&nbsp;</div>
@@ -473,7 +473,7 @@
 
           <!-- confirmation message -->
           <div class="confirmation-message__container" id="confirmation-message" role="dialog"
-            aria-labelledby="Booking Summary">
+            aria-labelledby="modalTitle">
             <div class="confirmation-message__content">
               <header>
                 <h3 id="modalTitle" tabindex="0">Booking Summary</h3>
@@ -498,10 +498,8 @@
                 <li id="optional-message-value"></li>
               </ul>
               <div class="confirmation-message__bottom-buttons">
-                <button class="confirmation-message__bottom-button confirmation-message__bottom-button--cancel"
-                  type="button">Cancel</button>
-                <button class="confirmation-message__bottom-button confirmation-message__bottom-button--confirm"
-                  type="button">Confirm</button>
+                <button class="confirmation-message__cancel-button" type="button">Cancel</button>
+                <button class="confirmation-message__confirm-button" type="button">Confirm</button>
               </div>
             </div>
           </div>

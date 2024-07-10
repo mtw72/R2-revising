@@ -85,7 +85,7 @@ function validateUserImput() {
     }
 
     // Alert the user about the erroneous input
-    if (nameError.style.display === "block" || phoneNumberError.style.display === "block" || emailError.style.display === "block" || guestNumberError.style.display === "block" || dateError.style.display === "block" || timeError.style.display === "block") {
+    if (errorElements.some(element => element.style.display === "block")) {
         alert("Please provide valid input.");
     }
 

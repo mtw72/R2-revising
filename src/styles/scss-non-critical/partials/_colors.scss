@@ -134,12 +134,12 @@ select.valid {
     }
 }
 
-.confirmation-message__bottom-button--confirm {
+.confirmation-message__confirm-button {
     background-color: $brown-1;
     color: $yellow-2;
 }
 
-.confirmation-message__bottom-button--cancel {
+.confirmation-message__cancel-button {
     background-color: $grey-2;
     color: $black-1;
 }

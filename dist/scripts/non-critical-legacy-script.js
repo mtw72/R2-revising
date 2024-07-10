@@ -10,6 +10,7 @@ var navbarToggler = document.querySelector('.navbar__toggler');
 var navList = document.querySelector('.navbar__collapse');
 var navLinks = document.querySelectorAll('.navbar__nav-link');
 var home = document.getElementById("home");
+var screenWidth, currentScrollPos;
 
 // ******** EVENT LISTENERS ******** //
 
@@ -22,14 +23,16 @@ navbarToggler.addEventListener('click', function (event) {
     navList.style.maxHeight = null;
     // Set the toggler NOT to be aria-expanded
     togglerAriaNotExpanded();
-    // Set the navlinks to be aria-hidden and tab-index = -1
+    // Set the navlinks to be aria-hidden and tabindex = -1
     navLinkAriaHidden();
   } else {
     // If navList is closed, open it
     navList.style.maxHeight = navList.scrollHeight + "px";
+    // Focus on the first menu item
+    navLinks[0].focus();
     // Set the toggler to be aria-expanded
     togglerAriaExpanded();
-    // Set the navlinks NOT to be aria-hidden and tab-index = 0
+    // Set the navlinks NOT to be aria-hidden and tabindex = 0
     navLinkAriaNotHidden();
   }
   event.stopPropagation();
@@ -58,6 +61,12 @@ window.addEventListener('resize', debounce(function () {
   closeNavbar();
   checkScreenSize();
   adjustHeroImagePadding();
+  // if (window.innerWidth <= 900) {
+  // Update the screenWidth variable with the current window width
+  var screenWidth = window.innerWidth;
+  if (screenWidth <= 350 || screenWidth <= 600 && screenWidth > 450) {
+    navbar.style.top = "0";
+  }
 }, 50));
 
 // Handle scroll event with debounce
@@ -66,15 +75,29 @@ window.addEventListener('resize', debounce(function () {
 var prevScrollPos = window.scrollY;
 window.addEventListener('scroll', debounce(function () {
   var currentScrollPos = window.scrollY;
-  if (window.innerWidth > 900) {
+
+  // Update the screenWidth variable with the current window width
+  var screenWidth = window.innerWidth;
+  if (screenWidth > 650 || screenWidth <= 450 && screenWidth > 350) {
     navbar.style.top = prevScrollPos > currentScrollPos ? "0" : "-500px";
   }
   prevScrollPos = currentScrollPos;
 }, 50));
 
+// Close the open navbar menu by ESC key
+window.addEventListener('keydown', function (event) {
+  if (navList.classList.contains('is-opened')) {
+    switch (event.key) {
+      case 'Escape':
+        event.preventDefault();
+        closeNavbar();
+    }
+  }
+});
+
 // ******** FUNCTIONS ******** //
 
-// Debounce function
+// Debounce function to avoid the bouncing effect
 function debounce(func, wait) {
   var timeout;
   return function () {
@@ -147,13 +170,13 @@ function adjustHeroImagePadding() {
 function checkScreenSize() {
   var screenWidth = window.innerWidth;
   // On small screen, set the toggler to be aria-expanded,
-  // set the navlinks to be aria-hidden and tab-index = -1
+  // set the navlinks to be aria-hidden and tabindex = -1
   if (screenWidth <= 576) {
     togglerAriaNotExpanded();
     navLinkAriaHidden();
   }
   // On large screen, remove the aria-expanded attribute of the toggler,
-  // remove aria-hidden and tab-index attributes of navlinks
+  // remove aria-hidden and tabindex attributes of navlinks
   else {
     togglerAriaRemoved();
     navLinkAriaRemoved();
@@ -222,6 +245,12 @@ function openOrClosePanels() {
 // ******** VARIABLES ******** //
 
 // Set the time for autoplay
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 var time = 3.5; //3.5 seconds
 var timeInterval = time * 1000 / 100;
 
@@ -295,21 +324,6 @@ progressList.addEventListener('keydown', function (event) {
       currentSlide(3);
       focusProgress();
       break;
-    case 'Tab':
-      event.preventDefault(); // Prevent default Tab behavior
-      if (event.shiftKey) {
-        // Handle Shift + Tab
-        if (playButton.classList.contains("hidden")) {
-          pauseButton.focus();
-        } else {
-          playButton.focus();
-        }
-      } else {
-        // Handle regular Tab
-        var nameInput = document.getElementById("name");
-        nameInput.focus();
-      }
-      break;
   }
 });
 
@@ -342,7 +356,7 @@ function showSlides(n) {
     progressContainers[_i].classList.remove("current-container");
     progressBars[_i].classList.remove("current-bar");
     progressContainers[_i].setAttribute("aria-selected", "false");
-    progressContainers[_i].setAttribute("tab-index", "-1");
+    progressContainers[_i].setAttribute("tabindex", "-1");
   }
 
   // Show the current slide by adding the 'current-slide' class, and setting 'aria-current' attribute to true
@@ -350,7 +364,7 @@ function showSlides(n) {
   progressContainers[slideIndex - 1].classList.add("current-container");
   progressBars[slideIndex - 1].classList.add("current-bar");
   progressContainers[slideIndex - 1].setAttribute("aria-selected", "true");
-  progressContainers[slideIndex - 1].removeAttribute("tab-index", "-1");
+  progressContainers[slideIndex - 1].removeAttribute("tabindex", "-1");
 }
 
 // Function to start the progress initially
@@ -380,9 +394,9 @@ function frame() {
 
 // Function to change the dot color according to the slide position
 function checkDotColor(slideIndex) {
-  for (var _i2 = 0; _i2 < progressBars.length; _i2++) {
-    progressBars[_i2].classList.remove("finished-bar");
-  }
+  _toConsumableArray(progressBars).forEach(function (bar) {
+    return bar.classList.remove("finished-bar");
+  });
   if (slideIndex === 2) {
     bar1.classList.add("finished-bar");
   }
@@ -474,12 +488,31 @@ function focusProgress() {
 'use strict';
 
 // ******** VARIABLES ******** //
-var pastaTab = document.getElementById("pasta-tab");
-var riceTab = document.getElementById("rice-tab");
-var sidesTab = document.getElementById("sides-tab");
+var menuTabsContainer = document.querySelector(".menu__tabs");
+var menuTabs = document.getElementsByClassName("menu__tab");
+var currentTab = document.querySelector(".menu__tab--active");
+var menus = document.getElementsByClassName("menu__panel");
+var pastaTab = menuTabs[0];
+var riceTab = menuTabs[1];
+var sidesTab = menuTabs[2];
+var i, currentTabIndex;
 
 // ******** EVENT LISTENERS ******** //
 
+menuTabsContainer.addEventListener('keydown', function (event) {
+  menuTabs = document.getElementsByClassName("menu__tab");
+  checkCurrentTabIndex();
+  switch (event.key) {
+    case 'ArrowLeft':
+      currentTabIndex = currentTabIndex - 1;
+      changeTabByKey(currentTabIndex);
+      break;
+    case 'ArrowRight':
+      currentTabIndex = currentTabIndex + 1;
+      changeTabByKey(currentTabIndex);
+      break;
+  }
+});
 pastaTab.addEventListener("click", function (event) {
   openMenu(event, "pasta-menu");
 });
@@ -499,24 +532,57 @@ pastaTab.click();
 
 // Function to open a menu based on a tab click event
 function openMenu(event, menuName) {
-  var i, menutabs, menus;
-  menutabs = document.getElementsByClassName("menu__tab");
+  menuTabs = document.getElementsByClassName("menu__tab");
 
   // Loop through each menu tab to deactivate it
-  for (i = 0; i < menutabs.length; i++) {
-    menutabs[i].classList.remove("menu__tab--active");
-    menutabs[i].setAttribute('aria-selected', 'false');
+  for (i = 0; i < menuTabs.length; i++) {
+    menuTabs[i].classList.remove("menu__tab--active");
+    menuTabs[i].setAttribute('aria-selected', 'false');
+    menuTabs[i].setAttribute('tabindex', '-1');
   }
+
   // Activate the clicked tab
   event.currentTarget.classList.add("menu__tab--active");
   event.currentTarget.setAttribute('aria-selected', 'true');
+  event.currentTarget.removeAttribute('tabindex', '-1');
   menus = document.getElementsByClassName("menu__panel");
   // Loop through each menu panel to hide it
   for (i = 0; i < menus.length; i++) {
     menus[i].style.display = "none";
   }
+
   // Display the selected menu panel
   document.getElementById(menuName).style.display = "grid";
+}
+
+// Function to check current tab index
+function checkCurrentTabIndex() {
+  var currentTab = document.querySelector(".menu__tab--active");
+  switch (currentTab.id) {
+    case "pasta-tab":
+      currentTabIndex = 0;
+      break;
+    case "rice-tab":
+      currentTabIndex = 1;
+      break;
+    case "sides-tab":
+      currentTabIndex = 2;
+      break;
+  }
+}
+
+// Function to change the tab by current tab index
+function changeTabByKey(currentTabIndex) {
+  if (currentTabIndex === 0 || currentTabIndex > 2) {
+    pastaTab.click();
+    pastaTab.focus();
+  } else if (currentTabIndex === 1) {
+    riceTab.click();
+    riceTab.focus();
+  } else if (currentTabIndex === 2 || currentTabIndex < 0) {
+    sidesTab.click();
+    sidesTab.focus();
+  }
 }
 'use strict';
 
@@ -527,8 +593,8 @@ var reservationForm = document.getElementById("reservation-form");
 var submitButton = document.getElementById('formSumbitButton');
 var confirmationMessage = document.getElementById("confirmation-message");
 var closeButton = document.querySelector(".confirmation-message__close-button");
-var confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
-var cancelButton = document.querySelector(".confirmation-message__bottom-button--cancel");
+var confirmButton = document.querySelector(".confirmation-message__confirm-button");
+var cancelButton = document.querySelector(".confirmation-message__cancel-button");
 var modalTitle = document.getElementById("modalTitle");
 
 // Get the form input elements
@@ -549,6 +615,7 @@ var emailError = document.getElementById("email-error");
 var guestNumberError = document.getElementById("guest-number-error");
 var dateError = document.getElementById("date-error");
 var timeError = document.getElementById("time-error");
+var errorElements = [nameError, phoneNumberError, emailError, guestNumberError, dateError, timeError];
 
 // Get the form output elements
 var nameValue = document.getElementById("name-value");
@@ -862,7 +929,9 @@ function validateUserImput() {
   }
 
   // Alert the user about the erroneous input
-  if (nameError.style.display === "block" || phoneNumberError.style.display === "block" || emailError.style.display === "block" || guestNumberError.style.display === "block" || dateError.style.display === "block" || timeError.style.display === "block") {
+  if (errorElements.some(function (element) {
+    return element.style.display === "block";
+  })) {
     alert("Please provide valid input.");
   }
 
@@ -1028,7 +1097,7 @@ modalTitle.addEventListener('keydown', function (event) {
       if (event.shiftKey) {
         // Handle Shift + Tab
         event.preventDefault(); // Prevent default Tab behavior
-        confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
+        confirmButton = document.querySelector(".confirmation-message__confirm-button");
         confirmButton.focus();
       }
       break;
@@ -1066,7 +1135,9 @@ window.addEventListener('keydown', function (event) {
 function verifyInputs(event) {
   event.preventDefault();
   validateUserImput();
-  if (nameError.style.display === "block" || phoneNumberError.style.display === "block" || emailError.style.display === "block" || guestNumberError.style.display === "block" || dateError.style.display === "block" || timeError.style.display === "block") {} else {
+  if (errorElements.some(function (element) {
+    return element.style.display === "block";
+  })) {} else {
     openModal();
   }
 }

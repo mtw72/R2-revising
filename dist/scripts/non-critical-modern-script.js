@@ -10,7 +10,7 @@ const navbarToggler = document.querySelector('.navbar__toggler');
 const navList = document.querySelector('.navbar__collapse');
 const navLinks = document.querySelectorAll('.navbar__nav-link');
 const home = document.getElementById("home");
-
+let screenWidth, currentScrollPos;
 
 // ******** EVENT LISTENERS ******** //
 
@@ -23,14 +23,16 @@ navbarToggler.addEventListener('click', (event) => {
     navList.style.maxHeight = null;
     // Set the toggler NOT to be aria-expanded
     togglerAriaNotExpanded();
-    // Set the navlinks to be aria-hidden and tab-index = -1
+    // Set the navlinks to be aria-hidden and tabindex = -1
     navLinkAriaHidden();
   } else {
     // If navList is closed, open it
     navList.style.maxHeight = navList.scrollHeight + "px";
+    // Focus on the first menu item
+    navLinks[0].focus();
     // Set the toggler to be aria-expanded
     togglerAriaExpanded();
-    // Set the navlinks NOT to be aria-hidden and tab-index = 0
+    // Set the navlinks NOT to be aria-hidden and tabindex = 0
     navLinkAriaNotHidden();
   }
   event.stopPropagation();
@@ -59,6 +61,12 @@ window.addEventListener('resize', debounce(() => {
   closeNavbar();
   checkScreenSize();
   adjustHeroImagePadding();
+  // if (window.innerWidth <= 900) {
+  // Update the screenWidth variable with the current window width
+  let screenWidth = window.innerWidth;
+  if (screenWidth <= 350 || (screenWidth <= 600 && screenWidth > 450)) {
+    navbar.style.top = "0";
+  }
 }, 50));
 
 // Handle scroll event with debounce
@@ -66,17 +74,31 @@ window.addEventListener('resize', debounce(() => {
 // Show the navbar when the user scrolls up
 let prevScrollPos = window.scrollY;
 window.addEventListener('scroll', debounce(() => {
-  const currentScrollPos = window.scrollY;
-  if (window.innerWidth > 900) {
+  let currentScrollPos = window.scrollY;
+
+  // Update the screenWidth variable with the current window width
+  let screenWidth = window.innerWidth;
+  if (screenWidth > 650 || (screenWidth <= 450 && screenWidth > 350)) {
     navbar.style.top = prevScrollPos > currentScrollPos ? "0" : "-500px";
   }
   prevScrollPos = currentScrollPos;
 }, 50));
 
+// Close the open navbar menu by ESC key
+window.addEventListener('keydown', (event) => {
+  if (navList.classList.contains('is-opened')) {
+    switch (event.key) {
+      case 'Escape':
+        event.preventDefault();
+        closeNavbar();
+    }
+  }
+});
+
 
 // ******** FUNCTIONS ******** //
 
-// Debounce function
+// Debounce function to avoid the bouncing effect
 function debounce(func, wait) {
   let timeout;
   return function (...args) {
@@ -147,13 +169,13 @@ function adjustHeroImagePadding() {
 function checkScreenSize() {
   let screenWidth = window.innerWidth;
   // On small screen, set the toggler to be aria-expanded,
-  // set the navlinks to be aria-hidden and tab-index = -1
+  // set the navlinks to be aria-hidden and tabindex = -1
   if (screenWidth <= 576) {
     togglerAriaNotExpanded();
     navLinkAriaHidden();
   }
   // On large screen, remove the aria-expanded attribute of the toggler,
-  // remove aria-hidden and tab-index attributes of navlinks
+  // remove aria-hidden and tabindex attributes of navlinks
   else {
     togglerAriaRemoved();
     navLinkAriaRemoved();
@@ -301,21 +323,6 @@ progressList.addEventListener('keydown', (event) => {
       currentSlide(3);
       focusProgress();
       break;
-    case 'Tab':
-      event.preventDefault(); // Prevent default Tab behavior
-      if (event.shiftKey) {
-        // Handle Shift + Tab
-        if (playButton.classList.contains("hidden")) {
-          pauseButton.focus();
-        } else {
-          playButton.focus();
-        }
-      } else {
-        // Handle regular Tab
-        let nameInput = document.getElementById("name");
-        nameInput.focus();
-      }
-      break;
   }
 });
 
@@ -343,7 +350,7 @@ function showSlides(n) {
     progressContainers[i].classList.remove("current-container");
     progressBars[i].classList.remove("current-bar");
     progressContainers[i].setAttribute("aria-selected", "false");
-    progressContainers[i].setAttribute("tab-index", "-1");
+    progressContainers[i].setAttribute("tabindex", "-1");
   }
 
   // Show the current slide by adding the 'current-slide' class, and setting 'aria-current' attribute to true
@@ -351,7 +358,7 @@ function showSlides(n) {
   progressContainers[slideIndex - 1].classList.add("current-container");
   progressBars[slideIndex - 1].classList.add("current-bar");
   progressContainers[slideIndex - 1].setAttribute("aria-selected", "true");
-  progressContainers[slideIndex - 1].removeAttribute("tab-index", "-1");
+  progressContainers[slideIndex - 1].removeAttribute("tabindex", "-1");
 }
 
 // Function to start the progress initially
@@ -381,9 +388,7 @@ function frame() {
 
 // Function to change the dot color according to the slide position
 function checkDotColor(slideIndex) {
-  for (let i = 0; i < progressBars.length; i++) {
-    progressBars[i].classList.remove("finished-bar");
-  }
+  [...progressBars].forEach(bar => bar.classList.remove("finished-bar"));
   if (slideIndex === 2) {
     bar1.classList.add("finished-bar");
   }
@@ -476,12 +481,34 @@ function focusProgress() {
 
 // ******** VARIABLES ******** //
 
-const pastaTab = document.getElementById("pasta-tab");
-const riceTab = document.getElementById("rice-tab");
-const sidesTab = document.getElementById("sides-tab");
+const menuTabsContainer = document.querySelector(".menu__tabs");
+let menuTabs = document.getElementsByClassName("menu__tab");
+let currentTab = document.querySelector(".menu__tab--active");
+let menus = document.getElementsByClassName("menu__panel");
+const pastaTab = menuTabs[0];
+const riceTab = menuTabs[1];
+const sidesTab = menuTabs[2];
+let i, currentTabIndex;
 
 
 // ******** EVENT LISTENERS ******** //
+
+menuTabsContainer.addEventListener('keydown', (event) => {
+  menuTabs = document.getElementsByClassName("menu__tab");
+
+  checkCurrentTabIndex();
+
+  switch (event.key) {
+    case 'ArrowLeft':
+      currentTabIndex = currentTabIndex - 1;
+      changeTabByKey(currentTabIndex);
+      break;
+    case 'ArrowRight':
+      currentTabIndex = currentTabIndex + 1;
+      changeTabByKey(currentTabIndex);
+      break;
+  }
+});
 
 pastaTab.addEventListener("click", (event) => {
   openMenu(event, "pasta-menu");
@@ -506,25 +533,59 @@ pastaTab.click();
 
 // Function to open a menu based on a tab click event
 function openMenu(event, menuName) {
-  let i, menutabs, menus;
-  menutabs = document.getElementsByClassName("menu__tab");
+  menuTabs = document.getElementsByClassName("menu__tab");
 
   // Loop through each menu tab to deactivate it
-  for (i = 0; i < menutabs.length; i++) {
-    menutabs[i].classList.remove("menu__tab--active");
-    menutabs[i].setAttribute('aria-selected', 'false');
+  for (i = 0; i < menuTabs.length; i++) {
+    menuTabs[i].classList.remove("menu__tab--active");
+    menuTabs[i].setAttribute('aria-selected', 'false');
+    menuTabs[i].setAttribute('tabindex', '-1');
   }
+
   // Activate the clicked tab
   event.currentTarget.classList.add("menu__tab--active");
   event.currentTarget.setAttribute('aria-selected', 'true');
+  event.currentTarget.removeAttribute('tabindex', '-1');
 
   menus = document.getElementsByClassName("menu__panel");
   // Loop through each menu panel to hide it
   for (i = 0; i < menus.length; i++) {
     menus[i].style.display = "none";
   }
+
   // Display the selected menu panel
   document.getElementById(menuName).style.display = "grid";
+}
+
+// Function to check current tab index
+function checkCurrentTabIndex() {
+  const currentTab = document.querySelector(".menu__tab--active");
+  switch (currentTab.id) {
+    case "pasta-tab":
+      currentTabIndex = 0;
+      break;
+    case "rice-tab":
+      currentTabIndex = 1;
+      break;
+    case "sides-tab":
+      currentTabIndex = 2;
+      break;
+  }
+}
+
+
+// Function to change the tab by current tab index
+function changeTabByKey(currentTabIndex) {
+  if (currentTabIndex === 0 || currentTabIndex > 2) {
+    pastaTab.click();
+    pastaTab.focus();
+  } else if (currentTabIndex === 1) {
+    riceTab.click();
+    riceTab.focus();
+  } else if (currentTabIndex === 2 || currentTabIndex < 0) {
+    sidesTab.click();
+    sidesTab.focus();
+  }
 }
 'use strict';
 
@@ -535,8 +596,8 @@ const reservationForm = document.getElementById("reservation-form");
 let submitButton = document.getElementById('formSumbitButton');
 let confirmationMessage = document.getElementById("confirmation-message");
 const closeButton = document.querySelector(".confirmation-message__close-button");
-let confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
-const cancelButton = document.querySelector(".confirmation-message__bottom-button--cancel");
+let confirmButton = document.querySelector(".confirmation-message__confirm-button");
+const cancelButton = document.querySelector(".confirmation-message__cancel-button");
 let modalTitle = document.getElementById("modalTitle");
 
 // Get the form input elements
@@ -557,6 +618,7 @@ const emailError = document.getElementById("email-error");
 const guestNumberError = document.getElementById("guest-number-error");
 const dateError = document.getElementById("date-error");
 const timeError = document.getElementById("time-error");
+const errorElements = [nameError, phoneNumberError, emailError, guestNumberError, dateError, timeError];
 
 // Get the form output elements
 let nameValue = document.getElementById("name-value");
@@ -876,7 +938,7 @@ function validateUserImput() {
     }
 
     // Alert the user about the erroneous input
-    if (nameError.style.display === "block" || phoneNumberError.style.display === "block" || emailError.style.display === "block" || guestNumberError.style.display === "block" || dateError.style.display === "block" || timeError.style.display === "block") {
+    if (errorElements.some(element => element.style.display === "block")) {
         alert("Please provide valid input.");
     }
 
@@ -1047,7 +1109,7 @@ modalTitle.addEventListener('keydown', (event) => {
             if (event.shiftKey) {
                 // Handle Shift + Tab
                 event.preventDefault(); // Prevent default Tab behavior
-                confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
+                confirmButton = document.querySelector(".confirmation-message__confirm-button");
                 confirmButton.focus();
             }
             break;
@@ -1087,8 +1149,7 @@ window.addEventListener('keydown', (event) => {
 function verifyInputs(event) {
     event.preventDefault();
     validateUserImput();
-    if (nameError.style.display === "block" || phoneNumberError.style.display === "block" || emailError.style.display === "block" || guestNumberError.style.display === "block" || dateError.style.display === "block" || timeError.style.display === "block") {
-
+    if (errorElements.some(element => element.style.display === "block")) {
     } else {
         openModal();
     }

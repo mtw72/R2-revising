@@ -147,17 +147,18 @@
     flex-direction: row;
 }
 
-.confirmation-message__bottom-button {
+.confirmation-message__confirm-button,
+.confirmation-message__cancel-button {
     width: 50%;
     border: none;
     padding-block: 0.5rem;
     cursor: pointer;
 }
 
-.confirmation-message__bottom-button--confirm {
+.confirmation-message__confirm-button {
     border-radius: 0 0 5px 0;
 }
 
-.confirmation-message__bottom-button--cancel {
+.confirmation-message__cancel-button {
     border-radius: 0 0 0 5px;
 }

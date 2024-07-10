@@ -10,7 +10,7 @@ const navbarToggler = document.querySelector('.navbar__toggler');
 const navList = document.querySelector('.navbar__collapse');
 const navLinks = document.querySelectorAll('.navbar__nav-link');
 const home = document.getElementById("home");
-
+let screenWidth, currentScrollPos;
 
 // ******** EVENT LISTENERS ******** //
 
@@ -23,14 +23,16 @@ navbarToggler.addEventListener('click', (event) => {
     navList.style.maxHeight = null;
     // Set the toggler NOT to be aria-expanded
     togglerAriaNotExpanded();
-    // Set the navlinks to be aria-hidden and tab-index = -1
+    // Set the navlinks to be aria-hidden and tabindex = -1
     navLinkAriaHidden();
   } else {
     // If navList is closed, open it
     navList.style.maxHeight = navList.scrollHeight + "px";
+    // Focus on the first menu item
+    navLinks[0].focus();
     // Set the toggler to be aria-expanded
     togglerAriaExpanded();
-    // Set the navlinks NOT to be aria-hidden and tab-index = 0
+    // Set the navlinks NOT to be aria-hidden and tabindex = 0
     navLinkAriaNotHidden();
   }
   event.stopPropagation();
@@ -59,6 +61,12 @@ window.addEventListener('resize', debounce(() => {
   closeNavbar();
   checkScreenSize();
   adjustHeroImagePadding();
+  // if (window.innerWidth <= 900) {
+  // Update the screenWidth variable with the current window width
+  let screenWidth = window.innerWidth;
+  if (screenWidth <= 350 || (screenWidth <= 600 && screenWidth > 450)) {
+    navbar.style.top = "0";
+  }
 }, 50));
 
 // Handle scroll event with debounce
@@ -66,17 +74,31 @@ window.addEventListener('resize', debounce(() => {
 // Show the navbar when the user scrolls up
 let prevScrollPos = window.scrollY;
 window.addEventListener('scroll', debounce(() => {
-  const currentScrollPos = window.scrollY;
-  if (window.innerWidth > 900) {
+  let currentScrollPos = window.scrollY;
+
+  // Update the screenWidth variable with the current window width
+  let screenWidth = window.innerWidth;
+  if (screenWidth > 650 || (screenWidth <= 450 && screenWidth > 350)) {
     navbar.style.top = prevScrollPos > currentScrollPos ? "0" : "-500px";
   }
   prevScrollPos = currentScrollPos;
 }, 50));
 
+// Close the open navbar menu by ESC key
+window.addEventListener('keydown', (event) => {
+  if (navList.classList.contains('is-opened')) {
+    switch (event.key) {
+      case 'Escape':
+        event.preventDefault();
+        closeNavbar();
+    }
+  }
+});
+
 
 // ******** FUNCTIONS ******** //
 
-// Debounce function
+// Debounce function to avoid the bouncing effect
 function debounce(func, wait) {
   let timeout;
   return function (...args) {
@@ -147,13 +169,13 @@ function adjustHeroImagePadding() {
 function checkScreenSize() {
   let screenWidth = window.innerWidth;
   // On small screen, set the toggler to be aria-expanded,
-  // set the navlinks to be aria-hidden and tab-index = -1
+  // set the navlinks to be aria-hidden and tabindex = -1
   if (screenWidth <= 576) {
     togglerAriaNotExpanded();
     navLinkAriaHidden();
   }
   // On large screen, remove the aria-expanded attribute of the toggler,
-  // remove aria-hidden and tab-index attributes of navlinks
+  // remove aria-hidden and tabindex attributes of navlinks
   else {
     togglerAriaRemoved();
     navLinkAriaRemoved();

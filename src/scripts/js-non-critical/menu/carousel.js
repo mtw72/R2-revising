@@ -80,21 +80,6 @@ progressList.addEventListener('keydown', (event) => {
       currentSlide(3);
       focusProgress();
       break;
-    case 'Tab':
-      event.preventDefault(); // Prevent default Tab behavior
-      if (event.shiftKey) {
-        // Handle Shift + Tab
-        if (playButton.classList.contains("hidden")) {
-          pauseButton.focus();
-        } else {
-          playButton.focus();
-        }
-      } else {
-        // Handle regular Tab
-        let nameInput = document.getElementById("name");
-        nameInput.focus();
-      }
-      break;
   }
 });
 
@@ -122,7 +107,7 @@ function showSlides(n) {
     progressContainers[i].classList.remove("current-container");
     progressBars[i].classList.remove("current-bar");
     progressContainers[i].setAttribute("aria-selected", "false");
-    progressContainers[i].setAttribute("tab-index", "-1");
+    progressContainers[i].setAttribute("tabindex", "-1");
   }
 
   // Show the current slide by adding the 'current-slide' class, and setting 'aria-current' attribute to true
@@ -130,7 +115,7 @@ function showSlides(n) {
   progressContainers[slideIndex - 1].classList.add("current-container");
   progressBars[slideIndex - 1].classList.add("current-bar");
   progressContainers[slideIndex - 1].setAttribute("aria-selected", "true");
-  progressContainers[slideIndex - 1].removeAttribute("tab-index", "-1");
+  progressContainers[slideIndex - 1].removeAttribute("tabindex", "-1");
 }
 
 // Function to start the progress initially
@@ -160,9 +145,7 @@ function frame() {
 
 // Function to change the dot color according to the slide position
 function checkDotColor(slideIndex) {
-  for (let i = 0; i < progressBars.length; i++) {
-    progressBars[i].classList.remove("finished-bar");
-  }
+  [...progressBars].forEach(bar => bar.classList.remove("finished-bar"));
   if (slideIndex === 2) {
     bar1.classList.add("finished-bar");
   }

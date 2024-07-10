@@ -7,8 +7,8 @@ const reservationForm = document.getElementById("reservation-form");
 let submitButton = document.getElementById('formSumbitButton');
 let confirmationMessage = document.getElementById("confirmation-message");
 const closeButton = document.querySelector(".confirmation-message__close-button");
-let confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
-const cancelButton = document.querySelector(".confirmation-message__bottom-button--cancel");
+let confirmButton = document.querySelector(".confirmation-message__confirm-button");
+const cancelButton = document.querySelector(".confirmation-message__cancel-button");
 let modalTitle = document.getElementById("modalTitle");
 
 // Get the form input elements
@@ -29,6 +29,7 @@ const emailError = document.getElementById("email-error");
 const guestNumberError = document.getElementById("guest-number-error");
 const dateError = document.getElementById("date-error");
 const timeError = document.getElementById("time-error");
+const errorElements = [nameError, phoneNumberError, emailError, guestNumberError, dateError, timeError];
 
 // Get the form output elements
 let nameValue = document.getElementById("name-value");

@@ -54,7 +54,7 @@ modalTitle.addEventListener('keydown', (event) => {
             if (event.shiftKey) {
                 // Handle Shift + Tab
                 event.preventDefault(); // Prevent default Tab behavior
-                confirmButton = document.querySelector(".confirmation-message__bottom-button--confirm");
+                confirmButton = document.querySelector(".confirmation-message__confirm-button");
                 confirmButton.focus();
             }
             break;
@@ -94,8 +94,7 @@ window.addEventListener('keydown', (event) => {
 function verifyInputs(event) {
     event.preventDefault();
     validateUserImput();
-    if (nameError.style.display === "block" || phoneNumberError.style.display === "block" || emailError.style.display === "block" || guestNumberError.style.display === "block" || dateError.style.display === "block" || timeError.style.display === "block") {
-
+    if (errorElements.some(element => element.style.display === "block")) {
     } else {
         openModal();
     }
