@@ -29,25 +29,25 @@
 
   <!-- Critical resources -->
   <!-- Google fonts -->
-  <link rel="stylesheet" href="./dist/styles/googlefont.min.css">
+  <!-- <link rel="stylesheet" href="./dist/styles/googlefont.min.css"> -->
   <!-- Loader -->
-  <link rel="stylesheet" href="./dist/styles/loader.min.css">
+  <!-- <link rel="stylesheet" href="./dist/styles/loader.min.css">
   <link rel="stylesheet" href="./dist/styles/critical-style.min.css">
-  <script src="./dist/scripts/critical-modern-script.min.js"></script>
+  <script src="./dist/scripts/critical-modern-script.min.js"></script> -->
 
   <!-- Non-critical resources -->
-  <link rel="preload" href="./dist/styles/non-critical-style.min.css" as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
+  <!-- <link rel="preload" href="./dist/styles/non-critical-style.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'"> -->
 
-  <script defer src="./dist/scripts/non-critical-modern-script.min.js"></script>
-  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.min.js"></script>
+  <!-- <script defer src="./dist/scripts/non-critical-modern-script.min.js"></script>
+  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.min.js"></script> -->
 
   <!-- No script -->
-  <noscript>
+  <!-- <noscript>
     <link rel="stylesheet" href="./dist/styles/noscript.css">
-  </noscript>
+  </noscript> -->
 
-  <!-- <link rel="stylesheet" href="./dist/styles/googlefont.css">
+  <link rel="stylesheet" href="./dist/styles/googlefont.css">
   <link rel="stylesheet" href="./dist/styles/loader.css">
   <script src="./dist/scripts/critical-modern-script.js"></script>
 
@@ -57,7 +57,7 @@
     onload="this.onload=null;this.rel='stylesheet'">
 
   <script defer src="./dist/scripts/non-critical-modern-script.js"></script>
-  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.js"></script> -->
+  <script nomodule defer src="./dist/scripts/non-critical-legacy-script.js"></script>
 
 </head>
 
@@ -332,22 +332,20 @@
               </svg>
             </button>
 
-            <!-- Dynamic progress bar -->
-            <div class="carousel__progress-list" role="tablist" aria-label="Slides">
-              <button class="carousel__progress-container" type="button" role="tab" aria-label="Slide 1"
-                aria-controls="carousel-slide1">
-                <div class="carousel__progress-bar" id="bar1">&nbsp;</div>
-              </button>
-              <button class="carousel__progress-container" type="button" role="tab" aria-label="Slide 2"
-                aria-controls="carousel-slide2">
-                <div class="carousel__progress-bar" id="bar2">&nbsp;</div>
-              </button>
-              <button class="carousel__progress-container" type="button" role="tab" aria-label="Slide 3"
-                aria-controls="carousel-slide3">
-                <div class="carousel__progress-bar" id="bar3">&nbsp;</div>
-              </button>
+            <div class="carousel__progress-list" role="tablist" aria-label="Slides" tabindex="1">
+              <div class="carousel__progress-container">
+                <button class="carousel__progress-bar" type="button" role="tab" aria-label="Slide 1"
+                  aria-controls="carousel-slide1" id="bar1"></button>
+              </div>
+              <div class="carousel__progress-container">
+                <button class="carousel__progress-bar" type="button" role="tab" aria-label="Slide 2"
+                  aria-controls="carousel-slide2" id="bar2"></button>
+              </div>
+              <div class="carousel__progress-container">
+                <button class="carousel__progress-bar" type="button" role="tab" aria-label="Slide 3"
+                  aria-controls="carousel-slide3" id="bar3"></button>
+              </div>
             </div>
-
           </div>
         </div>
       </section>

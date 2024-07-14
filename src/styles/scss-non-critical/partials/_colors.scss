@@ -24,7 +24,8 @@
     background-color: $orange-4;
 }
 
-.current-container:focus {
+.carousel__progress-list:focus,
+.current-bar:focus {
     outline: 2px solid $orange-2;
 }
 

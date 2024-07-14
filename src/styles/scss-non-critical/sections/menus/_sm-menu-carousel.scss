@@ -126,16 +126,12 @@ $size-of-dot: 0.75rem;
     display: none;
 }
 
-.carousel__progress-list>* {
-    border: none;
-    display: block;
-}
-
 .carousel__progress-container {
+    display: flex;
+    align-items: center; // Ensures vertical alignment within the container
     cursor: pointer;
     margin: 0 5px;
     padding: 0;
-    overflow: hidden;
 }
 
 .carousel__progress-bar {
@@ -144,6 +140,8 @@ $size-of-dot: 0.75rem;
     height: $size-of-dot;
     width: $size-of-dot;
     border-radius: 100%;
+    border: none;
+    box-shadow: none;
 }
 
 .current-container {

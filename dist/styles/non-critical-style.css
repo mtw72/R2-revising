@@ -19,7 +19,8 @@
   background-color: rgb(252, 222, 185);
 }
 
-.current-container:focus {
+.carousel__progress-list:focus,
+.current-bar:focus {
   outline: 2px solid rgb(255, 165, 0);
 }
 
@@ -500,16 +501,16 @@ footer {
   display: none;
 }
 
-.carousel__progress-list > * {
-  border: none;
-  display: block;
-}
-
 .carousel__progress-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   cursor: pointer;
   margin: 0 5px;
   padding: 0;
-  overflow: hidden;
 }
 
 .carousel__progress-bar {
@@ -518,6 +519,9 @@ footer {
   height: 0.75rem;
   width: 0.75rem;
   border-radius: 100%;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .current-container {

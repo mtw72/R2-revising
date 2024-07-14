@@ -353,16 +353,16 @@ function showSlides(n) {
     slides[_i].classList.remove("current-slide");
     progressContainers[_i].classList.remove("current-container");
     progressBars[_i].classList.remove("current-bar");
-    progressContainers[_i].setAttribute("aria-selected", "false");
-    progressContainers[_i].setAttribute("tabindex", "-1");
+    progressBars[_i].setAttribute("aria-selected", "false");
+    progressBars[_i].setAttribute("tabindex", "-1");
   }
 
   // Show the current slide by adding the 'current-slide' class, and setting 'aria-current' attribute to true
   slides[slideIndex - 1].classList.add("current-slide");
   progressContainers[slideIndex - 1].classList.add("current-container");
   progressBars[slideIndex - 1].classList.add("current-bar");
-  progressContainers[slideIndex - 1].setAttribute("aria-selected", "true");
-  progressContainers[slideIndex - 1].removeAttribute("tabindex", "-1");
+  progressBars[slideIndex - 1].setAttribute("aria-selected", "true");
+  progressBars[slideIndex - 1].removeAttribute("tabindex", "-1");
 }
 
 // Function to start the progress initially
@@ -380,6 +380,7 @@ function frame() {
     memo = width;
   } else {
     clearInterval(dynamicFrame); // Clear the coming round
+    currentProgressBar.blur();
     currentProgressBar.style.width = "0.75rem";
     slideIndex++; // Advance to the next slide
     showSlides(slideIndex);
@@ -480,8 +481,8 @@ function togglePlayPauseButtons() {
 
 // Function to focus the progress container
 function focusProgress() {
-  currentProgressContainer = document.querySelector(".carousel__progress-container.current-container");
-  currentProgressContainer.focus();
+  currentProgressBar = document.querySelector(".carousel__progress-bar.current-bar");
+  currentProgressBar.focus();
 }
 'use strict';
 
