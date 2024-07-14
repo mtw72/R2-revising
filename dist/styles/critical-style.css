@@ -1013,7 +1013,7 @@ section:not(:first-of-type) {
     border-radius: 25px 25px 0 0;
   }
   .menu__panel {
-    border-radius: 0 0 15px 15px;
+    border-radius: 0 0 25px 25px;
   }
 }
 #menu h2 {
@@ -1212,6 +1212,10 @@ section:not(:first-of-type) {
   padding-block: 0.9rem;
   margin-left: 1rem;
   text-align: center;
+  position: relative;
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+  /* Adjust this value to move the price up */
 }
 
 /* menu photos */

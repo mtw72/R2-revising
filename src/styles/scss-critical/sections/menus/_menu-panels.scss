@@ -52,6 +52,9 @@
     padding-block: 0.9rem;
     margin-left: 1rem;
     text-align: center;
+    position: relative;
+    transform: translateY(-5px);
+    /* Adjust this value to move the price up */
 }
 
 /* menu photos */
