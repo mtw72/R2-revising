@@ -1185,12 +1185,6 @@ section:not(:first-of-type) {
   }
 }
 /* menu description */
-.menu__panel .menu__item-name {
-  padding: 2%;
-  padding-left: calc(0.5rem + 1vw);
-  display: inline-block;
-}
-
 .menu__item {
   display: grid;
   -ms-flex-line-pack: center;
@@ -1198,10 +1192,17 @@ section:not(:first-of-type) {
   min-height: 7.8125rem;
 }
 
-.menu__item p {
+.menu__item-name {
+  padding: 2%;
+  padding-left: calc(0.5rem + 1vw);
+  display: inline-block;
+}
+
+.menu__item p:not(.menu__item-name) {
   margin: 0;
   padding: 2%;
   padding-left: calc(0.5rem + 1vw);
+  padding-top: 0;
 }
 
 .menu__item-price {
@@ -1236,6 +1237,9 @@ section:not(:first-of-type) {
        -moz-column-gap: 0px;
             column-gap: 0px;
     row-gap: 0px;
+  }
+  .menu__item p:not(.menu__item-name) {
+    padding-top: 1%;
   }
   .menu__item--1 {
     grid-area: 1/1/2/2;
