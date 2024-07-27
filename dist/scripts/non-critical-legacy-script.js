@@ -5,7 +5,8 @@
 // Get the elements inside the navbar and the home section
 var navbar = document.getElementById("navbar");
 var navbarToggler = document.querySelector('.navbar__toggler');
-var navList = document.querySelector('.navbar__collapse');
+var navContainer = document.querySelector('.navbar__collapse');
+var navList = document.querySelector('.navbar__nav');
 var navLinks = document.querySelectorAll('.navbar__nav-link');
 var home = document.getElementById("home");
 var screenWidth, currentScrollPos;
@@ -14,18 +15,18 @@ var screenWidth, currentScrollPos;
 
 // Show or hide the collapsible navbar when toggler is clicked
 navbarToggler.addEventListener('click', function (event) {
-  // Toggle the visibility of navList
-  navList.classList.toggle('is-opened');
-  if (navList.style.maxHeight) {
-    // If navList is open, close it
-    navList.style.maxHeight = null;
+  // Toggle the visibility of navContainer
+  navContainer.classList.toggle('is-opened');
+  if (navContainer.style.maxHeight) {
+    // If navContainer is open, close it
+    navContainer.style.maxHeight = null;
     // Set the toggler NOT to be aria-expanded
     togglerAriaNotExpanded();
     // Set the navlinks to be aria-hidden and tabindex = -1
     navLinkAriaHidden();
   } else {
-    // If navList is closed, open it
-    navList.style.maxHeight = navList.scrollHeight + "px";
+    // If navContainer is closed, open it
+    navContainer.style.maxHeight = navContainer.scrollHeight + "px";
     // Focus on the first menu item
     navLinks[0].focus();
     // Set the toggler to be aria-expanded
@@ -38,15 +39,6 @@ navbarToggler.addEventListener('click', function (event) {
 
 // Hide the collapsible navbar when the nav link is clicked or when the user clicks anywhere outside of the navbar
 document.addEventListener('click', closeNavbar);
-
-// For keyboard user, close the navbar if the key "TAB" is pressed
-// let the navbar stay open if the key "SHIFT" + "TAB" are pressed
-// Close the navbar on "TAB" key press
-navLinks[navLinks.length - 1].addEventListener('keydown', function (event) {
-  if (!event.shiftKey && event.key === 'Tab') {
-    closeNavbar();
-  }
-});
 
 //Check the screen size onload and assign appropriate aria attributes to HTML elements
 window.addEventListener('load', checkScreenSize);
@@ -81,14 +73,101 @@ window.addEventListener('scroll', debounce(function () {
   }
   prevScrollPos = currentScrollPos;
 }, 50));
-
-// Close the open navbar menu by ESC key
 window.addEventListener('keydown', function (event) {
-  if (navList.classList.contains('is-opened')) {
+  var focusedElement = document.activeElement;
+  var isNavLinkFocused = Array.prototype.includes.call(navLinks, focusedElement);
+  var menuTab1 = document.getElementsByClassName("menu__tab")[0];
+  var accordionButton1 = document.getElementsByClassName("accordion__button")[0];
+  if (navContainer.classList.contains('is-opened')) {
     switch (event.key) {
+      // Close the open navbar menu by ESC key
       case 'Escape':
         event.preventDefault();
         closeNavbar();
+        break;
+      case 'Tab':
+        if (event.shiftKey) {
+          event.preventDefault();
+          closeNavbar();
+          navbarToggler.focus();
+        } else {
+          event.preventDefault();
+          closeNavbar();
+          menuTab1.focus();
+          accordionButton1.focus();
+        }
+        break;
+      case 'Home':
+        event.preventDefault();
+        navLinks[0].focus();
+        break;
+      case 'End':
+        event.preventDefault();
+        navLinks[navLinks.length - 1].focus();
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        if (isNavLinkFocused) {
+          var nextIndex = (Array.prototype.indexOf.call(navLinks, focusedElement) + 1) % navLinks.length;
+          navLinks[nextIndex].focus();
+        } else {
+          navLinks[0].focus();
+        }
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        if (isNavLinkFocused) {
+          var prevIndex = (Array.prototype.indexOf.call(navLinks, focusedElement) - 1 + navLinks.length) % navLinks.length;
+          navLinks[prevIndex].focus();
+        } else {
+          navLinks[navLinks.length - 1].focus();
+        }
+        break;
+    }
+  }
+});
+window.addEventListener('keydown', function (event) {
+  var focusedElement = document.activeElement;
+  var isNavLinkFocused = Array.prototype.includes.call(navLinks, focusedElement);
+  var r2link = document.querySelector('.navbar__brand');
+  var menuTab1 = document.getElementsByClassName("menu__tab")[0];
+  if (isNavLinkFocused) {
+    switch (event.key) {
+      case 'Tab':
+        if (event.shiftKey) {
+          event.preventDefault();
+          closeNavbar();
+          r2link.focus();
+        } else {
+          event.preventDefault();
+          closeNavbar();
+          menuTab1.focus();
+        }
+        break;
+      case 'Home':
+        event.preventDefault();
+        navLinks[0].focus();
+        break;
+      case 'End':
+        event.preventDefault();
+        navLinks[navLinks.length - 1].focus();
+        break;
+      case 'ArrowRight':
+        event.preventDefault();
+        // Get the index of the currently focused element
+        var currentIndexRight = Array.prototype.indexOf.call(navLinks, focusedElement);
+        // Calculate the index of the next element
+        var nextIndexRight = (currentIndexRight + 1) % navLinks.length;
+        navLinks[nextIndexRight].focus();
+        break;
+      case 'ArrowLeft':
+        event.preventDefault();
+        // Get the index of the currently focused element
+        var currentIndexLeft = Array.prototype.indexOf.call(navLinks, focusedElement);
+        // Calculate the index of the previous element
+        var prevIndexLeft = (currentIndexLeft - 1 + navLinks.length) % navLinks.length;
+        navLinks[prevIndexLeft].focus();
+        break;
     }
   }
 });
@@ -146,9 +225,9 @@ function navLinkAriaRemoved() {
 
 // Function to close the collapsible navbar
 function closeNavbar() {
-  if (navList.classList.contains('is-opened')) {
-    navList.style.maxHeight = null;
-    navList.classList.remove('is-opened');
+  if (navContainer.classList.contains('is-opened')) {
+    navContainer.style.maxHeight = null;
+    navContainer.classList.remove('is-opened');
     togglerAriaNotExpanded();
     navLinkAriaHidden();
   }
@@ -172,12 +251,14 @@ function checkScreenSize() {
   if (screenWidth <= 576) {
     togglerAriaNotExpanded();
     navLinkAriaHidden();
+    navList.setAttribute('role', 'menu');
   }
   // On large screen, remove the aria-expanded attribute of the toggler,
   // remove aria-hidden and tabindex attributes of navlinks
   else {
     togglerAriaRemoved();
     navLinkAriaRemoved();
+    navList.setAttribute('role', 'menubar');
   }
 }
 'use strict';
